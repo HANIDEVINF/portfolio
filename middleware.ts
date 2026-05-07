@@ -1,20 +1,30 @@
-import { updateSession } from '@/lib/supabase/middleware'
-import { type NextRequest } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server'
 
-export async function middleware(request: NextRequest) {
-  return await updateSession(request)
+export function middleware(request: NextRequest) {
+  // Skip middleware for static files, API routes, and Next.js internals
+  if (
+    request.nextUrl.pathname.startsWith('/_next') ||
+    request.nextUrl.pathname.startsWith('/api') ||
+    request.nextUrl.pathname.includes('.')
+  ) {
+    return NextResponse.next()
+  }
+
+  // For now, let all other requests pass through
+  // We can add authentication logic later once the basic deployment works
+  return NextResponse.next()
 }
 
 export const config = {
   matcher: [
     /*
-     * Match all request paths except:
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - images - .svg, .png, .jpg, .jpeg, .gif, .webp
-     * Feel free to modify this pattern to include more paths.
+     * - public folder (public files)
      */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|public).*)',
   ],
 }
