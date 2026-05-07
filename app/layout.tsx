@@ -1,0 +1,66 @@
+import type { Metadata } from 'next'
+import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import './globals.css'
+
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter"
+});
+
+const jetbrainsMono = JetBrains_Mono({ 
+  subsets: ["latin"],
+  variable: "--font-mono"
+});
+
+export const metadata: Metadata = {
+  title: 'Hani Ghena | AI Engineering Student & Full-Stack Developer',
+  description: 'Portfolio of Hani Ghena - AI Engineering student building intelligent full-stack apps with Flutter, Python, and cloud AI tools. Explore projects, experience, and ideas.',
+  keywords: ['AI Engineering', 'Full-Stack Developer', 'Flutter', 'Python', 'Machine Learning', 'Portfolio'],
+  authors: [{ name: 'Hani Ghena' }],
+  creator: 'Hani Ghena',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    title: 'Hani Ghena | AI Engineering Student & Full-Stack Developer',
+    description: 'Portfolio of Hani Ghena - AI Engineering student building intelligent full-stack apps.',
+    siteName: 'Hani Ghena Portfolio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hani Ghena | AI Engineering Student',
+    description: 'AI Engineering student building intelligent full-stack apps.',
+  },
+  icons: {
+    icon: [
+      {
+        url: '/icon-light-32x32.png',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/icon-dark-32x32.png',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+    apple: '/apple-icon.png',
+  },
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} bg-background`}>
+      <body className="font-sans antialiased">
+        {children}
+        {process.env.NODE_ENV === 'production' && <Analytics />}
+      </body>
+    </html>
+  )
+}
