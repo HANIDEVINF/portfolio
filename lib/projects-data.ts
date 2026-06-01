@@ -6,67 +6,105 @@ export type PortfolioProject = {
   demo?: string
   category: "AI/ML" | "MLOps" | "Computer Vision" | "Full Stack"
   featured?: boolean
+  status?: "Live" | "In Progress"
+  metrics?: string[]
+  impact?: string
 }
 
 export const portfolioProjects: PortfolioProject[] = [
   {
-    title: "CodeRefactor AI",
-    description: "AI code refactoring bot with browser-based review workflow, quality scoring, and cloud persistence.",
-    technologies: ["Next.js", "JavaScript", "Supabase", "Vercel"],
-    github: "https://github.com/HANIDEVINF/coderefactor-ai",
+    title: "Keras Content Moderation System",
+    description:
+      "Production-style moderation app powered by a trained Keras neural network. Users type any message and get live unsafe/spam probability, confidence bands, and model metrics.",
+    technologies: ["Keras", "TensorFlow", "NLP", "Browser Inference", "Vercel"],
+    github: "https://github.com/HANIDEVINF/content-moderation-system",
+    demo: "https://content-moderation-system-psi.vercel.app",
     category: "AI/ML",
     featured: true,
+    status: "Live",
+    metrics: ["99.1% test accuracy", "UCI SMS dataset", "User text input"],
+    impact: "Shows real text classification, training artifacts, metrics, and end-to-end deployment.",
   },
   {
-    title: "DocumentQAwithRAG",
-    description: "Production-ready document Q&A using retrieval-augmented generation, chunking, embeddings, and source-aware answers.",
-    technologies: ["Next.js", "TypeScript", "Supabase", "RAG"],
-    github: "https://github.com/HANIDEVINF/DocumentQAwithRAG",
+    title: "Keras Voice Recognition Lab",
+    description:
+      "Audio ML app with a Keras dense model trained on the Free Spoken Digit Dataset. Users can record from the microphone or upload audio and inspect probability bars.",
+    technologies: ["Keras", "TensorFlow", "Audio ML", "Microphone API", "FFT Features"],
+    github: "https://github.com/HANIDEVINF/speech-to-text-summarization",
+    demo: "https://speech-to-text-summarization.vercel.app",
     category: "AI/ML",
     featured: true,
+    status: "Live",
+    metrics: ["92.2% macro F1", "Real audio dataset", "Record or upload"],
+    impact: "Demonstrates signal processing, Keras training, exported weights, and real browser audio inference.",
   },
   {
-    title: "Tool Calling Agent",
-    description: "Agent system that can call tools, orchestrate multi-step tasks, and recover from tool failures.",
-    technologies: ["Python", "Agents", "LLM APIs", "Async"],
-    github: "https://github.com/HANIDEVINF/tool-calling-agent",
-    category: "AI/ML",
+    title: "Keras Vision Classifier",
+    description:
+      "Image classification app trained on CIFAR-10 with saved Keras artifacts and a static browser inference engine. Users upload their own image and see ranked probabilities.",
+    technologies: ["Keras", "TensorFlow", "Computer Vision", "CIFAR-10", "Static Deployment"],
+    github: "https://github.com/HANIDEVINF/image-classification-mobile-app",
+    demo: "https://image-classification-mobile-app.vercel.app",
+    category: "Computer Vision",
     featured: true,
+    status: "Live",
+    metrics: ["50.1% test accuracy", "10 vision classes", "Image upload"],
+    impact: "Good proof of model export and deployment; marked as a compact baseline ready for broader vision upgrades.",
   },
   {
-    title: "Structured Data Extraction",
-    description: "Pipeline to extract validated JSON from unstructured text with schema checks and retry logic.",
-    technologies: ["Python", "Pydantic", "FastAPI", "LLM APIs"],
-    github: "https://github.com/HANIDEVINF/structured-data-extraction",
-    category: "AI/ML",
+    title: "Aurelia Market AI Commerce",
+    description:
+      "Premium ecommerce experience with AI-style product personalization, food and car sections, smart cart, account profiles, comparison, wishlist, and checkout flows.",
+    technologies: ["Next.js", "TypeScript", "AI UX", "Ecommerce", "Vercel"],
+    github: "https://github.com/HANIDEVINF/ai-recommendation-system",
+    demo: "https://ai-recommendation-system.vercel.app",
+    category: "Full Stack",
     featured: true,
+    status: "Live",
+    metrics: ["Smart cart", "Food and cars", "Checkout panels"],
+    impact: "Highlights product thinking and polished full-stack interface work alongside AI portfolio projects.",
   },
   {
     title: "LLM Evaluation Framework",
-    description: "Quality testing framework for LLM outputs with automated evaluation workflows and regression checks.",
-    technologies: ["Python", "Pytest", "DeepEval", "CI"],
+    description:
+      "Quality testing dashboard for comparing model responses across safety, faithfulness, helpfulness, latency, and cost regression gates.",
+    technologies: ["Next.js", "Evaluation", "Safety", "Regression Testing"],
     github: "https://github.com/HANIDEVINF/llm-evaluation-framework",
+    demo: "https://llm-evaluation-framework.vercel.app",
     category: "MLOps",
+    status: "Live",
+    metrics: ["Safety gates", "Model leaderboard", "Scenario tests"],
+    impact: "Shows MLOps judgment: not only building AI, but measuring whether it behaves safely.",
   },
   {
-    title: "Containerized AI API Service",
-    description: "Container-first AI API deployment setup with reproducible environments and CI-friendly workflows.",
-    technologies: ["FastAPI", "Docker", "GitHub Actions", "Cloud"],
+    title: "ResolveAI Multi-Agent Support Bot",
+    description:
+      "Support automation dashboard with specialized agents for triage, billing, technical debugging, retention, memory, and audit-safe response drafting.",
+    technologies: ["Agents", "Routing", "Support Automation", "Next.js"],
+    github: "https://github.com/HANIDEVINF/multi-agent-support-bot",
+    demo: "https://multi-agent-support-bot.vercel.app",
+    category: "AI/ML",
+    status: "Live",
+    metrics: ["Agent routing", "Memory toggle", "Audit trail"],
+    impact: "Demonstrates agent workflow design and user-facing automation for real support operations.",
+  },
+  {
+    title: "OpsPilot AI Incident Copilot",
+    description:
+      "Agentic incident-response interface for service health, tool calls, runbooks, governance mode, impact analysis, and executive summaries.",
+    technologies: ["MLOps", "Agentic UI", "Runbooks", "Incident Response"],
     github: "https://github.com/HANIDEVINF/containerized-ai-api-service",
+    demo: "https://containerized-ai-api-service.vercel.app",
     category: "MLOps",
+    status: "Live",
+    metrics: ["Tool calls", "Risk scoring", "Runbook plan"],
+    impact: "Positions the portfolio around operational AI systems companies actually need.",
   },
   {
     title: "Document QA RAG",
     description: "RAG experiment focused on fast semantic retrieval and concise question answering over documents.",
     technologies: ["Python", "Vector Search", "LangChain", "RAG"],
     github: "https://github.com/HANIDEVINF/document-qa-rag",
-    category: "AI/ML",
-  },
-  {
-    title: "AI Recommendation System",
-    description: "Personalized recommendation engine with embedding-based matching and explainable ranking logic.",
-    technologies: ["Python", "Embeddings", "Vector DB", "API"],
-    github: "https://github.com/HANIDEVINF/ai-recommendation-system",
     category: "AI/ML",
   },
   {
@@ -77,13 +115,6 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "AI/ML",
   },
   {
-    title: "Speech-to-Text Summarization",
-    description: "Audio transcription plus AI summarization pipeline for meetings and voice notes.",
-    technologies: ["Speech-to-Text", "Python", "Summarization", "LLM APIs"],
-    github: "https://github.com/HANIDEVINF/speech-to-text-summarization",
-    category: "AI/ML",
-  },
-  {
     title: "Medical Note Assistant",
     description: "Domain-focused assistant concept for medical notes and Q&A with safety-minded response patterns.",
     technologies: ["Python", "Medical NLP", "RAG", "Prompting"],
@@ -91,18 +122,11 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "AI/ML",
   },
   {
-    title: "Multi-Agent Support Bot",
-    description: "Support automation architecture using multiple specialized agents and routing logic.",
-    technologies: ["Python", "Multi-Agent", "Orchestration", "NLP"],
-    github: "https://github.com/HANIDEVINF/multi-agent-support-bot",
+    title: "CodeRefactor AI",
+    description: "AI code refactoring bot with browser-based review workflow, quality scoring, and cloud persistence.",
+    technologies: ["Next.js", "JavaScript", "Supabase", "Vercel"],
+    github: "https://github.com/HANIDEVINF/coderefactor-ai",
     category: "AI/ML",
-  },
-  {
-    title: "Content Moderation System",
-    description: "Text and image moderation pipeline with model-driven risk detection and scoring.",
-    technologies: ["Python", "NLP", "Vision", "Moderation"],
-    github: "https://github.com/HANIDEVINF/content-moderation-system",
-    category: "Computer Vision",
   },
   {
     title: "Financial Document Extractor",
@@ -110,13 +134,6 @@ export const portfolioProjects: PortfolioProject[] = [
     technologies: ["OCR", "Python", "Regex", "Data Extraction"],
     github: "https://github.com/HANIDEVINF/financial-document-extractor",
     category: "AI/ML",
-  },
-  {
-    title: "Image Classification Mobile App",
-    description: "Mobile-oriented image classification app concept using cloud inference and efficient UI flow.",
-    technologies: ["Flutter", "Computer Vision", "API", "Mobile"],
-    github: "https://github.com/HANIDEVINF/image-classification-mobile-app",
-    category: "Computer Vision",
   },
   {
     title: "Real-Time Object Detection",

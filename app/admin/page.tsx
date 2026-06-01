@@ -4,6 +4,10 @@ import AdminDashboard from "@/components/admin/dashboard"
 
 export default async function AdminPage() {
   const supabase = await createClient()
+
+  if (!supabase) {
+    redirect("/")
+  }
   
   const { data: { user } } = await supabase.auth.getUser()
   

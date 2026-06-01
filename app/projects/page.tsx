@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { ExternalLink, Github, Filter } from "lucide-react"
+import { Activity, ExternalLink, Github, Filter, Sparkles } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { portfolioProjects } from "@/lib/projects-data"
@@ -28,9 +28,14 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Projects</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mb-8">
-              Portfolio projects from my GitHub focused on AI engineering, MLOps, and intelligent product development.
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-4 py-2 text-sm text-primary">
+              <Sparkles className="h-4 w-4" />
+              Live demos, code, model evidence
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-4">AI Project Portfolio</h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mb-8 leading-8">
+              Deployed projects focused on real user input, Keras model training, browser inference, AI product workflows,
+              and MLOps-style evaluation. Each live demo is connected to its GitHub repository.
             </p>
 
             {/* Filter */}
@@ -64,54 +69,68 @@ export default function ProjectsPage() {
                 layout
                 className="group"
               >
-                <div className="h-full p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 flex flex-col">
-                  {/* Project Preview */}
-                  <div className="relative aspect-video mb-4 rounded-lg bg-secondary overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-primary/5 to-transparent" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-3xl font-bold text-primary/30">{project.title.slice(0, 2)}</span>
+                <div className="h-full overflow-hidden rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 flex flex-col">
+                  <div className="relative aspect-video bg-secondary overflow-hidden p-5">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(94,234,212,0.22),transparent_35%),linear-gradient(135deg,rgba(56,189,248,0.12),transparent_60%)]" />
+                    <div className="relative flex h-full flex-col justify-between">
+                      <div className="flex items-center justify-between">
+                        <span className="inline-block text-xs px-2 py-1 bg-primary/10 text-primary rounded-full w-fit">
+                          {project.category}
+                        </span>
+                        {project.status && (
+                          <span className="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-1 text-xs text-emerald-300">
+                            <Activity className="h-3 w-3" />
+                            {project.status}
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-3xl font-black text-primary/40">{project.title.slice(0, 2)}</span>
                     </div>
                   </div>
 
-                  {/* Category Badge */}
-                  <span className="inline-block text-xs px-2 py-1 bg-primary/10 text-primary rounded-full w-fit mb-3">
-                    {project.category}
-                  </span>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
+                      {project.title}
+                    </h3>
 
-                  <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
-                    {project.title}
-                  </h3>
-                  
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
-                    {project.description}
-                  </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
+                      {project.description}
+                    </p>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 4).map((tech) => (
-                      <span key={tech} className="text-xs font-mono text-muted-foreground">
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 4 && (
-                      <span className="text-xs text-muted-foreground">
-                        +{project.technologies.length - 4}
-                      </span>
+                    {project.metrics && (
+                      <div className="mb-4 grid gap-2">
+                        {project.metrics.slice(0, 3).map((metric) => (
+                          <div key={metric} className="rounded-md border border-border bg-background/60 px-3 py-2 text-xs text-muted-foreground">
+                            {metric}
+                          </div>
+                        ))}
+                      </div>
                     )}
-                  </div>
 
-                  {/* Links */}
-                  <div className="flex items-center gap-4 pt-4 border-t border-border">
-                    <a 
-                      href={project.github} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <Github className="w-4 h-4" />
-                      Code
-                    </a>
-                    {project.demo && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.slice(0, 4).map((tech) => (
+                        <span key={tech} className="text-xs font-mono text-muted-foreground">
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 4 && (
+                        <span className="text-xs text-muted-foreground">
+                          +{project.technologies.length - 4}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-4 pt-4 border-t border-border">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        <Github className="w-4 h-4" />
+                        Code
+                      </a>
+                      {project.demo && (
                       <a 
                         href={project.demo} 
                         target="_blank" 
@@ -121,7 +140,8 @@ export default function ProjectsPage() {
                         <ExternalLink className="w-4 h-4" />
                         Live Demo
                       </a>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.div>
