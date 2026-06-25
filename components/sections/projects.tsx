@@ -29,8 +29,8 @@ export function ProjectsSection() {
 
           <div className="mb-12 grid gap-4 md:grid-cols-4">
             {[
-              ["7", "deployed apps", Rocket],
-              ["3", "trained Keras models", Brain],
+              ["9", "deployed apps", Rocket],
+              ["5", "trained Keras models", Brain],
               ["100%", "user-testable demos", RadioTower],
               ["Live", "GitHub + Vercel", CheckCircle2],
             ].map(([value, label, Icon]) => (

@@ -101,17 +101,36 @@ export const portfolioProjects: PortfolioProject[] = [
     impact: "Positions the portfolio around operational AI systems companies actually need.",
   },
   {
+    title: "Keras Universal Data Extractor",
+    description:
+      "Structured extraction app with a trained Keras schema router, unknown-input handling, text-file upload, universal entity detection, and validated JSON output.",
+    technologies: ["Keras", "TensorFlow", "Information Extraction", "JSON", "Browser Inference"],
+    github: "https://github.com/HANIDEVINF/structured-data-extraction",
+    demo: "https://structured-data-extraction-app.vercel.app",
+    category: "AI/ML",
+    featured: true,
+    status: "Live",
+    metrics: ["9 document types", "Unknown class", "Paste or upload text"],
+    impact: "Turns the earlier parser demo into a real trained model workflow that handles arbitrary text safely.",
+  },
+  {
+    title: "Keras Document Clustering Lab",
+    description:
+      "Document clustering interface powered by Keras embeddings trained on 20 Newsgroups. Users paste any document set and get topic probabilities plus a 2D cluster map.",
+    technologies: ["Keras", "TensorFlow", "20 Newsgroups", "Embeddings", "Clustering"],
+    github: "https://github.com/HANIDEVINF/document-clustering-visualization",
+    demo: "https://document-clustering-visualization.vercel.app",
+    category: "AI/ML",
+    featured: true,
+    status: "Live",
+    metrics: ["60.5% test accuracy", "20 topics", "Multi-document input"],
+    impact: "Shows learned text embeddings, real dataset training, and interactive visualization for user-provided documents.",
+  },
+  {
     title: "Document QA RAG",
     description: "RAG experiment focused on fast semantic retrieval and concise question answering over documents.",
     technologies: ["Python", "Vector Search", "LangChain", "RAG"],
     github: "https://github.com/HANIDEVINF/document-qa-rag",
-    category: "AI/ML",
-  },
-  {
-    title: "Document Clustering Visualization",
-    description: "Interactive project for semantic clustering and visual exploration of related text/document groups.",
-    technologies: ["Python", "UMAP", "Clustering", "Visualization"],
-    github: "https://github.com/HANIDEVINF/document-clustering-visualization",
     category: "AI/ML",
   },
   {
