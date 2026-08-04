@@ -1,12 +1,32 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useMotionTemplate } from "framer-motion"
 import { ArrowDown, Download, Mail, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export function HeroSection() {
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    mouseX.set(e.clientX - rect.left)
+    mouseY.set(e.clientY - rect.top)
+  }
+
+  const spotlight = useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(94,234,212,0.10), transparent 70%)`
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
+    <section
+      onMouseMove={handleMouseMove}
+      className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden"
+    >
+      {/* Cursor spotlight */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 -z-10 hidden md:block"
+        style={{ background: spotlight }}
+      />
       {/* Animated gradient background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-cyan-500/5 animate-pulse" />
@@ -43,6 +63,36 @@ export function HeroSection() {
       </div>
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.6, y: -20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mb-8 flex justify-center"
+        >
+          <div className="relative h-28 w-28 md:h-32 md:w-32">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              style={{
+                background:
+                  "conic-gradient(from 0deg, var(--primary), oklch(0.75 0.15 220), oklch(0.75 0.17 160), var(--primary))",
+              }}
+              className="absolute -inset-1.5 rounded-full blur-[2px] opacity-80"
+            />
+            <div className="absolute inset-0.5 rounded-full bg-background" />
+            <div className="absolute inset-1 overflow-hidden rounded-full border border-primary/20 shadow-xl shadow-primary/20">
+              <Image
+                src="/images/profile-square.jpg"
+                alt="Hani Ghena"
+                fill
+                sizes="128px"
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

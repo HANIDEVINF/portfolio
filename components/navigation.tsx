@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion"
 import { Menu, X, Github, Linkedin, Mail } from "lucide-react"
 
 const navLinks = [
@@ -22,6 +22,8 @@ const socialLinks = [
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +42,11 @@ export function Navigation() {
         scrolled ? "bg-background/80 backdrop-blur-lg border-b border-border/50" : ""
       }`}
     >
+      {/* Scroll progress bar */}
+      <motion.div
+        style={{ scaleX }}
+        className="absolute bottom-0 left-0 right-0 h-[2px] origin-left bg-gradient-to-r from-primary via-cyan-400 to-emerald-400"
+      />
       <nav className="mx-auto max-w-6xl px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="group">

@@ -11,14 +11,20 @@ import {
   Code2, 
   Terminal,
   Cpu,
-  Layers
+  Layers,
+  Bot,
 } from "lucide-react"
 
 const skills = [
   {
     category: "AI & Machine Learning",
     icon: Brain,
-    items: ["Prompt Engineering", "Vector Databases", "LangChain", "OpenAI API", "Hugging Face", "TensorFlow"],
+    items: ["PyTorch", "TensorFlow", "Deep Learning", "Computer Vision", "NLP", "Scikit-learn"],
+  },
+  {
+    category: "Generative AI & LLMs",
+    icon: Bot,
+    items: ["LLM Fine-Tuning", "RAG Pipelines", "LangChain", "Prompt Engineering", "OpenAI API", "Hugging Face"],
   },
   {
     category: "Mobile Development",
@@ -36,9 +42,9 @@ const skills = [
     items: ["Supabase", "PostgreSQL", "MongoDB", "Redis", "Pinecone", "ChromaDB"],
   },
   {
-    category: "Cloud & DevOps",
+    category: "Cloud & MLOps",
     icon: Cloud,
-    items: ["Vercel", "AWS", "Docker", "CI/CD", "GitHub Actions", "Serverless"],
+    items: ["Vercel", "AWS", "Docker", "Kubernetes", "MLflow", "GitHub Actions"],
   },
   {
     category: "Frontend",
@@ -75,7 +81,7 @@ export function SkillsSection() {
             <div className="flex-1 h-px bg-border" />
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.category}

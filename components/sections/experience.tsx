@@ -13,6 +13,13 @@ const experiences = [
     technologies: ["Machine Learning", "Deep Learning", "NLP", "Computer Vision"],
   },
   {
+    period: "2024 - Present",
+    title: "ML Model Developer",
+    company: "Personal Research & Open Source",
+    description: "Designing, training, and fine-tuning deep learning models with PyTorch for vision and language tasks. Building RAG pipelines and integrating LLMs into production-ready apps, then packaging and deploying models with Docker and REST APIs.",
+    technologies: ["PyTorch", "LLM Fine-Tuning", "RAG", "Transformers", "Docker", "FastAPI"],
+  },
+  {
     period: "2023 - Present",
     title: "Freelance Developer",
     company: "Self-Employed",

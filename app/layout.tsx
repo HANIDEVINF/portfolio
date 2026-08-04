@@ -25,11 +25,13 @@ export const metadata: Metadata = {
     title: 'Hani Ghena | AI Engineering Student & Full-Stack Developer',
     description: 'Portfolio of Hani Ghena - AI Engineering student building intelligent full-stack apps.',
     siteName: 'Hani Ghena Portfolio',
+    images: ['/images/profile-square.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hani Ghena | AI Engineering Student',
     description: 'AI Engineering student building intelligent full-stack apps.',
+    images: ['/images/profile-square.jpg'],
   },
   icons: {
     icon: [

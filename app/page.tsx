@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic"
 import { Navigation } from "@/components/navigation"
+import { BackToTop } from "@/components/back-to-top"
 import { HeroSection } from "@/components/sections/hero"
 import { AboutSection } from "@/components/sections/about"
 import { SkillsSection } from "@/components/sections/skills"
@@ -30,6 +31,7 @@ export default function Home() {
       <ExperienceSection />
       <ContactSection />
       <Footer />
+      <BackToTop />
     </main>
   )
 }
