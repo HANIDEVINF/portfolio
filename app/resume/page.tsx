@@ -79,12 +79,16 @@ export default function ResumePage() {
                 </span>
               </div>
             </div>
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-              <a href="/resume.pdf" download>
+            <div className="flex gap-3">
+              <Button 
+                size="lg" 
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                onClick={() => window.print()}
+              >
                 <Download className="w-4 h-4 mr-2" />
-                Download PDF
-              </a>
-            </Button>
+                Print / Save PDF
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>

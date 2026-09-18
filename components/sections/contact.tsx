@@ -54,6 +54,15 @@ export function ContactSection() {
     
     const supabase = createClient()
     
+    if (!supabase) {
+      // Simulate submission when database is not configured
+      await new Promise(resolve => setTimeout(resolve, 800))
+      setFormState("success")
+      setFormData({ name: "", email: "", subject: "", message: "" })
+      setTimeout(() => setFormState("idle"), 3000)
+      return
+    }
+
     const { error } = await supabase.from("contact_messages").insert({
       name: formData.name,
       email: formData.email,

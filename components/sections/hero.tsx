@@ -191,9 +191,9 @@ export function HeroSection() {
             className="border-border/50 bg-card/20 hover:bg-card/30 px-10 py-4 text-lg backdrop-blur-md shadow-lg shadow-primary/5 border-primary/20"
             asChild
           >
-            <a href="/resume.pdf" download>
+            <a href="/resume">
               <Download className="w-5 h-5 mr-2" />
-              Download Resume
+              View Resume
             </a>
           </Button>
         </motion.div>

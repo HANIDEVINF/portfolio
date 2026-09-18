@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const inter = Inter({ 
@@ -14,6 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://hanighena.dev'),
   title: 'Hani Ghena | AI Engineering Student & Full-Stack Developer',
   description: 'Portfolio of Hani Ghena - AI Engineering student building intelligent full-stack apps with Flutter, Python, and cloud AI tools. Explore projects, experience, and ideas.',
   keywords: ['AI Engineering', 'Full-Stack Developer', 'Flutter', 'Python', 'Machine Learning', 'Portfolio'],
@@ -34,21 +34,7 @@ export const metadata: Metadata = {
     images: ['/images/profile-square.jpg'],
   },
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/icon.svg',
   },
 }
 
@@ -61,7 +47,6 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} bg-background`}>
       <body className="font-sans antialiased">
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
