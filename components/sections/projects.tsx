@@ -53,20 +53,30 @@ export function ProjectsSection() {
           </div>
 
           {/* Category Filter Bar */}
-          <div className="mb-10 flex flex-wrap items-center gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold transition-all ${
-                  activeCategory === cat
-                    ? "bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white shadow-lg shadow-purple-500/25"
-                    : "border border-purple-500/20 bg-[#120a24]/80 text-slate-300 hover:border-purple-500/45 hover:text-white"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
+                    activeCategory === cat
+                      ? "bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white shadow-lg shadow-purple-500/25"
+                      : "border border-purple-500/20 bg-[#120a24]/80 text-slate-300 hover:border-purple-500/45 hover:text-white"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+            <Link
+              href="/lab"
+              className="inline-flex items-center gap-2 rounded-xl border border-purple-400/40 bg-purple-500/15 px-4 py-2 text-xs sm:text-sm font-semibold text-purple-200 hover:bg-purple-500/25 transition whitespace-nowrap"
+            >
+              <Sparkles className="h-4 w-4 text-purple-300" />
+              Open Full-Stack Interactive AI & Commercial Lab
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
 
           {/* Featured Projects Grid */}
