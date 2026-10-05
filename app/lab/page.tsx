@@ -93,6 +93,7 @@ const STUDIOS: StudioMeta[] = [
     subtitle: "Synchronized Patient Booking Portal · Physician Consultation Queue · Receptionist Billing & Intake",
     track: "Commercial Client System",
     repoUrl: "https://github.com/HANIDEVINF/clinicatajmeel",
+    externalDemoUrl: "https://hanidevinf.github.io/clinicatajmeel/",
     metrics: "3 Synchronized Portals · Algiers Clinic Production",
   },
   {
@@ -101,6 +102,7 @@ const STUDIOS: StudioMeta[] = [
     subtitle: "4-Role RBAC (Gérant, Caissier POS, Magasinier, Comptable) · Live G50 Tax Engine (DZD) · 58-Wilaya Logistics",
     track: "Commercial Client System",
     repoUrl: "https://github.com/HANIDEVINF/ecom-dashboard",
+    externalDemoUrl: "https://hanidevinf.github.io/ecom-dashboard/",
     metrics: "TVA 19% / TAP / G50 Auto-Calc · 58-Wilaya COD",
   },
   {
@@ -109,6 +111,7 @@ const STUDIOS: StudioMeta[] = [
     subtitle: "Multi-Brand Luxury Menswear Storefront · 58-Wilaya Shipping Calculator · OS Gérant Inventory Control",
     track: "Commercial Client System",
     repoUrl: "https://github.com/HANIDEVINF/allure",
+    externalDemoUrl: "https://hanidevinf.github.io/allure/",
     metrics: "3 Algerian Retail Brands · Live COD + Manager OS",
   },
   {
@@ -117,7 +120,7 @@ const STUDIOS: StudioMeta[] = [
     subtitle: "Dense Vector + BM25 Lexical Retrieval · Hallucination Abstention Gate · Live Document Chunk Ingestion",
     track: "Full-Stack AI Infrastructure",
     repoUrl: "https://github.com/HANIDEVINF/document-qa-rag",
-    externalDemoUrl: "https://document-qa-rag-sand.vercel.app",
+    externalDemoUrl: "https://document-qa-rag-app.vercel.app",
     metrics: "Reciprocal Rank Fusion · Faithfulness Guardrail",
   },
   {

@@ -38,23 +38,33 @@ export default function ProjectsPage() {
             </p>
 
             {/* Filter buttons */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <Filter className="w-4 h-4 text-slate-400 mr-1" />
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={activeCategory === category ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveCategory(category)}
-                  className={
-                    activeCategory === category
-                      ? "bg-gradient-to-r from-purple-500 to-indigo-500 text-white border-none rounded-xl"
-                      : "border-purple-500/20 bg-[#120a22] text-slate-300 hover:text-white hover:bg-[#1a0f30] rounded-xl"
-                  }
-                >
-                  {category}
-                </Button>
-              ))}
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div className="flex items-center gap-2 flex-wrap">
+                <Filter className="w-4 h-4 text-slate-400 mr-1" />
+                {categories.map((category) => (
+                  <Button
+                    key={category}
+                    variant={activeCategory === category ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setActiveCategory(category)}
+                    className={
+                      activeCategory === category
+                        ? "bg-gradient-to-r from-purple-500 to-indigo-500 text-white border-none rounded-xl"
+                        : "border-purple-500/20 bg-[#120a22] text-slate-300 hover:text-white hover:bg-[#1a0f30] rounded-xl"
+                    }
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </div>
+              <Link
+                href="/lab"
+                className="inline-flex items-center gap-2 rounded-xl border border-purple-400/40 bg-purple-500/15 px-4 py-2 text-xs sm:text-sm font-semibold text-purple-200 hover:bg-purple-500/25 transition whitespace-nowrap"
+              >
+                <Sparkles className="h-4 w-4 text-purple-300" />
+                Open Interactive AI & Commercial Lab
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         </div>
