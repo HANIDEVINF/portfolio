@@ -34,8 +34,8 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       "Embedded-ready AI ECG Holter system combining 1D-CNN, 2 Multi-Head Transformer attention blocks, and 8 standardized RR features. Evaluated on the strict DS1/DS2 inter-patient MIT-BIH benchmark with zero patient leakage.",
     technologies: ["PyTorch", "TensorFlow/Keras", "Transformer Attention", "1D CNN", "TFLite INT8", "PhysioNet MIT-BIH"],
-    github: "https://github.com/HANIDEVINF",
-    githubReady: false,
+    github: "https://github.com/HANIDEVINF/deep-learning-model-for-anomaly-detection-of-ECG",
+    githubReady: true,
     caseStudyUrl: "/blog/ai-ecg-arrhythmia-classification-mit-bih",
     category: "Healthcare AI",
     featured: true,
