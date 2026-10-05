@@ -1,183 +1,100 @@
 "use client"
 
-import { motion, useMotionValue, useMotionTemplate } from "framer-motion"
+import { motion } from "framer-motion"
 import { ArrowDown, Download, Mail, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 export function HeroSection() {
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-
-  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
-    const rect = e.currentTarget.getBoundingClientRect()
-    mouseX.set(e.clientX - rect.left)
-    mouseY.set(e.clientY - rect.top)
-  }
-
-  const spotlight = useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(94,234,212,0.10), transparent 70%)`
-
   return (
-    <section
-      onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden"
-    >
-      {/* Cursor spotlight */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 -z-10 hidden md:block"
-        style={{ background: spotlight }}
-      />
-      {/* Animated gradient background */}
+    <section className="relative min-h-screen flex items-center justify-center px-6 pt-28 pb-16 overflow-hidden">
+      {/* Background glow effects */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-cyan-500/5 animate-pulse" />
-        <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-gradient-to-r from-primary/20 to-cyan-400/20 blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-gradient-to-l from-cyan-400/15 to-primary/15 blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-primary/10 to-transparent blur-3xl animate-spin-slow" />
-        
-        {/* Floating orbs */}
-        <motion.div
-          animate={{
-            y: [0, -30, 0],
-            x: [0, 20, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-32 right-1/4 h-32 w-32 rounded-full bg-gradient-to-br from-primary/30 to-cyan-400/30 blur-2xl"
-        />
-        <motion.div
-          animate={{
-            y: [0, 40, 0],
-            x: [0, -25, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-          className="absolute bottom-40 left-1/3 h-24 w-24 rounded-full bg-gradient-to-tl from-cyan-400/25 to-primary/25 blur-2xl"
-        />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-fuchsia-600/10 via-purple-600/15 to-cyan-500/10 blur-[130px]" />
+        <div className="absolute top-12 left-1/4 w-80 h-80 rounded-full bg-purple-500/10 blur-[100px]" />
+        <div className="absolute bottom-16 right-1/4 w-96 h-96 rounded-full bg-fuchsia-500/10 blur-[120px]" />
       </div>
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.6, y: -20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-8 flex justify-center"
-        >
-          <div className="relative h-28 w-28 md:h-32 md:w-32">
+        {/* Profile Avatar with Neon Ring */}
+        <div className="mb-6 flex justify-center">
+          <div className="relative h-32 w-32 md:h-36 md:w-36">
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
               style={{
                 background:
-                  "conic-gradient(from 0deg, var(--primary), oklch(0.75 0.15 220), oklch(0.75 0.17 160), var(--primary))",
+                  "conic-gradient(from 0deg, #ec4899, #a855f7, #06b6d4, #a855f7, #ec4899)",
               }}
-              className="absolute -inset-1.5 rounded-full blur-[2px] opacity-80"
+              className="absolute -inset-1 rounded-full blur-[3px] opacity-90"
             />
-            <div className="absolute inset-0.5 rounded-full bg-background" />
-            <div className="absolute inset-1 overflow-hidden rounded-full border border-primary/20 shadow-xl shadow-primary/20">
+            <div className="absolute inset-0.5 rounded-full bg-[#07050d]" />
+            <div className="absolute inset-1 overflow-hidden rounded-full border border-purple-400/30 shadow-2xl shadow-purple-500/30">
               <Image
                 src="/images/profile-square.jpg"
                 alt="Hani Ghena"
                 fill
-                sizes="128px"
+                sizes="144px"
                 className="object-cover"
                 priority
               />
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-8"
-        >
-          <div className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-primary bg-gradient-to-r from-primary/10 to-cyan-500/10 rounded-full border border-primary/20 backdrop-blur-sm shadow-lg shadow-primary/10">
-            <Sparkles className="w-4 h-4 text-primary" />
-            Available for opportunities
-            <Sparkles className="w-4 h-4 text-primary" />
+        {/* Available for opportunities badge */}
+        <div className="mb-8">
+          <div className="inline-flex items-center gap-2 px-5 py-2 text-xs md:text-sm font-medium text-purple-300 bg-purple-950/40 rounded-full border border-purple-500/30 backdrop-blur-md shadow-lg shadow-purple-900/20">
+            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+            <span>Available for opportunities</span>
+            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
           </div>
-        </motion.div>
+        </div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight tracking-tight mb-8"
-        >
-          <span className="text-balance">
-            {"Hi, I'm "}
-            <span className="relative">
-              <span className="bg-gradient-to-r from-primary via-cyan-400 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
-                Hani Ghena
-              </span>
-              <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-cyan-400 to-emerald-400 rounded-full"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
-              />
+        {/* Big Headline */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none mb-8">
+          {"Hi, I'm "}
+          <span className="relative inline-block">
+            <span className="bg-gradient-to-r from-fuchsia-400 via-purple-300 to-cyan-400 bg-clip-text text-transparent">
+              Hani Ghena
             </span>
+            <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-cyan-400 rounded-full" />
           </span>
-        </motion.h1>
+        </h1>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-6"
-        >
-          <p className="text-xl md:text-2xl text-muted-foreground/90 max-w-3xl mx-auto leading-relaxed text-pretty font-light">
-            An <span className="text-primary font-semibold">AI Engineering student</span> building{" "}
+        {/* Subtitle */}
+        <div className="mb-5">
+          <p className="text-xl sm:text-2xl md:text-3xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
+            An <span className="text-purple-400 font-semibold">AI Engineering student</span> building{" "}
             <span className="text-cyan-400 font-semibold">intelligent full-stack apps</span> with{" "}
-            <span className="text-emerald-400 font-semibold">Flutter</span>,{" "}
-            <span className="text-primary font-semibold">Python</span>, and{" "}
+            <span className="text-fuchsia-400 font-semibold">Flutter</span>,{" "}
+            <span className="text-purple-400 font-semibold">Python</span>, and{" "}
             <span className="text-cyan-400 font-semibold">cloud AI tools</span>.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="text-lg md:text-xl text-muted-foreground/80 max-w-2xl mx-auto mb-12 font-light"
-        >
+        <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-10 font-normal">
           Building modern AI products and deploying them end-to-end with cutting-edge technologies.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.75 }}
-          className="mb-12 flex flex-wrap items-center justify-center gap-4"
-        >
-          <div className="rounded-full border border-primary/30 bg-gradient-to-r from-card/60 to-card/40 px-4 py-2 text-sm text-muted-foreground backdrop-blur-md shadow-lg shadow-primary/5">
-            <span className="text-primary font-semibold">16+</span> GitHub Projects
+        {/* Stat badges */}
+        <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="rounded-full border border-purple-500/30 bg-purple-950/30 px-4 py-2 text-xs sm:text-sm text-slate-300 backdrop-blur-md">
+            <span className="text-purple-400 font-bold">5×</span> CERIST AI Internships
           </div>
-          <div className="rounded-full border border-cyan-400/30 bg-gradient-to-r from-card/60 to-card/40 px-4 py-2 text-sm text-muted-foreground backdrop-blur-md shadow-lg shadow-cyan-400/5">
-            <span className="text-cyan-400 font-semibold">AI</span> Engineering Portfolio
+          <div className="rounded-full border border-cyan-500/30 bg-cyan-950/30 px-4 py-2 text-xs sm:text-sm text-slate-300 backdrop-blur-md">
+            <span className="text-cyan-400 font-bold">17+</span> AI & Full-Stack Projects
           </div>
-          <div className="rounded-full border border-emerald-400/30 bg-gradient-to-r from-card/60 to-card/40 px-4 py-2 text-sm text-muted-foreground backdrop-blur-md shadow-lg shadow-emerald-400/5">
-            <span className="text-emerald-400 font-semibold">Open</span> to Opportunities
+          <div className="rounded-full border border-pink-500/30 bg-pink-950/30 px-4 py-2 text-xs sm:text-sm text-slate-300 backdrop-blur-md">
+            <span className="text-pink-400 font-bold">USTHB</span> Master in AI
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
-        >
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <Button
             size="lg"
-            className="bg-gradient-to-r from-primary to-cyan-500 text-primary-foreground hover:from-primary/90 hover:to-cyan-500/90 px-10 py-4 text-lg shadow-lg shadow-primary/25 backdrop-blur-sm border border-primary/20"
+            className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold px-8 py-3.5 text-base shadow-lg shadow-purple-500/25 border-none rounded-xl"
             asChild
           >
             <a href="#contact">
@@ -188,31 +105,27 @@ export function HeroSection() {
           <Button
             variant="outline"
             size="lg"
-            className="border-border/50 bg-card/20 hover:bg-card/30 px-10 py-4 text-lg backdrop-blur-md shadow-lg shadow-primary/5 border-primary/20"
+            className="w-full sm:w-auto border-purple-500/30 bg-[#120c22]/70 hover:bg-[#1a1233] text-white font-medium px-8 py-3.5 text-base backdrop-blur-md rounded-xl"
             asChild
           >
             <a href="/resume">
               <Download className="w-5 h-5 mr-2" />
-              View Resume
+              Download Resume
             </a>
           </Button>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
+        {/* Scroll indicator arrow */}
+        <div className="flex justify-center">
           <motion.a
             href="#about"
-            className="block text-muted-foreground/60 hover:text-primary transition-colors"
-            animate={{ y: [0, 10, 0] }}
+            className="inline-flex p-2 text-slate-500 hover:text-purple-400 transition-colors"
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ArrowDown className="w-6 h-6" />
+            <ArrowDown className="w-5 h-5" />
           </motion.a>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
