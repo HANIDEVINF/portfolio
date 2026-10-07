@@ -3,18 +3,18 @@
 const experiences = [
   {
     period: "June 2026 - Present & 4 Previous Appointments",
-    title: "AI Engineering Research Intern (5× Consecutive Appointments)",
+    title: "AI Engineering Research Intern (5× Consecutive Appointments — UbiSys Team, DTISI)",
     company: "CERIST — Research Center on Scientific and Technical Information (Algiers)",
     highlight: "Flagship Research & Deep Learning Track",
     description:
-      "Selected for five consecutive AI research internships at Algeria's national scientific research center. Designed and implemented MUCAT (Multilingual Custom Attention Transformer with hierarchical pooling and language-sensitive gating for Arabic, French, and English NLP), developed clinical ECG & blood glucose anomaly detection pipelines, and built domain-grounded conversational AI workflows.",
+      "Selected for five consecutive AI research internships at Algeria's national scientific research center (UbiSys Team, DTISI, supervised by Team Leader Nadir Bouchama). Designed and evaluated MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer): a language-conditioned mDeBERTa-v3-base architecture stacking Hierarchical Attention Pooling (HAP), Language-Aware FiLM Gating (LAG), an Evidential Dirichlet Head (EDL, native single-pass uncertainty u = K/S), and an auxiliary script regularization head across 6 languages (MSA, Algerian Darija, Kabyle, Chaoui, French, English)—achieving 98.20% test accuracy vs. 23.74% on the standard mDeBERTa-v3 ablation and 3.88% on XLM-RoBERTa-base under an identical LLRD training budget.",
     technologies: [
-      "PyTorch",
-      "BERT / Transformers",
-      "MUCAT Architecture",
-      "Multilingual NLP (AR/FR/EN)",
+      "MuCAT Architecture",
+      "mDeBERTa-v3 / XLM-R",
+      "Evidential Deep Learning (Dirichlet)",
+      "FiLM Language Gating",
+      "Algerian & Berber NLP (kab/shy/arq)",
       "Healthcare AI & ECG",
-      "Hugging Face",
     ],
   },
   {

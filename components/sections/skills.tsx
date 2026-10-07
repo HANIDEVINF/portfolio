@@ -12,15 +12,15 @@ import {
 const skills = [
   {
     category: "Deep Learning & Transformers",
-    proof: "Applied in CERIST MUCAT & MIT-BIH ECG v7",
+    proof: "Applied in CERIST MuCAT (98.20% Test Acc) & MIT-BIH ECG v7",
     icon: Brain,
     items: [
       "PyTorch & TensorFlow / Keras → Trained 97K-param CNN-Transformer (90.13% DS2 ensemble)",
-      "Custom BERT / Transformers → Engineered MUCAT hierarchical attention & language gating",
+      "mDeBERTa-v3 / XLM-R → Engineered MuCAT (HAP + FiLM Language Gating + Dirichlet u=K/S)",
       "1D/2D CNNs & Multi-Head Attention → Dual-lead ECG morphology + 8 RR interval fusion",
-      "Multilingual NLP (AR / FR / EN) → Code-switched Arabic/French/English representations",
+      "6-Language Low-Resource NLP → MSA, Algerian Darija, Kabyle, Chaoui, French & English",
       "Medical Signal Processing → 0.5–45 Hz zero-phase Butterworth & Pan-Tompkins R-peaks",
-      "Focal Loss & Imbalanced Learning → Solved severe clinical arrhythmia class imbalance",
+      "Evidential Deep Learning & LLRD → Single-pass Dirichlet uncertainty & layer-wise decay (ξ=0.95)",
     ],
   },
   {

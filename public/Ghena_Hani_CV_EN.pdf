@@ -15,7 +15,7 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
 endobj
 6 0 obj
-<< /Length 5801 >>
+<< /Length 6039 >>
 stream
 BT /F2 21.0 Tf 0.06 0.04 0.14 rg 44.0 792.0 Td (GHENA HANI) Tj ET
 BT /F2 10.5 Tf 0.42 0.16 0.85 rg 44.0 762.9 Td (AI Engineer & Full-Stack Systems Architect | Deep Learning - NLP - RAG - Agentic AI) Tj ET
@@ -31,43 +31,44 @@ BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 619.1 Td (PROFESSIONAL & RESEARCH EXPERIEN
 0.65 0.33 0.96 RG 0.7 w 44 615.1 m 551.3 615.1 l S
 BT /F2 9.6 Tf 0.08 0.08 0.15 rg 44.0 595.0 Td (AI Engineering Researcher \(5 Research Internships\) - CERIST, Algiers, Algeria \(2024 -) Tj ET
 BT /F2 9.6 Tf 0.08 0.08 0.15 rg 44.0 581.5 Td (Present\)) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 565.4 Td (-  Designed and implemented MUCAT, a custom Multilingual Attention Transformer for Arabic,) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 553.0 Td (    French, and English NLP with hierarchical subword attention pooling and language-sensitive) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 540.5 Td (    gating.) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 526.1 Td (-  Engineered AI ECG Arrhythmia Classification \(v7\) on the strict inter-patient MIT-BIH) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 513.6 Td (    DS1/DS2 benchmark \(90.13% 5-fold accuracy, 155.4 KB INT8 TFLite, 0.32 ms/beat latency\).) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 499.1 Td (-  Developed real-time ECG and blood glucose anomaly detection pipelines connected to) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 486.7 Td (    physical medical sensors and emergency clinical alert workflows.) Tj ET
-BT /F2 9.6 Tf 0.08 0.08 0.15 rg 44.0 472.2 Td (Independent Full-Stack & AI Systems Engineer - Algiers, Algeria \(~2 Years\)) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 456.2 Td (-  Architected and delivered 6 commercial production systems: Tadjmeel Clinica Algiers) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 443.7 Td (    \(Public Web + Doctor & Receptionist Electron Desktop Apps\), Enterprise DZD Business ERP &) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 431.2 Td (    G50 Fiscal Suite, ALLURE HOMME, GK STORE, CASUAL 29, and AURA Retail OS.) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 416.8 Td (-  Built and deployed 11+ interactive AI web applications spanning Speech-to-Text ASR &) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 404.3 Td (    Clinical SOAP Summarization, Hybrid Dense+BM25 RAG, Multi-Agent ReAct Orchestration, and) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 391.8 Td (    LLM Safety Evaluation.) Tj ET
-BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 371.4 Td (KEY DEPLOYED SYSTEMS & RESEARCH) Tj ET
-0.65 0.33 0.96 RG 0.7 w 44 367.4 m 551.3 367.4 l S
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 347.3 Td (-  AI ECG Arrhythmia Classification \(v7\): 1D-CNN + 2x Multi-Head Transformer + 8 RR features) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 334.8 Td (    on MIT-BIH DS1/DS2.) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 320.4 Td (-  MedGuardAI \(USTHB Capstone Distinction\): Real-time IoT ECG/Glucose sensor streaming, AI) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 307.9 Td (    anomaly alerts & WebRTC telemedicine.) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 293.4 Td (-  MUCAT Multilingual Transformer: Hierarchical attention & language gating across Arabic,) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 281.0 Td (    French, and English.) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 266.5 Td (-  Commercial Production Suite: Tadjmeel Clinica Algiers, Enterprise DZD G50 ERP, ALLURE) Tj ET
-BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 254.0 Td (    HOMME, GK STORE & CASUAL 29.) Tj ET
-BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 233.6 Td (EDUCATION) Tj ET
-0.65 0.33 0.96 RG 0.7 w 44 229.6 m 551.3 229.6 l S
-BT /F2 9.4 Tf 0.15 0.15 0.20 rg 44.0 209.5 Td (Master in Artificial Intelligence - USTHB, Algiers \(Sep 2022 - June 2027 Expected\)) Tj ET
-BT /F2 9.4 Tf 0.15 0.15 0.20 rg 44.0 193.7 Td (Bachelor's Degree \(Licence\) in Computer Science - USTHB, Algiers \(Completed - Capstone:) Tj ET
-BT /F2 9.4 Tf 0.15 0.15 0.20 rg 44.0 180.4 Td (MedGuardAI\)) Tj ET
-BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 158.6 Td (TECHNICAL COMPETENCIES & LANGUAGES) Tj ET
-0.65 0.33 0.96 RG 0.7 w 44 154.6 m 551.3 154.6 l S
-BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 134.5 Td (AI & Deep Learning: PyTorch, TensorFlow, Keras, Transformers, BERT, RAG, Agentic AI \(ReAct /) Tj ET
-BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 121.3 Td (Tool Calling\), LLM Evaluation, TFLite INT8, Computer Vision.) Tj ET
-BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 105.6 Td (Full-Stack & Cloud: TypeScript, React, Next.js, Node.js, Electron, PostgreSQL, MongoDB,) Tj ET
-BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 92.4 Td (Supabase, REST/WebSockets, Docker, Git.) Tj ET
-BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 76.7 Td (Languages: Arabic \(Native\) - French \(Full Professional Proficiency\) - English \(Professional) Tj ET
-BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 63.5 Td (Working Proficiency\).) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 565.4 Td (-  Designed MuCAT \(Multilingual Uncertainty-Calibrated Attention Transformer\) in CERIST) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 553.0 Td (    UbiSys \(DTISI\): mDeBERTa-v3-base + Hierarchical Attention Pooling \(HAP\) + FiLM Language) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 540.5 Td (    Gating + Evidential Dirichlet Head \(u=K/S\) across 6 languages \(MSA, Algerian Darija,) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 528.1 Td (    Kabyle, Chaoui, FR, EN\), reaching 98.20% test accuracy vs 23.74% mDeBERTa-v3 ablation.) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 513.6 Td (-  Engineered AI ECG Arrhythmia Classification \(v7\) on the strict inter-patient MIT-BIH) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 501.1 Td (    DS1/DS2 benchmark \(90.13% 5-fold accuracy, 155.4 KB INT8 TFLite, 0.32 ms/beat latency\).) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 486.7 Td (-  Developed real-time ECG and blood glucose anomaly detection pipelines connected to) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 474.2 Td (    physical medical sensors and emergency clinical alert workflows.) Tj ET
+BT /F2 9.6 Tf 0.08 0.08 0.15 rg 44.0 459.7 Td (Independent Full-Stack & AI Systems Engineer - Algiers, Algeria \(~2 Years\)) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 443.7 Td (-  Architected and delivered 6 commercial production systems: Tadjmeel Clinica Algiers) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 431.2 Td (    \(Public Web + Doctor & Receptionist Electron Desktop Apps\), Enterprise DZD Business ERP &) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 418.8 Td (    G50 Fiscal Suite, ALLURE HOMME, GK STORE, CASUAL 29, and AURA Retail OS.) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 404.3 Td (-  Built and deployed 11+ interactive AI web applications spanning Speech-to-Text ASR &) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 391.8 Td (    Clinical SOAP Summarization, Hybrid Dense+BM25 RAG, Multi-Agent ReAct Orchestration, and) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 379.4 Td (    LLM Safety Evaluation.) Tj ET
+BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 358.9 Td (KEY DEPLOYED SYSTEMS & RESEARCH) Tj ET
+0.65 0.33 0.96 RG 0.7 w 44 354.9 m 551.3 354.9 l S
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 334.8 Td (-  AI ECG Arrhythmia Classification \(v7\): 1D-CNN + 2x Multi-Head Transformer + 8 RR features) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 322.4 Td (    on MIT-BIH DS1/DS2.) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 307.9 Td (-  MedGuardAI \(USTHB Capstone Distinction\): Real-time IoT ECG/Glucose sensor streaming, AI) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 295.4 Td (    anomaly alerts & WebRTC telemedicine.) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 281.0 Td (-  MuCAT Multilingual Transformer: mDeBERTa-v3 + HAP + FiLM Gating + Dirichlet Uncertainty) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 268.5 Td (    \(98.20% Test Acc, 6 languages\).) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 254.0 Td (-  Commercial Production Suite: Tadjmeel Clinica Algiers, Enterprise DZD G50 ERP, ALLURE) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 241.6 Td (    HOMME, GK STORE & CASUAL 29.) Tj ET
+BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 221.1 Td (EDUCATION) Tj ET
+0.65 0.33 0.96 RG 0.7 w 44 217.1 m 551.3 217.1 l S
+BT /F2 9.4 Tf 0.15 0.15 0.20 rg 44.0 197.0 Td (Master in Artificial Intelligence - USTHB, Algiers \(Sep 2022 - June 2027 Expected\)) Tj ET
+BT /F2 9.4 Tf 0.15 0.15 0.20 rg 44.0 181.2 Td (Bachelor's Degree \(Licence\) in Computer Science - USTHB, Algiers \(Completed - Capstone:) Tj ET
+BT /F2 9.4 Tf 0.15 0.15 0.20 rg 44.0 167.9 Td (MedGuardAI\)) Tj ET
+BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 146.1 Td (TECHNICAL COMPETENCIES & LANGUAGES) Tj ET
+0.65 0.33 0.96 RG 0.7 w 44 142.1 m 551.3 142.1 l S
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 122.0 Td (AI & Deep Learning: PyTorch, TensorFlow, Keras, Transformers, BERT, RAG, Agentic AI \(ReAct /) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 108.8 Td (Tool Calling\), LLM Evaluation, TFLite INT8, Computer Vision.) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 93.1 Td (Full-Stack & Cloud: TypeScript, React, Next.js, Node.js, Electron, PostgreSQL, MongoDB,) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 79.9 Td (Supabase, REST/WebSockets, Docker, Git.) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 64.2 Td (Languages: Arabic \(Native\) - French \(Full Professional Proficiency\) - English \(Professional) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 51.0 Td (Working Proficiency\).) Tj ET
 endstream
 endobj
 xref
@@ -82,5 +83,5 @@ xref
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-6309
+6547
 %%EOF

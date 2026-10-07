@@ -127,7 +127,7 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
       [0.08, 0.08, 0.15]
     )
     addBullet(
-      "Designed and implemented MUCAT, a custom Multilingual Attention Transformer for Arabic, French, and English NLP with hierarchical subword attention pooling and language-sensitive gating."
+      "Designed MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) in CERIST UbiSys (DTISI): mDeBERTa-v3-base + Hierarchical Attention Pooling (HAP) + FiLM Language Gating + Evidential Dirichlet Head (u=K/S) across 6 languages (MSA, Algerian Darija, Kabyle, Chaoui, FR, EN), reaching 98.20% test accuracy vs 23.74% mDeBERTa-v3 ablation."
     )
     addBullet(
       "Engineered AI ECG Arrhythmia Classification (v7) on the strict inter-patient MIT-BIH DS1/DS2 benchmark (90.13% 5-fold accuracy, 155.4 KB INT8 TFLite, 0.32 ms/beat latency)."
@@ -157,7 +157,7 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
       "MedGuardAI (USTHB Capstone Distinction): Real-time IoT ECG/Glucose sensor streaming, AI anomaly alerts & WebRTC telemedicine."
     )
     addBullet(
-      "MUCAT Multilingual Transformer: Hierarchical attention & language gating across Arabic, French, and English."
+      "MuCAT Multilingual Transformer: mDeBERTa-v3 + HAP + FiLM Gating + Dirichlet Uncertainty (98.20% Test Acc, 6 languages)."
     )
     addBullet(
       "Commercial Production Suite: Tadjmeel Clinica Algiers, Enterprise DZD G50 ERP, ALLURE HOMME, GK STORE & CASUAL 29."
@@ -199,7 +199,7 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
       [0.08, 0.08, 0.15]
     )
     addBullet(
-      "Conception et implementation de MUCAT, architecture Transformer/BERT multilingue (Arabe, Francais, Anglais) avec pooling d'attention hierarchique et routage linguistique."
+      "Conception de MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) au CERIST UbiSys (DTISI) : mDeBERTa-v3 + HAP + FiLM Language Gating + tete evidentielle Dirichlet (u=K/S) sur 6 langues (Arabe, Darija, Kabyle, Chaoui, FR, EN), atteignant 98.20% test accuracy contre 23.74% en ablation."
     )
     addBullet(
       "Developpement du systeme ECG Arrhythmia v7 sur le protocole inter-patient MIT-BIH DS1/DS2 (90.13% precision ensemble 5-fold, 155.4 Ko INT8 TFLite, 0.32 ms/battement)."

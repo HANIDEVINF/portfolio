@@ -330,37 +330,46 @@ export const portfolioProjects: PortfolioProject[] = [
   // ==========================================================================
   {
     slug: "mucat-multilingual-transformer",
-    title: "MUCAT — Multilingual Custom Attention Transformer",
+    title: "MuCAT — Multilingual Uncertainty-Calibrated Attention Transformer",
     description:
-      "Custom BERT/Transformer neural architecture designed for multilingual NLP across Arabic, French, and English. Features hierarchical attention pooling, language-sensitive gating, and language-specific output heads.",
-    technologies: ["PyTorch", "Hugging Face", "BERT", "Hierarchical Attention", "Arabic NLP", "Multilingual"],
+      "Language-conditioned multilingual Transformer architecture with native Dirichlet uncertainty quantification for low-resource & Maghreb settings (Modern Standard Arabic, Algerian Arabic/Darija, Kabyle, Chaoui, French, and English). Stacks 4 custom modules over mDeBERTa-v3-base: Hierarchical Attention Pooling (HAP), Language-Aware Gating (LAG FiLM), Evidential Dirichlet Head (EDL), and Script Auxiliary Head.",
+    technologies: ["mDeBERTa-v3", "Evidential Deep Learning", "FiLM Gating", "Hierarchical Attention", "Berber & Darija NLP", "LLRD"],
     github: "https://github.com/HANIDEVINF/MUCAT-Multilingual-Transformer",
     githubReady: true,
     demo: "/lab/mucat-transformer",
     category: "NLP & Speech AI",
     featured: true,
-    status: "Research",
-    metrics: ["Trilingual (AR / FR / EN)", "Language-sensitive gating", "Hierarchical attention pooling"],
+    status: "CERIST Research",
+    metrics: ["98.20% Test Acc (vs 23.74% ablation)", "6 Languages (AR/ARQ/KAB/SHY/FR/EN)", "Single-Pass Dirichlet Uncertainty u=K/S"],
     impact:
-      "Engineered during AI research internships at CERIST to handle morphological richness and code-switching across Arabic, French, and English NLP tasks.",
+      "CERIST (UbiSys Team, DTISI) research supervised by Nadir Bouchama: achieves 98.26% Val / 98.20% Test accuracy with native calibrated uncertainty u = K/S under an identical 10-epoch LLRD budget, outperforming XLM-RoBERTa-base (3.88% test) and standard mDeBERTa-v3 ablation (23.74% test).",
     architecture: [
-      "Backbone: Shared multilingual Transformer / BERT contextual encoder",
-      "Hierarchical Attention Pooling: Multi-level token and span aggregation for morphologically rich text",
-      "Language-Sensitive Gating: Dynamic routing module conditioning representations on detected language characteristics (AR / FR / EN)",
-      "Task Heads: Language-specific output projections for classification and conversational NLP workflows",
+      "Backbone: Pretrained mDeBERTa-v3-base (disentangled attention + ELECTRA replaced-token detection) with 9/12 selective layer freezing & LLRD (ξ ≈ 0.95)",
+      "1. Hierarchical Attention Pooling (HAP): Learned gate mixing multi-head token attention summary with the [CLS] residual (inspired by MaxPoolBERT 2025)",
+      "2. Language-Aware Gating (LAG — FiLM): Affine scale/shift modulation conditioned on the detected writing-system family",
+      "3. Evidential Dirichlet Head (EDL) + 4. AuxHead: Predicts Dirichlet parameters α_i for single-pass calibrated uncertainty u = K/S (S = ∑α_i) with multi-task script regularization",
     ],
     caseStudy: {
-      subtitle: "Custom BERT/Transformer Architecture for Arabic, French & English NLP",
-      datasetOrScope: "CERIST AI Engineering Research · Multilingual & Code-Switched NLP",
+      subtitle: "CERIST UbiSys DTISI Research Report · Supervised by Nadir Bouchama",
+      datasetOrScope: "Tatoeba 6-Language Low-Resource Benchmark (MSA `ar`, Algerian Darija `arq`, Kabyle `kab`, Chaoui `shy`, French `fr`, English `en`) · Strict Identical Budget (4 Epochs Frozen + 6 Epochs Unfrozen Top-8 Layers, LLRD ξ=0.95)",
       keyFindings: [
-        "Combines shared cross-lingual representations with language-sensitive gating to prevent dominant-language interference",
-        "Hierarchical attention pooling improves representation quality over standard [CLS] token pooling on Arabic/French/English tasks",
-        "Designed as a modular PyTorch/Hugging Face research and engineering framework",
+        "Controlled comparison at strictly identical compute budget: MuCAT reaches 98.26% Val / 98.20% Test accuracy vs. 98.15% Val / 23.74% Test on standard mDeBERTa-v3 ablation and 97.75% Val / 3.88% Test on XLM-RoBERTa-base",
+        "Native calibrated uncertainty u = K/S in a single forward pass via Evidential Deep Learning (Sensoy et al., 2018), avoiding 10–50× MC-Dropout overhead or separate temperature-scaling validation sets",
+        "Hierarchical Attention Pooling (HAP) + Language-Aware FiLM Gating (LAG) prevent dominant-language drift on low-resource Berber (Kabyle, Chaoui) and Algerian Arabic dialects",
+        "Selective layer freezing (first 9 of 12 layers frozen, costing only 0.04 accuracy points) combined with Layer-wise Learning Rate Decay (LLRD, ξ ≈ 0.95) prevents catastrophic forgetting",
       ],
       sections: [
         {
-          heading: "Architectural Motivation",
-          body: "Standard multilingual encoders often underperform on Algerian/Maghreb linguistic contexts where Arabic, French, and English coexist. MUCAT introduces explicit hierarchical pooling and language-aware gating.",
+          heading: "1. Literature Review & Backbone Selection",
+          body: "Surveys mBERT, XLM-RoBERTa, DeBERTa-v3, and mmBERT (Marone et al., 2025), alongside Algerian/Berber NLP works (DziriBERT, chDzDT, PADIC, AraDial, GlotLID). While mmBERT is the newest 1,800-language encoder, HuggingFace transformers v5 removed TFAutoModel support; XLM-RoBERTa-base is therefore selected as the defensible public baseline alongside a controlled mDeBERTa-v3-base ablation.",
+        },
+        {
+          heading: "2. Four-Module MuCAT Architecture",
+          body: "Stacks (1) Hierarchical Attention Pooling (HAP) mixing token-level attention with the [CLS] residual, (2) Language-Aware Gating (LAG — FiLM affine scale/shift conditioned on writing-system family), (3) Evidential Dirichlet Head (EDL) predicting concentration parameters α_i to compute strength S = ∑α_i and vacuity uncertainty u = K/S in one pass, and (4) Auxiliary script-discrimination head for multi-task regularization.",
+        },
+        {
+          heading: "3. Controlled Experimental Protocol & Honest Limitations",
+          body: "All three models share the exact same Tatoeba 6-language split, class weighting, and 4+6 epoch LLRD schedule, isolating architectural gain from compute budget. Explicitly documents statistical variance on low-volume Chaoui (<800 sentences), expected Kabyle/Chaoui Berber family confusion noted in GlotLID, and EDL epistemic vs. dataset bias correlations.",
         },
       ],
     },

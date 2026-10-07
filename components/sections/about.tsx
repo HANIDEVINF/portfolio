@@ -8,7 +8,7 @@ const quickFacts = [
   { icon: GraduationCap, label: "Academic Track", value: "Master in Artificial Intelligence at USTHB (Sep 2022 – June 2027) + CS Licence" },
   { icon: Building2, label: "Research Track", value: "5 AI Engineering Internships at CERIST (Healthcare AI, Multilingual NLP, Transformers)" },
   { icon: Stethoscope, label: "Medical AI & IoT", value: "MedGuardAI (Real-Time ECG/Glucose + WebRTC) & MIT-BIH v7 (155 KB INT8 TFLite)" },
-  { icon: Brain, label: "Custom Architectures", value: "Designed MUCAT (Hierarchical Attention + Language Gating for Arabic/French/English)" },
+  { icon: Brain, label: "Custom Architectures", value: "Designed MuCAT at CERIST UbiSys (mDeBERTa-v3 + HAP + FiLM Gating + Dirichlet Uncertainty, 98.20% Test Acc)" },
   { icon: Globe2, label: "Trilingual Engineer", value: "Arabic (Native) · French (Full Professional) · English (Professional Working)" },
 ]
 
@@ -17,7 +17,7 @@ const recruiterPillars = [
     icon: Cpu,
     title: "Models That Ship to Production & Edge",
     description:
-      "Not just isolated Jupyter notebooks: trained PyTorch/Keras models quantized to 155 KB INT8 TFLite (0.32 ms/beat) and deployed into live web, Flutter, and Raspberry Pi IoT systems.",
+      "Not just isolated Jupyter notebooks: trained PyTorch/Keras models quantized to 155 KB INT8 TFLite (0.32 ms/beat) and deployed into live web, desktop, and Raspberry Pi IoT systems.",
   },
   {
     icon: Building2,
@@ -57,11 +57,11 @@ export function AboutSection() {
               </p>
 
               <p>
-                My work bridges <span className="text-purple-300 font-medium">deep learning research</span> and <span className="text-cyan-300 font-medium">production software engineering</span>: I have designed <strong className="text-white font-semibold">MUCAT</strong> (a custom multilingual BERT/Transformer architecture for Arabic, French, and English NLP), built <strong className="text-white font-semibold">MedGuardAI</strong> (a real-time patient monitoring platform connected to physical ECG and blood glucose sensors), and engineered <strong className="text-white font-semibold">v7 Embedded ECG Arrhythmia Classification</strong> on MIT-BIH.
+                My work bridges <span className="text-purple-300 font-medium">deep learning research</span> and <span className="text-cyan-300 font-medium">production software engineering</span>: I have designed <strong className="text-white font-semibold">MuCAT</strong> (Multilingual Uncertainty-Calibrated Attention Transformer stacking Hierarchical Attention Pooling, FiLM Language-Aware Gating, and Evidential Dirichlet Uncertainty across Arabic, Darija, Kabyle, Chaoui, French, and English at CERIST UbiSys), built <strong className="text-white font-semibold">MedGuardAI</strong> (a real-time patient monitoring platform connected to physical ECG and blood glucose sensors), and engineered <strong className="text-white font-semibold">v7 Embedded ECG Arrhythmia Classification</strong> on MIT-BIH.
               </p>
 
               <p>
-                {"Currently, I focus on generative AI, agentic workflows (ReAct, tool calling, guardrails), explainable & trustworthy AI, and deploying models end-to-end across Python, PyTorch, TensorFlow/Keras, React/Next.js, and Flutter."}
+                {"Currently, I focus on generative AI, agentic workflows (ReAct, tool calling, guardrails), explainable & trustworthy AI, and deploying end-to-end systems across PyTorch, TensorFlow/Keras, Next.js, TypeScript, and Edge IoT."}
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-3">

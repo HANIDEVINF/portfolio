@@ -38,7 +38,7 @@ const resumeData = {
         responsibilities: [
           "Completed four additional AI research internships at CERIST spanning Healthcare AI, NLP, and Deep Learning.",
           "Developed real-time ECG and blood glucose monitoring and anomaly detection applications, including real-time hardware-to-software sensor integration and emergency alert workflows.",
-          "Designed and implemented MUCAT, a custom BERT/Transformer architecture for multilingual NLP experimentation (hierarchical attention pooling, language-sensitive gating, and language-specific output heads).",
+          "Designed and evaluated MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) in the UbiSys Team (DTISI, supervised by Nadir Bouchama): stacked Hierarchical Attention Pooling (HAP), Language-Aware FiLM Gating (LAG), an Evidential Dirichlet Head (native single-pass uncertainty u = K/S), and an auxiliary script head on mDeBERTa-v3-base across 6 languages (MSA, Algerian Darija, Kabyle, Chaoui, French, English), achieving 98.20% test accuracy vs. 23.74% on the standard mDeBERTa-v3 ablation and 3.88% on XLM-RoBERTa-base.",
           "Built deep learning and multilingual text processing pipelines and exposed trained models through interactive software interfaces.",
         ],
       },
@@ -80,7 +80,7 @@ const resumeData = {
     certifications: [
       "Deep Learning Certification – Code 213 (November 2025 – June 2026) · Final Training Capstone",
       "MedGuardAI – Real-Time IoT Patient Monitoring Platform (USTHB Licence Capstone / PFE)",
-      "MUCAT – Custom Multilingual BERT/Transformer Architecture (CERIST AI Research)",
+      "MuCAT – Multilingual Uncertainty-Calibrated Attention Transformer (CERIST UbiSys DTISI — 98.20% Test Acc across AR/ARQ/KAB/SHY/FR/EN)",
       "AI ECG Arrhythmia Classification v7 – MIT-BIH Inter-Patient Study & TFLite Deployment",
     ],
     languages: [
@@ -119,7 +119,7 @@ const resumeData = {
         responsibilities: [
           "Réalisation de quatre stages supplémentaires en IA au CERIST dans les domaines de l'IA pour la santé, du NLP et du deep learning.",
           "Travail sur des applications de suivi de l'ECG et de la glycémie et de détection d'anomalies, incluant l'intégration temps réel entre capteurs et logiciel et des fonctionnalités d'alerte.",
-          "Conception et implémentation de MUCAT, une architecture personnalisée basée sur BERT/Transformer pour l'expérimentation en NLP multilingue.",
+          "Conception et évaluation de MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) au sein de l'équipe UbiSys (DTISI, encadré par Nadir Bouchama) : empilement d'un pooling par attention hiérarchique (HAP), d'une modulation FiLM conditionnée par la langue (LAG), d'une tête évidentielle de Dirichlet (incertitude calibrée native u = K/S) et d'une tête auxiliaire sur mDeBERTa-v3-base (6 langues : arabe standard, arabe algérien, kabyle, chaoui, français, anglais), atteignant 98,20 % de test accuracy contre 23,74 % pour l'ablation mDeBERTa-v3 et 3,88 % pour XLM-RoBERTa-base.",
           "Travail avec le deep learning, les méthodes Transformer/BERT, le traitement de texte multilingue et le développement d'applications d'IA.",
         ],
       },
@@ -161,7 +161,7 @@ const resumeData = {
     certifications: [
       "Certification en Deep Learning – Code 213 (Novembre 2025 – Juin 2026) · Projet final de formation",
       "MedGuardAI – Plateforme de suivi de patients en temps réel (PFE Licence USTHB)",
-      "MUCAT – Architecture BERT / Transformer personnalisée (Projet IA / NLP CERIST)",
+      "MuCAT – Multilingual Uncertainty-Calibrated Attention Transformer (CERIST UbiSys DTISI — 98,20 % Test Acc sur 6 langues)",
       "Classification d'arythmies ECG par IA (v7) – MIT-BIH Inter-Patient & TFLite",
     ],
     languages: [

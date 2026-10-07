@@ -81,11 +81,11 @@ const STUDIOS: StudioMeta[] = [
   },
   {
     id: "mucat-transformer",
-    title: "MUCAT — Trilingual Hierarchical Attention Playground",
-    subtitle: "Arabic / French / English Code-Switched NLP · Language-Sensitive Gating · Subword Attention Map",
+    title: "MuCAT — Multilingual Uncertainty-Calibrated Attention Transformer",
+    subtitle: "CERIST UbiSys DTISI Research · mDeBERTa-v3 + HAP + FiLM Language Gating + Evidential Dirichlet Uncertainty (u = K/S)",
     track: "AI & Medical Research",
     repoUrl: "https://github.com/HANIDEVINF/MUCAT-Multilingual-Transformer",
-    metrics: "AR / FR / EN Gating · +4.8% Macro-F1 over [CLS]",
+    metrics: "98.20% Test Acc · 6 Languages (AR/ARQ/KAB/SHY/FR/EN) · Dirichlet u=K/S",
   },
   {
     id: "tadjmeel-clinica",
@@ -346,28 +346,60 @@ export default function InteractiveAiCommercialLabPage({
     { code: "Q", name: "Unclassifiable / Paced", color: "bg-violet-500" },
   ]
 
-  // MUCAT token language & attention computation
+  // MuCAT 6-language (ar / arq / kab / shy / fr / en), HAP attention & Evidential Dirichlet u = K/S computation
   const mucatAnalysis = useMemo(() => {
     const rawTokens = mucatInput.split(/\s+/).filter(Boolean)
     const analyzed = rawTokens.map((tok) => {
-      const isArabic = /[\u0600-\u06FF]/.test(tok)
-      const isFrench = /[éèêàùç]|^(le|la|une|patient|présente|à)$/i.test(tok)
-      const isClinicalOrUrgent = /tachycardie|supraventriculaire|bpm|عاجلة|متابعة|طبيب|عيادة|cardiology|friday/i.test(tok)
-      const lang: "AR" | "FR" | "EN" = isArabic ? "AR" : isFrench ? "FR" : "EN"
-      const weight = isClinicalOrUrgent ? 0.92 : isArabic || isFrench ? 0.64 : 0.38
+      const isArabicScript = /[\u0600-\u06FF]/.test(tok)
+      const isDarija = /راني|واش|بزاف|مليح|الدار|دزاير|خويا|عاجلة|متابعة/i.test(tok)
+      const isKabyle = /[ɣɛṭḍẓčǧ]|^(azul|amennuɣ|tamurt|aqcic|taqbaylit|fell-awen|iḍelli)$/i.test(tok)
+      const isChaoui = /^(ammas|awrass|tutlayt|tacawit|ayyur|adrar)$/i.test(tok)
+      const isFrench = /[éèêàùç]|^(le|la|une|patient|présente|commande|confirmée|alger|avec|dans|pour)$/i.test(tok)
+
+      let lang: "AR" | "ARQ" | "KAB" | "SHY" | "FR" | "EN" = "EN"
+      if (isKabyle) lang = "KAB"
+      else if (isChaoui) lang = "SHY"
+      else if (isArabicScript && isDarija) lang = "ARQ"
+      else if (isArabicScript) lang = "AR"
+      else if (isFrench) lang = "FR"
+
+      const isHighSalience = /tachycardie|supraventriculaire|bpm|عاجلة|متابعة|azul|taqbaylit|tacawit|awrass|dirichlet|mucat/i.test(tok)
+      const weight = isHighSalience ? 0.94 : lang !== "EN" ? 0.72 : 0.44
       return { tok, lang, weight }
     })
-    const arCount = analyzed.filter((t) => t.lang === "AR").length
-    const frCount = analyzed.filter((t) => t.lang === "FR").length
-    const enCount = analyzed.filter((t) => t.lang === "EN").length
+
+    const counts = {
+      AR: analyzed.filter((t) => t.lang === "AR").length,
+      ARQ: analyzed.filter((t) => t.lang === "ARQ").length,
+      KAB: analyzed.filter((t) => t.lang === "KAB").length,
+      SHY: analyzed.filter((t) => t.lang === "SHY").length,
+      FR: analyzed.filter((t) => t.lang === "FR").length,
+      EN: analyzed.filter((t) => t.lang === "EN").length,
+    }
     const total = Math.max(1, analyzed.length)
+    const K = 6
+    // Dirichlet concentration α_i = e_i + 1
+    const alphas = {
+      AR: 1 + counts.AR * 6.5,
+      ARQ: 1 + counts.ARQ * 6.2,
+      KAB: 1 + counts.KAB * 5.8,
+      SHY: 1 + counts.SHY * 5.2,
+      FR: 1 + counts.FR * 6.4,
+      EN: 1 + counts.EN * 6.0,
+    }
+    const strengthS = Object.values(alphas).reduce((acc, v) => acc + v, 0)
+    const vacuityU = K / strengthS
+
     return {
       tokens: analyzed,
       gateDistribution: {
-        AR: arCount / total,
-        FR: frCount / total,
-        EN: enCount / total,
+        AR: (counts.AR + counts.ARQ) / total,
+        BER: (counts.KAB + counts.SHY) / total,
+        LAT: (counts.FR + counts.EN) / total,
       },
+      alphas,
+      strengthS,
+      vacuityU,
     }
   }, [mucatInput])
 
@@ -823,70 +855,78 @@ export default function InteractiveAiCommercialLabPage({
             <div className="space-y-4 rounded-3xl border border-white/10 bg-[#100a1e]/90 p-6 lg:col-span-6">
               <div>
                 <h3 className="text-base font-bold text-white">
-                  MUCAT — Code-Switched Trilingual Input (Arabic · French · English)
+                  MuCAT — 6-Language Input (MSA · Algerian Darija · Kabyle · Chaoui · French · English)
                 </h3>
                 <p className="text-xs text-zinc-400">
-                  CERIST Research Architecture · Hierarchical Subword Attention Pooling + Language-Sensitive Gating
+                  CERIST UbiSys DTISI Architecture · mDeBERTa-v3-base + HAP + Language-Aware FiLM Gating + Evidential Dirichlet Head
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-2">
                 {[
                   "Le patient présente une tachycardie supraventriculaire à 138 bpm — المريض يحتاج إلى متابعة طبية عاجلة في العيادة before Friday's cardiology review.",
-                  "Commande #4820 confirmée pour Alger Birkhadem — تم شحن الطلب بنجاح عبر التوصيل السريع with cash on delivery 18,500 DA.",
-                  "MUCAT hierarchical attention pooling improves Arabic morphological root representation and French-Arabic code-switching by +4.8% Macro-F1.",
+                  "Azul fell-awen diத் tamurt n Taqbaylit d Tacawit di Awrass — راني مليح في دزاير avec une incertitude calibrée Dirichlet u = K/S.",
+                  "MuCAT combines mDeBERTa-v3-base, Hierarchical Attention Pooling (HAP), FiLM Language-Aware Gating (LAG), and Evidential Deep Learning (98.20% Test Acc).",
                 ].map((sample, idx) => (
                   <button
                     key={idx}
                     onClick={() => setMucatInput(sample)}
                     className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-1.5 text-left text-xs text-zinc-300 hover:border-violet-400"
                   >
-                    Preset #{idx + 1} (AR/FR/EN Code-Switched)
+                    Preset #{idx + 1} ({idx === 0 ? "AR/ARQ/FR/EN Clinical" : idx === 1 ? "Kabyle/Chaoui/Darija/FR" : "MuCAT Architecture"})
                   </button>
                 ))}
               </div>
 
               <textarea
-                rows={5}
+                rows={4}
                 value={mucatInput}
                 onChange={(e) => setMucatInput(e.target.value)}
                 className="w-full rounded-2xl border border-white/10 bg-black/60 p-4 text-xs leading-relaxed text-zinc-100 focus:border-violet-500 focus:outline-none"
               />
 
-              {/* Language-Sensitive Gate Activations */}
-              <div className="rounded-2xl border border-white/10 bg-black/40 p-4">
-                <div className="text-xs font-semibold text-violet-300">
-                  Language-Sensitive Gating Vector g = σ(W_g · h + b_g)
+              {/* Language-Aware FiLM Gating + Evidential Dirichlet Uncertainty */}
+              <div className="rounded-2xl border border-white/10 bg-black/40 p-4 space-y-3">
+                <div className="flex items-center justify-between text-xs font-semibold text-violet-300">
+                  <span>2. Language-Aware FiLM Gating (LAG) &amp; 3. Evidential Dirichlet Head (EDL)</span>
+                  <span className="font-mono text-emerald-300">
+                    u = K/S = {(mucatAnalysis.vacuityU * 100).toFixed(1)}%
+                  </span>
                 </div>
-                <div className="mt-3 grid grid-cols-3 gap-3 font-mono text-xs tabular-nums">
+                <div className="grid grid-cols-3 gap-3 font-mono text-xs tabular-nums">
                   <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
-                    <div className="text-zinc-400">Arabic (AR) Gate</div>
+                    <div className="text-zinc-400">Arabic / Darija (ar/arq)</div>
                     <div className="mt-1 text-lg font-bold text-emerald-300">
                       {(mucatAnalysis.gateDistribution.AR * 100).toFixed(1)}%
                     </div>
                   </div>
                   <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
-                    <div className="text-zinc-400">French (FR) Gate</div>
-                    <div className="mt-1 text-lg font-bold text-cyan-300">
-                      {(mucatAnalysis.gateDistribution.FR * 100).toFixed(1)}%
+                    <div className="text-zinc-400">Berber (kab/shy)</div>
+                    <div className="mt-1 text-lg font-bold text-amber-300">
+                      {(mucatAnalysis.gateDistribution.BER * 100).toFixed(1)}%
                     </div>
                   </div>
                   <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
-                    <div className="text-zinc-400">English (EN) Gate</div>
-                    <div className="mt-1 text-lg font-bold text-violet-300">
-                      {(mucatAnalysis.gateDistribution.EN * 100).toFixed(1)}%
+                    <div className="text-zinc-400">Latin (fr/en)</div>
+                    <div className="mt-1 text-lg font-bold text-cyan-300">
+                      {(mucatAnalysis.gateDistribution.LAT * 100).toFixed(1)}%
                     </div>
                   </div>
+                </div>
+                <div className="flex items-center justify-between rounded-xl border border-violet-500/20 bg-violet-950/20 px-3 py-2 text-[11px] font-mono text-zinc-300">
+                  <span>Dirichlet Strength S = ∑α_i = {mucatAnalysis.strengthS.toFixed(1)}</span>
+                  <span>Classes K = 6 (ar, arq, kab, shy, fr, en)</span>
+                  <span className="text-emerald-300">Single Forward Pass</span>
                 </div>
               </div>
             </div>
 
             <div className="space-y-4 rounded-3xl border border-white/10 bg-[#100a1e]/90 p-6 lg:col-span-6">
               <h3 className="text-base font-bold text-white">
-                Hierarchical Token & Span Attention Attribution Map
+                1. Hierarchical Attention Pooling (HAP) &amp; Controlled CERIST Ablation
               </h3>
               <p className="text-xs text-zinc-400">
-                Tokens are dynamically routed to language-specific morphological subspaces before cross-lingual fusion
+                Learned gate mixes multi-head attention summary over all tokens with the [CLS] residual before FiLM modulation
               </p>
 
               <div className="flex flex-wrap gap-2 rounded-2xl border border-white/10 bg-black/50 p-4">
@@ -896,8 +936,10 @@ export default function InteractiveAiCommercialLabPage({
                     className="rounded-xl border border-white/10 px-2.5 py-1.5 text-xs transition"
                     style={{
                       backgroundColor:
-                        item.lang === "AR"
+                        item.lang === "AR" || item.lang === "ARQ"
                           ? `rgba(16, 185, 129, ${item.weight * 0.35})`
+                          : item.lang === "KAB" || item.lang === "SHY"
+                          ? `rgba(245, 158, 11, ${item.weight * 0.35})`
                           : item.lang === "FR"
                           ? `rgba(6, 182, 212, ${item.weight * 0.35})`
                           : `rgba(168, 85, 247, ${item.weight * 0.35})`,
@@ -911,14 +953,43 @@ export default function InteractiveAiCommercialLabPage({
                 ))}
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 text-xs text-zinc-300 space-y-2">
-                <div className="font-semibold text-white">Architectural Advantage over Standard mBERT [CLS]</div>
-                <p>
-                  Standard multilingual BERT pools solely from the first <code className="text-violet-300">[CLS]</code>{" "}
-                  token, causing dominant-language drift on Maghreb/Algerian code-switched text. MUCAT computes
-                  multi-head span attention weights <code className="text-violet-300">α_i</code> across all subwords and
-                  modulates the pooled representation via the language-sensitive gate before classification.
-                </p>
+              {/* Controlled Experimental Comparison Table from CERIST Report */}
+              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 text-xs text-zinc-300 space-y-2.5">
+                <div className="font-semibold text-white">
+                  Controlled Experimental Comparison (Identical Budget: 4 Epochs Frozen + 6 Epochs Unfrozen Top-8, LLRD ξ=0.95)
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left font-mono text-[11px]">
+                    <thead>
+                      <tr className="border-b border-white/10 text-zinc-400">
+                        <th className="py-1.5 pr-2">Model</th>
+                        <th className="py-1.5 px-2">Val Acc</th>
+                        <th className="py-1.5 px-2">Test Acc</th>
+                        <th className="py-1.5 pl-2">Native Uncertainty</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      <tr>
+                        <td className="py-1.5 pr-2 text-zinc-300">XLM-RoBERTa-base (baseline)</td>
+                        <td className="py-1.5 px-2">97.75%</td>
+                        <td className="py-1.5 px-2 text-rose-300">3.88%</td>
+                        <td className="py-1.5 pl-2 text-zinc-400">No (classic softmax)</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1.5 pr-2 text-zinc-300">mDeBERTa-v3 standard (ablation)</td>
+                        <td className="py-1.5 px-2">98.15%</td>
+                        <td className="py-1.5 px-2 text-amber-300">23.74%</td>
+                        <td className="py-1.5 pl-2 text-zinc-400">No (classic softmax)</td>
+                      </tr>
+                      <tr className="bg-violet-500/10 font-bold text-white">
+                        <td className="py-1.5 pr-2 text-violet-300">MuCAT (HAP+LAG+EDL+Aux)</td>
+                        <td className="py-1.5 px-2 text-emerald-300">98.26%</td>
+                        <td className="py-1.5 px-2 text-emerald-300">98.20%</td>
+                        <td className="py-1.5 pl-2 text-cyan-300">Yes — Dirichlet (u=K/S)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
