@@ -3,17 +3,18 @@
 import { useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { Download, Mail, Phone, Globe, Briefcase, GraduationCap, Award, FileText, CheckCircle2, MapPin, Languages } from "lucide-react"
+import { Download, Mail, Phone, Briefcase, GraduationCap, Award, FileText, CheckCircle2, MapPin, Languages } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { generateAndDownloadResumePdf } from "@/lib/generate-cv-pdf"
 
 const resumeData = {
   en: {
-    role: "AI Engineer | Machine Learning | Deep Learning | NLP | AI Software Engineering",
+    role: "AI Engineer | Deep Learning | NLP & RAG | Agentic AI | Full-Stack Systems Architect",
     location: "Algiers, Algeria",
-    printBtn: "Download / Print CV",
+    printBtn: "Download CV (PDF)",
     summaryTitle: "Professional Summary",
     summaryText:
-      "AI Engineering student at USTHB with ~2 years of freelance full-stack & AI development experience and 5 AI research internships at CERIST. Hands-on experience designing machine learning and deep learning systems, NLP/Transformer applications, chatbots, and AI-powered web and mobile products. Built and integrated AI models into production software interfaces, including a real-time patient monitoring platform connected to physical ECG and blood glucose sensors (MedGuardAI) and a custom multilingual BERT/Transformer architecture (MUCAT) for Arabic, French, and English NLP. Currently focused on generative AI, agentic AI, AI automation, explainable AI, and trustworthy AI.",
+      "AI Engineering Master's Researcher at USTHB with ~2 years of commercial full-stack & AI software engineering experience and 5 AI research internships at CERIST. Proven track record designing machine learning and deep learning systems, custom NLP/Transformer architectures (MUCAT), hybrid RAG pipelines, and enterprise web/desktop platforms—including a real-time patient monitoring platform connected to physical ECG and blood glucose sensors (MedGuardAI) and embedded MIT-BIH v7 arrhythmia inference. Focused on generative AI, agentic AI, trustworthy AI, and end-to-end production deployment.",
     expTitle: "Professional & Research Experience",
     eduTitle: "Education",
     skillsTitle: "Technical Competencies",
@@ -38,7 +39,7 @@ const resumeData = {
           "Completed four additional AI research internships at CERIST spanning Healthcare AI, NLP, and Deep Learning.",
           "Developed real-time ECG and blood glucose monitoring and anomaly detection applications, including real-time hardware-to-software sensor integration and emergency alert workflows.",
           "Designed and implemented MUCAT, a custom BERT/Transformer architecture for multilingual NLP experimentation (hierarchical attention pooling, language-sensitive gating, and language-specific output heads).",
-          "Built deep learning and multilingual text processing pipelines in Python and exposed trained models through interactive software interfaces.",
+          "Built deep learning and multilingual text processing pipelines and exposed trained models through interactive software interfaces.",
         ],
       },
       {
@@ -46,9 +47,9 @@ const resumeData = {
         company: "Independent / Self-Employed · Algiers, Algeria",
         period: "~2 Years",
         responsibilities: [
-          "End-to-end design and engineering of web applications, websites, and mobile apps covering frontend, backend, databases, REST APIs, deployment, and AI integration.",
+          "End-to-end design and engineering of web and desktop applications covering frontend, backend, databases, REST APIs, deployment, and AI integration.",
           "Developed ML and deep learning models and connected them to usable software interfaces, including live web demos for real-time model testing.",
-          "Built production systems using Python, React, Next.js, Node.js, TypeScript, PHP, Laravel, MongoDB, Flutter, React Native, JavaScript, HTML/CSS, and SQL.",
+          "Built production systems using React, Next.js, Node.js, TypeScript, Electron, PHP, Laravel, MongoDB, PostgreSQL, and SQL.",
           "Focused on shipping complete AI-powered software products rather than isolated notebooks or standalone prototypes.",
         ],
       },
@@ -70,9 +71,9 @@ const resumeData = {
     skills: {
       "AI & Machine Learning": ["Artificial Intelligence", "Machine Learning", "Deep Learning", "NLP", "Transformers", "BERT", "Generative AI", "LLM Applications", "Anomaly Detection", "Chatbots"],
       "AI Agents & LLM Systems": ["Agentic AI", "AI Agents", "ReAct", "Tool Calling", "LLM Workflows", "AI Automation", "Guardrails", "Explainability", "Trustworthy AI"],
-      "Frameworks & Libraries": ["PyTorch", "TensorFlow", "Keras", "Hugging Face Transformers", "Flask", "FastAPI", "WebRTC", "TFLite INT8"],
-      "Programming Languages": ["Python", "TypeScript", "JavaScript", "Dart", "PHP", "Java", "C#", "SQL", "HTML/CSS"],
-      "Full-Stack & Mobile": ["React", "Next.js", "Node.js", "Laravel", "React Native", "Flutter", "REST APIs", "Real-Time Apps"],
+      "Frameworks & Libraries": ["PyTorch", "TensorFlow", "Keras", "Hugging Face Transformers", "FastAPI", "WebRTC", "TFLite INT8"],
+      "Programming Languages": ["TypeScript", "JavaScript", "PHP", "Java", "C#", "SQL", "HTML/CSS"],
+      "Full-Stack & Desktop": ["React", "Next.js", "Node.js", "Electron", "Laravel", "REST APIs", "Real-Time Apps"],
       "Databases & Tools": ["MongoDB", "PostgreSQL", "Supabase", "SQL", "Git", "Docker", "VS Code", "Jupyter", "Google Colab"],
       "Research & AI Security": ["Uncertainty & Confidence Estimation", "Inter-Patient Evaluation (DS1/DS2)", "Prompt Injection Defense", "Policy-Based AI", "IAM Concepts", "Neuro-Symbolic AI"],
     },
@@ -91,10 +92,10 @@ const resumeData = {
   fr: {
     role: "Ingénieur IA | Machine Learning | Deep Learning | NLP | Ingénierie logicielle de l'IA",
     location: "Alger, Algérie",
-    printBtn: "Télécharger / Imprimer CV",
+    printBtn: "Télécharger CV (PDF)",
     summaryTitle: "Résumé Professionnel",
     summaryText:
-      "Étudiant en ingénierie de l'IA à l'USTHB, avec environ 2 ans d'expérience en développement full-stack freelance et cinq stages en IA au CERIST. Expérience pratique dans la conception de systèmes de machine learning et de deep learning, d'applications NLP/Transformers, de chatbots et d'applications web et mobiles intégrant l'IA. Développement et intégration de modèles d'IA dans des interfaces logicielles exploitables, notamment une plateforme de suivi de patients en temps réel utilisant des capteurs d'ECG et de glycémie (MedGuardAI). Conception de MUCAT, une architecture personnalisée basée sur BERT/Transformer pour l'expérimentation en NLP multilingue. Actuellement concentré sur l'IA générative, l'IA agentique, l'automatisation par l'IA, l'IA explicable et l'IA de confiance.",
+      "Étudiant en ingénierie de l'IA à l'USTHB, avec environ 2 ans d'expérience en développement full-stack freelance et cinq stages en IA au CERIST. Expérience pratique dans la conception de systèmes de machine learning et de deep learning, d'applications NLP/Transformers, de chatbots et d'applications web et desktop intégrant l'IA. Développement et intégration de modèles d'IA dans des interfaces logicielles exploitables, notamment une plateforme de suivi de patients en temps réel utilisant des capteurs d'ECG et de glycémie (MedGuardAI). Conception de MUCAT, une architecture personnalisée basée sur BERT/Transformer pour l'expérimentation en NLP multilingue. Actuellement concentré sur l'IA générative, l'IA agentique, l'automatisation par l'IA, l'IA explicable et l'IA de confiance.",
     expTitle: "Expérience Professionnelle",
     eduTitle: "Formation",
     skillsTitle: "Compétences Techniques",
@@ -119,7 +120,7 @@ const resumeData = {
           "Réalisation de quatre stages supplémentaires en IA au CERIST dans les domaines de l'IA pour la santé, du NLP et du deep learning.",
           "Travail sur des applications de suivi de l'ECG et de la glycémie et de détection d'anomalies, incluant l'intégration temps réel entre capteurs et logiciel et des fonctionnalités d'alerte.",
           "Conception et implémentation de MUCAT, une architecture personnalisée basée sur BERT/Transformer pour l'expérimentation en NLP multilingue.",
-          "Travail avec le deep learning, les méthodes Transformer/BERT, Python, le traitement de texte multilingue et le développement d'applications d'IA.",
+          "Travail avec le deep learning, les méthodes Transformer/BERT, le traitement de texte multilingue et le développement d'applications d'IA.",
         ],
       },
       {
@@ -127,9 +128,9 @@ const resumeData = {
         company: "Indépendant / Freelance · Alger, Algérie",
         period: "Environ 2 ans",
         responsibilities: [
-          "Conception de bout en bout d'applications web, de sites web et d'applications mobiles, couvrant le frontend, le backend, les bases de données, les API, le déploiement et l'intégration de l'IA.",
+          "Conception de bout en bout d'applications web, de sites web et d'applications desktop, couvrant le frontend, le backend, les bases de données, les API, le déploiement et l'intégration de l'IA.",
           "Développement de modèles d'IA et de deep learning et connexion à des interfaces logicielles exploitables, y compris des interfaces web en direct pour le test et la démonstration des modèles.",
-          "Travail avec Python, React, Node.js, TypeScript, PHP, Laravel, MongoDB, Flutter, React Native, JavaScript, HTML, CSS et SQL.",
+          "Travail avec React, Next.js, Node.js, TypeScript, Electron, PHP, Laravel, MongoDB, PostgreSQL et SQL.",
           "Intégration de capacités d'IA dans des applications concrètes, plutôt que de se limiter à des notebooks ou à des prototypes de modèles isolés.",
         ],
       },
@@ -151,9 +152,9 @@ const resumeData = {
     skills: {
       "IA / ML": ["Intelligence artificielle", "Machine Learning", "Deep Learning", "NLP", "Transformers", "BERT", "IA générative", "Applications LLM", "Détection d'anomalies", "Chatbots"],
       "Agents IA / Systèmes LLM": ["IA agentique", "Agents IA", "ReAct", "Appel d'outils (Tool Calling)", "Workflows LLM", "Automatisation IA", "Guardrails", "Explicabilité", "IA de confiance"],
-      "Frameworks / Bibliothèques": ["PyTorch", "TensorFlow", "Keras", "Hugging Face Transformers", "Flask", "FastAPI", "WebRTC", "TFLite INT8"],
-      "Programmation": ["Python", "TypeScript", "JavaScript", "Dart", "PHP", "Java", "C#", "SQL", "HTML/CSS"],
-      "Full-Stack / Mobile": ["React", "Next.js", "Node.js", "Laravel", "React Native", "Flutter", "API REST", "Applications temps réel"],
+      "Frameworks / Bibliothèques": ["PyTorch", "TensorFlow", "Keras", "Hugging Face Transformers", "FastAPI", "WebRTC", "TFLite INT8"],
+      "Programmation": ["TypeScript", "JavaScript", "PHP", "Java", "C#", "SQL", "HTML/CSS"],
+      "Full-Stack / Desktop": ["React", "Next.js", "Node.js", "Electron", "Laravel", "API REST", "Applications temps réel"],
       "Bases de données / Outils": ["MongoDB", "PostgreSQL", "Supabase", "SQL", "Git", "Docker", "VS Code", "Jupyter", "Google Colab"],
       "Recherche / Sécurité": ["Estimation de l'incertitude et confiance", "Protocole inter-patient DS1/DS2", "Sensibilisation injection de prompt", "Systèmes basés sur des politiques", "IAM", "IA neuro-symbolique"],
     },
@@ -207,7 +208,7 @@ export default function ResumePage() {
               <div className="inline-flex rounded-xl border border-purple-500/30 bg-[#120a24] p-1">
                 <button
                   onClick={() => setLang("en")}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors ${
+                  className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors cursor-pointer ${
                     lang === "en"
                       ? "bg-purple-600 text-white"
                       : "text-slate-400 hover:text-white"
@@ -217,7 +218,7 @@ export default function ResumePage() {
                 </button>
                 <button
                   onClick={() => setLang("fr")}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors ${
+                  className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors cursor-pointer ${
                     lang === "fr"
                       ? "bg-purple-600 text-white"
                       : "text-slate-400 hover:text-white"
@@ -229,11 +230,24 @@ export default function ResumePage() {
 
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold rounded-xl shadow-lg shadow-purple-500/25"
-                onClick={() => window.print()}
+                asChild
+                className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold rounded-xl shadow-lg shadow-purple-500/25 cursor-pointer"
               >
-                <Download className="w-4 h-4 mr-2" />
-                {data.printBtn}
+                <a
+                  href={`/api/cv?lang=${lang}`}
+                  download={lang === "fr" ? "Ghena_Hani_CV_FR.pdf" : "Ghena_Hani_CV_EN.pdf"}
+                  onClick={(e) => {
+                    try {
+                      e.preventDefault()
+                      generateAndDownloadResumePdf(lang)
+                    } catch {
+                      // Native href handles download if jsPDF fails
+                    }
+                  }}
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  {data.printBtn}
+                </a>
               </Button>
             </div>
           </div>

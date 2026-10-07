@@ -28,15 +28,15 @@ const blogPosts = [
     excerpt: "Learn how to build reliable agentic workflows with ReAct, structured outputs, permission gates, and production observability.",
     date: "2026-08-10",
     readTime: "10 min read",
-    tags: ["AI Agents", "ReAct", "Tool Calling", "Python"],
+    tags: ["AI Agents", "ReAct", "Tool Calling", "Agentic AI"],
   },
   {
-    slug: "flutter-state-management-2024",
-    title: "Flutter & Real-Time IoT Sensor Streaming (MedGuardAI)",
-    excerpt: "Architecting real-time mobile telemetry for medical devices with WebSockets, WebRTC, and Python microservices.",
+    slug: "medguard-ai-realtime-iot-streaming",
+    title: "Real-Time Medical IoT Sensor Streaming & Anomaly Detection (MedGuardAI)",
+    excerpt: "Architecting real-time clinical telemetry for ECG and blood glucose devices with WebSockets, WebRTC consultations, and automated emergency alerts.",
     date: "2026-07-05",
     readTime: "9 min read",
-    tags: ["Flutter", "IoT", "WebRTC", "Mobile"],
+    tags: ["Healthcare AI", "Medical IoT", "WebRTC", "Telemetry"],
   },
 ]
 

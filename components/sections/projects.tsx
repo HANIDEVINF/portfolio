@@ -3,13 +3,13 @@
 import { useState } from "react"
 import { ArrowRight, Brain, CheckCircle2, ExternalLink, FileText, Github, Layers, RadioTower, Rocket, Sparkles, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { portfolioProjects, type PortfolioProject } from "@/lib/projects-data"
+import { portfolioProjects, PROJECT_CATEGORIES, type PortfolioProject } from "@/lib/projects-data"
 import Link from "next/link"
 
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null)
   const [activeCategory, setActiveCategory] = useState<string>("All")
-  const categories = ["All", "Healthcare AI", "Client & Commercial", "AI/ML", "MLOps", "Computer Vision"]
+  const categories = PROJECT_CATEGORIES
 
   const featuredProjects = portfolioProjects.filter(
     (project) => project.featured && (activeCategory === "All" || project.category === activeCategory)
@@ -194,76 +194,102 @@ export function ProjectsSection() {
             ))}
           </div>
 
-          {/* More AI Engineering Work Grid */}
-          <h3 className="text-2xl font-bold text-white text-center mb-8">
-            More AI Engineering Work
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map((project) => (
-              <div
-                key={project.title}
-                className="group p-6 bg-[#0e091d]/85 rounded-2xl border border-purple-500/15 hover:border-purple-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between backdrop-blur-sm"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-purple-950/60 flex items-center justify-center border border-purple-500/30 text-purple-300 font-bold text-base">
-                      {project.title.slice(0, 1)}
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-slate-400 hover:text-white transition-colors"
-                        aria-label="GitHub repository"
-                      >
-                        <Github className="w-4 h-4" />
-                      </a>
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-slate-400 hover:text-purple-300 transition-colors"
-                          aria-label="Live demo"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-
-                  <h4 className="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
-                    {project.title}
-                  </h4>
-                  <p className="text-sm text-slate-300 leading-relaxed mb-4 font-light">
-                    {project.description}
-                  </p>
-
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mb-4 inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 hover:text-purple-300"
-                    >
-                      Test live demo <ArrowRight className="h-3.5 w-3.5" />
-                    </a>
-                  )}
-                </div>
-
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-purple-500/10">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-[11px] font-mono text-slate-400 bg-purple-950/40 px-2 py-0.5 rounded-md"
-                    >
-                      {tech}
+          {/* Topic-Grouped Directory by Specialized Track */}
+          <div className="space-y-14">
+            {(activeCategory === "All"
+              ? PROJECT_CATEGORIES.filter((c) => c !== "All")
+              : [activeCategory]
+            ).map((domainTrack) => {
+              const trackProjects = portfolioProjects.filter((p) => p.category === domainTrack)
+              if (trackProjects.length === 0) return null
+              return (
+                <div key={domainTrack}>
+                  <div className="mb-6 flex items-center justify-between border-b border-purple-500/20 pb-3">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">
+                      {domainTrack}
+                    </h3>
+                    <span className="font-mono text-xs text-purple-300 tabular-nums">
+                      {trackProjects.length} {trackProjects.length === 1 ? "system" : "systems"}
                     </span>
-                  ))}
+                  </div>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {trackProjects.map((project) => (
+                      <div
+                        key={project.slug}
+                        className="group p-6 bg-[#0e091d]/85 rounded-2xl border border-purple-500/15 hover:border-purple-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between backdrop-blur-sm"
+                      >
+                        <div>
+                          <div className="flex items-center justify-between mb-3 text-xs text-purple-300 font-mono">
+                            <span>{project.status || "Live"}</span>
+                            <div className="flex items-center gap-3">
+                              <a
+                                href={project.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-slate-400 hover:text-white transition-colors"
+                                aria-label="GitHub repository"
+                              >
+                                <Github className="w-4 h-4" />
+                              </a>
+                              {project.demo && (
+                                <a
+                                  href={project.demo}
+                                  target={project.demo.startsWith("http") ? "_blank" : undefined}
+                                  rel={project.demo.startsWith("http") ? "noopener noreferrer" : undefined}
+                                  className="text-slate-400 hover:text-purple-300 transition-colors"
+                                  aria-label="Live demo"
+                                >
+                                  <ExternalLink className="w-4 h-4" />
+                                </a>
+                              )}
+                            </div>
+                          </div>
+
+                          <h4 className="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
+                            {project.title}
+                          </h4>
+                          <p className="text-sm text-slate-300 leading-relaxed mb-4 font-light">
+                            {project.description}
+                          </p>
+
+                          <div className="mb-4 flex flex-wrap items-center gap-3">
+                            {project.demo && (
+                              <a
+                                href={project.demo}
+                                target={project.demo.startsWith("http") ? "_blank" : undefined}
+                                rel={project.demo.startsWith("http") ? "noopener noreferrer" : undefined}
+                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 hover:text-purple-300"
+                              >
+                                Test live system <ArrowRight className="h-3.5 w-3.5" />
+                              </a>
+                            )}
+                            {project.caseStudy && (
+                              <button
+                                onClick={() => setSelectedProject(project)}
+                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-fuchsia-400 hover:text-fuchsia-300 cursor-pointer"
+                              >
+                                Architecture <FileText className="h-3.5 w-3.5" />
+                              </button>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-purple-500/10">
+                          {project.technologies.map((tech) => (
+                            <span
+                              key={tech}
+                              className="text-[11px] font-mono text-slate-400 bg-purple-950/40 px-2 py-0.5 rounded-md"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           <div className="text-center mt-14">

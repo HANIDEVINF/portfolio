@@ -38,8 +38,8 @@ const experiences = [
     title: "Freelance Full-Stack & AI Developer",
     company: "Self-Employed / Independent",
     description:
-      "End-to-end web and mobile applications with integrated AI capabilities, connecting deep learning models to usable software interfaces, APIs, databases, and real-time streaming services.",
-    technologies: ["Flutter", "React", "Node.js", "Python / Flask", "TypeScript", "MongoDB", "SQL"],
+      "End-to-end web and desktop applications with integrated AI capabilities, connecting deep learning models to usable software interfaces, APIs, databases, and real-time streaming services.",
+    technologies: ["React", "Next.js", "TypeScript", "Node.js", "Electron", "MongoDB", "SQL"],
   },
   {
     period: "2022 - 2024",

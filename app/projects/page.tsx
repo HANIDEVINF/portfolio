@@ -5,10 +5,10 @@ import { Footer } from "@/components/footer"
 import { Activity, ArrowRight, CheckCircle2, ExternalLink, FileText, Filter, Github, Layers, Sparkles, X } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { portfolioProjects, type PortfolioProject } from "@/lib/projects-data"
+import { portfolioProjects, PROJECT_CATEGORIES, type PortfolioProject } from "@/lib/projects-data"
 import Link from "next/link"
 
-const categories = ["All", "Healthcare AI", "Client & Commercial", "AI/ML", "MLOps", "Computer Vision", "Full Stack"]
+const categories = PROJECT_CATEGORIES
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -71,114 +71,133 @@ export default function ProjectsPage() {
       </section>
 
       <section className="pb-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project) => (
-              <div
-                key={project.title}
-                className="group"
-              >
-                <div className="h-full overflow-hidden rounded-2xl bg-[#0e091d]/90 border border-purple-500/15 hover:border-purple-500/45 hover:shadow-2xl hover:shadow-purple-950/30 transition-all duration-300 flex flex-col justify-between backdrop-blur-sm">
-                  <div className="relative aspect-[16/9] bg-gradient-to-br from-purple-950/60 via-[#140b28] to-[#0e091d] overflow-hidden p-5 border-b border-purple-500/15">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(168,85,247,0.2),transparent_40%)]" />
-                    <div className="relative flex h-full flex-col justify-between">
-                      <div className="flex items-center justify-between">
-                        <span className="inline-block text-xs px-2.5 py-1 bg-purple-950/80 border border-purple-500/30 text-purple-300 rounded-full font-medium">
-                          {project.category}
-                        </span>
-                        {project.status && (
-                          <span className="inline-flex items-center gap-1 rounded-full border border-purple-400/30 bg-purple-500/20 px-2.5 py-0.5 text-xs text-purple-200 font-semibold">
-                            <Activity className="h-3 w-3" />
-                            {project.status}
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-3xl font-black text-purple-500/40">
-                        {project.title.slice(0, 2)}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors mb-2">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 flex-grow font-light">
-                      {project.description}
-                    </p>
-
-                    {project.metrics && (
-                      <div className="mb-4 grid gap-1.5">
-                        {project.metrics.slice(0, 3).map((metric) => (
-                          <div
-                            key={metric}
-                            className="rounded-lg border border-purple-500/15 bg-purple-950/30 px-3 py-1.5 text-xs text-purple-200"
-                          >
-                            {metric}
+        <div className="max-w-6xl mx-auto space-y-16">
+          {(activeCategory === "All"
+            ? categories.filter((c) => c !== "All")
+            : [activeCategory]
+          ).map((domainTrack) => {
+            const trackProjects = filteredProjects.filter((p) => p.category === domainTrack)
+            if (trackProjects.length === 0) return null
+            return (
+              <div key={domainTrack}>
+                <div className="mb-6 flex items-center justify-between border-b border-purple-500/20 pb-3">
+                  <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                    {domainTrack}
+                  </h2>
+                  <span className="font-mono text-xs text-purple-300 tabular-nums">
+                    {trackProjects.length} {trackProjects.length === 1 ? "system" : "systems"}
+                  </span>
+                </div>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {trackProjects.map((project) => (
+                    <div
+                      key={project.title}
+                      className="group"
+                    >
+                      <div className="h-full overflow-hidden rounded-2xl bg-[#0e091d]/90 border border-purple-500/15 hover:border-purple-500/45 hover:shadow-2xl hover:shadow-purple-950/30 transition-all duration-300 flex flex-col justify-between backdrop-blur-sm">
+                        <div className="relative aspect-[16/9] bg-gradient-to-br from-purple-950/60 via-[#140b28] to-[#0e091d] overflow-hidden p-5 border-b border-purple-500/15">
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(168,85,247,0.2),transparent_40%)]" />
+                          <div className="relative flex h-full flex-col justify-between">
+                            <div className="flex items-center justify-between">
+                              <span className="inline-block text-xs px-2.5 py-1 bg-purple-950/80 border border-purple-500/30 text-purple-300 rounded-full font-medium">
+                                {project.category}
+                              </span>
+                              {project.status && (
+                                <span className="inline-flex items-center gap-1 rounded-full border border-purple-400/30 bg-purple-500/20 px-2.5 py-0.5 text-xs text-purple-200 font-semibold">
+                                  <Activity className="h-3 w-3" />
+                                  {project.status}
+                                </span>
+                              )}
+                            </div>
+                            <span className="text-3xl font-black text-purple-500/40">
+                              {project.title.slice(0, 2)}
+                            </span>
                           </div>
-                        ))}
+                        </div>
+
+                        <div className="flex flex-1 flex-col p-6">
+                          <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors mb-2">
+                            {project.title}
+                          </h3>
+
+                          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 flex-grow font-light">
+                            {project.description}
+                          </p>
+
+                          {project.metrics && (
+                            <div className="mb-4 grid gap-1.5">
+                              {project.metrics.slice(0, 3).map((metric) => (
+                                <div
+                                  key={metric}
+                                  className="rounded-lg border border-purple-500/15 bg-purple-950/30 px-3 py-1.5 text-xs text-purple-200"
+                                >
+                                  {metric}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          <div className="flex flex-wrap gap-1.5 mb-4">
+                            {project.technologies.slice(0, 4).map((tech) => (
+                              <span key={tech} className="text-[11px] font-mono text-slate-400 bg-purple-950/40 px-2 py-0.5 rounded-md">
+                                {tech}
+                              </span>
+                            ))}
+                            {project.technologies.length > 4 && (
+                              <span className="text-[11px] text-purple-400 font-medium px-1">
+                                +{project.technologies.length - 4}
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-purple-500/15">
+                            {project.githubReady !== false ? (
+                              <a
+                                href={project.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-1.5 text-xs sm:text-sm text-slate-300 hover:text-white transition-colors"
+                              >
+                                <Github className="w-4 h-4" />
+                                Code
+                              </a>
+                            ) : (
+                              <span className="flex items-center gap-1 text-xs font-mono text-purple-300/80">
+                                <Github className="w-3.5 h-3.5" />
+                                Repo Soon
+                              </span>
+                            )}
+
+                            {project.caseStudy && (
+                              <button
+                                onClick={() => setSelectedProject(project)}
+                                className="flex items-center gap-1.5 text-xs sm:text-sm text-fuchsia-400 hover:text-fuchsia-300 transition-colors font-medium ml-auto cursor-pointer"
+                              >
+                                <FileText className="w-4 h-4" />
+                                Architecture & Report
+                              </button>
+                            )}
+
+                            {project.demo && (
+                              <a 
+                                href={project.demo} 
+                                target={project.demo.startsWith("http") ? "_blank" : undefined}
+                                rel={project.demo.startsWith("http") ? "noopener noreferrer" : undefined}
+                                className="flex items-center gap-1.5 text-xs sm:text-sm text-purple-400 hover:text-purple-300 transition-colors font-medium ml-auto"
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                                Live Demo
+                              </a>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    )}
-
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.technologies.slice(0, 4).map((tech) => (
-                        <span key={tech} className="text-[11px] font-mono text-slate-400 bg-purple-950/40 px-2 py-0.5 rounded-md">
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 4 && (
-                        <span className="text-[11px] text-purple-400 font-medium px-1">
-                          +{project.technologies.length - 4}
-                        </span>
-                      )}
                     </div>
-
-                    <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-purple-500/15">
-                      {project.githubReady !== false ? (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs sm:text-sm text-slate-300 hover:text-white transition-colors"
-                        >
-                          <Github className="w-4 h-4" />
-                          Code
-                        </a>
-                      ) : (
-                        <span className="flex items-center gap-1 text-xs font-mono text-purple-300/80">
-                          <Github className="w-3.5 h-3.5" />
-                          Repo Soon
-                        </span>
-                      )}
-
-                      {project.caseStudy && (
-                        <button
-                          onClick={() => setSelectedProject(project)}
-                          className="flex items-center gap-1.5 text-xs sm:text-sm text-fuchsia-400 hover:text-fuchsia-300 transition-colors font-medium ml-auto"
-                        >
-                          <FileText className="w-4 h-4" />
-                          Architecture & Report
-                        </button>
-                      )}
-
-                      {project.demo && (
-                        <a 
-                          href={project.demo} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs sm:text-sm text-purple-400 hover:text-purple-300 transition-colors font-medium ml-auto"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          Live Demo
-                        </a>
-                      )}
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            )
+          })}
         </div>
       </section>
 

@@ -4,6 +4,24 @@ export type CaseStudySection = {
   bullets?: string[]
 }
 
+export type ProjectCategory =
+  | "Freelance & Client Systems"
+  | "Healthcare AI"
+  | "NLP & Speech AI"
+  | "RAG & Information Extraction"
+  | "Agentic AI & MLOps"
+  | "Computer Vision"
+
+export const PROJECT_CATEGORIES: readonly ("All" | ProjectCategory)[] = [
+  "All",
+  "Freelance & Client Systems",
+  "Healthcare AI",
+  "NLP & Speech AI",
+  "RAG & Information Extraction",
+  "Agentic AI & MLOps",
+  "Computer Vision",
+] as const
+
 export type PortfolioProject = {
   slug: string
   title: string
@@ -13,7 +31,7 @@ export type PortfolioProject = {
   githubReady?: boolean
   demo?: string
   caseStudyUrl?: string
-  category: "Healthcare AI" | "Client & Commercial" | "AI/ML" | "MLOps" | "Computer Vision" | "Full Stack"
+  category: ProjectCategory
   featured?: boolean
   status?: "Live" | "Research" | "PFE Distinction" | "Client Production"
   metrics?: string[]
@@ -28,6 +46,9 @@ export type PortfolioProject = {
 }
 
 export const portfolioProjects: PortfolioProject[] = [
+  // ==========================================================================
+  // 1. HEALTHCARE AI
+  // ==========================================================================
   {
     slug: "ai-ecg-arrhythmia-classification-v7",
     title: "AI ECG Arrhythmia Classification (v7)",
@@ -84,26 +105,26 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "MedGuardAI — Real-Time IoT Patient Monitoring",
     description:
       "End-to-end medical IoT and AI platform connected in real time to physical ECG and blood glucose sensors. Includes AI anomaly detection, emergency alerts, WebRTC doctor-patient consultations, and automated medication sheets.",
-    technologies: ["Flutter", "Python / Flask", "MongoDB", "WebRTC", "Raspberry Pi", "IoT Sensors"],
+    technologies: ["Medical IoT", "Real-Time Telemetry", "MongoDB", "WebRTC", "Raspberry Pi", "Anomaly Detection"],
     github: "https://github.com/HANIDEVINF/MED-Guard-AI.",
     githubReady: true,
     demo: "/lab/ecg-holter-v7",
-    caseStudyUrl: "/blog/flutter-state-management-2024",
+    caseStudyUrl: "/blog/medguard-ai-realtime-iot-streaming",
     category: "Healthcare AI",
     featured: true,
     status: "PFE Distinction",
     metrics: ["Real-time ECG & Glucose", "Emergency alert workflows", "WebRTC + Chat + Booking"],
     impact:
-      "Licence Graduation Capstone (PFE USTHB). Connects physical medical sensors & Raspberry Pi to a Python/Flask backend, MongoDB, and cross-platform Flutter mobile/web apps.",
+      "Licence Graduation Capstone (PFE USTHB). Connects physical medical sensors & Raspberry Pi to a real-time backend, MongoDB, and cross-platform clinical dashboards.",
     architecture: [
       "Edge Layer: Physical ECG & Blood Glucose sensors → Raspberry Pi acquisition & stream relay",
-      "Backend & AI Service: Python / Flask REST & real-time telemetry pipeline + AI anomaly detection model",
+      "Backend & AI Service: Real-time REST & WebSocket telemetry pipeline + AI anomaly detection model",
       "Clinical Workflows: Automated emergency notifications, 1-on-1 & group medical chat, online/in-person appointment scheduling, auto-generated medication records",
-      "Client Layer: Cross-platform Flutter mobile & web dashboards with live waveform rendering & WebRTC video calls",
+      "Client Layer: Cross-platform mobile & web dashboards with live waveform rendering & WebRTC video calls",
     ],
     caseStudy: {
       subtitle: "PFE Licence Capstone — End-to-End Medical IoT, Real-Time AI & Telemedicine Platform",
-      datasetOrScope: "Full-Stack Hardware + Software System · Flutter, Flask/Python, MongoDB, WebRTC, Raspberry Pi",
+      datasetOrScope: "Full-Stack Hardware + Software System · Medical Sensors, MongoDB, WebRTC, Raspberry Pi",
       keyFindings: [
         "Real-time streaming from physical ECG and glucose sensors to patient and physician interfaces",
         "Automated AI anomaly detection triggering multi-tier emergency alerts when vitals cross clinical thresholds",
@@ -112,7 +133,7 @@ export const portfolioProjects: PortfolioProject[] = [
       sections: [
         {
           heading: "Bridging Physical Sensors & AI Models",
-          body: "Unlike isolated notebook prototypes, MedGuardAI was engineered as a complete clinical system where hardware telemetry flows continuously through a Flask backend into live mobile dashboards.",
+          body: "Unlike isolated notebook prototypes, MedGuardAI was engineered as a complete clinical system where hardware telemetry flows continuously into live physician and patient dashboards.",
         },
         {
           heading: "Patient-Doctor Communication & Emergency Response",
@@ -122,42 +143,22 @@ export const portfolioProjects: PortfolioProject[] = [
     },
   },
   {
-    slug: "mucat-multilingual-transformer",
-    title: "MUCAT — Multilingual Custom Attention Transformer",
+    slug: "medical-note-assistant",
+    title: "Clinical Medical Note & Triage Assistant",
     description:
-      "Custom BERT/Transformer neural architecture designed for multilingual NLP across Arabic, French, and English. Features hierarchical attention pooling, language-sensitive gating, and language-specific output heads.",
-    technologies: ["PyTorch", "Hugging Face", "BERT", "Hierarchical Attention", "Arabic NLP", "Multilingual"],
-    github: "https://github.com/HANIDEVINF/MUCAT-Multilingual-Transformer",
+      "Domain-focused clinical assistant for medical note structuring, SOAP synthesis, and clinical Q&A with safety-minded response guardrails.",
+    technologies: ["Medical NLP", "SOAP Structuring", "Clinical RAG", "Safety Guardrails"],
+    github: "https://github.com/HANIDEVINF/medical-note-assistant",
     githubReady: true,
-    demo: "/lab/mucat-transformer",
-    category: "AI/ML",
-    featured: true,
-    status: "Research",
-    metrics: ["Trilingual (AR / FR / EN)", "Language-sensitive gating", "Hierarchical attention pooling"],
-    impact:
-      "Engineered during AI research internships at CERIST to handle morphological richness and code-switching across Arabic, French, and English NLP tasks.",
-    architecture: [
-      "Backbone: Shared multilingual Transformer / BERT contextual encoder",
-      "Hierarchical Attention Pooling: Multi-level token and span aggregation for morphologically rich text",
-      "Language-Sensitive Gating: Dynamic routing module conditioning representations on detected language characteristics (AR / FR / EN)",
-      "Task Heads: Language-specific output projections for classification and conversational NLP workflows",
-    ],
-    caseStudy: {
-      subtitle: "Custom BERT/Transformer Architecture for Arabic, French & English NLP",
-      datasetOrScope: "CERIST AI Engineering Research · Multilingual & Code-Switched NLP",
-      keyFindings: [
-        "Combines shared cross-lingual representations with language-sensitive gating to prevent dominant-language interference",
-        "Hierarchical attention pooling improves representation quality over standard [CLS] token pooling on Arabic/French/English tasks",
-        "Designed as a modular PyTorch/Hugging Face research and engineering framework",
-      ],
-      sections: [
-        {
-          heading: "Architectural Motivation",
-          body: "Standard multilingual encoders often underperform on Algerian/Maghreb linguistic contexts where Arabic, French, and English coexist. MUCAT introduces explicit hierarchical pooling and language-aware gating.",
-        },
-      ],
-    },
+    demo: "/lab/voxscribe-speech-ai",
+    category: "Healthcare AI",
+    status: "Live",
+    metrics: ["Clinical SOAP structuring", "Biomedical entity tagging", "Safety guardrails"],
   },
+
+  // ==========================================================================
+  // 2. FREELANCE & CLIENT SYSTEMS
+  // ==========================================================================
   {
     slug: "tadjmeel-clinica-suite",
     title: "Tadjmeel Clinica — Medical Aesthetic Platform & Desktop Suite",
@@ -167,7 +168,7 @@ export const portfolioProjects: PortfolioProject[] = [
     github: "https://github.com/HANIDEVINF/clinicatajmeel",
     githubReady: true,
     demo: "https://hanidevinf.github.io/clinicatajmeel/",
-    category: "Client & Commercial",
+    category: "Freelance & Client Systems",
     featured: true,
     status: "Client Production",
     metrics: ["Patient & Doctor portals", "Desktop Electron apps", "Algiers clinic deployment"],
@@ -204,7 +205,7 @@ export const portfolioProjects: PortfolioProject[] = [
     github: "https://github.com/HANIDEVINF/ecom-dashboard",
     githubReady: true,
     demo: "https://hanidevinf.github.io/ecom-dashboard/",
-    category: "Client & Commercial",
+    category: "Freelance & Client Systems",
     featured: true,
     status: "Client Production",
     metrics: ["4 RBAC role interfaces", "G50 fiscal audit ledger", "58-wilaya logistics"],
@@ -233,29 +234,29 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     slug: "menswear-boutique-os-suite",
-    title: "ALLURE HOMME, GK STORE & CASUAL 29 — Retail & Manager OS",
+    title: "ALLURE HOMME (Sidi Bel Abbès) — Storefront & Manager OS",
     description:
-      "Three production e-commerce storefronts and store-manager operating systems built for Algerian menswear boutiques in Algiers (Birkhadem), Sidi Bel Abbès, and Mascara with 58-wilaya delivery & WhatsApp checkout.",
+      "Production luxury menswear e-commerce storefront and store-manager operating system built for ALLURE HOMME in Sidi Bel Abbès with 58-wilaya delivery calculation & instant WhatsApp/COD checkout.",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Inventory OS", "WhatsApp Commerce", "58-Wilaya COD"],
     github: "https://github.com/HANIDEVINF/allure",
     githubReady: true,
     demo: "https://hanidevinf.github.io/allure/",
-    category: "Client & Commercial",
+    category: "Freelance & Client Systems",
     featured: true,
     status: "Client Production",
-    metrics: ["3 live retail brands", "58-wilaya COD checkout", "Integrated Manager OS"],
+    metrics: ["Sidi Bel Abbès flagship", "58-wilaya COD checkout", "Integrated Manager OS"],
     impact:
-      "Deployed for ALLURE HOMME (Sidi Bel Abbès), GK STORE (Birkhadem, Algiers), and CASUAL 29 (Mascara), combining luxury editorial storefronts with back-office stock management.",
+      "Deployed for ALLURE HOMME (Sidi Bel Abbès), combining a luxury editorial storefront with back-office stock and order management.",
     architecture: [
-      "Storefronts: Tailored brand experiences for ALLURE HOMME (Sidi Bel Abbès), GK STORE (Algiers), and CASUAL 29 (Mascara)",
+      "Storefront: Tailored brand experience for ALLURE HOMME (Sidi Bel Abbès)",
       "Conversion Flow: Size/color variant selection, 58-wilaya delivery fee calculation, and instant WhatsApp order dispatch",
       "OS Gérant (Manager Dashboard): Stock tracking, product catalog editor, and daily revenue analytics",
     ],
     caseStudy: {
-      subtitle: "Bespoke E-Commerce & Store Management Systems for 3 Algerian Menswear Brands",
-      datasetOrScope: "Commercial Client Deliveries · Algiers (Birkhadem), Sidi Bel Abbès (22) & Mascara (29)",
+      subtitle: "Bespoke E-Commerce & Store Management System for Algerian Menswear Retail",
+      datasetOrScope: "Commercial Client Delivery · Sidi Bel Abbès (Wilaya 22)",
       keyFindings: [
-        "Custom-branded storefronts for ALLURE HOMME, GK STORE, and CASUAL 29",
+        "Custom-branded storefront for ALLURE HOMME",
         "Frictionless mobile-first checkout with 58-wilaya shipping calculation and direct WhatsApp order routing",
         "Built-in Manager OS (OS Gérant) for real-time inventory and variant control",
       ],
@@ -268,64 +269,6 @@ export const portfolioProjects: PortfolioProject[] = [
     },
   },
   {
-    slug: "keras-content-moderation-system",
-    title: "Keras Content Moderation System",
-    description:
-      "Production-style moderation app powered by a trained Keras neural network. Users type any message and get live unsafe/spam probability, confidence bands, token attribution, and model metrics.",
-    technologies: ["Keras", "TensorFlow", "NLP", "Browser Inference", "Vercel"],
-    github: "https://github.com/HANIDEVINF/content-moderation-system",
-    githubReady: true,
-    demo: "https://content-moderation-system-psi.vercel.app",
-    category: "AI/ML",
-    featured: true,
-    status: "Live",
-    metrics: ["99.1% test accuracy", "UCI SMS dataset", "Live token attribution"],
-    impact: "Real exported Keras weights running in-browser with customizable policy thresholds and token-level risk attribution.",
-  },
-  {
-    slug: "keras-voice-recognition-lab",
-    title: "VoxScribe AI — Speech-to-Text, Diarization & SOAP Summarizer",
-    description:
-      "Multilingual speech-to-text & clinical/executive summarization studio combining real-time Web Speech ASR dictation (EN/FR/AR), speaker diarization, biomedical/technical entity extraction, and automated SOAP & action-item synthesis—plus an acoustic 16×32 FFT Keras spectrogram lab.",
-    technologies: ["Web Speech ASR", "NLP Summarization", "Speaker Diarization", "Keras DSP", "Next.js"],
-    github: "https://github.com/HANIDEVINF/speech-to-text-summarization",
-    githubReady: true,
-    demo: "https://speech-to-text-summarization.vercel.app",
-    category: "AI/ML",
-    featured: true,
-    status: "Live",
-    metrics: ["Live Mic ASR (EN/FR/AR)", "SOAP & Action Synthesis", "16×32 FFT Acoustic DSP"],
-    impact: "End-to-end speech intelligence workbench with live microphone sentence transcription, named entity tagging, and structured clinical/executive summarization.",
-  },
-  {
-    slug: "keras-vision-classifier",
-    title: "Keras Vision Classifier",
-    description:
-      "Image classification app trained on CIFAR-10 with saved Keras artifacts and a static browser inference engine. Users upload any image or test sample tensors and inspect ranked class probabilities.",
-    technologies: ["Keras", "TensorFlow", "Computer Vision", "CIFAR-10", "Static Deployment"],
-    github: "https://github.com/HANIDEVINF/image-classification-mobile-app",
-    githubReady: true,
-    demo: "https://image-classification-mobile-app.vercel.app",
-    category: "Computer Vision",
-    status: "Live",
-    metrics: ["10 CIFAR vision classes", "Real exported weights", "Instant image upload"],
-    impact: "End-to-end proof of Keras model export and client-side tensor preprocessing without external API latency.",
-  },
-  {
-    slug: "aura-luxury-commerce-os",
-    title: "AURA — Multi-Industry Luxury Commerce & Retail OS",
-    description:
-      "Multi-industry freelance commerce and desktop business OS suite featuring 5 tailored client verticals (Eyewear, Apparel, Gourmet Food, Electronics, Mobile Accessories) with inventory analytics and PDF reporting.",
-    technologies: ["React", "TypeScript", "Retail OS", "PDF Reports", "Multi-Vertical"],
-    github: "https://github.com/HANIDEVINF/ecom",
-    githubReady: true,
-    demo: "https://hanidevinf.github.io/ecom/",
-    category: "Client & Commercial",
-    status: "Client Production",
-    metrics: ["5 retail verticals", "Owner desktop logiciel", "PDF financial reports"],
-    impact: "Modular commerce & point-of-sale architecture adaptable across eyewear, fashion, food, and electronics stores.",
-  },
-  {
     slug: "gkstore-algiers-menswear",
     title: "GK STORE (Birkhadem, Algiers) — Storefront & Manager OS",
     description:
@@ -334,7 +277,7 @@ export const portfolioProjects: PortfolioProject[] = [
     github: "https://github.com/HANIDEVINF/gkstore",
     githubReady: true,
     demo: "https://hanidevinf.github.io/gkstore/",
-    category: "Client & Commercial",
+    category: "Freelance & Client Systems",
     status: "Client Production",
     metrics: ["Birkhadem Algiers store", "58-wilaya COD", "Live Manager OS"],
     impact: "Complete mobile-first retail experience and back-office inventory manager for an Algiers menswear boutique.",
@@ -348,140 +291,260 @@ export const portfolioProjects: PortfolioProject[] = [
     github: "https://github.com/HANIDEVINF/clothes",
     githubReady: true,
     demo: "https://hanidevinf.github.io/clothes/",
-    category: "Client & Commercial",
+    category: "Freelance & Client Systems",
     status: "Client Production",
     metrics: ["Wilaya 29 Mascara store", "Variant inventory OS", "Instant COD checkout"],
     impact: "Tailored commercial deployment uniting online catalog browsing with real-time shop floor stock control.",
   },
   {
-    slug: "aurelia-market-ai-commerce",
-    title: "Aurelia Market AI Commerce",
+    slug: "aura-luxury-commerce-os",
+    title: "AURA — Multi-Industry Luxury Commerce & Retail OS",
     description:
-      "Full-stack AI commerce experience with personalized recommendations, dynamic comparison drawers, smart cart telemetry, wishlist persistence, and multi-step checkout flows.",
-    technologies: ["Next.js", "TypeScript", "AI UX", "Ecommerce", "Vercel"],
+      "Multi-industry freelance commerce and desktop business OS suite featuring 5 tailored client verticals (Eyewear, Apparel, Gourmet Food, Electronics, Mobile Accessories) with inventory analytics and PDF reporting.",
+    technologies: ["React", "TypeScript", "Retail OS", "PDF Reports", "Multi-Vertical"],
+    github: "https://github.com/HANIDEVINF/ecom",
+    githubReady: true,
+    demo: "https://hanidevinf.github.io/ecom/",
+    category: "Freelance & Client Systems",
+    status: "Client Production",
+    metrics: ["5 retail verticals", "Owner desktop logiciel", "PDF financial reports"],
+    impact: "Modular commerce & point-of-sale architecture adaptable across eyewear, fashion, food, and electronics stores.",
+  },
+  {
+    slug: "aurelia-market-ai-commerce",
+    title: "Aurelia Vector Affinity AI Commerce",
+    description:
+      "AI-personalized commerce platform with live 4D user preference embedding vectors, real-time cosine similarity catalog re-ranking, smart cart telemetry, and multi-step checkout flows.",
+    technologies: ["Next.js", "TypeScript", "4D Vector Ranking", "Cosine Similarity", "Vercel"],
     github: "https://github.com/HANIDEVINF/ai-recommendation-system",
     githubReady: true,
     demo: "https://ai-recommendation-system-beige.vercel.app",
-    category: "Full Stack",
+    category: "Freelance & Client Systems",
     status: "Live",
-    metrics: ["AI recommendation engine", "Product comparison", "Interactive checkout"],
-    impact: "Highlights product thinking and polished full-stack interface work alongside AI portfolio projects.",
+    metrics: ["4D cosine ranking", "Dynamic bundle synthesis", "Interactive checkout"],
+    impact: "Combines vector-similarity recommendation math with a luxury hardware commerce experience.",
+  },
+
+  // ==========================================================================
+  // 3. NLP & SPEECH AI
+  // ==========================================================================
+  {
+    slug: "mucat-multilingual-transformer",
+    title: "MUCAT — Multilingual Custom Attention Transformer",
+    description:
+      "Custom BERT/Transformer neural architecture designed for multilingual NLP across Arabic, French, and English. Features hierarchical attention pooling, language-sensitive gating, and language-specific output heads.",
+    technologies: ["PyTorch", "Hugging Face", "BERT", "Hierarchical Attention", "Arabic NLP", "Multilingual"],
+    github: "https://github.com/HANIDEVINF/MUCAT-Multilingual-Transformer",
+    githubReady: true,
+    demo: "/lab/mucat-transformer",
+    category: "NLP & Speech AI",
+    featured: true,
+    status: "Research",
+    metrics: ["Trilingual (AR / FR / EN)", "Language-sensitive gating", "Hierarchical attention pooling"],
+    impact:
+      "Engineered during AI research internships at CERIST to handle morphological richness and code-switching across Arabic, French, and English NLP tasks.",
+    architecture: [
+      "Backbone: Shared multilingual Transformer / BERT contextual encoder",
+      "Hierarchical Attention Pooling: Multi-level token and span aggregation for morphologically rich text",
+      "Language-Sensitive Gating: Dynamic routing module conditioning representations on detected language characteristics (AR / FR / EN)",
+      "Task Heads: Language-specific output projections for classification and conversational NLP workflows",
+    ],
+    caseStudy: {
+      subtitle: "Custom BERT/Transformer Architecture for Arabic, French & English NLP",
+      datasetOrScope: "CERIST AI Engineering Research · Multilingual & Code-Switched NLP",
+      keyFindings: [
+        "Combines shared cross-lingual representations with language-sensitive gating to prevent dominant-language interference",
+        "Hierarchical attention pooling improves representation quality over standard [CLS] token pooling on Arabic/French/English tasks",
+        "Designed as a modular PyTorch/Hugging Face research and engineering framework",
+      ],
+      sections: [
+        {
+          heading: "Architectural Motivation",
+          body: "Standard multilingual encoders often underperform on Algerian/Maghreb linguistic contexts where Arabic, French, and English coexist. MUCAT introduces explicit hierarchical pooling and language-aware gating.",
+        },
+      ],
+    },
   },
   {
-    slug: "keras-universal-data-extractor",
-    title: "Keras Universal Data Extractor",
+    slug: "keras-voice-recognition-lab",
+    title: "VoxScribe AI — Speech-to-Text, Diarization & SOAP Summarizer",
     description:
-      "Structured extraction app with a trained Keras schema router, unknown-input handling, text-file upload, universal entity detection, and validated JSON output.",
-    technologies: ["Keras", "TensorFlow", "Information Extraction", "JSON", "Browser Inference"],
-    github: "https://github.com/HANIDEVINF/structured-data-extraction",
+      "Multilingual speech-to-text & clinical/executive summarization studio combining real-time Web Speech ASR dictation (EN/FR/AR), speaker diarization, biomedical/technical entity extraction, and automated SOAP & action-item synthesis—plus an acoustic 16×32 FFT Keras spectrogram lab.",
+    technologies: ["Web Speech ASR", "NLP Summarization", "Speaker Diarization", "Keras DSP", "Next.js"],
+    github: "https://github.com/HANIDEVINF/speech-to-text-summarization",
     githubReady: true,
-    demo: "https://structured-data-extraction-app.vercel.app",
-    category: "AI/ML",
+    demo: "https://speech-to-text-summarization.vercel.app",
+    category: "NLP & Speech AI",
+    featured: true,
     status: "Live",
-    metrics: ["9 document types", "Unknown class gate", "Validated JSON schema"],
-    impact: "Turns unstructured text into validated JSON using a trained schema router and entity extraction pipeline.",
+    metrics: ["Live Mic ASR (EN/FR/AR)", "SOAP & Action Synthesis", "16×32 FFT Acoustic DSP"],
+    impact: "End-to-end speech intelligence workbench with live microphone sentence transcription, named entity tagging, and structured clinical/executive summarization.",
+  },
+  {
+    slug: "keras-content-moderation-system",
+    title: "Keras Content Moderation & Token Attribution System",
+    description:
+      "Production-style NLP moderation workbench powered by a trained Keras neural network. Users type any message and get live unsafe/spam probability, policy threshold gating, and token-level risk attribution.",
+    technologies: ["Keras", "TensorFlow", "NLP Safety", "Token Attribution", "Vercel"],
+    github: "https://github.com/HANIDEVINF/content-moderation-system",
+    githubReady: true,
+    demo: "https://content-moderation-system-psi.vercel.app",
+    category: "NLP & Speech AI",
+    featured: true,
+    status: "Live",
+    metrics: ["99.1% test accuracy", "UCI SMS dataset", "Live token attribution"],
+    impact: "Real exported Keras weights running in-browser with customizable policy thresholds and token-level risk attribution.",
   },
   {
     slug: "keras-document-clustering-lab",
-    title: "Keras Document Clustering Lab",
+    title: "EmbedCluster 64D — Neural Document Clustering Lab",
     description:
-      "Document clustering interface powered by Keras embeddings trained on 20 Newsgroups. Users paste any document set and get topic probabilities plus an interactive 2D cluster map.",
-    technologies: ["Keras", "TensorFlow", "20 Newsgroups", "Embeddings", "Clustering"],
+      "Document clustering interface powered by 64D Keras embeddings trained on 20 Newsgroups. Users paste any document set and inspect topic probabilities, cosine similarity matrices, and an interactive 2D cluster projection.",
+    technologies: ["Keras", "TensorFlow", "20 Newsgroups", "64D Embeddings", "Clustering"],
     github: "https://github.com/HANIDEVINF/document-clustering-visualization",
     githubReady: true,
     demo: "https://document-clustering-visualization.vercel.app",
-    category: "AI/ML",
+    category: "NLP & Speech AI",
     status: "Live",
-    metrics: ["60.5% test accuracy", "20 Newsgroups topics", "2D embedding projection"],
+    metrics: ["64D neural embeddings", "20 Newsgroups topics", "2D PCA/t-SNE projection"],
     impact: "Shows learned text embeddings, real dataset training, and interactive visualization for user-provided documents.",
+  },
+
+  // ==========================================================================
+  // 4. RAG & INFORMATION EXTRACTION
+  // ==========================================================================
+  {
+    slug: "document-qa-rag",
+    title: "VeriCite Hybrid Document QA RAG Studio",
+    description:
+      "Hybrid Dense Vector + BM25 Lexical RAG workbench with interactive alpha fusion weight, citation faithfulness guardrails, abstention gating, and live document chunk ingestion.",
+    technologies: ["Hybrid Vector + BM25", "Faithfulness Gate", "Citation Grounding", "RAG"],
+    github: "https://github.com/HANIDEVINF/document-qa-rag",
+    githubReady: true,
+    demo: "https://document-qa-rag-app.vercel.app",
+    category: "RAG & Information Extraction",
+    featured: true,
+    status: "Live",
+    metrics: ["Dense + BM25 RRF fusion", "Faithfulness abstention gate", "Live chunk ingestion"],
+    impact: "Eliminates ungrounded hallucinations by combining dense semantic similarity with lexical BM25 scoring and strict citation thresholds.",
+  },
+  {
+    slug: "keras-universal-data-extractor",
+    title: "SchemaRoute AI — Universal Document & JSON Extractor",
+    description:
+      "Structured extraction workbench powered by a 9-class Keras neural schema router, out-of-distribution (unknown) abstention gate, entity tagging, and validated JSON schema synthesis.",
+    technologies: ["Keras", "TensorFlow", "Schema Routing", "JSON Extraction", "Browser Inference"],
+    github: "https://github.com/HANIDEVINF/structured-data-extraction",
+    githubReady: true,
+    demo: "https://structured-data-extraction-app.vercel.app",
+    category: "RAG & Information Extraction",
+    status: "Live",
+    metrics: ["9 document schemas", "OOD unknown class gate", "Validated JSON schema"],
+    impact: "Turns unstructured invoices, clinical notes, contracts, and tickets into validated JSON payloads in real time.",
+  },
+  {
+    slug: "financial-document-extractor",
+    title: "Financial & Invoice Entity Extraction Pipeline",
+    description:
+      "Specialized financial document parser for invoices, tax ledgers, and bank statements with line-item reconciliation and JSON schema validation.",
+    technologies: ["Document AI", "Schema Validation", "Entity Extraction", "JSON"],
+    github: "https://github.com/HANIDEVINF/financial-document-extractor",
+    githubReady: true,
+    demo: "https://structured-data-extraction-app.vercel.app",
+    category: "RAG & Information Extraction",
+    status: "Live",
+    metrics: ["Invoice & ledger parsing", "Tax/total reconciliation", "JSON export"],
+  },
+
+  // ==========================================================================
+  // 5. AGENTIC AI & MLOPS
+  // ==========================================================================
+  {
+    slug: "resolveai-multi-agent-support-bot",
+    title: "ResolveAI Multi-Agent Support Orchestrator",
+    description:
+      "Agentic support automation workbench with live custom ticket input, dynamic ReAct intent routing across Triage, Billing, Technical, and Retention agents, JSON tool-call payloads, and SLA audit trails.",
+    technologies: ["Agentic AI", "ReAct Routing", "Tool Calling", "Next.js"],
+    github: "https://github.com/HANIDEVINF/multi-agent-support-bot",
+    githubReady: true,
+    demo: "https://multi-agent-support-bot.vercel.app",
+    category: "Agentic AI & MLOps",
+    featured: true,
+    status: "Live",
+    metrics: ["Custom ticket input", "4 specialized agents", "JSON tool contracts"],
+    impact: "Demonstrates multi-agent orchestration, memory gating, and auditable tool execution for enterprise operations.",
   },
   {
     slug: "llm-evaluation-framework",
     title: "LLM Evaluation & Safety Gate Framework",
     description:
       "Quality testing workbench for comparing LLM candidates across safety, grounded faithfulness, policy compliance, latency, and token cost regression gates—with custom prompt & response evaluation.",
-    technologies: ["Next.js", "LLM-as-a-Judge", "Safety Gates", "Regression Testing"],
+    technologies: ["LLM-as-a-Judge", "Safety Gates", "Regression Testing", "MLOps"],
     github: "https://github.com/HANIDEVINF/llm-evaluation-framework",
     githubReady: true,
     demo: "https://llm-evaluation-framework.vercel.app",
-    category: "MLOps",
+    category: "Agentic AI & MLOps",
     status: "Live",
     metrics: ["Custom prompt eval", "Safety & policy gates", "Latency/cost pareto"],
     impact: "Shows MLOps judgment: systematically testing whether models hallucinate or violate policy before deployment.",
-  },
-  {
-    slug: "resolveai-multi-agent-support-bot",
-    title: "ResolveAI Multi-Agent Support Orchestrator",
-    description:
-      "Support automation workbench with live custom ticket input, dynamic intent routing across Triage, Billing, Technical, and Retention agents, JSON tool-call payloads, and SLA audit trails.",
-    technologies: ["AI Agents", "ReAct Routing", "Tool Calling", "Next.js"],
-    github: "https://github.com/HANIDEVINF/multi-agent-support-bot",
-    githubReady: true,
-    demo: "https://multi-agent-support-bot.vercel.app",
-    category: "AI/ML",
-    status: "Live",
-    metrics: ["Custom ticket input", "4 specialized agents", "JSON tool contracts"],
-    impact: "Demonstrates multi-agent orchestration, memory gating, and auditable tool execution for support operations.",
   },
   {
     slug: "opspilot-ai-incident-copilot",
     title: "OpsPilot SRE Incident Copilot",
     description:
       "Agentic SRE incident-response console with live custom incident simulation, service dependency health telemetry, interactive human-in-the-loop approval gates, and automated postmortem generation.",
-    technologies: ["MLOps", "Agentic SRE", "Approval Gates", "Incident Response"],
+    technologies: ["Agentic SRE", "Human-in-the-Loop Gates", "Incident Response", "MLOps"],
     github: "https://github.com/HANIDEVINF/containerized-ai-api-service",
     githubReady: true,
     demo: "https://containerized-ai-api-service.vercel.app",
-    category: "MLOps",
+    category: "Agentic AI & MLOps",
     status: "Live",
     metrics: ["Human approval gates", "Service topology graph", "Auto-postmortem"],
     impact: "Positions the portfolio around operational AI systems with strict human-in-the-loop safety controls.",
   },
   {
-    slug: "document-qa-rag",
-    title: "VeriCite Hybrid Document QA RAG",
-    description: "Hybrid Dense + BM25 RAG workbench with interactive alpha fusion weight, citation faithfulness guardrails, and live document chunk ingestion.",
-    technologies: ["Python", "Hybrid Vector + BM25", "Faithfulness Gate", "RAG"],
-    github: "https://github.com/HANIDEVINF/document-qa-rag",
-    githubReady: true,
-    demo: "https://document-qa-rag-app.vercel.app",
-    category: "AI/ML",
-  },
-  {
     slug: "coderefactor-ai",
-    title: "CodeRefactor AI",
-    description: "AI code refactoring workbench with browser-based static review, complexity scoring, and cloud persistence.",
-    technologies: ["Next.js", "TypeScript", "Supabase", "Vercel"],
+    title: "CodeRefactor Neural AST Security & Complexity Workbench",
+    description:
+      "Automated static analysis & AI refactoring workbench detecting OWASP SQL injection, hardcoded secrets, quadratic O(N²) loops, and ML train/test data leakage with side-by-side patch synthesis.",
+    technologies: ["AST Static Analysis", "OWASP Security Audit", "Cyclomatic Complexity", "TypeScript"],
     github: "https://github.com/HANIDEVINF/coderefactor-ai",
     githubReady: true,
     demo: "https://coderefactor-ai.vercel.app",
-    category: "AI/ML",
+    category: "Agentic AI & MLOps",
+    status: "Live",
+    metrics: ["OWASP & leakage audit", "v(G) complexity delta", "Side-by-side diff"],
   },
+
+  // ==========================================================================
+  // 6. COMPUTER VISION
+  // ==========================================================================
   {
-    slug: "medical-note-assistant",
-    title: "Medical Note Assistant",
-    description: "Domain-focused clinical assistant for medical note structuring and Q&A with safety-minded response guardrails.",
-    technologies: ["Python", "Medical NLP", "RAG", "Guardrails"],
-    github: "https://github.com/HANIDEVINF/medical-note-assistant",
+    slug: "keras-vision-classifier",
+    title: "VisionTensor Lab — CIFAR-10 Neural Classifier",
+    description:
+      "Interactive computer vision workbench powered by exported Keras weights and a client-side tensor preprocessing pipeline. Upload any image or inspect test tensors with live RGB perturbation controls.",
+    technologies: ["Keras", "TensorFlow", "Computer Vision", "CIFAR-10", "Browser Tensor Engine"],
+    github: "https://github.com/HANIDEVINF/image-classification-mobile-app",
     githubReady: true,
-    category: "Healthcare AI",
-  },
-  {
-    slug: "financial-document-extractor",
-    title: "Financial Document Extractor",
-    description: "OCR and structured entity extraction workflow for invoices, receipts, and financial statements.",
-    technologies: ["OCR", "Python", "Regex", "Data Extraction"],
-    github: "https://github.com/HANIDEVINF/financial-document-extractor",
-    githubReady: true,
-    category: "AI/ML",
+    demo: "https://image-classification-mobile-app.vercel.app",
+    category: "Computer Vision",
+    featured: true,
+    status: "Live",
+    metrics: ["10 CIFAR vision classes", "Real exported weights", "Instant image upload"],
+    impact: "End-to-end proof of Keras model export and client-side tensor preprocessing without external API latency.",
   },
   {
     slug: "real-time-object-detection",
-    title: "Real-Time Object Detection",
-    description: "Real-time computer vision detection pipeline for live camera and video streams with bounding-box overlays.",
-    technologies: ["YOLO", "OpenCV", "Python", "Realtime"],
-    github: "https://github.com/HANIDEVINF/real-time-object-detection",
+    title: "Real-Time Fall & Object Detection Pipeline",
+    description:
+      "Computer vision detection pipeline for human fall detection and real-time bounding-box tracking with emergency alert webhooks.",
+    technologies: ["YOLO", "OpenCV", "Computer Vision", "Real-Time Inference"],
+    github: "https://github.com/HANIDEVINF/Fall-Detection-Model",
     githubReady: true,
+    demo: "https://image-classification-mobile-app.vercel.app",
     category: "Computer Vision",
+    status: "Research",
+    metrics: ["Real-time bounding boxes", "Human posture tracking", "Alert webhook"],
   },
 ]

@@ -1,130 +1,111 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { ArrowDown, Download, Mail, Sparkles } from "lucide-react"
+import { ArrowDown, ArrowRight, Download, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { generateAndDownloadResumePdf } from "@/lib/generate-cv-pdf"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-28 pb-16 overflow-hidden">
-      {/* Background glow effects */}
+    <section className="relative min-h-[88vh] flex items-center justify-center px-6 pt-28 pb-16 overflow-hidden">
+      {/* Subtle ambient background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-fuchsia-600/10 via-purple-600/15 to-cyan-500/10 blur-[130px]" />
-        <div className="absolute top-12 left-1/4 w-80 h-80 rounded-full bg-purple-500/10 blur-[100px]" />
-        <div className="absolute bottom-16 right-1/4 w-96 h-96 rounded-full bg-fuchsia-500/10 blur-[120px]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full bg-gradient-to-tr from-fuchsia-600/10 via-purple-600/12 to-cyan-500/10 blur-[140px]" />
       </div>
 
-      <div className="max-w-5xl mx-auto text-center relative z-10">
-        {/* Profile Avatar with Neon Ring */}
-        <div className="mb-6 flex justify-center">
-          <div className="relative h-32 w-32 md:h-36 md:w-36">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              style={{
-                background:
-                  "conic-gradient(from 0deg, #ec4899, #a855f7, #06b6d4, #a855f7, #ec4899)",
-              }}
-              className="absolute -inset-1 rounded-full blur-[3px] opacity-90"
-            />
-            <div className="absolute inset-0.5 rounded-full bg-[#07050d]" />
-            <div className="absolute inset-1 overflow-hidden rounded-full border border-purple-400/30 shadow-2xl shadow-purple-500/30">
+      <div className="max-w-4xl mx-auto text-center relative z-10">
+        {/* Clean Portrait Avatar */}
+        <div className="mb-7 flex justify-center">
+          <div className="relative h-28 w-28 md:h-32 md:w-32 rounded-full p-1 bg-gradient-to-tr from-purple-500 via-fuchsia-500 to-cyan-400 shadow-2xl shadow-purple-500/25">
+            <div className="relative h-full w-full overflow-hidden rounded-full bg-[#07050d]">
               <Image
                 src="/images/profile-square.jpg"
                 alt="Hani Ghena"
                 fill
-                sizes="144px"
+                sizes="128px"
                 className="object-cover"
                 priority
+                referrerPolicy="no-referrer"
               />
             </div>
           </div>
         </div>
 
-        {/* Available for opportunities badge */}
-        <div className="mb-8">
-          <div className="inline-flex items-center gap-2 px-5 py-2 text-xs md:text-sm font-medium text-purple-300 bg-purple-950/40 rounded-full border border-purple-500/30 backdrop-blur-md shadow-lg shadow-purple-900/20">
-            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-            <span>Available for opportunities</span>
-            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-          </div>
-        </div>
+        {/* Executive Kicker */}
+        <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-purple-300 mb-4">
+          AI Engineer & Full-Stack Systems Architect
+        </p>
 
         {/* Big Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none mb-8">
-          {"Hi, I'm "}
-          <span className="relative inline-block">
-            <span className="bg-gradient-to-r from-fuchsia-400 via-purple-300 to-cyan-400 bg-clip-text text-transparent">
-              Hani Ghena
-            </span>
-            <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-cyan-400 rounded-full" />
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none mb-6">
+          <span className="bg-gradient-to-r from-white via-purple-100 to-cyan-200 bg-clip-text text-transparent">
+            Hani Ghena
           </span>
         </h1>
 
-        {/* Subtitle */}
-        <div className="mb-5">
-          <p className="text-xl sm:text-2xl md:text-3xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-            An <span className="text-purple-400 font-semibold">AI Engineering student</span> building{" "}
-            <span className="text-cyan-400 font-semibold">intelligent full-stack apps</span> with{" "}
-            <span className="text-fuchsia-400 font-semibold">Flutter</span>,{" "}
-            <span className="text-purple-400 font-semibold">Python</span>, and{" "}
-            <span className="text-cyan-400 font-semibold">cloud AI tools</span>.
-          </p>
-        </div>
-
-        <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-10 font-normal">
-          Building modern AI products and deploying them end-to-end with cutting-edge technologies.
+        {/* Concise 1-Sentence Executive Positioning (No clutter or details) */}
+        <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-light mb-10">
+          Architecting production AI systems, custom neural models, and enterprise software platforms from research to live deployment.
         </p>
 
-        {/* Stat badges */}
-        <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
-          <div className="rounded-full border border-purple-500/30 bg-purple-950/30 px-4 py-2 text-xs sm:text-sm text-slate-300 backdrop-blur-md">
-            <span className="text-purple-400 font-bold">5×</span> CERIST AI Internships
-          </div>
-          <div className="rounded-full border border-cyan-500/30 bg-cyan-950/30 px-4 py-2 text-xs sm:text-sm text-slate-300 backdrop-blur-md">
-            <span className="text-cyan-400 font-bold">17+</span> AI & Full-Stack Projects
-          </div>
-          <div className="rounded-full border border-pink-500/30 bg-pink-950/30 px-4 py-2 text-xs sm:text-sm text-slate-300 backdrop-blur-md">
-            <span className="text-pink-400 font-bold">USTHB</span> Master in AI
-          </div>
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        {/* Primary CTA Bar */}
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3.5 mb-14">
           <Button
             size="lg"
-            className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold px-8 py-3.5 text-base shadow-lg shadow-purple-500/25 border-none rounded-xl"
+            className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold px-7 py-3.5 text-sm sm:text-base shadow-lg shadow-purple-500/25 border-none rounded-xl"
             asChild
           >
-            <a href="#contact">
-              <Mail className="w-5 h-5 mr-2" />
-              Get in Touch
+            <a href="#projects">
+              Explore Work
+              <ArrowRight className="w-4 h-4 ml-2" />
             </a>
           </Button>
+
+          <Button
+            size="lg"
+            asChild
+            className="w-full sm:w-auto bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-500 hover:to-purple-500 text-white font-semibold px-7 py-3.5 text-sm sm:text-base shadow-lg shadow-fuchsia-500/20 border-none rounded-xl cursor-pointer"
+          >
+            <a
+              href="/api/cv?lang=en"
+              download="Ghena_Hani_CV_EN.pdf"
+              onClick={(e) => {
+                // Also trigger client-side jsPDF save while allowing native download fallback
+                try {
+                  e.preventDefault()
+                  generateAndDownloadResumePdf("en")
+                } catch {
+                  // Native href="/api/cv?lang=en" handles download if jsPDF fails
+                }
+              }}
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Download CV (PDF)
+            </a>
+          </Button>
+
           <Button
             variant="outline"
             size="lg"
-            className="w-full sm:w-auto border-purple-500/30 bg-[#120c22]/70 hover:bg-[#1a1233] text-white font-medium px-8 py-3.5 text-base backdrop-blur-md rounded-xl"
+            className="w-full sm:w-auto border-purple-500/30 bg-[#120c22]/70 hover:bg-[#1a1233] text-white font-medium px-6 py-3.5 text-sm sm:text-base backdrop-blur-md rounded-xl"
             asChild
           >
-            <a href="/resume">
-              <Download className="w-5 h-5 mr-2" />
-              Download Resume
+            <a href="#contact">
+              <Mail className="w-4 h-4 mr-2" />
+              Contact Me
             </a>
           </Button>
         </div>
 
-        {/* Scroll indicator arrow */}
+        {/* Scroll indicator */}
         <div className="flex justify-center">
-          <motion.a
-            href="#about"
+          <a
+            href="#projects"
             className="inline-flex p-2 text-slate-500 hover:text-purple-400 transition-colors"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            aria-label="Scroll to projects"
           >
             <ArrowDown className="w-5 h-5" />
-          </motion.a>
+          </a>
         </div>
       </div>
     </section>

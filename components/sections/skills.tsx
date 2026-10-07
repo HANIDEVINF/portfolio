@@ -1,113 +1,127 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
 import { 
   Brain, 
   Smartphone, 
-  Database, 
   Cloud, 
-  Code2, 
   Terminal,
-  Cpu,
-  Layers,
+  ShieldCheck,
   Bot,
 } from "lucide-react"
 
 const skills = [
   {
-    category: "AI & Machine Learning",
+    category: "AI & Deep Learning",
     icon: Brain,
-    items: ["PyTorch", "TensorFlow", "Deep Learning", "Computer Vision", "NLP", "Scikit-learn"],
+    items: [
+      "PyTorch & TensorFlow / Keras",
+      "Transformers & Custom BERT (MUCAT)",
+      "1D/2D CNNs & Multi-Head Attention",
+      "Multilingual NLP (Arabic / French / English)",
+      "Anomaly Detection & ECG Signal Processing",
+      "Focal Loss & Imbalanced Learning",
+    ],
   },
   {
-    category: "Generative AI & LLMs",
+    category: "AI Agents & LLM Systems",
     icon: Bot,
-    items: ["LLM Fine-Tuning", "RAG Pipelines", "LangChain", "Prompt Engineering", "OpenAI API", "Hugging Face"],
+    items: [
+      "Agentic AI & ReAct Workflows",
+      "Tool Calling & Function Schemas",
+      "RAG Pipelines & Vector Retrieval",
+      "Hugging Face Transformers",
+      "Guardrails & Policy-Based AI",
+      "Explainability & Trustworthy AI",
+    ],
   },
   {
-    category: "Mobile Development",
-    icon: Smartphone,
-    items: ["Flutter", "Dart", "Firebase", "Mobile UI/UX", "Cross-Platform", "State Management"],
+    category: "AI Security & Research Rigor",
+    icon: ShieldCheck,
+    items: [
+      "Inter-Patient Evaluation (DS1/DS2)",
+      "Uncertainty & Confidence Estimation",
+      "Out-of-Fold Logit Calibration",
+      "Prompt Injection Defense",
+      "IAM Concepts & Policy Enforcement",
+      "Neuro-Symbolic AI Concepts",
+    ],
   },
   {
-    category: "Backend & APIs",
-    icon: Terminal,
-    items: ["Python", "Flask", "FastAPI", "REST APIs", "GraphQL", "Node.js"],
-  },
-  {
-    category: "Databases",
-    icon: Database,
-    items: ["Supabase", "PostgreSQL", "MongoDB", "Redis", "Pinecone", "ChromaDB"],
-  },
-  {
-    category: "Cloud & MLOps",
+    category: "Edge AI, MLOps & Deployment",
     icon: Cloud,
-    items: ["Vercel", "AWS", "Docker", "Kubernetes", "MLflow", "GitHub Actions"],
+    items: [
+      "TFLite INT8 Quantization (155 KB)",
+      "Keras-to-TFLite Fidelity Verification",
+      "Raspberry Pi & Medical IoT Sensors",
+      "Docker & Containerized AI APIs",
+      "LLM Regression & Safety Gates",
+      "Vercel & Cloud Deployment",
+    ],
   },
   {
-    category: "Frontend",
-    icon: Code2,
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML/CSS", "JavaScript"],
+    category: "Full-Stack & Client Systems",
+    icon: Smartphone,
+    items: [
+      "React, Next.js & TypeScript",
+      "Electron Desktop Applications",
+      "WebRTC Real-Time Video & Telemetry",
+      "Node.js & Laravel",
+      "Tailwind CSS & Responsive UI",
+      "Real-Time Clinical & ERP Dashboards",
+    ],
   },
   {
-    category: "Tools & Workflow",
-    icon: Layers,
-    items: ["Git", "VS Code", "Figma", "Postman", "Linux", "Agile"],
-  },
-  {
-    category: "Core Concepts",
-    icon: Cpu,
-    items: ["Data Structures", "Algorithms", "System Design", "OOP", "Clean Code", "Testing"],
+    category: "Backend, Databases & Architecture",
+    icon: Terminal,
+    items: [
+      "High-Performance REST & WebSocket APIs",
+      "TypeScript, JavaScript, PHP, C#, Java",
+      "PostgreSQL, MongoDB & Supabase",
+      "SQL & Relational Schema Design",
+      "Git, Linux & Docker Containers",
+      "End-to-End System Architecture",
+    ],
   },
 ]
 
 export function SkillsSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
   return (
-    <section id="skills" className="py-32 px-6 bg-card/30" ref={ref}>
+    <section id="skills" className="py-28 px-6 relative">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
+        <div>
+          {/* Section Header with 02. */}
           <div className="flex items-center gap-4 mb-12">
-            <span className="text-primary font-mono text-sm">02.</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Skills & Technologies</h2>
-            <div className="flex-1 h-px bg-border" />
+            <span className="text-purple-400 font-mono text-sm font-semibold">02.</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+              Skills & Technologies
+            </h2>
+            <div className="flex-1 h-px bg-gradient-to-r from-purple-500/30 to-transparent ml-2" />
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skills.map((skill, index) => (
-              <motion.div
+            {skills.map((skill) => (
+              <div
                 key={skill.category}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-all duration-300"
+                className="group p-6 bg-[#0f0a1d]/80 rounded-2xl border border-purple-500/15 hover:border-purple-500/45 hover:shadow-xl hover:shadow-purple-950/30 transition-all duration-300 backdrop-blur-sm"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                <div className="flex items-center gap-3.5 mb-5">
+                  <div className="p-2.5 rounded-xl bg-purple-950/50 text-purple-400 border border-purple-500/20 group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300">
                     <skill.icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-semibold text-foreground text-sm">{skill.category}</h3>
+                  <h3 className="font-bold text-white text-base">{skill.category}</h3>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {skill.items.map((item) => (
-                    <li key={item} className="text-sm text-muted-foreground flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary/50" />
-                      {item}
+                    <li key={item} className="text-sm text-slate-300 flex items-center gap-2.5 font-light">
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-400/80 shrink-0" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
