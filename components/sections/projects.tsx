@@ -4,6 +4,7 @@ import { useState } from "react"
 import { ArrowRight, Brain, CheckCircle2, ExternalLink, FileText, Github, Layers, RadioTower, Rocket, Sparkles, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { portfolioProjects, PROJECT_CATEGORIES, type PortfolioProject } from "@/lib/projects-data"
+import { ProjectPreviewBanner } from "@/components/project-preview-banner"
 import Link from "next/link"
 
 export function ProjectsSection() {
@@ -86,26 +87,21 @@ export function ProjectsSection() {
                 key={project.title}
                 className="group overflow-hidden rounded-2xl border border-purple-500/20 bg-[#0d081a]/90 shadow-2xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-purple-950/30 flex flex-col justify-between"
               >
-                {/* Card Banner Header */}
-                <div className="relative min-h-44 border-b border-purple-500/15 bg-gradient-to-br from-purple-950/40 via-[#130b26] to-[#0d081a] p-6 sm:p-7">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(168,85,247,0.15),transparent_40%),linear-gradient(135deg,rgba(236,72,153,0.1),transparent_60%)]" />
-                  <div className="relative flex h-full flex-col justify-between">
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="rounded-full border border-purple-500/30 bg-purple-950/60 px-3 py-1 text-xs font-semibold text-purple-300">
-                          {project.status || "Live"}
-                        </span>
-                        <span className="text-xs font-mono text-purple-400/80">
-                          {project.category}
-                        </span>
-                      </div>
-                      <Sparkles className="h-5 w-5 text-purple-400" />
+                {/* Visual Application Preview Background Header */}
+                <div className="relative">
+                  <ProjectPreviewBanner project={project} />
+                  <div className="px-6 sm:px-7 pt-4 pb-3 border-b border-purple-500/15 bg-[#110a22]/90">
+                    <div className="flex items-center justify-between gap-3 mb-1.5">
+                      <span className="text-xs font-mono text-purple-400">
+                        {project.category}
+                      </span>
+                      <span className="text-[11px] font-mono text-cyan-300">
+                        {project.status || "Live"}
+                      </span>
                     </div>
-                    <div>
-                      <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight">
-                        {project.title}
-                      </h3>
-                    </div>
+                    <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">
+                      {project.title}
+                    </h3>
                   </div>
                 </div>
 
@@ -240,73 +236,80 @@ export function ProjectsSection() {
                     {trackProjects.map((project) => (
                       <div
                         key={project.slug}
-                        className="group p-6 bg-[#0e091d]/85 rounded-2xl border border-purple-500/15 hover:border-purple-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between backdrop-blur-sm"
+                        className="group overflow-hidden bg-[#0e091d]/90 rounded-2xl border border-purple-500/20 hover:border-purple-500/45 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between backdrop-blur-sm shadow-xl shadow-black/30"
                       >
                         <div>
-                          <div className="flex items-center justify-between mb-3 text-xs text-purple-300 font-mono">
-                            <span>{project.status || "Live"}</span>
-                            <div className="flex items-center gap-3">
-                              <a
-                                href={project.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-slate-400 hover:text-white transition-colors"
-                                aria-label="GitHub repository"
-                              >
-                                <Github className="w-4 h-4" />
-                              </a>
+                          {/* Visual Application Preview Background Header */}
+                          <ProjectPreviewBanner project={project} compact />
+
+                          <div className="p-6">
+                            <div className="flex items-center justify-between mb-2.5 text-xs text-purple-300 font-mono">
+                              <span>{project.category}</span>
+                              <div className="flex items-center gap-3">
+                                <a
+                                  href={project.github}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-slate-400 hover:text-white transition-colors"
+                                  aria-label="GitHub repository"
+                                >
+                                  <Github className="w-4 h-4" />
+                                </a>
+                                {project.demo && (
+                                  <a
+                                    href={project.demo}
+                                    target={project.demo.startsWith("http") ? "_blank" : undefined}
+                                    rel={project.demo.startsWith("http") ? "noopener noreferrer" : undefined}
+                                    className="text-slate-400 hover:text-purple-300 transition-colors"
+                                    aria-label="Live demo"
+                                  >
+                                    <ExternalLink className="w-4 h-4" />
+                                  </a>
+                                )}
+                              </div>
+                            </div>
+
+                            <h4 className="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
+                              {project.title}
+                            </h4>
+                            <p className="text-sm text-slate-300 leading-relaxed mb-4 font-light">
+                              {project.description}
+                            </p>
+
+                            <div className="mb-4 flex flex-wrap items-center gap-3">
                               {project.demo && (
                                 <a
                                   href={project.demo}
                                   target={project.demo.startsWith("http") ? "_blank" : undefined}
                                   rel={project.demo.startsWith("http") ? "noopener noreferrer" : undefined}
-                                  className="text-slate-400 hover:text-purple-300 transition-colors"
-                                  aria-label="Live demo"
+                                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 hover:text-purple-300"
                                 >
-                                  <ExternalLink className="w-4 h-4" />
+                                  Test live system <ArrowRight className="h-3.5 w-3.5" />
                                 </a>
+                              )}
+                              {project.caseStudy && (
+                                <button
+                                  onClick={() => setSelectedProject(project)}
+                                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-fuchsia-400 hover:text-fuchsia-300 cursor-pointer"
+                                >
+                                  Architecture <FileText className="h-3.5 w-3.5" />
+                                </button>
                               )}
                             </div>
                           </div>
-
-                          <h4 className="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
-                            {project.title}
-                          </h4>
-                          <p className="text-sm text-slate-300 leading-relaxed mb-4 font-light">
-                            {project.description}
-                          </p>
-
-                          <div className="mb-4 flex flex-wrap items-center gap-3">
-                            {project.demo && (
-                              <a
-                                href={project.demo}
-                                target={project.demo.startsWith("http") ? "_blank" : undefined}
-                                rel={project.demo.startsWith("http") ? "noopener noreferrer" : undefined}
-                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 hover:text-purple-300"
-                              >
-                                Test live system <ArrowRight className="h-3.5 w-3.5" />
-                              </a>
-                            )}
-                            {project.caseStudy && (
-                              <button
-                                onClick={() => setSelectedProject(project)}
-                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-fuchsia-400 hover:text-fuchsia-300 cursor-pointer"
-                              >
-                                Architecture <FileText className="h-3.5 w-3.5" />
-                              </button>
-                            )}
-                          </div>
                         </div>
 
-                        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-purple-500/10">
-                          {project.technologies.map((tech) => (
-                            <span
-                              key={tech}
-                              className="text-[11px] font-mono text-slate-400 bg-purple-950/40 px-2 py-0.5 rounded-md"
-                            >
-                              {tech}
-                            </span>
-                          ))}
+                        <div className="px-6 pb-6">
+                          <div className="flex flex-wrap gap-1.5 pt-3 border-t border-purple-500/10">
+                            {project.technologies.map((tech) => (
+                              <span
+                                key={tech}
+                                className="text-[11px] font-mono text-slate-300 bg-purple-950/40 border border-purple-500/15 px-2.5 py-0.5 rounded-md"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     ))}
