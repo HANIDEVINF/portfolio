@@ -16,6 +16,6 @@ export function generateAndDownloadResumePdf(lang: "en" | "fr" = "en") {
     document.body.removeChild(a)
     setTimeout(() => URL.revokeObjectURL(url), 3000)
   } catch {
-    window.location.assign(`/api/cv?lang=${lang}`)
+    window.location.assign(`/${filename}`)
   }
 }

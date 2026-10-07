@@ -2,52 +2,56 @@
 
 const experiences = [
   {
-    period: "2024 - Present",
-    title: "AI Engineering Master Student",
-    company: "USTHB (University of Science and Technology Houari Boumediene)",
+    period: "June 2026 - Present & 4 Previous Appointments",
+    title: "AI Engineering Research Intern (5× Consecutive Appointments)",
+    company: "CERIST — Research Center on Scientific and Technical Information (Algiers)",
+    highlight: "Flagship Research & Deep Learning Track",
     description:
-      "Advanced studies in artificial intelligence, machine learning, deep learning, NLP, and software engineering. Focused on generative AI, agentic systems, AI security, and trustworthy AI.",
-    technologies: ["Machine Learning", "Deep Learning", "NLP", "Transformers", "Computer Vision"],
-  },
-  {
-    period: "Juin 2026 - Present",
-    title: "AI Engineering Intern",
-    company: "CERIST (Research Center on Scientific and Technical Information)",
-    description:
-      "Development and experimentation of AI, deep learning, and NLP systems with a focus on Transformer and BERT architectures. Multilingual NLP workflows (Arabic, French, English) and chatbot development.",
-    technologies: ["PyTorch", "BERT / Transformers", "Multilingual NLP", "Hugging Face", "Chatbots"],
-  },
-  {
-    period: "Previous Internships",
-    title: "AI Engineering Intern (4 Previous Appointments)",
-    company: "CERIST",
-    description:
-      "Four consecutive AI research internships in Healthcare AI and NLP. Real-time ECG and blood glucose anomaly detection, physical IoT sensor integration, and design/implementation of MUCAT (custom multilingual BERT/Transformer architecture).",
-    technologies: ["Healthcare AI", "ECG Signal Processing", "MUCAT Architecture", "Anomaly Detection"],
+      "Selected for five consecutive AI research internships at Algeria's national scientific research center. Designed and implemented MUCAT (Multilingual Custom Attention Transformer with hierarchical pooling and language-sensitive gating for Arabic, French, and English NLP), developed clinical ECG & blood glucose anomaly detection pipelines, and built domain-grounded conversational AI workflows.",
+    technologies: [
+      "PyTorch",
+      "BERT / Transformers",
+      "MUCAT Architecture",
+      "Multilingual NLP (AR/FR/EN)",
+      "Healthcare AI & ECG",
+      "Hugging Face",
+    ],
   },
   {
     period: "2024 - Present",
-    title: "ML Model Developer & Researcher",
-    company: "Personal Research & Open Source",
+    title: "Master in Artificial Intelligence Engineering",
+    company: "USTHB — University of Science and Technology Houari Boumediene",
+    highlight: "Graduate AI Specialization",
     description:
-      "Designing, training, and fine-tuning deep learning models with PyTorch & Keras. Rigorous inter-patient evaluation, RAG pipelines, LLM agent integration, Docker containerization, and embedded TFLite quantization.",
-    technologies: ["PyTorch", "Keras", "LLM Agents", "RAG", "TFLite INT8", "Docker", "FastAPI"],
+      "Graduate research and engineering in Deep Learning, Transformer Architectures, Natural Language Processing, Computer Vision, Multi-Agent Systems, Knowledge Representation, and AI Security / Trustworthy AI.",
+    technologies: ["Deep Learning", "Transformers", "NLP", "Computer Vision", "Agentic AI", "Trustworthy AI"],
   },
   {
-    period: "2023 - Present (~2 years)",
-    title: "Freelance Full-Stack & AI Developer",
-    company: "Self-Employed / Independent",
+    period: "2024 - Present",
+    title: "Deep Learning & Applied AI Systems Researcher",
+    company: "Independent AI Research & Open-Source Engineering",
+    highlight: "Production & Edge Model Deployment",
     description:
-      "End-to-end web and desktop applications with integrated AI capabilities, connecting deep learning models to usable software interfaces, APIs, databases, and real-time streaming services.",
-    technologies: ["React", "Next.js", "TypeScript", "Node.js", "Electron", "MongoDB", "SQL"],
+      "Engineered MIT-BIH ECG Arrhythmia Classification v7 (97,045-parameter 1D-CNN + Multi-Head Transformer + 8 RR features, strict DS1/DS2 inter-patient split, 90.13% 5-fold ensemble, quantized to 155.4 KB INT8 TFLite at 0.32 ms/beat), hybrid Dense+BM25 RAG pipelines, and multi-agent ReAct orchestrators.",
+    technologies: ["PyTorch", "TensorFlow / Keras", "TFLite INT8", "Hybrid RAG", "LLM Evaluation", "Docker"],
+  },
+  {
+    period: "2023 - Present (~2 Years)",
+    title: "Freelance AI & Full-Stack Systems Architect",
+    company: "Independent Commercial Delivery (Algiers, Sidi Bel Abbès, Mascara)",
+    highlight: "6 Deployed Client Production Platforms",
+    description:
+      "Architected and delivered complete commercial systems for real businesses: Tadjmeel Clinica (Algiers medical aesthetic platform + Doctor & Receptionist Electron desktop apps), Enterprise DZD ERP/POS & G50 Fiscal Suite, ALLURE HOMME, GK STORE, CASUAL 29, and AURA Multi-Vertical Retail OS.",
+    technologies: ["React", "Next.js", "TypeScript", "Electron Desktop", "Node.js", "PostgreSQL / MongoDB"],
   },
   {
     period: "2022 - 2024",
-    title: "Computer Science License Degree",
-    company: "USTHB",
+    title: "B.Sc. (Licence) in Computer Science — PFE Distinction (MedGuardAI)",
+    company: "USTHB — University of Science and Technology Houari Boumediene",
+    highlight: "Capstone: Real-Time Medical IoT + AI",
     description:
-      "Completed undergraduate computer science foundations covering algorithms, data structures, software engineering, databases, and operating systems before advancing to Master studies in AI.",
-    technologies: ["Algorithms", "Data Structures", "OOP", "Databases", "Linux"],
+      "Graduated with distinction on MedGuardAI: an end-to-end medical IoT and telemedicine platform connecting physical ECG and blood glucose sensors via Raspberry Pi to real-time AI anomaly detection, emergency alerts, and WebRTC doctor-patient consultations.",
+    technologies: ["Medical IoT", "Raspberry Pi", "WebRTC", "Real-Time Telemetry", "Algorithms & Systems"],
   },
 ]
 
@@ -60,7 +64,7 @@ export function ExperienceSection() {
           <div className="flex items-center gap-4 mb-14">
             <span className="text-purple-400 font-mono text-sm font-semibold">04.</span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
-              Experience & Journey
+              CERIST Research &amp; Engineering Experience
             </h2>
             <div className="flex-1 h-px bg-gradient-to-r from-purple-500/30 to-transparent ml-2" />
           </div>
@@ -82,9 +86,16 @@ export function ExperienceSection() {
 
                   {/* Content Box */}
                   <div className={`pl-10 md:pl-0 ${index % 2 === 0 ? "md:pr-12" : "md:order-2 md:pl-12"}`}>
-                    <span className="inline-block text-xs font-mono text-purple-400 font-semibold uppercase tracking-wider mb-1.5">
-                      {exp.period}
-                    </span>
+                    <div className={`flex flex-wrap items-center gap-2 mb-1.5 ${index % 2 === 1 ? "md:justify-end" : ""}`}>
+                      <span className="inline-block text-xs font-mono text-purple-400 font-semibold uppercase tracking-wider">
+                        {exp.period}
+                      </span>
+                      {exp.highlight && (
+                        <span className="inline-block rounded-full border border-cyan-500/30 bg-cyan-950/40 px-2.5 py-0.5 text-[10px] font-mono text-cyan-300">
+                          {exp.highlight}
+                        </span>
+                      )}
+                    </div>
                     <h3 className="text-xl sm:text-2xl font-bold text-white">{exp.title}</h3>
                     <p className="text-sm font-medium text-purple-300/90 mt-0.5">{exp.company}</p>
                     <p className="text-slate-300 mt-3 leading-relaxed text-sm sm:text-base font-light">

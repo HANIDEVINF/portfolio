@@ -120,7 +120,7 @@ const STUDIOS: StudioMeta[] = [
     subtitle: "Dense Vector + BM25 Lexical Retrieval · Hallucination Abstention Gate · Live Document Chunk Ingestion",
     track: "Full-Stack AI Infrastructure",
     repoUrl: "https://github.com/HANIDEVINF/document-qa-rag",
-    externalDemoUrl: "https://document-qa-rag-app.vercel.app",
+    externalDemoUrl: "https://document-qa-rag-sand.vercel.app",
     metrics: "Reciprocal Rank Fusion · Faithfulness Guardrail",
   },
   {

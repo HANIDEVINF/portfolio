@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowDown, ArrowRight, Download, Mail } from "lucide-react"
+import { ArrowDown, ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { generateAndDownloadResumePdf } from "@/lib/generate-cv-pdf"
@@ -31,28 +31,33 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Executive Kicker */}
-        <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-purple-300 mb-4">
-          AI Engineer & Full-Stack Systems Architect
+        {/* First-5-Second Executive AI Specialization Kicker */}
+        <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.18em] text-purple-300 mb-3">
+          AI Engineer | Deep Learning • NLP • Computer Vision | Building Production AI Systems
         </p>
 
         {/* Big Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none mb-6">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none mb-4">
           <span className="bg-gradient-to-r from-white via-purple-100 to-cyan-200 bg-clip-text text-transparent">
             Hani Ghena
           </span>
         </h1>
 
-        {/* Concise 1-Sentence Executive Positioning (No clutter or details) */}
-        <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-light mb-10">
-          Architecting production AI systems, custom neural models, and enterprise software platforms from research to live deployment.
+        {/* Freelance & Software Positioning Strip */}
+        <p className="text-xs sm:text-sm font-mono text-cyan-300/90 tracking-wide mb-5">
+          AI Engineering &amp; Software Development — AI Systems • Web Applications • Desktop Suites • Intelligent Automation
         </p>
 
-        {/* Primary CTA Bar */}
-        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3.5 mb-14">
+        {/* Concise Value Proposition */}
+        <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-light mb-9">
+          5× CERIST AI Research Intern (BERT / Transformers &amp; Healthcare AI) and Full-Stack Systems Architect shipping real neural models and commercial software platforms.
+        </p>
+
+        {/* Primary Recruiter & Client Conversion Bar: CV -> LinkedIn -> GitHub -> Contact -> Projects */}
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 mb-12">
           <Button
             size="lg"
-            className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold px-7 py-3.5 text-sm sm:text-base shadow-lg shadow-purple-500/25 border-none rounded-xl"
+            className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold px-6 py-3.5 text-sm sm:text-base shadow-lg shadow-purple-500/25 border-none rounded-xl"
             asChild
           >
             <a href="#projects">
@@ -64,18 +69,17 @@ export function HeroSection() {
           <Button
             size="lg"
             asChild
-            className="w-full sm:w-auto bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-500 hover:to-purple-500 text-white font-semibold px-7 py-3.5 text-sm sm:text-base shadow-lg shadow-fuchsia-500/20 border-none rounded-xl cursor-pointer"
+            className="w-full sm:w-auto bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-500 hover:to-purple-500 text-white font-semibold px-6 py-3.5 text-sm sm:text-base shadow-lg shadow-fuchsia-500/20 border-none rounded-xl cursor-pointer"
           >
             <a
-              href="/api/cv?lang=en"
+              href="/Ghena_Hani_CV_EN.pdf"
               download="Ghena_Hani_CV_EN.pdf"
               onClick={(e) => {
-                // Also trigger client-side jsPDF save while allowing native download fallback
                 try {
                   e.preventDefault()
                   generateAndDownloadResumePdf("en")
                 } catch {
-                  // Native href="/api/cv?lang=en" handles download if jsPDF fails
+                  // Native href="/Ghena_Hani_CV_EN.pdf" handles download
                 }
               }}
             >
@@ -87,11 +91,35 @@ export function HeroSection() {
           <Button
             variant="outline"
             size="lg"
-            className="w-full sm:w-auto border-purple-500/30 bg-[#120c22]/70 hover:bg-[#1a1233] text-white font-medium px-6 py-3.5 text-sm sm:text-base backdrop-blur-md rounded-xl"
+            className="w-full sm:w-auto border-purple-500/30 bg-[#120c22]/70 hover:bg-[#1a1233] text-white font-medium px-5 py-3.5 text-sm sm:text-base backdrop-blur-md rounded-xl"
+            asChild
+          >
+            <a href="https://www.linkedin.com/in/hani-ghena-797a29269/" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="w-4 h-4 mr-2 text-cyan-400" />
+              LinkedIn
+            </a>
+          </Button>
+
+          <Button
+            variant="outline"
+            size="lg"
+            className="w-full sm:w-auto border-purple-500/30 bg-[#120c22]/70 hover:bg-[#1a1233] text-white font-medium px-5 py-3.5 text-sm sm:text-base backdrop-blur-md rounded-xl"
+            asChild
+          >
+            <a href="https://github.com/HANIDEVINF" target="_blank" rel="noopener noreferrer">
+              <Github className="w-4 h-4 mr-2 text-purple-300" />
+              GitHub
+            </a>
+          </Button>
+
+          <Button
+            variant="outline"
+            size="lg"
+            className="w-full sm:w-auto border-purple-500/30 bg-[#120c22]/70 hover:bg-[#1a1233] text-white font-medium px-5 py-3.5 text-sm sm:text-base backdrop-blur-md rounded-xl"
             asChild
           >
             <a href="#contact">
-              <Mail className="w-4 h-4 mr-2" />
+              <Mail className="w-4 h-4 mr-2 text-fuchsia-400" />
               Contact Me
             </a>
           </Button>

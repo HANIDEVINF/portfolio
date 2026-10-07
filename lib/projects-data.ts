@@ -14,12 +14,12 @@ export type ProjectCategory =
 
 export const PROJECT_CATEGORIES: readonly ("All" | ProjectCategory)[] = [
   "All",
-  "Freelance & Client Systems",
   "Healthcare AI",
   "NLP & Speech AI",
   "RAG & Information Extraction",
   "Agentic AI & MLOps",
   "Computer Vision",
+  "Freelance & Client Systems",
 ] as const
 
 export type PortfolioProject = {
@@ -421,7 +421,7 @@ export const portfolioProjects: PortfolioProject[] = [
     technologies: ["Hybrid Vector + BM25", "Faithfulness Gate", "Citation Grounding", "RAG"],
     github: "https://github.com/HANIDEVINF/document-qa-rag",
     githubReady: true,
-    demo: "https://document-qa-rag-app.vercel.app",
+    demo: "https://document-qa-rag-sand.vercel.app",
     category: "RAG & Information Extraction",
     featured: true,
     status: "Live",
@@ -436,7 +436,7 @@ export const portfolioProjects: PortfolioProject[] = [
     technologies: ["Keras", "TensorFlow", "Schema Routing", "JSON Extraction", "Browser Inference"],
     github: "https://github.com/HANIDEVINF/structured-data-extraction",
     githubReady: true,
-    demo: "https://structured-data-extraction-app.vercel.app",
+    demo: "https://structured-data-extraction.vercel.app",
     category: "RAG & Information Extraction",
     status: "Live",
     metrics: ["9 document schemas", "OOD unknown class gate", "Validated JSON schema"],
@@ -450,7 +450,7 @@ export const portfolioProjects: PortfolioProject[] = [
     technologies: ["Document AI", "Schema Validation", "Entity Extraction", "JSON"],
     github: "https://github.com/HANIDEVINF/financial-document-extractor",
     githubReady: true,
-    demo: "https://structured-data-extraction-app.vercel.app",
+    demo: "https://structured-data-extraction.vercel.app",
     category: "RAG & Information Extraction",
     status: "Live",
     metrics: ["Invoice & ledger parsing", "Tax/total reconciliation", "JSON export"],

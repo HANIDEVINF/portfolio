@@ -16,7 +16,7 @@ const navLinks = [
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/HANIDEVINF", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com/in/ghena-hani", label: "LinkedIn" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/hani-ghena-797a29269/", label: "LinkedIn" },
   { icon: Mail, href: "mailto:hanighena4@gmail.com", label: "Email" },
 ]
 

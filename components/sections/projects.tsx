@@ -112,12 +112,36 @@ export function ProjectsSection() {
                 {/* Card Body */}
                 <div className="p-6 sm:p-7 flex flex-col flex-grow justify-between">
                   <div>
-                    <p className="mb-5 leading-relaxed text-slate-300 text-sm sm:text-base font-light">
-                      {project.description}
-                    </p>
+                    <div className="mb-4">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-purple-400 font-semibold block mb-1">
+                        Problem & Engineered Solution
+                      </span>
+                      <p className="leading-relaxed text-slate-300 text-sm sm:text-base font-light">
+                        {project.description}
+                      </p>
+                    </div>
+
+                    {project.architecture && project.architecture.length > 0 && (
+                      <div className="mb-4 rounded-xl border border-purple-500/15 bg-[#120b24]/80 p-3.5">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-300 font-semibold block mb-2">
+                          System Architecture Pipeline
+                        </span>
+                        <div className="space-y-1.5">
+                          {project.architecture.slice(0, 2).map((step, idx) => (
+                            <div key={idx} className="text-xs font-mono text-slate-300 leading-relaxed flex items-start gap-2">
+                              <span className="text-purple-400 shrink-0">→</span>
+                              <span>{step}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
                     {project.impact && (
                       <div className="mb-5 rounded-xl border border-purple-500/20 bg-purple-950/20 p-4 text-xs sm:text-sm leading-relaxed text-slate-200">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-fuchsia-300 font-semibold block mb-1">
+                          Quantitative Result & Production Proof
+                        </span>
                         {project.impact}
                       </div>
                     )}

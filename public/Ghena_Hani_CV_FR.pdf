@@ -1,0 +1,71 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 4168 >>
+stream
+BT /F2 21.0 Tf 0.06 0.04 0.14 rg 44.0 792.0 Td (GHENA HANI) Tj ET
+BT /F2 10.5 Tf 0.42 0.16 0.85 rg 44.0 762.9 Td (Ingenieur IA & Architecte Full-Stack | Deep Learning - NLP - RAG - IA Agentique) Tj ET
+BT /F1 8.8 Tf 0.32 0.32 0.38 rg 44.0 745.8 Td (Algiers, Algeria  |  hanighena4@gmail.com  |  +213 541 894 743  |  github.com/HANIDEVINF  |  linkedin.com/in/ghena-hani) Tj ET
+BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 717.7 Td (RESUME EXECUTIF) Tj ET
+0.65 0.33 0.96 RG 0.7 w 44 713.7 m 551.3 713.7 l S
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 693.6 Td (Ingenieur en Intelligence Artificielle et chercheur en Master IA a l'USTHB avec 5 stages de) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 680.4 Td (recherche en IA au CERIST et ~2 ans d'experience en developpement full-stack commercial.) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 667.2 Td (Conception d'architectures Transformer/BERT multilingues \(MUCAT\), systemes medicaux IoT & IA) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 654.0 Td (temps reel \(MedGuardAI, ECG v7 INT8 TFLite\), pipelines RAG hybrides, systemes multi-agents et) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 640.8 Td (logiciels ERP/cliniques en production.) Tj ET
+BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 619.1 Td (EXPERIENCE PROFESSIONNELLE & RECHERCHE) Tj ET
+0.65 0.33 0.96 RG 0.7 w 44 615.1 m 551.3 615.1 l S
+BT /F2 9.6 Tf 0.08 0.08 0.15 rg 44.0 595.0 Td (Chercheur en Ingenierie de l'IA \(5 Stages\) - CERIST, Alger, Algerie \(2024 - Present\)) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 579.0 Td (-  Conception et implementation de MUCAT, architecture Transformer/BERT multilingue \(Arabe,) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 566.5 Td (    Francais, Anglais\) avec pooling d'attention hierarchique et routage linguistique.) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 552.1 Td (-  Developpement du systeme ECG Arrhythmia v7 sur le protocole inter-patient MIT-BIH DS1/DS2) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 539.6 Td (    \(90.13% precision ensemble 5-fold, 155.4 Ko INT8 TFLite, 0.32 ms/battement\).) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 525.1 Td (-  Developpement de pipelines de detection d'anomalies ECG et glycemie en temps reel) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 512.7 Td (    connectes a des capteurs medicaux.) Tj ET
+BT /F2 9.6 Tf 0.08 0.08 0.15 rg 44.0 498.2 Td (Ingenieur Full-Stack & Systemes IA Freelance - Alger, Algerie \(~2 Ans\)) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 482.2 Td (-  Livraison de 6 systemes commerciaux en production : Tadjmeel Clinica Alger \(Site +) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 469.7 Td (    applications desktop Electron Medecin & Receptionniste\), ERP Algerien DZD & Bilan Fiscal) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 457.2 Td (    G50, ALLURE HOMME, GK STORE, CASUAL 29 et AURA.) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 442.8 Td (-  Deploiement de 11+ applications IA interactives : Speech-to-Text ASR & Synthese SOAP, RAG) Tj ET
+BT /F1 9.1 Tf 0.18 0.18 0.24 rg 52.0 430.3 Td (    Hybride Dense+BM25, Orchestration Multi-Agents ReAct et Evaluation LLM.) Tj ET
+BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 409.8 Td (FORMATION) Tj ET
+0.65 0.33 0.96 RG 0.7 w 44 405.8 m 551.3 405.8 l S
+BT /F2 9.4 Tf 0.15 0.15 0.20 rg 44.0 385.8 Td (Master en Intelligence Artificielle - USTHB, Alger \(Sep 2022 - Juin 2027 prevu\)) Tj ET
+BT /F2 9.4 Tf 0.15 0.15 0.20 rg 44.0 369.9 Td (Licence en Informatique - USTHB, Alger \(Obtenue - PFE : MedGuardAI\)) Tj ET
+BT /F2 10.5 Tf 0.38 0.12 0.65 rg 44.0 348.1 Td (COMPETENCES & LANGUES) Tj ET
+0.65 0.33 0.96 RG 0.7 w 44 344.1 m 551.3 344.1 l S
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 324.1 Td (IA & Deep Learning : PyTorch, TensorFlow, Keras, Transformers, BERT, RAG, IA Agentique, TFLite) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 310.9 Td (INT8, Vision par Ordinateur.) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 295.2 Td (Full-Stack : TypeScript, React, Next.js, Node.js, Electron, PostgreSQL, MongoDB, Supabase,) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 282.0 Td (Docker, Git.) Tj ET
+BT /F1 9.3 Tf 0.15 0.15 0.20 rg 44.0 266.3 Td (Langues : Arabe \(Maternel\) - Francais \(Maitrise professionnelle\) - Anglais \(Professionnel\).) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000257 00000 n 
+0000000354 00000 n 
+0000000456 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+4676
+%%EOF

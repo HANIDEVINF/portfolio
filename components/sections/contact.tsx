@@ -252,7 +252,7 @@ export function ContactSection() {
 
               {/* LinkedIn */}
               <a
-                href="https://linkedin.com/in/ghena-hani"
+                href="https://www.linkedin.com/in/hani-ghena-797a29269/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 rounded-2xl bg-[#0e091e]/90 border border-purple-500/15 hover:border-purple-500/40 hover:bg-[#150d2c] transition-all group backdrop-blur-sm"
@@ -262,7 +262,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 font-medium">LinkedIn</p>
-                  <p className="text-white font-semibold text-sm sm:text-base mt-0.5">linkedin.com/in/ghena-hani</p>
+                  <p className="text-white font-semibold text-sm sm:text-base mt-0.5">linkedin.com/in/hani-ghena-797a29269</p>
                 </div>
               </a>
             </div>

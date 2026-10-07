@@ -234,7 +234,7 @@ export default function ResumePage() {
                 className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold rounded-xl shadow-lg shadow-purple-500/25 cursor-pointer"
               >
                 <a
-                  href={`/api/cv?lang=${lang}`}
+                  href={lang === "fr" ? "/Ghena_Hani_CV_FR.pdf" : "/Ghena_Hani_CV_EN.pdf"}
                   download={lang === "fr" ? "Ghena_Hani_CV_FR.pdf" : "Ghena_Hani_CV_EN.pdf"}
                   onClick={(e) => {
                     try {
