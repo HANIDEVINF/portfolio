@@ -126,6 +126,7 @@ export default function AdminDashboard({
   })
 
   const handleSignOut = async () => {
+    if (!supabase) return
     await supabase.auth.signOut()
     router.push("/")
     router.refresh()
@@ -133,6 +134,7 @@ export default function AdminDashboard({
 
   const handleAddProject = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!supabase) return
     setLoading(true)
 
     const { data, error } = await supabase.from("projects").insert({
@@ -152,6 +154,7 @@ export default function AdminDashboard({
   }
 
   const handleDeleteProject = async (id: string) => {
+    if (!supabase) return
     const { error } = await supabase.from("projects").delete().eq("id", id)
     if (!error) {
       setProjects(projects.filter(p => p.id !== id))
@@ -160,6 +163,7 @@ export default function AdminDashboard({
 
   const handleAddBlogPost = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!supabase) return
     setLoading(true)
 
     const { data, error } = await supabase.from("blog_posts").insert({
@@ -180,6 +184,7 @@ export default function AdminDashboard({
   }
 
   const handleTogglePublish = async (post: BlogPost) => {
+    if (!supabase) return
     const { error } = await supabase
       .from("blog_posts")
       .update({ published: !post.published })
@@ -191,6 +196,7 @@ export default function AdminDashboard({
   }
 
   const handleDeleteBlogPost = async (id: string) => {
+    if (!supabase) return
     const { error } = await supabase.from("blog_posts").delete().eq("id", id)
     if (!error) {
       setBlogPosts(blogPosts.filter(p => p.id !== id))
@@ -198,6 +204,7 @@ export default function AdminDashboard({
   }
 
   const handleMarkMessageRead = async (message: Message) => {
+    if (!supabase) return
     const { error } = await supabase
       .from("contact_messages")
       .update({ read: !message.read })
@@ -209,6 +216,7 @@ export default function AdminDashboard({
   }
 
   const handleDeleteMessage = async (id: string) => {
+    if (!supabase) return
     const { error } = await supabase.from("contact_messages").delete().eq("id", id)
     if (!error) {
       setMessages(messages.filter(m => m.id !== id))
@@ -217,6 +225,7 @@ export default function AdminDashboard({
 
   const handleAddSkill = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!supabase) return
     setLoading(true)
 
     const { data, error } = await supabase.from("skills").insert({
@@ -233,6 +242,7 @@ export default function AdminDashboard({
   }
 
   const handleDeleteSkill = async (id: string) => {
+    if (!supabase) return
     const { error } = await supabase.from("skills").delete().eq("id", id)
     if (!error) {
       setSkills(skills.filter(s => s.id !== id))

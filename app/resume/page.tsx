@@ -193,9 +193,9 @@ export default function ResumePage() {
                   <Mail className="w-4 h-4 text-purple-400" />
                   hanighena4@gmail.com
                 </a>
-                <a href="tel:+213541894743" className="flex items-center gap-1.5 hover:text-purple-300 transition-colors">
+                <a href="tel:+213557420611" className="flex items-center gap-1.5 hover:text-purple-300 transition-colors">
                   <Phone className="w-4 h-4 text-purple-400" />
-                  +213 541 894 743
+                  +213 557 42 06 11
                 </a>
                 <span className="flex items-center gap-1.5">
                   <MapPin className="w-4 h-4 text-purple-400" />

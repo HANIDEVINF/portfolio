@@ -1,26 +1,18 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Github, Linkedin, Mail, Heart } from "lucide-react"
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/hanighena", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com/in/hanighena", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/HANIDEVINF", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/hani-ghena-797a29269/", label: "LinkedIn" },
   { icon: Mail, href: "mailto:hanighena4@gmail.com", label: "Email" },
 ]
 
 export function Footer() {
   return (
-    <footer className="py-12 px-6 border-t border-border">
+    <footer className="py-12 px-6 border-t border-purple-500/15 relative">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center gap-6"
-        >
-          {/* Social Links */}
+        <div className="flex flex-col items-center gap-6">
           <div className="flex items-center gap-6">
             {socialLinks.map((social) => (
               <a
@@ -28,7 +20,7 @@ export function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                className="text-slate-400 hover:text-purple-400 transition-colors duration-200"
                 aria-label={social.label}
               >
                 <social.icon className="w-5 h-5" />
@@ -36,16 +28,15 @@ export function Footer() {
             ))}
           </div>
 
-          {/* Copyright */}
           <div className="text-center">
-            <p className="text-sm text-muted-foreground flex items-center gap-1 justify-center">
-              Designed & Built with <Heart className="w-4 h-4 text-primary" /> by Hani Ghena
+            <p className="text-sm text-slate-400 flex items-center gap-1.5 justify-center">
+              Designed & Built with <Heart className="w-4 h-4 text-purple-400 fill-purple-400" /> by Hani Ghena
             </p>
-            <p className="text-xs text-muted-foreground/60 mt-2">
-              {new Date().getFullYear()} All rights reserved.
+            <p className="text-xs text-slate-500 mt-2 font-mono">
+              2026-2027 · All rights reserved · USTHB & CERIST
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   )

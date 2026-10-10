@@ -1,418 +1,288 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Phone, Github, Linkedin, Send, CheckCircle2, AlertCircle, Copy, ExternalLink, MessageSquare } from "lucide-react"
+import {
+  AlertCircle,
+  CheckCircle2,
+  Copy,
+  ExternalLink,
+  Github,
+  Linkedin,
+  Mail,
+  MessageSquare,
+  Phone,
+  Send,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { createClient } from "@/lib/supabase/client"
 
 const EMAIL_ADDRESS = "hanighena4@gmail.com"
-const PHONE_NUMBER = "+213 541 894 743"
+const PHONE_NUMBER = "+213 557 42 06 11"
+const WHATSAPP_NUMBER = "213557420611"
+
+type FormData = { name: string; email: string; subject: string; message: string }
 
 export function ContactSection() {
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle")
-  const [deliveryMethod, setDeliveryMethod] = useState<"direct" | "email-client">("direct")
+  const [errorMessage, setErrorMessage] = useState("")
   const [copiedEmail, setCopiedEmail] = useState(false)
-  const [lastSubmitted, setLastSubmitted] = useState<{
-    name: string
-    email: string
-    subject: string
-    message: string
-  } | null>(null)
-  const [formData, setFormData] = useState({
+  const [website, setWebsite] = useState("")
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     subject: "",
     message: "",
   })
 
-  const handleCopyEmail = () => {
-    navigator.clipboard?.writeText(EMAIL_ADDRESS)
+  const composeUrl = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(
+    formData.subject || "Portfolio inquiry"
+  )}&body=${encodeURIComponent(
+    `From: ${formData.name} (${formData.email})\n\n${formData.message}`
+  )}`
+
+  async function copyEmail() {
+    await navigator.clipboard?.writeText(EMAIL_ADDRESS)
     setCopiedEmail(true)
-    setTimeout(() => setCopiedEmail(false), 2500)
+    window.setTimeout(() => setCopiedEmail(false), 2_000)
   }
 
-  const getGmailComposeUrl = (data: { name: string; email: string; subject: string; message: string }) => {
-    const su = encodeURIComponent(data.subject || `Inquiry from ${data.name || "Portfolio Visitor"}`)
-    const body = encodeURIComponent(
-      data.message
-        ? `From: ${data.name} (${data.email})\n\n${data.message}`
-        : "Hello Hani,\n\nI reviewed your AI & Full-Stack portfolio and would like to connect regarding..."
-    )
-    return `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_ADDRESS}&su=${su}&body=${body}`
-  }
-
-  const getMailtoUrl = (data: { name: string; email: string; subject: string; message: string }) => {
-    const su = encodeURIComponent(data.subject || `Inquiry from ${data.name || "Portfolio Visitor"}`)
-    const body = encodeURIComponent(
-      data.message
-        ? `From: ${data.name} (${data.email})\n\n${data.message}`
-        : "Hello Hani,\n\nI reviewed your portfolio and would like to connect."
-    )
-    return `mailto:${EMAIL_ADDRESS}?subject=${su}&body=${body}`
-  }
-
-  const getWhatsAppUrl = (data: { name: string; email: string; subject: string; message: string }) => {
-    const text = encodeURIComponent(
-      data.message
-        ? `Hello Hani, I am ${data.name} (${data.email}). Subject: ${data.subject || "Portfolio Inquiry"}\n\n${data.message}`
-        : "Hello Hani, I reviewed your portfolio and would like to connect."
-    )
-    return `https://wa.me/213541894743?text=${text}`
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
     setFormState("loading")
-    const payload = { ...formData }
-    let deliveredServerOrRelay = false
+    setErrorMessage("")
 
     try {
-      // 1. Browser-side FormSubmit AJAX relay (deliver directly to hanighena4@gmail.com)
-      const fsRes = await fetch("https://formsubmit.co/ajax/hanighena4@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: payload.name,
-          email: payload.email,
-          _subject: payload.subject || `New Portfolio Message from ${payload.name}`,
-          message: payload.message,
-          _captcha: "false",
-        }),
-      })
-      if (fsRes.ok) {
-        const fsJson = await fsRes.json().catch(() => null)
-        if (fsJson && (fsJson.success === "true" || fsJson.success === true)) {
-          deliveredServerOrRelay = true
-        }
-      }
-    } catch {
-      // Continue to server API route
-    }
-
-    try {
-      // 2. Server API route (Supabase + server-side relay)
-      const apiRes = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ ...formData, website }),
       })
-      if (apiRes.ok) {
-        const apiData = await apiRes.json().catch(() => null)
-        if (apiData?.storedInDb || apiData?.relayedViaEmail) {
-          deliveredServerOrRelay = true
-        }
+      const result = await response.json().catch(() => null)
+
+      if (!response.ok || !result?.ok) {
+        throw new Error(
+          result?.error || "Your message could not be sent. Please use email instead."
+        )
       }
 
-      // 3. Client Supabase fallback if configured
-      const supabase = createClient()
-      if (supabase) {
-        const { error } = await supabase.from("contact_messages").insert({
-          name: payload.name,
-          email: payload.email,
-          subject: payload.subject || "Portfolio Contact Form",
-          message: payload.message,
-        })
-        if (!error) deliveredServerOrRelay = true
-      }
-    } catch {
-      // Non-blocking fallback
-    }
-
-    setLastSubmitted(payload)
-    setFormState("success")
-    setFormData({ name: "", email: "", subject: "", message: "" })
-
-    // If neither Supabase nor automated email relay is active yet, automatically trigger pre-filled email client so the user's message is guaranteed to reach hanighena4@gmail.com
-    if (!deliveredServerOrRelay) {
-      setDeliveryMethod("email-client")
-      try {
-        window.location.href = getMailtoUrl(payload)
-      } catch {
-        // Fallback links are shown in the confirmation card below
-      }
-    } else {
-      setDeliveryMethod("direct")
+      setFormState("success")
+      setFormData({ name: "", email: "", subject: "", message: "" })
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Your message could not be sent. Please use email instead."
+      )
+      setFormState("error")
     }
   }
 
   return (
-    <section id="contact" className="py-28 px-6 relative">
-      <div className="max-w-5xl mx-auto">
-        <div>
-          {/* Section Header with 05. */}
-          <div className="flex items-center gap-4 mb-6">
-            <span className="text-purple-400 font-mono text-sm font-semibold">05.</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
-              Get In Touch
-            </h2>
-            <div className="flex-1 h-px bg-gradient-to-r from-purple-500/30 to-transparent ml-2" />
-          </div>
+    <section id="contact" className="relative px-6 py-28">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-12 flex items-center gap-4">
+          <span className="font-mono text-sm font-semibold text-purple-400">05.</span>
+          <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">
+            Let&apos;s work together
+          </h2>
+          <div className="ml-2 h-px flex-1 bg-gradient-to-r from-purple-500/30 to-transparent" />
+        </div>
+        <p className="mb-12 max-w-2xl text-base font-light leading-relaxed text-slate-300 sm:text-lg">
+          Available for applied AI engineering, machine learning systems, and full-stack product
+          work. Use the form or contact me directly.
+        </p>
 
-          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mb-12 font-light leading-relaxed">
-            Available for AI Engineering, Deep Learning, NLP/RAG, and Full-Stack Software Engineering roles or commercial consulting. Reach out via the direct message form or any channel below.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-10">
-            {/* Contact Info column */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-white mb-6">Direct Contact Channels</h3>
-
-              {/* Email Card with Copy + Gmail Web + Mail App actions */}
-              <div className="p-4 rounded-2xl bg-[#0e091e]/90 border border-purple-500/20 backdrop-blur-sm space-y-3">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3.5">
-                    <div className="p-3 rounded-xl bg-purple-950/60 text-purple-400">
-                      <Mail className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-400 font-medium">Direct Email</p>
-                      <a
-                        href={`mailto:${EMAIL_ADDRESS}`}
-                        className="text-white hover:text-purple-300 font-semibold text-sm sm:text-base transition-colors"
-                      >
-                        {EMAIL_ADDRESS}
-                      </a>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleCopyEmail}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-purple-500/30 bg-purple-950/50 px-3 py-1.5 text-xs font-semibold text-purple-200 hover:bg-purple-800/50 transition cursor-pointer"
-                  >
-                    <Copy className="w-3.5 h-3.5" />
-                    {copiedEmail ? "Copied!" : "Copy"}
-                  </button>
-                </div>
-                <div className="flex flex-wrap gap-2 pt-1 border-t border-purple-500/10">
-                  <a
-                    href={getGmailComposeUrl(formData)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-purple-500/15 border border-purple-500/30 px-3 py-1.5 text-xs font-medium text-purple-200 hover:bg-purple-500/25 transition"
-                  >
-                    Compose in Gmail Web
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                  <a
-                    href={getMailtoUrl(formData)}
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-white/5 border border-white/10 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white transition"
-                  >
-                    Open Email App
-                  </a>
-                </div>
-              </div>
-
-              {/* Phone & WhatsApp Card */}
-              <div className="p-4 rounded-2xl bg-[#0e091e]/90 border border-purple-500/15 backdrop-blur-sm flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3.5">
-                  <div className="p-3 rounded-xl bg-purple-950/50 text-purple-400">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-400 font-medium">Phone & WhatsApp</p>
-                    <a
-                      href="tel:+213541894743"
-                      className="text-white hover:text-purple-300 font-semibold text-sm sm:text-base mt-0.5 font-mono tabular-nums block transition-colors"
-                    >
-                      {PHONE_NUMBER}
-                    </a>
-                  </div>
-                </div>
-                <a
-                  href="https://wa.me/213541894743"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 transition whitespace-nowrap"
-                >
-                  <MessageSquare className="w-3.5 h-3.5" />
-                  WhatsApp
-                </a>
-              </div>
-
-              {/* GitHub */}
+        <div className="grid gap-10 md:grid-cols-2">
+          <div className="space-y-4">
+            <ContactCard
+              icon={<Mail className="h-5 w-5" />}
+              label="Email"
+              value={EMAIL_ADDRESS}
+              href={`mailto:${EMAIL_ADDRESS}`}
+            />
+            <ContactCard
+              icon={<Phone className="h-5 w-5" />}
+              label="Phone & WhatsApp"
+              value={PHONE_NUMBER}
+              href="tel:+213557420611"
+            />
+            <ContactCard
+              icon={<Github className="h-5 w-5" />}
+              label="GitHub"
+              value="github.com/HANIDEVINF"
+              href="https://github.com/HANIDEVINF"
+              external
+            />
+            <ContactCard
+              icon={<Linkedin className="h-5 w-5" />}
+              label="LinkedIn"
+              value="linkedin.com/in/hani-ghena-797a29269"
+              href="https://www.linkedin.com/in/hani-ghena-797a29269/"
+              external
+            />
+            <div className="flex flex-wrap gap-2 pt-2">
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="inline-flex items-center gap-2 rounded-xl border border-purple-500/30 bg-purple-950/40 px-3 py-2 text-xs font-semibold text-purple-200 transition hover:bg-purple-800/40 cursor-pointer"
+              >
+                <Copy className="h-3.5 w-3.5" />
+                {copiedEmail ? "Email copied" : "Copy email"}
+              </button>
               <a
-                href="https://github.com/HANIDEVINF"
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-2xl bg-[#0e091e]/90 border border-purple-500/15 hover:border-purple-500/40 hover:bg-[#150d2c] transition-all group backdrop-blur-sm"
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-950/30 px-3 py-2 text-xs font-semibold text-emerald-200 transition hover:bg-emerald-800/30"
               >
-                <div className="p-3 rounded-xl bg-purple-950/50 text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-colors">
-                  <Github className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">GitHub</p>
-                  <p className="text-white font-semibold text-sm sm:text-base mt-0.5">github.com/HANIDEVINF</p>
-                </div>
-              </a>
-
-              {/* LinkedIn */}
-              <a
-                href="https://www.linkedin.com/in/hani-ghena-797a29269/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-2xl bg-[#0e091e]/90 border border-purple-500/15 hover:border-purple-500/40 hover:bg-[#150d2c] transition-all group backdrop-blur-sm"
-              >
-                <div className="p-3 rounded-xl bg-purple-950/50 text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-colors">
-                  <Linkedin className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">LinkedIn</p>
-                  <p className="text-white font-semibold text-sm sm:text-base mt-0.5">linkedin.com/in/hani-ghena-797a29269</p>
-                </div>
+                <MessageSquare className="h-3.5 w-3.5" />
+                WhatsApp
+                <ExternalLink className="h-3 w-3" />
               </a>
             </div>
-
-            {/* Contact Form column */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <h3 className="text-xl font-bold text-white">Send a Direct Message</h3>
-                <p className="text-xs text-slate-400 mt-1 mb-5">
-                  Delivers directly to <span className="text-purple-300 font-mono">hanighena4@gmail.com</span>.
-                </p>
-              </div>
-
-              <div>
-                <label htmlFor="name" className="block text-xs font-semibold text-slate-300 mb-1.5">
-                  Name
-                </label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="Your name or organization"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  className="bg-[#0e091e]/90 border-purple-500/20 focus:border-purple-400 rounded-xl text-white placeholder:text-slate-500 h-11"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-xs font-semibold text-slate-300 mb-1.5">
-                  Email
-                </label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="your.email@company.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  className="bg-[#0e091e]/90 border-purple-500/20 focus:border-purple-400 rounded-xl text-white placeholder:text-slate-500 h-11"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-xs font-semibold text-slate-300 mb-1.5">
-                  Subject
-                </label>
-                <Input
-                  id="subject"
-                  type="text"
-                  placeholder="Role opportunity, AI project, or consultation"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="bg-[#0e091e]/90 border-purple-500/20 focus:border-purple-400 rounded-xl text-white placeholder:text-slate-500 h-11"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-xs font-semibold text-slate-300 mb-1.5">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  placeholder="Write your message here..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  rows={4}
-                  className="bg-[#0e091e]/90 border-purple-500/20 focus:border-purple-400 rounded-xl text-white placeholder:text-slate-500 resize-none"
-                />
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-3 pt-1">
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={formState === "loading"}
-                  className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold rounded-xl h-11 shadow-lg shadow-purple-500/25 cursor-pointer"
-                >
-                  {formState === "idle" && (
-                    <>
-                      <Send className="w-4 h-4 mr-2" />
-                      Send Message
-                    </>
-                  )}
-                  {formState === "loading" && "Sending..."}
-                  {formState === "success" && (
-                    <>
-                      <CheckCircle2 className="w-4 h-4 mr-2" />
-                      Message Sent
-                    </>
-                  )}
-                  {formState === "error" && (
-                    <>
-                      <AlertCircle className="w-4 h-4 mr-2" />
-                      Try Again
-                    </>
-                  )}
-                </Button>
-
-                <a
-                  href={getGmailComposeUrl(formData)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-purple-500/35 bg-[#140d2a] hover:bg-[#1d133b] text-purple-200 font-semibold text-sm h-11 px-4 transition"
-                >
-                  <Mail className="w-4 h-4 text-purple-400" />
-                  Send via Gmail
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-
-              {formState === "success" && lastSubmitted && (
-                <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/30 p-4 text-xs text-emerald-200 space-y-2.5">
-                  <div className="font-semibold flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    {deliveryMethod === "direct"
-                      ? "Your message has been delivered to hanighena4@gmail.com."
-                      : "Your message is ready! Click any option below if your email app didn't open automatically:"}
-                  </div>
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    <a
-                      href={getGmailComposeUrl(lastSubmitted)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 rounded-lg bg-emerald-500/20 border border-emerald-500/40 px-3 py-1.5 text-xs font-semibold text-emerald-100 hover:bg-emerald-500/30"
-                    >
-                      Send in Gmail Web <ExternalLink className="w-3 h-3" />
-                    </a>
-                    <a
-                      href={getMailtoUrl(lastSubmitted)}
-                      className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20"
-                    >
-                      Open Default Email App
-                    </a>
-                    <a
-                      href={getWhatsAppUrl(lastSubmitted)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 rounded-lg bg-emerald-600/30 border border-emerald-400/30 px-3 py-1.5 text-xs font-medium text-emerald-200 hover:bg-emerald-600/40"
-                    >
-                      Send via WhatsApp
-                    </a>
-                  </div>
-                </div>
-              )}
-            </form>
           </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4 rounded-2xl border border-purple-500/20 bg-[#0e091e]/90 p-6 shadow-xl shadow-black/30 sm:p-8"
+          >
+            <div>
+              <h3 className="text-xl font-bold text-white">Send a message</h3>
+              <p className="mt-1 text-xs text-slate-400">
+                You will see a confirmation only after the message is accepted.
+              </p>
+            </div>
+            <input
+              name="website"
+              value={website}
+              onChange={(event) => setWebsite(event.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormField label="Name" id="contact-name">
+                <Input
+                  id="contact-name"
+                  required
+                  value={formData.name}
+                  onChange={(event) => setFormData({ ...formData, name: event.target.value })}
+                  className="bg-[#080511] border-purple-500/25 text-white"
+                />
+              </FormField>
+              <FormField label="Email" id="contact-email">
+                <Input
+                  id="contact-email"
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(event) => setFormData({ ...formData, email: event.target.value })}
+                  className="bg-[#080511] border-purple-500/25 text-white"
+                />
+              </FormField>
+            </div>
+            <FormField label="Subject" id="contact-subject">
+              <Input
+                id="contact-subject"
+                value={formData.subject}
+                onChange={(event) => setFormData({ ...formData, subject: event.target.value })}
+                placeholder="Role opportunity, project, or consultation"
+                className="bg-[#080511] border-purple-500/25 text-white placeholder:text-slate-500"
+              />
+            </FormField>
+            <FormField label="Message" id="contact-message">
+              <Textarea
+                id="contact-message"
+                required
+                rows={5}
+                value={formData.message}
+                onChange={(event) => setFormData({ ...formData, message: event.target.value })}
+                className="bg-[#080511] border-purple-500/25 text-white"
+              />
+            </FormField>
+            {formState === "error" && (
+              <p role="alert" className="flex items-center gap-2 text-sm text-red-300">
+                <AlertCircle className="h-4 w-4 shrink-0" />
+                {errorMessage}
+              </p>
+            )}
+            {formState === "success" && (
+              <p role="status" className="flex items-center gap-2 text-sm text-emerald-300">
+                <CheckCircle2 className="h-4 w-4 shrink-0" />
+                Thanks. Your message has been received.
+              </p>
+            )}
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Button
+                type="submit"
+                size="lg"
+                disabled={formState === "loading"}
+                className="h-11 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-500 font-semibold text-white hover:from-purple-600 hover:to-indigo-600 cursor-pointer"
+              >
+                <Send className="mr-2 h-4 w-4" />
+                {formState === "loading" ? "Sending…" : "Send message"}
+              </Button>
+              <a
+                href={composeUrl}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-purple-500/35 bg-[#140d2a] px-4 text-sm font-semibold text-purple-200 transition hover:bg-[#1d133b]"
+              >
+                <Mail className="h-4 w-4" />
+                Use email instead
+              </a>
+            </div>
+          </form>
         </div>
       </div>
     </section>
+  )
+}
+
+function ContactCard({
+  icon,
+  label,
+  value,
+  href,
+  external = false,
+}: {
+  icon: React.ReactNode
+  label: string
+  value: string
+  href: string
+  external?: boolean
+}) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="flex items-center gap-4 rounded-2xl border border-purple-500/15 bg-[#0e091e]/90 p-4 transition hover:border-purple-500/40 hover:bg-[#150d2c]"
+    >
+      <span className="rounded-xl bg-purple-950/50 p-3 text-purple-400">{icon}</span>
+      <span>
+        <span className="block text-xs text-slate-400">{label}</span>
+        <span className="block text-sm font-semibold text-white sm:text-base">{value}</span>
+      </span>
+    </a>
+  )
+}
+
+function FormField({
+  label,
+  id,
+  children,
+}: {
+  label: string
+  id: string
+  children: React.ReactNode
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="mb-1.5 block text-xs font-semibold text-slate-300">
+        {label}
+      </label>
+      {children}
+    </div>
   )
 }

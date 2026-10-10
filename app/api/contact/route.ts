@@ -1,33 +1,71 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
 
+const MAX_REQUESTS_PER_WINDOW = 5
+const WINDOW_MS = 10 * 60 * 1000
+const requestWindows = new Map<string, { count: number; resetAt: number }>()
+
+function getClientIp(request: NextRequest) {
+  return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown"
+}
+
+function isRateLimited(clientIp: string) {
+  const now = Date.now()
+  const current = requestWindows.get(clientIp)
+  if (!current || current.resetAt <= now) {
+    requestWindows.set(clientIp, { count: 1, resetAt: now + WINDOW_MS })
+    return false
+  }
+  if (current.count >= MAX_REQUESTS_PER_WINDOW) return true
+  current.count += 1
+  return false
+}
+
+function readText(value: unknown, maxLength: number) {
+  return typeof value === "string" ? value.trim().slice(0, maxLength) : ""
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json()
-    const { name, email, subject, message } = body || {}
+    const body: unknown = await req.json()
+    const data = body && typeof body === "object" ? (body as Record<string, unknown>) : {}
+    const name = readText(data.name, 120)
+    const email = readText(data.email, 254).toLowerCase()
+    const subject = readText(data.subject, 180) || "Portfolio contact inquiry"
+    const message = readText(data.message, 5_000)
+    const website = readText(data.website, 200)
 
-    if (!name || !email || !message) {
+    if (website) return NextResponse.json({ ok: true })
+
+    if (!name || !email || !message || !/^\S+@\S+\.\S+$/.test(email)) {
       return NextResponse.json(
-        { ok: false, error: "Name, email, and message are required." },
+        { ok: false, error: "Enter a name, valid email address, and message." },
         { status: 400 }
+      )
+    }
+
+    if (isRateLimited(getClientIp(req))) {
+      return NextResponse.json(
+        { ok: false, error: "Too many messages. Please try again in a few minutes." },
+        { status: 429 }
       )
     }
 
     let storedInDb = false
     let relayedViaEmail = false
 
-    // 1. Attempt server-side Supabase insert if configured
+    // Service-role access stays on the server. The browser never writes directly to Supabase.
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
     if (supabaseUrl && supabaseKey) {
       try {
         const supabase = createClient(supabaseUrl, supabaseKey)
         const { error } = await supabase.from("contact_messages").insert({
-          name: String(name).trim(),
-          email: String(email).trim(),
-          subject: String(subject || "Portfolio Contact Inquiry").trim(),
-          message: String(message).trim(),
+          name,
+          email,
+          subject,
+          message,
         })
         if (!error) storedInDb = true
       } catch (dbErr) {
@@ -35,39 +73,55 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 2. Also relay via FormSubmit AJAX endpoint to hanighena4@gmail.com if reachable
-    try {
-      const fsRes = await fetch("https://formsubmit.co/ajax/hanighena4@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Origin: "https://portfolio-theta-seven-83.vercel.app",
-          Referer: "https://portfolio-theta-seven-83.vercel.app/",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          _subject: subject || `New Portfolio Message from ${name}`,
-          message,
-          _captcha: "false",
-        }),
-      })
-      if (fsRes.ok) {
-        const fsJson = await fsRes.json().catch(() => null)
-        if (fsJson && (fsJson.success === "true" || fsJson.success === true)) {
-          relayedViaEmail = true
+    const recipient = process.env.CONTACT_RECIPIENT_EMAIL || "hanighena4@gmail.com"
+    if (recipient) {
+      try {
+        const endpoint =
+          process.env.FORMSUBMIT_ENDPOINT ||
+          `https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`
+        const fsRes = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Origin: "https://portfolio-theta-seven-83.vercel.app",
+            Referer: "https://portfolio-theta-seven-83.vercel.app/",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            _subject: subject,
+            message,
+            _captcha: "false",
+            _template: "table",
+          }),
+        })
+        if (fsRes.ok) {
+          const fsJson = await fsRes.json().catch(() => null)
+          if (fsJson && (fsJson.success === "true" || fsJson.success === true)) {
+            relayedViaEmail = true
+          }
         }
+      } catch {
+        // The form can still be recorded in Supabase when the relay is unavailable.
       }
-    } catch {
-      // Ignore external relay network errors
+    }
+
+    if (!storedInDb && !relayedViaEmail) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "The contact service is unavailable. Please use the email link instead.",
+        },
+        { status: 503 }
+      )
     }
 
     return NextResponse.json({
       ok: true,
       storedInDb,
       relayedViaEmail,
-      recipient: "hanighena4@gmail.com",
+      recipient,
       timestamp: new Date().toISOString(),
     })
   } catch {

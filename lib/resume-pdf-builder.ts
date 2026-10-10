@@ -106,7 +106,7 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
     spacingAfter: 5,
   })
   lines.push({
-    text: "Algiers, Algeria  |  hanighena4@gmail.com  |  +213 541 894 743  |  github.com/HANIDEVINF  |  linkedin.com/in/ghena-hani",
+    text: "Algiers, Algeria  |  hanighena4@gmail.com  |  +213 557 42 06 11  |  github.com/HANIDEVINF  |  linkedin.com/in/hani-ghena-797a29269",
     font: "F1",
     size: 8.8,
     color: [0.32, 0.32, 0.38],

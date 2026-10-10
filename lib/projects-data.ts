@@ -33,7 +33,7 @@ export type PortfolioProject = {
   caseStudyUrl?: string
   category: ProjectCategory
   featured?: boolean
-  status?: "Live" | "Research" | "PFE Distinction" | "Client Production"
+  status?: "Live" | "Research" | "CERIST Research" | "PFE Distinction" | "Client Production"
   metrics?: string[]
   impact?: string
   architecture?: string[]
@@ -94,8 +94,8 @@ export const portfolioProjects: PortfolioProject[] = [
           body: "Non-beat markers (rhythm change, signal quality, noise annotations) are filtered prior to RR computation so intervals are never corrupted. Eight temporal features (previous/next RR, ±5 local mean, prematurity ratio, compensatory pause ratio, median-normalized intervals) are standardized using DS1 statistics only.",
         },
         {
-          heading: "Deployment & Hardware Verification",
-          body: "Exported from Keras (379.08 KB float32) to dynamic-range TFLite (146.0 KB) and INT8 TFLite (155.4 KB). Verified across 5,000 DS2 beats with 99.82% argmax decision agreement.",
+          heading: "Deployment, Hardware Verification & Research Disclaimer",
+          body: "Exported from Keras (379.08 KB float32) to dynamic-range TFLite (146.0 KB) and INT8 TFLite (155.4 KB). Verified across 5,000 DS2 beats with 99.82% argmax decision agreement. Medical Disclaimer: Research & educational demonstration evaluated on PhysioNet MIT-BIH; not a certified clinical diagnostic device.",
         },
       ],
     },
@@ -391,32 +391,32 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     slug: "keras-content-moderation-system",
-    title: "Keras Content Moderation & Token Attribution System",
+    title: "UCI SMS Spam & Policy Token Attribution Classifier",
     description:
-      "Production-style NLP moderation workbench powered by a trained Keras neural network. Users type any message and get live unsafe/spam probability, policy threshold gating, and token-level risk attribution.",
-    technologies: ["Keras", "TensorFlow", "NLP Safety", "Token Attribution", "Vercel"],
+      "Interpretable NLP spam & policy classifier trained on the UCI SMS Spam Collection (5,574 messages). Users input any text to inspect calibrated spam/risk probability, policy threshold gating, and token-level weight attribution.",
+    technologies: ["Keras", "TensorFlow", "UCI SMS Spam", "Token Attribution", "Vercel"],
     github: "https://github.com/HANIDEVINF/content-moderation-system",
     githubReady: true,
     demo: "https://content-moderation-system-psi.vercel.app",
     category: "NLP & Speech AI",
     featured: true,
     status: "Live",
-    metrics: ["99.1% test accuracy", "UCI SMS dataset", "Live token attribution"],
-    impact: "Real exported Keras weights running in-browser with customizable policy thresholds and token-level risk attribution.",
+    metrics: ["99.1% test acc (UCI SMS Spam)", "5,574 labeled messages", "Live token attribution"],
+    impact: "Real exported Keras weights running in-browser with customizable policy thresholds and token-level weight attribution on the UCI SMS benchmark.",
   },
   {
     slug: "keras-document-clustering-lab",
-    title: "EmbedCluster 64D — Neural Document Clustering Lab",
+    title: "EmbedCluster 64D — 20 Newsgroups Representation & Topic Lab",
     description:
-      "Document clustering interface powered by 64D Keras embeddings trained on 20 Newsgroups. Users paste any document set and inspect topic probabilities, cosine similarity matrices, and an interactive 2D cluster projection.",
-    technologies: ["Keras", "TensorFlow", "20 Newsgroups", "64D Embeddings", "Clustering"],
+      "Neural text representation and topic analysis workbench using 64D Keras embeddings trained on 20 Newsgroups. Inspect supervised topic probabilities, pairwise cosine similarity matrices, cluster separation, and 2D projection.",
+    technologies: ["Keras", "TensorFlow", "20 Newsgroups", "64D Embeddings", "Cosine Similarity"],
     github: "https://github.com/HANIDEVINF/document-clustering-visualization",
     githubReady: true,
     demo: "https://document-clustering-visualization.vercel.app",
     category: "NLP & Speech AI",
     status: "Live",
-    metrics: ["64D neural embeddings", "20 Newsgroups topics", "2D PCA/t-SNE projection"],
-    impact: "Shows learned text embeddings, real dataset training, and interactive visualization for user-provided documents.",
+    metrics: ["64D neural embeddings", "Cosine similarity & silhouette", "2D PCA projection"],
+    impact: "Demonstrates learned 64-dimensional text embeddings, pairwise cosine geometry, and topic separation on user-provided documents.",
   },
 
   // ==========================================================================
@@ -530,18 +530,18 @@ export const portfolioProjects: PortfolioProject[] = [
   // ==========================================================================
   {
     slug: "keras-vision-classifier",
-    title: "VisionTensor Lab — CIFAR-10 Neural Classifier",
+    title: "VisionTensor Lab — CIFAR-10 Baseline & Perturbation Workbench",
     description:
-      "Interactive computer vision workbench powered by exported Keras weights and a client-side tensor preprocessing pipeline. Upload any image or inspect test tensors with live RGB perturbation controls.",
+      "Interactive computer vision baseline workbench for inspecting exported Keras weights, client-side 32×32×3 tensor preprocessing, and sensitivity to RGB channel perturbations and noise.",
     technologies: ["Keras", "TensorFlow", "Computer Vision", "CIFAR-10", "Browser Tensor Engine"],
     github: "https://github.com/HANIDEVINF/image-classification-mobile-app",
     githubReady: true,
     demo: "https://image-classification-mobile-app.vercel.app",
     category: "Computer Vision",
-    featured: true,
-    status: "Live",
-    metrics: ["10 CIFAR vision classes", "Real exported weights", "Instant image upload"],
-    impact: "End-to-end proof of Keras model export and client-side tensor preprocessing without external API latency.",
+    featured: false,
+    status: "Research",
+    metrics: ["10 CIFAR-10 classes", "Baseline vs ConvNet ablation", "Live RGB perturbation"],
+    impact: "Documented baseline experiment demonstrating browser-native tensor preprocessing, weight serialization, and input perturbation analysis.",
   },
   {
     slug: "real-time-object-detection",
