@@ -54,9 +54,14 @@ export async function POST(req: NextRequest) {
     let storedInDb = false
     let relayedViaEmail = false
 
-    // Service-role access stays on the server. The browser never writes directly to Supabase.
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+    // Service-role access stays on the server; falls back to publishable key if RLS insert policy allows.
+    const supabaseUrl =
+      process.env.NEXT_PUBLIC_SUPABASE_URL || "https://kzjyetclbsljbjkarlpc.supabase.co"
+    const supabaseKey =
+      process.env.SUPABASE_SERVICE_ROLE_KEY ||
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+      "sb_publishable_dgzwe5XyZeP8SvXjsqDShQ_cB8D6M9M"
 
     if (supabaseUrl && supabaseKey) {
       try {
