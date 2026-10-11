@@ -116,12 +116,12 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
   if (lang === "en") {
     addHeader("Executive Summary")
     addParagraph(
-      "AI Engineer & Master's Researcher in Artificial Intelligence at USTHB with 5 AI research internships at CERIST and ~2 years of commercial full-stack software delivery. Proven track record designing custom Transformer/BERT architectures (MUCAT), embedded medical AI & real-time IoT patient monitoring platforms (MedGuardAI, MIT-BIH v7 INT8 TFLite), hybrid RAG pipelines, multi-agent systems, and multi-role commercial ERP and clinical software."
+      "Applied AI Engineer & M.Sc. Candidate in Artificial Intelligence at USTHB (Expected June 2027) with 5 AI research internships at CERIST (2024 - Present) and 2+ years of commercial full-stack software delivery (Jan 2024 - Present). Proven track record designing evaluated deep learning architectures (MuCAT 6-language Transformer, MIT-BIH v7 INT8 TFLite ECG classifier), real-time IoT clinical platforms (MedGuardAI), hybrid RAG pipelines, and 6 deployed commercial client systems."
     )
 
     addHeader("Professional & Research Experience")
     addParagraph(
-      "AI Engineering Researcher (5 Research Internships) - CERIST, Algiers, Algeria (2024 - Present)",
+      "AI Engineering Research Intern (5 Appointments, UbiSys Team DTISI) - CERIST, Algiers (2024 - Present)",
       9.6,
       true,
       [0.08, 0.08, 0.15]
@@ -137,7 +137,7 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
     )
 
     addParagraph(
-      "Independent Full-Stack & AI Systems Engineer - Algiers, Algeria (~2 Years)",
+      "Independent Full-Stack & Applied AI Engineer - Algiers, Algeria (Jan 2024 - Present)",
       9.6,
       true,
       [0.08, 0.08, 0.15]
@@ -165,12 +165,12 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
 
     addHeader("Education")
     addParagraph(
-      "Master in Artificial Intelligence - USTHB, Algiers (Sep 2022 - June 2027 Expected)",
+      "M.Sc. Candidate in Artificial Intelligence - USTHB, Algiers (Sep 2025 - June 2027 Expected)",
       9.4,
       true
     )
     addParagraph(
-      "Bachelor's Degree (Licence) in Computer Science - USTHB, Algiers (Completed - Capstone: MedGuardAI)",
+      "B.Sc. (Licence) in Computer Science - USTHB, Algiers (Sep 2022 - June 2025 Graduated - Capstone: MedGuardAI)",
       9.4,
       true
     )
@@ -188,12 +188,12 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
   } else {
     addHeader("Resume Executif")
     addParagraph(
-      "Ingenieur en Intelligence Artificielle et chercheur en Master IA a l'USTHB avec 5 stages de recherche en IA au CERIST et ~2 ans d'experience en developpement full-stack commercial. Conception d'architectures Transformer/BERT multilingues (MUCAT), systemes medicaux IoT & IA temps reel (MedGuardAI, ECG v7 INT8 TFLite), pipelines RAG hybrides, systemes multi-agents et logiciels ERP/cliniques en production."
+      "Ingenieur en IA Appliquee et Candidat au Master en Intelligence Artificielle a l'USTHB (Prevu Juin 2027) avec 5 stages de recherche en IA au CERIST (2024 - Present) et 2+ ans d'experience en developpement full-stack commercial (Janv. 2024 - Present). Conception d'architectures Transformer/BERT multilingues (MuCAT), systemes medicaux IoT & IA temps reel (MedGuardAI, ECG v7 INT8 TFLite), pipelines RAG hybrides et 6 logiciels commerciaux en production."
     )
 
     addHeader("Experience Professionnelle & Recherche")
     addParagraph(
-      "Chercheur en Ingenierie de l'IA (5 Stages) - CERIST, Alger, Algerie (2024 - Present)",
+      "Stagiaire Chercheur en Ingenierie de l'IA (5 Stages, Equipe UbiSys DTISI) - CERIST, Alger (2024 - Present)",
       9.6,
       true,
       [0.08, 0.08, 0.15]
@@ -209,7 +209,7 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
     )
 
     addParagraph(
-      "Ingenieur Full-Stack & Systemes IA Freelance - Alger, Algerie (~2 Ans)",
+      "Ingenieur Full-Stack & IA Appliquee Independant - Alger, Algerie (Janv. 2024 - Present)",
       9.6,
       true,
       [0.08, 0.08, 0.15]
@@ -223,12 +223,12 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
 
     addHeader("Formation")
     addParagraph(
-      "Master en Intelligence Artificielle - USTHB, Alger (Sep 2022 - Juin 2027 prevu)",
+      "Candidat au Master en Intelligence Artificielle - USTHB, Alger (Sept. 2025 - Juin 2027 prevu)",
       9.4,
       true
     )
     addParagraph(
-      "Licence en Informatique - USTHB, Alger (Obtenue - PFE : MedGuardAI)",
+      "Licence en Informatique - USTHB, Alger (Sept. 2022 - Juin 2025 Diplome - PFE : MedGuardAI)",
       9.4,
       true
     )

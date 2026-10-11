@@ -14,7 +14,7 @@ const resumeData = {
     printBtn: "Download CV (PDF)",
     summaryTitle: "Professional Summary",
     summaryText:
-      "AI Engineering Master's Researcher at USTHB with ~2 years of commercial full-stack & AI software engineering experience and 5 AI research internships at CERIST. Proven track record designing machine learning and deep learning systems, custom NLP/Transformer architectures (MUCAT), hybrid RAG pipelines, and enterprise web/desktop platforms—including a real-time patient monitoring platform connected to physical ECG and blood glucose sensors (MedGuardAI) and embedded MIT-BIH v7 arrhythmia inference. Focused on generative AI, agentic AI, trustworthy AI, and end-to-end production deployment.",
+      "M.Sc. Candidate in Artificial Intelligence at USTHB (Expected June 2027) with 5 AI research internships at CERIST (2024–Present) and 2+ years of commercial full-stack & AI software engineering experience (2024–Present). Proven track record designing evaluated deep learning systems, custom multilingual Transformer architectures (MuCAT — 98.20% test accuracy), embedded medical AI (MIT-BIH v7 INT8 TFLite, 90.13% 5-fold inter-patient accuracy), real-time IoT patient monitoring platforms (MedGuardAI), and 6 deployed commercial client systems.",
     expTitle: "Professional & Research Experience",
     eduTitle: "Education",
     skillsTitle: "Technical Competencies",
@@ -43,9 +43,9 @@ const resumeData = {
         ],
       },
       {
-        title: "Freelance Full-Stack & AI Developer",
-        company: "Independent / Self-Employed · Algiers, Algeria",
-        period: "~2 Years",
+        title: "Independent Full-Stack & Applied AI Engineer",
+        company: "Commercial Client Consulting · Algiers, Sidi Bel Abbès & Mascara, Algeria",
+        period: "Jan 2024 – Present",
         responsibilities: [
           "End-to-end design and engineering of web and desktop applications covering frontend, backend, databases, REST APIs, deployment, and AI integration.",
           "Developed ML and deep learning models and connected them to usable software interfaces, including live web demos for real-time model testing.",
@@ -56,16 +56,16 @@ const resumeData = {
     ],
     education: [
       {
-        degree: "Master in Artificial Intelligence (SII / AI Engineering)",
+        degree: "M.Sc. Candidate in Artificial Intelligence (SII / AI Systems Engineering)",
         institution: "University of Science and Technology Houari Boumediene (USTHB) · Algiers",
-        period: "Sep 2022 – June 2027 (Expected)",
-        description: "Graduate studies focused on artificial intelligence, deep learning, NLP, and AI systems engineering.",
+        period: "Sep 2025 – June 2027 (Expected)",
+        description: "Graduate research and coursework in deep learning, multilingual NLP, computer vision, and production AI systems.",
       },
       {
-        degree: "Bachelor's Degree (Licence) in Computer Science",
+        degree: "B.Sc. (Licence) in Computer Science",
         institution: "University of Science and Technology Houari Boumediene (USTHB) · Algiers",
-        period: "Completed",
-        description: "Undergraduate degree completed at USTHB prior to advancing into the Master's in Artificial Intelligence. Capstone (PFE): MedGuardAI Real-Time Patient Monitoring Platform.",
+        period: "Sep 2022 – June 2025 (Graduated)",
+        description: "Undergraduate degree in Computer Science. Graduation Capstone (PFE): MedGuardAI Real-Time IoT Patient Monitoring & Telemedicine Platform.",
       },
     ],
     skills: {
@@ -124,9 +124,9 @@ const resumeData = {
         ],
       },
       {
-        title: "Développeur Full-Stack & IA Freelance",
-        company: "Indépendant / Freelance · Alger, Algérie",
-        period: "Environ 2 ans",
+        title: "Ingénieur Full-Stack & IA Appliquée Indépendant",
+        company: "Missions Clients Commerciales · Alger, Sidi Bel Abbès & Mascara, Algérie",
+        period: "Janv. 2024 – Présent",
         responsibilities: [
           "Conception de bout en bout d'applications web, de sites web et d'applications desktop, couvrant le frontend, le backend, les bases de données, les API, le déploiement et l'intégration de l'IA.",
           "Développement de modèles d'IA et de deep learning et connexion à des interfaces logicielles exploitables, y compris des interfaces web en direct pour le test et la démonstration des modèles.",
@@ -137,16 +137,16 @@ const resumeData = {
     ],
     education: [
       {
-        degree: "Master – Intelligence artificielle",
+        degree: "Candidat au Master en Intelligence Artificielle (SII)",
         institution: "Université des Sciences et de la Technologie Houari Boumediene (USTHB) · Alger",
-        period: "Sep 2022 – Juin 2027 (prévu)",
-        description: "Études de troisième cycle axées sur l'intelligence artificielle et l'ingénierie de l'IA.",
+        period: "Sept. 2025 – Juin 2027 (Prévu)",
+        description: "Cycle Master spécialisé en deep learning, NLP multilingue, vision par ordinateur et ingénierie des systèmes d'IA.",
       },
       {
-        degree: "Licence / Diplôme équivalent en Informatique",
+        degree: "Licence en Informatique",
         institution: "Université des Sciences et de la Technologie Houari Boumediene (USTHB) · Alger",
-        period: "Obtenue",
-        description: "Études de premier cycle achevées à l'USTHB avant de poursuivre en Master d'intelligence artificielle. PFE : MedGuardAI.",
+        period: "Sept. 2022 – Juin 2025 (Diplômé)",
+        description: "Diplôme de Licence en Informatique. Projet de Fin d'Études (PFE) : MedGuardAI — Plateforme IoT et IA de suivi médical en temps réel.",
       },
     ],
     skills: {
