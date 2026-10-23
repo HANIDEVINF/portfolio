@@ -1,0 +1,7 @@
+# Allow all web crawlers and search engine indexing for the public portfolio
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://portfolio-theta-seven-83.vercel.app/sitemap.xml
