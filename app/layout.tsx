@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://portfolio-theta-seven-83.vercel.app'),
+  metadataBase: new URL('https://myportfolio-rho-seven-15.vercel.app'),
   title: 'Hani Ghena | AI Engineer & Full-Stack Systems Architect',
   description: 'Portfolio of Hani Ghena — AI Engineer & Master Researcher at USTHB and CERIST specializing in Deep Learning, Multilingual Transformers, Healthcare AI, RAG, Agentic Systems, and Commercial Software.',
   keywords: ['AI Engineering', 'Machine Learning', 'Deep Learning', 'PyTorch', 'Transformers', 'BERT', 'ECG Arrhythmia', 'MedGuardAI', 'RAG', 'Agentic AI', 'Full-Stack Architect', 'USTHB', 'CERIST'],
