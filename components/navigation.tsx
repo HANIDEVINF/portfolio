@@ -9,6 +9,7 @@ const navLinks = [
   { name: "About", href: "/#about" },
   { name: "Projects", href: "/projects" },
   { name: "EdTech SaaS", href: "/edtech" },
+  { name: "Client Systems", href: "/lab/client-systems" },
   { name: "Live AI Lab", href: "/lab" },
   { name: "Agentic Studio", href: "/lab/agentic-research" },
   { name: "Blog", href: "/blog" },
