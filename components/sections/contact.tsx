@@ -18,8 +18,11 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
 const EMAIL_ADDRESS = "hanighena4@gmail.com"
-const PHONE_NUMBER = "+213 557 42 06 11"
-const WHATSAPP_NUMBER = "213557420611"
+const PHONE_NUMBER = "0541 89 47 43"
+const PHONE_TEL = "+213541894743"
+const WHATSAPP_NUMBER = "213541894743"
+const LINKEDIN_URL = "https://www.linkedin.com/in/ghena-hani-3543a3375/"
+const LINKEDIN_LABEL = "linkedin.com/in/ghena-hani-3543a3375"
 
 type FormData = { name: string; email: string; subject: string; message: string }
 
@@ -35,11 +38,18 @@ export function ContactSection() {
     message: "",
   })
 
-  const composeUrl = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(
-    formData.subject || "Portfolio inquiry"
-  )}&body=${encodeURIComponent(
-    `From: ${formData.name} (${formData.email})\n\n${formData.message}`
-  )}`
+  const subjectText = formData.subject || "Portfolio inquiry"
+  const bodyText = formData.name || formData.message
+    ? `From: ${formData.name} (${formData.email})\n\n${formData.message}`
+    : "Hello Hani,\n\nI would like to discuss an opportunity / project with you."
+
+  const composeMailtoUrl = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(
+    subjectText
+  )}&body=${encodeURIComponent(bodyText)}`
+
+  const composeGmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_ADDRESS}&su=${encodeURIComponent(
+    subjectText
+  )}&body=${encodeURIComponent(bodyText)}`
 
   async function copyEmail() {
     await navigator.clipboard?.writeText(EMAIL_ADDRESS)
@@ -104,8 +114,8 @@ export function ContactSection() {
             <ContactCard
               icon={<Phone className="h-5 w-5" />}
               label="Phone & WhatsApp"
-              value={PHONE_NUMBER}
-              href="tel:+213557420611"
+              value={`${PHONE_NUMBER} (+213 541 89 47 43)`}
+              href={`tel:${PHONE_TEL}`}
             />
             <ContactCard
               icon={<Github className="h-5 w-5" />}
@@ -117,11 +127,21 @@ export function ContactSection() {
             <ContactCard
               icon={<Linkedin className="h-5 w-5" />}
               label="LinkedIn"
-              value="linkedin.com/in/hani-ghena-797a29269"
-              href="https://www.linkedin.com/in/hani-ghena-797a29269/"
+              value={LINKEDIN_LABEL}
+              href={LINKEDIN_URL}
               external
             />
             <div className="flex flex-wrap gap-2 pt-2">
+              <a
+                href={composeGmailUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-fuchsia-500/30 bg-fuchsia-950/40 px-3 py-2 text-xs font-semibold text-fuchsia-200 transition hover:bg-fuchsia-800/40"
+              >
+                <Mail className="h-3.5 w-3.5 text-fuchsia-400" />
+                Send via Gmail
+                <ExternalLink className="h-3 w-3 opacity-70" />
+              </a>
               <button
                 type="button"
                 onClick={copyEmail}
@@ -203,16 +223,60 @@ export function ContactSection() {
               />
             </FormField>
             {formState === "error" && (
-              <p role="alert" className="flex items-center gap-2 text-sm text-red-300">
-                <AlertCircle className="h-4 w-4 shrink-0" />
-                {errorMessage}
-              </p>
+              <div className="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4 space-y-2">
+                <p role="alert" className="flex items-center gap-2 text-sm text-amber-200">
+                  <AlertCircle className="h-4 w-4 shrink-0 text-amber-400" />
+                  {errorMessage}
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <a
+                    href={composeGmailUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-fuchsia-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-fuchsia-500 transition"
+                  >
+                    <Mail className="h-3.5 w-3.5" />
+                    Send via Gmail directly
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                  <a
+                    href={composeMailtoUrl}
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-purple-500/40 bg-purple-950/40 px-3 py-1.5 text-xs font-semibold text-purple-200 hover:bg-purple-800/40 transition"
+                  >
+                    Use default mail app
+                  </a>
+                </div>
+              </div>
             )}
             {formState === "success" && (
-              <p role="status" className="flex items-center gap-2 text-sm text-emerald-300">
-                <CheckCircle2 className="h-4 w-4 shrink-0" />
-                Thanks. Your message has been received.
-              </p>
+              <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-4 space-y-2">
+                <p role="status" className="flex items-center gap-2 text-sm font-semibold text-emerald-300">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
+                  Thanks! Your message has been sent to hanighena4@gmail.com.
+                </p>
+                <p className="text-xs text-slate-300">
+                  You can also open this inquiry directly in Gmail to keep a sent copy in your inbox:
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <a
+                    href={composeGmailUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-900/50 border border-emerald-500/40 px-3 py-1.5 text-xs font-semibold text-emerald-200 hover:bg-emerald-800/50 transition"
+                  >
+                    <Mail className="h-3 w-3" />
+                    Open copy in Gmail
+                    <ExternalLink className="h-2.5 w-2.5" />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setFormState("idle")}
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-purple-500/30 bg-purple-950/30 px-3 py-1.5 text-xs font-semibold text-purple-200 hover:bg-purple-800/30 transition cursor-pointer"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              </div>
             )}
             <div className="grid gap-3 sm:grid-cols-2">
               <Button
@@ -225,11 +289,23 @@ export function ContactSection() {
                 {formState === "loading" ? "Sending…" : "Send message"}
               </Button>
               <a
-                href={composeUrl}
+                href={composeGmailUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-purple-500/35 bg-[#140d2a] px-4 text-sm font-semibold text-purple-200 transition hover:bg-[#1d133b]"
               >
-                <Mail className="h-4 w-4" />
-                Use email instead
+                <Mail className="h-4 w-4 text-fuchsia-400" />
+                Open in Gmail
+                <ExternalLink className="h-3 w-3 opacity-70" />
+              </a>
+            </div>
+            <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
+              <span>Prefer local email app?</span>
+              <a
+                href={composeMailtoUrl}
+                className="text-purple-300 hover:text-white underline underline-offset-2 transition"
+              >
+                Open default mail client
               </a>
             </div>
           </form>

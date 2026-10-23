@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { Download, Mail, Phone, Briefcase, GraduationCap, Award, FileText, CheckCircle2, MapPin, Languages } from "lucide-react"
+import { Download, Mail, Phone, Briefcase, GraduationCap, Award, FileText, CheckCircle2, MapPin, Languages, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { generateAndDownloadResumePdf } from "@/lib/generate-cv-pdf"
 
@@ -193,9 +193,13 @@ export default function ResumePage() {
                   <Mail className="w-4 h-4 text-purple-400" />
                   hanighena4@gmail.com
                 </a>
-                <a href="tel:+213557420611" className="flex items-center gap-1.5 hover:text-purple-300 transition-colors">
+                <a href="tel:+213541894743" className="flex items-center gap-1.5 hover:text-purple-300 transition-colors">
                   <Phone className="w-4 h-4 text-purple-400" />
-                  +213 557 42 06 11
+                  0541894743 (+213 541 89 47 43)
+                </a>
+                <a href="https://www.linkedin.com/in/ghena-hani-3543a3375/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-purple-300 transition-colors">
+                  <Linkedin className="w-4 h-4 text-purple-400" />
+                  LinkedIn
                 </a>
                 <span className="flex items-center gap-1.5">
                   <MapPin className="w-4 h-4 text-purple-400" />

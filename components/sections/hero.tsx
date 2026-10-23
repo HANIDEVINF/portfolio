@@ -94,7 +94,7 @@ export function HeroSection() {
             className="w-full sm:w-auto border-purple-500/30 bg-[#120c22]/70 hover:bg-[#1a1233] text-white font-medium px-5 py-3.5 text-sm sm:text-base backdrop-blur-md rounded-xl"
             asChild
           >
-            <a href="https://www.linkedin.com/in/hani-ghena-797a29269/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/ghena-hani-3543a3375/" target="_blank" rel="noopener noreferrer">
               <Linkedin className="w-4 h-4 mr-2 text-cyan-400" />
               LinkedIn
             </a>
