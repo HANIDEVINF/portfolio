@@ -6,6 +6,7 @@ export type CaseStudySection = {
 
 export type ProjectCategory =
   | "Freelance & Client Systems"
+  | "EdTech & SaaS Platform"
   | "Healthcare AI"
   | "NLP & Speech AI"
   | "RAG & Information Extraction"
@@ -14,6 +15,7 @@ export type ProjectCategory =
 
 export const PROJECT_CATEGORIES: readonly ("All" | ProjectCategory)[] = [
   "All",
+  "EdTech & SaaS Platform",
   "Healthcare AI",
   "NLP & Speech AI",
   "RAG & Information Extraction",
@@ -606,19 +608,33 @@ export const portfolioProjects: PortfolioProject[] = [
     metrics: ["Real-time bounding boxes", "Human posture tracking", "Alert webhook"],
   },
   {
-    slug: "usthb-neural-networks-metaheuristics",
-    title: "Neural Networks, Metaheuristics & AI Architecture Labs (USTHB)",
+    slug: "nexuslearn-edtech-academy",
+    title: "NexusLearn EdTech Academy — Online Learning & AI Quiz SaaS",
     description:
-      "Graduate artificial intelligence engineering implementations: multi-layer perceptron backpropagation from scratch, metaheuristic optimization algorithms (GA, PSO, Tabu Search), multi-agent consensus protocols, and knowledge graphs.",
-    technologies: ["PyTorch", "Python", "Genetic Algorithms", "PSO", "Neural Networks", "Jupyter Notebook"],
-    github: "https://github.com/HANIDEVINF/master-1",
+      "Modern high-end EdTech SaaS platform featuring student learning dashboards, interactive video course modules, AI quiz evaluation with instant feedback, course progress tracking, and instructor analytics.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "AI Quiz Evaluation", "EdTech SaaS"],
+    github: "https://github.com/HANIDEVINF/portfolio",
     githubReady: true,
-    demo: "/lab",
+    demo: "/edtech",
+    category: "EdTech & SaaS Platform",
+    featured: true,
+    status: "Client Production",
+    metrics: ["Interactive video modules", "AI quiz evaluation engine", "Student grade tracking"],
+    impact: "Commercial EdTech platform delivering personalized learning tracks, AI-powered quiz assessments, and professional course management.",
+  },
+  {
+    slug: "autonomous-multi-agent-research-studio",
+    title: "AgenticResearch Studio — Multi-Agent Research & Report Generator",
+    description:
+      "Autonomous multi-agent research workbench leveraging Google Gemini to coordinate 4 specialized agent swarms (Planner, Retriever, Synthesizer, Critic) to investigate complex engineering topics and generate publication-grade executive reports.",
+    technologies: ["Google Gemini API", "Multi-Agent Swarms", "Agentic AI", "Next.js 16", "Markdown Export"],
+    github: "https://github.com/HANIDEVINF/multi-agent-support-bot",
+    githubReady: true,
+    demo: "/lab/agentic-research",
     category: "Agentic AI & MLOps",
-    status: "Research",
-    trainedDataset: "Optimization Benchmarks (TSP, Non-Linear Functions) & Classification Datasets",
-    modelType: "MLP from Scratch + Genetic Algorithm & PSO Metaheuristic Optimizers",
-    metrics: ["MLP Backprop from scratch", "GA & PSO Metaheuristics", "Multi-Agent Consensus"],
-    impact: "Rigorous academic AI foundations covering gradient descent dynamics, search landscape exploration, and distributed agent consensus.",
+    featured: true,
+    status: "Live",
+    metrics: ["4 specialized agent swarms", "Real-time telemetry logging", "Publication-grade Markdown export"],
+    impact: "Demonstrates state-of-the-art agentic AI workflow automation, orchestrating complex research tasks and synthesizing rigorous technical reports.",
   },
 ]

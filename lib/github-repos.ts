@@ -3,7 +3,7 @@ export type GithubRepoInfo = {
   fullName: string
   description: string
   language: string
-  category: "Healthcare Deep Learning" | "NLP & Speech AI" | "MLOps & Agents" | "Computer Vision" | "Commercial Software" | "Academic & Systems"
+  category: "Healthcare Deep Learning" | "NLP & Speech AI" | "MLOps & Agents" | "Computer Vision" | "Commercial Software" | "Academic & Systems" | "EdTech & SaaS Platform"
   trainedDataset?: string
   modelType?: string
   isTrainedModel?: boolean
@@ -385,11 +385,22 @@ export const ALL_GITHUB_REPOSITORIES: GithubRepoInfo[] = [
     topics: ["github-pages", "portfolio"],
   },
   {
-    name: "HANIDEVINF",
-    fullName: "HANIDEVINF/HANIDEVINF",
-    description: "Hani Ghena GitHub Profile Readme — AI Engineer & Medical AI Researcher (M.Sc. AI @ USTHB · 5x CERIST Intern).",
-    language: "Markdown",
-    category: "Academic & Systems",
-    topics: ["ai-engineer", "deep-learning", "healthcare-ai", "mlops", "pytorch", "transformers"],
+    name: "nexuslearn-edtech-academy",
+    fullName: "HANIDEVINF/nexuslearn-edtech-academy",
+    description: "NexusLearn EdTech Academy — High-end online learning SaaS platform with interactive video course modules, AI quiz evaluation, progress tracking, and instructor analytics.",
+    language: "TypeScript",
+    category: "EdTech & SaaS Platform",
+    topics: ["edtech", "saas", "react", "nextjs", "ai-quiz"],
+  },
+  {
+    name: "autonomous-multi-agent-research-studio",
+    fullName: "HANIDEVINF/autonomous-multi-agent-research-studio",
+    description: "AgenticResearch Studio — Autonomous multi-agent research & report generator (Planner, Researcher, Synthesizer, Critic) powered by Google Gemini.",
+    language: "TypeScript",
+    category: "MLOps & Agents",
+    trainedDataset: "Multi-Source Research Corpora & Academic Papers",
+    modelType: "Google Gemini 2.5 Flash Multi-Agent Swarm Orchestrator",
+    isTrainedModel: true,
+    topics: ["agentic-ai", "multi-agent-systems", "gemini-api", "research-copilot", "nextjs"],
   },
 ]
