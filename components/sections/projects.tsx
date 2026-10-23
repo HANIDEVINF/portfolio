@@ -1,14 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowRight, Brain, CheckCircle2, ExternalLink, FileText, Github, Layers, RadioTower, Rocket, Sparkles, X } from "lucide-react"
+import { ArrowRight, Brain, CheckCircle2, Database, ExternalLink, FileText, Github, Layers, Lock, RadioTower, Rocket, ShieldCheck, Sparkles, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { portfolioProjects, PROJECT_CATEGORIES, type PortfolioProject } from "@/lib/projects-data"
 import { ProjectPreviewBanner } from "@/components/project-preview-banner"
+import { ProtectedCodeModal, type ProtectedRepoData } from "@/components/protected-code-modal"
 import Link from "next/link"
 
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null)
+  const [protectedRepo, setProtectedRepo] = useState<ProtectedRepoData | null>(null)
   const [activeCategory, setActiveCategory] = useState<string>("All")
   const categories = PROJECT_CATEGORIES
 
@@ -117,6 +119,23 @@ export function ProjectsSection() {
                       </p>
                     </div>
 
+                    {project.trainedDataset && (
+                      <div className="mb-4 rounded-xl border border-emerald-500/30 bg-emerald-950/25 p-3.5 text-xs text-emerald-200">
+                        <div className="flex items-center gap-1.5 font-bold text-emerald-300 uppercase tracking-wider text-[11px] mb-1">
+                          <Brain className="h-3.5 w-3.5 text-emerald-400" />
+                          Trained Deep Learning Model on Dataset
+                        </div>
+                        <div className="font-mono text-emerald-100 font-medium leading-relaxed">
+                          {project.trainedDataset}
+                        </div>
+                        {project.modelType && (
+                          <div className="mt-1.5 text-[11px] text-emerald-300/80 font-mono">
+                            Model Architecture: {project.modelType}
+                          </div>
+                        )}
+                      </div>
+                    )}
+
                     {project.architecture && project.architecture.length > 0 && (
                       <div className="mb-4 rounded-xl border border-purple-500/15 bg-[#120b24]/80 p-3.5">
                         <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-300 font-semibold block mb-2">
@@ -191,23 +210,18 @@ export function ProjectsSection() {
                       </Button>
                     )}
 
-                    {project.githubReady !== false ? (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="border-purple-500/30 bg-[#140d29] hover:bg-[#1f143d] text-white font-medium rounded-xl"
-                        asChild
-                      >
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          Code <Github className="ml-1.5 h-3.5 w-3.5" />
-                        </a>
-                      </Button>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 rounded-xl border border-purple-500/25 bg-[#140d29]/60 px-3 py-1.5 text-xs font-mono text-purple-300/90">
-                        <Github className="h-3.5 w-3.5" />
-                        Repo Publishing Soon
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setProtectedRepo(project)}
+                      className="border-purple-500/30 bg-[#140d29] hover:bg-[#1f143d] text-white font-medium rounded-xl cursor-pointer"
+                    >
+                      <Github className="mr-1.5 h-3.5 w-3.5 text-purple-400" />
+                      <span className="font-mono text-xs truncate max-w-[170px]">
+                        {project.github.replace("https://github.com/HANIDEVINF/", "")}
                       </span>
-                    )}
+                      <Lock className="ml-1.5 h-3 w-3 text-amber-400" />
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -245,16 +259,19 @@ export function ProjectsSection() {
                           <div className="p-6">
                             <div className="flex items-center justify-between mb-2.5 text-xs text-purple-300 font-mono">
                               <span>{project.category}</span>
-                              <div className="flex items-center gap-3">
-                                <a
-                                  href={project.github}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-slate-400 hover:text-white transition-colors"
-                                  aria-label="GitHub repository"
+                              <div className="flex items-center gap-2">
+                                <button
+                                  type="button"
+                                  onClick={() => setProtectedRepo(project)}
+                                  className="inline-flex items-center gap-1 rounded-md border border-purple-500/25 bg-purple-950/40 px-2 py-0.5 text-[11px] font-mono text-purple-300 hover:text-white hover:bg-purple-900/40 transition cursor-pointer"
+                                  title="View protected repository"
                                 >
-                                  <Github className="w-4 h-4" />
-                                </a>
+                                  <Github className="w-3 h-3 text-purple-400" />
+                                  <span className="truncate max-w-[100px]">
+                                    {project.github.replace("https://github.com/HANIDEVINF/", "")}
+                                  </span>
+                                  <Lock className="w-2.5 h-2.5 text-amber-400" />
+                                </button>
                                 {project.demo && (
                                   <a
                                     href={project.demo}
@@ -272,6 +289,19 @@ export function ProjectsSection() {
                             <h4 className="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
                               {project.title}
                             </h4>
+
+                            {project.trainedDataset && (
+                              <div className="mb-3 rounded-lg border border-emerald-500/25 bg-emerald-950/25 p-2 text-[11px] text-emerald-200">
+                                <span className="font-semibold text-emerald-300 flex items-center gap-1 mb-0.5">
+                                  <Brain className="h-3 w-3 text-emerald-400" />
+                                  Trained Dataset:
+                                </span>
+                                <span className="font-mono text-[10.5px] text-emerald-200/90 line-clamp-2">
+                                  {project.trainedDataset}
+                                </span>
+                              </div>
+                            )}
+
                             <p className="text-sm text-slate-300 leading-relaxed mb-4 font-light">
                               {project.description}
                             </p>
@@ -438,12 +468,14 @@ export function ProjectsSection() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-purple-500/30 bg-[#140d29] text-white rounded-xl"
-                    asChild
+                    onClick={() => {
+                      setProtectedRepo(selectedProject)
+                    }}
+                    className="border-purple-500/30 bg-[#140d29] text-white rounded-xl cursor-pointer"
                   >
-                    <a href={selectedProject.github} target="_blank" rel="noopener noreferrer">
-                      View Repository <Github className="ml-1.5 h-3.5 w-3.5" />
-                    </a>
+                    <Github className="mr-1.5 h-3.5 w-3.5 text-purple-400" />
+                    View Repository
+                    <Lock className="ml-1.5 h-3 w-3 text-amber-400" />
                   </Button>
                 )}
               </div>
@@ -459,6 +491,12 @@ export function ProjectsSection() {
           </div>
         </div>
       )}
+
+      {/* Protected Repository Modal */}
+      <ProtectedCodeModal
+        repo={protectedRepo}
+        onClose={() => setProtectedRepo(null)}
+      />
     </section>
   )
 }

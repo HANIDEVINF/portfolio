@@ -37,6 +37,8 @@ export type PortfolioProject = {
   metrics?: string[]
   impact?: string
   architecture?: string[]
+  trainedDataset?: string
+  modelType?: string
   caseStudy?: {
     subtitle: string
     datasetOrScope: string
@@ -62,6 +64,8 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Healthcare AI",
     featured: true,
     status: "Research",
+    trainedDataset: "PhysioNet MIT-BIH Arrhythmia Database (100,645 labeled beats, DS1/DS2 inter-patient protocol)",
+    modelType: "Hybrid 1D-CNN + 2x Multi-Head Transformer Attention + 8-RR Fusion Head (155 KB INT8 TFLite)",
     metrics: [
       "87.63% raw / 90.13% 5-fold ensemble",
       "97,045 params (155.4 KB INT8)",
@@ -113,6 +117,8 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Healthcare AI",
     featured: true,
     status: "PFE Distinction",
+    trainedDataset: "PhysioNet MIT-BIH Arrhythmia & Continuous Glucose Monitoring (CGM) Real-Time Telemetry",
+    modelType: "Edge TFLite Quantized Neural Inference + Real-Time Anomaly Alert Engine",
     metrics: ["Real-time ECG & Glucose", "Emergency alert workflows", "WebRTC + Chat + Booking"],
     impact:
       "Licence Graduation Capstone (PFE USTHB). Connects physical medical sensors & Raspberry Pi to a real-time backend, MongoDB, and cross-platform clinical dashboards.",
@@ -141,6 +147,22 @@ export const portfolioProjects: PortfolioProject[] = [
         },
       ],
     },
+  },
+  {
+    slug: "cgm-blood-glucose-anomaly-detection",
+    title: "Continuous Glucose (CGM) Deep Learning Anomaly Detection",
+    description:
+      "Deep learning time-series sequence model trained on continuous glucose monitoring (CGM) sensor trajectories to classify glucose patterns and forecast acute hypo/hyperglycemic risk episodes for diabetes patients.",
+    technologies: ["PyTorch", "Time-Series Anomaly Detection", "CGM Sensors", "Python", "Jupyter Notebook"],
+    github: "https://github.com/HANIDEVINF/deep-learning-model-for-anomaly-detection-of-blood-glucose-monitoring",
+    githubReady: true,
+    demo: "/lab/ecg-holter-v7",
+    category: "Healthcare AI",
+    status: "Research",
+    trainedDataset: "Continuous Glucose Monitoring (CGM) Physiological Time-Series Sensor Dataset",
+    modelType: "Deep Sequence Anomaly Classifier (Temporal 1D-CNN / LSTM Forecaster)",
+    metrics: ["Hypo/Hyperglycemia classification", "Temporal CGM stream predictor", "MedGuardAI integration"],
+    impact: "Provides proactive clinical risk alerting for diabetes telemetry before glucose crosses dangerous hypoglycemic thresholds.",
   },
   {
     slug: "medical-note-assistant",
@@ -340,6 +362,8 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "NLP & Speech AI",
     featured: true,
     status: "CERIST Research",
+    trainedDataset: "Tatoeba 6-Language Low-Resource Benchmark (MSA, Algerian Darija, Kabyle, Chaoui, French, English)",
+    modelType: "mDeBERTa-v3-base + Hierarchical Attention Pooling (HAP) + FiLM LAG Gating + Evidential Dirichlet Head (98.20% Test Acc)",
     metrics: ["98.20% Test Acc (vs 23.74% ablation)", "6 Languages (AR/ARQ/KAB/SHY/FR/EN)", "Single-Pass Dirichlet Uncertainty u=K/S"],
     impact:
       "CERIST (UbiSys Team, DTISI) research supervised by Nadir Bouchama: achieves 98.26% Val / 98.20% Test accuracy with native calibrated uncertainty u = K/S under an identical 10-epoch LLRD budget, outperforming XLM-RoBERTa-base (3.88% test) and standard mDeBERTa-v3 ablation (23.74% test).",
@@ -386,6 +410,8 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "NLP & Speech AI",
     featured: true,
     status: "Live",
+    trainedDataset: "Free Spoken Digit Dataset (FSDD 2,000+ spoken audio recordings at 8kHz)",
+    modelType: "16x32 Hann DFT Spectrogram Matrix + Conv1D/Dense Audio Classifier (92.2% Macro-F1)",
     metrics: ["Live Mic ASR (EN/FR/AR)", "SOAP & Action Synthesis", "16×32 FFT Acoustic DSP"],
     impact: "End-to-end speech intelligence workbench with live microphone sentence transcription, named entity tagging, and structured clinical/executive summarization.",
   },
@@ -401,6 +427,8 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "NLP & Speech AI",
     featured: true,
     status: "Live",
+    trainedDataset: "UCI SMS Spam Collection (5,574 labeled messages)",
+    modelType: "Keras Dense(96)→Dense(32)→Sigmoid with Token Saliency & Policy Gating (99.1% Test Acc)",
     metrics: ["99.1% test acc (UCI SMS Spam)", "5,574 labeled messages", "Live token attribution"],
     impact: "Real exported Keras weights running in-browser with customizable policy thresholds and token-level weight attribution on the UCI SMS benchmark.",
   },
@@ -415,8 +443,25 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://document-clustering-visualization.vercel.app",
     category: "NLP & Speech AI",
     status: "Live",
+    trainedDataset: "20 Newsgroups Text Classification Benchmark (18,000+ articles across 20 topics)",
+    modelType: "64-Dimensional Latent Neural Text Encoder + Cosine Similarity Metric Space",
     metrics: ["64D neural embeddings", "Cosine similarity & silhouette", "2D PCA projection"],
     impact: "Demonstrates learned 64-dimensional text embeddings, pairwise cosine geometry, and topic separation on user-provided documents.",
+  },
+  {
+    slug: "natural-language-translation-system",
+    title: "Lexical & Syntactic Grammar Translation System",
+    description:
+      "Compiler engineering system built with Flex and Bison in C implementing lexical analysis, AST construction, symbol table hashing, and context-free grammar parsing for formal language translation.",
+    technologies: ["Flex", "Bison", "C", "CFG Parsing", "Compiler Design"],
+    github: "https://github.com/HANIDEVINF/Natural-Language-Translation-System",
+    githubReady: true,
+    demo: "/lab",
+    category: "NLP & Speech AI",
+    status: "Research",
+    trainedDataset: "Context-Free Grammar Specifications & Lexical Translation Rules",
+    modelType: "Deterministic LALR(1) Grammar Syntactic Parser & Lexical Analyzer",
+    metrics: ["CFG grammar parsing", "Symbol table hashing", "Semantic translation pass"],
   },
 
   // ==========================================================================
@@ -540,6 +585,8 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Computer Vision",
     featured: false,
     status: "Research",
+    trainedDataset: "CIFAR-10 Benchmark (60,000 32x32 color images across 10 object classes)",
+    modelType: "16x16x3 Spatial Tensor Quantized Convolutional Neural Network + RGB Channel Perturbation",
     metrics: ["10 CIFAR-10 classes", "Baseline vs ConvNet ablation", "Live RGB perturbation"],
     impact: "Documented baseline experiment demonstrating browser-native tensor preprocessing, weight serialization, and input perturbation analysis.",
   },
@@ -554,6 +601,24 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://image-classification-mobile-app.vercel.app",
     category: "Computer Vision",
     status: "Research",
+    trainedDataset: "Human Posture Acceleration & Multi-View Fall Trajectory Datasets",
+    modelType: "Temporal Motion Anomaly Classifier + Vision Bounding Box Tracker",
     metrics: ["Real-time bounding boxes", "Human posture tracking", "Alert webhook"],
+  },
+  {
+    slug: "usthb-neural-networks-metaheuristics",
+    title: "Neural Networks, Metaheuristics & AI Architecture Labs (USTHB)",
+    description:
+      "Graduate artificial intelligence engineering implementations: multi-layer perceptron backpropagation from scratch, metaheuristic optimization algorithms (GA, PSO, Tabu Search), multi-agent consensus protocols, and knowledge graphs.",
+    technologies: ["PyTorch", "Python", "Genetic Algorithms", "PSO", "Neural Networks", "Jupyter Notebook"],
+    github: "https://github.com/HANIDEVINF/master-1",
+    githubReady: true,
+    demo: "/lab",
+    category: "Agentic AI & MLOps",
+    status: "Research",
+    trainedDataset: "Optimization Benchmarks (TSP, Non-Linear Functions) & Classification Datasets",
+    modelType: "MLP from Scratch + Genetic Algorithm & PSO Metaheuristic Optimizers",
+    metrics: ["MLP Backprop from scratch", "GA & PSO Metaheuristics", "Multi-Agent Consensus"],
+    impact: "Rigorous academic AI foundations covering gradient descent dynamics, search landscape exploration, and distributed agent consensus.",
   },
 ]

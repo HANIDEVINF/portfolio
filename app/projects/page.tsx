@@ -2,10 +2,12 @@
 
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { Activity, ArrowRight, CheckCircle2, ExternalLink, FileText, Filter, Github, Layers, Sparkles, X } from "lucide-react"
+import { Activity, ArrowRight, Brain, CheckCircle2, Database, ExternalLink, FileText, Filter, Github, Layers, Lock, ShieldCheck, Sparkles, X } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { portfolioProjects, PROJECT_CATEGORIES, type PortfolioProject } from "@/lib/projects-data"
+import { ProtectedCodeModal, type ProtectedRepoData } from "@/components/protected-code-modal"
+import { GithubReposDirectory } from "@/components/github-repos-directory"
 import Link from "next/link"
 
 const categories = PROJECT_CATEGORIES
@@ -13,6 +15,7 @@ const categories = PROJECT_CATEGORIES
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("All")
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null)
+  const [protectedRepo, setProtectedRepo] = useState<ProtectedRepoData | null>(null)
   
   const filteredProjects = activeCategory === "All" 
     ? portfolioProjects
@@ -120,6 +123,23 @@ export default function ProjectsPage() {
                             {project.title}
                           </h3>
 
+                          {project.trainedDataset && (
+                            <div className="mb-3.5 rounded-xl border border-emerald-500/25 bg-emerald-950/25 p-3 text-xs text-emerald-200">
+                              <span className="font-semibold text-emerald-300 flex items-center gap-1.5 mb-1 text-[11px] uppercase tracking-wider">
+                                <Brain className="h-3.5 w-3.5 text-emerald-400" />
+                                Trained Model on Dataset:
+                              </span>
+                              <span className="font-mono text-[11px] text-emerald-100 leading-tight block">
+                                {project.trainedDataset}
+                              </span>
+                              {project.modelType && (
+                                <span className="font-mono text-[10.5px] text-emerald-300/80 block mt-1">
+                                  {project.modelType}
+                                </span>
+                              )}
+                            </div>
+                          )}
+
                           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 flex-grow font-light">
                             {project.description}
                           </p>
@@ -151,22 +171,16 @@ export default function ProjectsPage() {
                           </div>
 
                           <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-purple-500/15">
-                            {project.githubReady !== false ? (
-                              <a
-                                href={project.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 text-xs sm:text-sm text-slate-300 hover:text-white transition-colors"
-                              >
-                                <Github className="w-4 h-4" />
-                                Code
-                              </a>
-                            ) : (
-                              <span className="flex items-center gap-1 text-xs font-mono text-purple-300/80">
-                                <Github className="w-3.5 h-3.5" />
-                                Repo Soon
-                              </span>
-                            )}
+                            <button
+                              type="button"
+                              onClick={() => setProtectedRepo(project)}
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-purple-500/25 bg-purple-950/40 px-2.5 py-1 text-xs font-mono text-purple-200 hover:text-white hover:bg-purple-900/40 transition cursor-pointer"
+                            >
+                              <Github className="w-3.5 h-3.5 text-purple-400" />
+                              <span>Code</span>
+                              <Lock className="w-2.5 h-2.5 text-amber-400" />
+                              <span className="text-[10px] text-amber-300">Protected</span>
+                            </button>
 
                             {project.caseStudy && (
                               <button
@@ -198,6 +212,9 @@ export default function ProjectsPage() {
               </div>
             )
           })}
+
+          {/* Complete 36 GitHub Repositories Directory with Search & Filters */}
+          <GithubReposDirectory />
         </div>
       </section>
 
@@ -304,12 +321,12 @@ export default function ProjectsPage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-purple-500/30 bg-[#140d29] text-white rounded-xl"
-                    asChild
+                    onClick={() => setProtectedRepo(selectedProject)}
+                    className="border-purple-500/30 bg-[#140d29] text-white rounded-xl cursor-pointer"
                   >
-                    <a href={selectedProject.github} target="_blank" rel="noopener noreferrer">
-                      View Repository <Github className="ml-1.5 h-3.5 w-3.5" />
-                    </a>
+                    <Github className="mr-1.5 h-3.5 w-3.5 text-purple-400" />
+                    View Repository
+                    <Lock className="ml-1.5 h-3 w-3 text-amber-400" />
                   </Button>
                 )}
               </div>
@@ -325,6 +342,12 @@ export default function ProjectsPage() {
           </div>
         </div>
       )}
+
+      {/* Protected Repository Modal */}
+      <ProtectedCodeModal
+        repo={protectedRepo}
+        onClose={() => setProtectedRepo(null)}
+      />
 
       <Footer />
     </main>
