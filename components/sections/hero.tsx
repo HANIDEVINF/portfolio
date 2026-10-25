@@ -45,7 +45,7 @@ export function HeroSection() {
 
         {/* Supporting Engineering Strip */}
         <p className="text-xs sm:text-sm font-mono text-cyan-300/90 tracking-wide mb-5">
-          M.Sc. AI @ USTHB · CERIST AI Researcher · PyTorch, Transformers, Medical AI &amp; Edge Inference
+          M.Sc. AI @ USTHB (2025–2027) · CERIST AI Researcher · PyTorch, Transformers, Medical AI &amp; Edge Inference
         </p>
 
         {/* Concise Value Proposition */}

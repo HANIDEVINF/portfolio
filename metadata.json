@@ -1,7 +1,9 @@
 {
   "name": "Hani Ghena Portfolio",
-  "description": "Portfolio of Hani Ghena - AI Engineering student building intelligent full-stack apps with Flutter, Python, and cloud AI tools.",
-  "requestFramePermissions": [],
+  "description": "Portfolio of Hani Ghena — AI Engineer & Full-Stack Systems Architect specializing in Deep Learning, Multilingual Transformers, Healthcare AI, RAG, Agentic Systems, and Commercial Platforms.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
   ]

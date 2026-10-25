@@ -93,10 +93,25 @@ export function ProjectsSection() {
                 <div className="relative">
                   <ProjectPreviewBanner project={project} />
                   <div className="px-6 sm:px-7 pt-4 pb-3 border-b border-purple-500/15 bg-[#110a22]/90">
-                    <div className="flex items-center justify-between gap-3 mb-1.5">
-                      <span className="text-xs font-mono text-purple-400">
-                        {project.category}
-                      </span>
+                    <div className="flex items-center justify-between gap-3 mb-1.5 flex-wrap">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-xs font-mono text-purple-400">
+                          {project.category}
+                        </span>
+                        {project.systemType && (
+                          <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10.5px] font-medium ${
+                            project.systemType === "Research Implementation"
+                              ? "border-emerald-500/35 bg-emerald-950/70 text-emerald-300"
+                              : project.systemType === "Live Client Production"
+                              ? "border-cyan-500/35 bg-cyan-950/70 text-cyan-300"
+                              : project.systemType === "Multi-Agent Workflow"
+                              ? "border-amber-500/35 bg-amber-950/70 text-amber-300"
+                              : "border-purple-500/35 bg-purple-950/70 text-purple-300"
+                          }`}>
+                            {project.systemType}
+                          </span>
+                        )}
+                      </div>
                       <span className="text-[11px] font-mono text-cyan-300">
                         {project.status || "Live"}
                       </span>
@@ -257,8 +272,23 @@ export function ProjectsSection() {
                           <ProjectPreviewBanner project={project} compact />
 
                           <div className="p-6">
-                            <div className="flex items-center justify-between mb-2.5 text-xs text-purple-300 font-mono">
-                              <span>{project.category}</span>
+                            <div className="flex items-center justify-between mb-2.5 text-xs text-purple-300 font-mono flex-wrap gap-2">
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <span>{project.category}</span>
+                                {project.systemType && (
+                                  <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-sans font-medium ${
+                                    project.systemType === "Research Implementation"
+                                      ? "border-emerald-500/35 bg-emerald-950/70 text-emerald-300"
+                                      : project.systemType === "Live Client Production"
+                                      ? "border-cyan-500/35 bg-cyan-950/70 text-cyan-300"
+                                      : project.systemType === "Multi-Agent Workflow"
+                                      ? "border-amber-500/35 bg-amber-950/70 text-amber-300"
+                                      : "border-purple-500/35 bg-purple-950/70 text-purple-300"
+                                  }`}>
+                                    {project.systemType}
+                                  </span>
+                                )}
+                              </div>
                               <div className="flex items-center gap-2">
                                 <button
                                   type="button"

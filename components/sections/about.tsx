@@ -5,9 +5,9 @@ import Image from "next/image"
 import { Plus, X, GraduationCap, Building2, Stethoscope, Brain, ShieldCheck, Globe2, Cpu } from "lucide-react"
 
 const quickFacts = [
-  { icon: GraduationCap, label: "Academic Track", value: "Master in Artificial Intelligence at USTHB (Sep 2022 – June 2027) + CS Licence" },
-  { icon: Building2, label: "Research Track", value: "5 AI Engineering Internships at CERIST (Healthcare AI, Multilingual NLP, Transformers)" },
-  { icon: Stethoscope, label: "Medical AI & IoT", value: "MedGuardAI (Real-Time ECG/Glucose + WebRTC) & MIT-BIH v7 (155 KB INT8 TFLite)" },
+  { icon: GraduationCap, label: "Academic Track", value: "Master in AI @ USTHB (Sep 2025 – Expected June 2027) · CS Licence @ USTHB (2022–2025) · Bac 2022" },
+  { icon: Building2, label: "Research Track", value: "AI Engineering Research Internships at CERIST (Asthma Healthcare AI, Multilingual NLP, Transformers)" },
+  { icon: Stethoscope, label: "Medical AI & IoT", value: "AsthmaExpertUltra (Transformer, <1.0s Android), MedGuardAI & MIT-BIH v7 (155 KB INT8 TFLite)" },
   { icon: Brain, label: "Custom Architectures", value: "Designed MuCAT at CERIST UbiSys (mDeBERTa-v3 + HAP + FiLM Gating + Dirichlet Uncertainty, 98.20% Test Acc)" },
   { icon: Globe2, label: "Trilingual Engineer", value: "Arabic (Native) · French (Full Professional) · English (Professional Working)" },
 ]
@@ -17,19 +17,19 @@ const recruiterPillars = [
     icon: Cpu,
     title: "Models That Ship to Production & Edge",
     description:
-      "Not just isolated Jupyter notebooks: trained PyTorch/Keras models quantized to 155 KB INT8 TFLite (0.32 ms/beat) and deployed into live web, desktop, and Raspberry Pi IoT systems.",
+      "Not just isolated Jupyter notebooks: trained PyTorch/Keras models exported to Android PyTorch Lite and 155 KB INT8 TFLite (0.32 ms/beat) for edge and clinical workflows.",
   },
   {
     icon: Building2,
-    title: "5× CERIST Research + ~2 Yrs Full-Stack",
+    title: "CERIST AI Research + Commercial Engineering",
     description:
-      "Rare combination of 5 national research center internships (custom BERT/Transformer architectures, clinical signal processing) and 2 years delivering full-stack freelance products.",
+      "Proven combination of national research center appointments at CERIST (AsthmaExpertUltra, MuCAT) and commercial client systems engineering (Jan 2024–Present).",
   },
   {
     icon: ShieldCheck,
     title: "Scientific Rigor & Trustworthy AI",
     description:
-      "Strict patient-grouped cross-validation (zero data leakage), out-of-fold probability calibration, uncertainty estimation, and prompt-injection / policy guardrails.",
+      "Strict patient-independent evaluation protocols (zero patient leakage), out-of-fold calibration, evidential uncertainty estimation, and Dempster-Shafer safety overrides.",
   },
 ]
 
@@ -53,7 +53,7 @@ export function AboutSection() {
             {/* Biography text */}
             <div className="md:col-span-7 space-y-5 text-slate-300 leading-relaxed text-base sm:text-lg font-light">
               <p>
-                {"I am an AI Engineering Master's student at USTHB (Algiers) with ~2 years of freelance full-stack & AI development experience and five AI research internships at CERIST (Research Center on Scientific and Technical Information)."}
+                {"I am an Applied AI Engineer and Master's student in Artificial Intelligence at USTHB (Algiers, Sep 2025 – Expected June 2027), having earned my Computer Science Licence at USTHB (2022–2025) and conducted AI research at CERIST (Research Center on Scientific and Technical Information) alongside commercial software engineering (Jan 2024 – Present)."}
               </p>
 
               <p>

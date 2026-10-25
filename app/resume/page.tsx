@@ -9,12 +9,12 @@ import { generateAndDownloadResumePdf } from "@/lib/generate-cv-pdf"
 
 const resumeData = {
   en: {
-    role: "AI Engineer | Deep Learning | NLP & RAG | Agentic AI | Full-Stack Systems Architect",
+    role: "Applied AI Engineer | NLP, Deep Learning & LLM Systems",
     location: "Algiers, Algeria",
     printBtn: "Download CV (PDF)",
     summaryTitle: "Professional Summary",
     summaryText:
-      "M.Sc. Candidate in Artificial Intelligence at USTHB (Expected June 2027) with 5 AI research internships at CERIST (2024–Present) and 2+ years of commercial full-stack & AI software engineering experience (2024–Present). Proven track record designing evaluated deep learning systems, custom multilingual Transformer architectures (MuCAT — 98.20% test accuracy), embedded medical AI (MIT-BIH v7 INT8 TFLite, 90.13% 5-fold inter-patient accuracy), real-time IoT patient monitoring platforms (MedGuardAI), and 6 deployed commercial client systems.",
+      "M.Sc. Candidate in Artificial Intelligence at USTHB (Sep 2025 – Expected June 2027), Licence in Computer Science graduate from USTHB (2022–2025), with AI research appointments at CERIST (2024–2025) and commercial full-stack software delivery (Jan 2024 – Present). Proven track record designing evaluated deep learning architectures: AsthmaExpertUltra multi-task Transformer (76.0% severity acc, 92.3% severe crisis recall, <1.0s Android PyTorch Lite), MIT-BIH v7 ECG Holter (90.13% 5-fold ensemble, 155 KB INT8 TFLite), MuCAT multilingual Transformer (98.20% test acc across 6 languages), and 6 deployed commercial systems.",
     expTitle: "Professional & Research Experience",
     eduTitle: "Education",
     skillsTitle: "Technical Competencies",
@@ -22,35 +22,24 @@ const resumeData = {
     langTitle: "Languages",
     experience: [
       {
-        title: "AI Engineering Intern",
-        company: "CERIST (Research Center on Scientific and Technical Information) · Algiers, Algeria",
-        period: "June 2026 – Present",
+        title: "AI Engineering Research Intern",
+        company: "CERIST (Research Center on Scientific and Technical Information, UbiSys DTISI) · Algiers, Algeria",
+        period: "2024 – 2025",
         responsibilities: [
-          "Developing and experimenting with AI, deep learning, and NLP systems with a primary focus on Transformer/BERT architectures and practical model development.",
-          "Working on multilingual NLP scenarios across Arabic, French, and English, including conversational and chatbot-oriented applications.",
-          "Contributing to end-to-end AI engineering workflows covering experimentation, rigorous evaluation, model integration, and application-oriented deployment.",
+          "Designed AsthmaExpertUltra: 4-layer Transformer Encoder predicting asthma crisis severity (76.0% acc, 92.3% severe recall) and lead-time proximity (69.0% acc) from 8 multimodal IoT streams, with Dempster-Shafer evidential fusion and Android PyTorch Lite deployment (<1.0s).",
+          "Designed MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) in CERIST UbiSys (DTISI): stacked Hierarchical Attention Pooling (HAP), Language-Aware FiLM Gating (LAG), and Evidential Dirichlet Head (u = K/S) over mDeBERTa-v3 across 6 languages (98.20% test accuracy).",
+          "Engineered MIT-BIH v7 ECG Arrhythmia Holter: dual-lead 1D-CNN + 2x Transformer + 8-RR temporal context on strict inter-patient DS1/DS2 split, quantized to 155.4 KB INT8 TFLite (0.32 ms/beat edge latency).",
         ],
       },
       {
-        title: "AI Engineering Intern (4 Additional Research Internships)",
-        company: "CERIST · Algiers, Algeria",
-        period: "Previous Internships",
-        responsibilities: [
-          "Completed four additional AI research internships at CERIST spanning Healthcare AI, NLP, and Deep Learning.",
-          "Developed real-time ECG and blood glucose monitoring and anomaly detection applications, including real-time hardware-to-software sensor integration and emergency alert workflows.",
-          "Designed and evaluated MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) in the UbiSys Team (DTISI, supervised by Nadir Bouchama): stacked Hierarchical Attention Pooling (HAP), Language-Aware FiLM Gating (LAG), an Evidential Dirichlet Head (native single-pass uncertainty u = K/S), and an auxiliary script head on mDeBERTa-v3-base across 6 languages (MSA, Algerian Darija, Kabyle, Chaoui, French, English), achieving 98.20% test accuracy vs. 23.74% on the standard mDeBERTa-v3 ablation and 3.88% on XLM-RoBERTa-base.",
-          "Built deep learning and multilingual text processing pipelines and exposed trained models through interactive software interfaces.",
-        ],
-      },
-      {
-        title: "Independent Full-Stack & Applied AI Engineer",
+        title: "Independent Applied AI & Full-Stack Engineer",
         company: "Commercial Client Consulting · Algiers, Sidi Bel Abbès & Mascara, Algeria",
         period: "Jan 2024 – Present",
         responsibilities: [
-          "End-to-end design and engineering of web and desktop applications covering frontend, backend, databases, REST APIs, deployment, and AI integration.",
-          "Developed ML and deep learning models and connected them to usable software interfaces, including live web demos for real-time model testing.",
-          "Built production systems using React, Next.js, Node.js, TypeScript, Electron, PHP, Laravel, MongoDB, PostgreSQL, and SQL.",
-          "Focused on shipping complete AI-powered software products rather than isolated notebooks or standalone prototypes.",
+          "Architected and delivered 6 commercial production systems: Tadjmeel Clinica Algiers (Public Web + Doctor & Receptionist Electron Desktop Apps), Enterprise DZD Business ERP & G50 Fiscal Suite, ALLURE HOMME, GK STORE, CASUAL 29, and AURA Retail OS.",
+          "Built full-stack AI web systems spanning Speech-to-Text ASR & Clinical SOAP Summarization, Hybrid Dense+BM25 RAG, Multi-Agent ReAct Orchestration, and LLM Safety Evaluation.",
+          "Production tech stack: React, Next.js, Node.js, TypeScript, Electron, PHP, Laravel, MongoDB, PostgreSQL, and Docker.",
+          "Delivered client-facing solutions with measurable business impact, 58-wilaya logistics, and production reliability.",
         ],
       },
     ],
@@ -67,21 +56,28 @@ const resumeData = {
         period: "Sep 2022 – June 2025 (Graduated)",
         description: "Undergraduate degree in Computer Science. Graduation Capstone (PFE): MedGuardAI Real-Time IoT Patient Monitoring & Telemedicine Platform.",
       },
+      {
+        degree: "Baccalauréat in Exact Sciences",
+        institution: "Algiers, Algeria",
+        period: "2022",
+        description: "National secondary school graduation diploma in Exact Sciences.",
+      },
     ],
     skills: {
       "AI & Machine Learning": ["Artificial Intelligence", "Machine Learning", "Deep Learning", "NLP", "Transformers", "BERT", "Generative AI", "LLM Applications", "Anomaly Detection", "Chatbots"],
       "AI Agents & LLM Systems": ["Agentic AI", "AI Agents", "ReAct", "Tool Calling", "LLM Workflows", "AI Automation", "Guardrails", "Explainability", "Trustworthy AI"],
-      "Frameworks & Libraries": ["PyTorch", "TensorFlow", "Keras", "Hugging Face Transformers", "FastAPI", "WebRTC", "TFLite INT8"],
-      "Programming Languages": ["TypeScript", "JavaScript", "PHP", "Java", "C#", "SQL", "HTML/CSS"],
+      "Frameworks & Libraries": ["PyTorch", "TensorFlow", "Keras", "Hugging Face Transformers", "FastAPI", "WebRTC", "TFLite INT8", "PyTorch Lite (.ptl)"],
+      "Programming Languages": ["TypeScript", "JavaScript", "Python", "PHP", "Java", "C#", "SQL", "HTML/CSS"],
       "Full-Stack & Desktop": ["React", "Next.js", "Node.js", "Electron", "Laravel", "REST APIs", "Real-Time Apps"],
       "Databases & Tools": ["MongoDB", "PostgreSQL", "Supabase", "SQL", "Git", "Docker", "VS Code", "Jupyter", "Google Colab"],
-      "Research & AI Security": ["Uncertainty & Confidence Estimation", "Inter-Patient Evaluation (DS1/DS2)", "Prompt Injection Defense", "Policy-Based AI", "IAM Concepts", "Neuro-Symbolic AI"],
+      "Research & AI Security": ["Uncertainty & Confidence Estimation", "Inter-Patient Evaluation (DS1/DS2)", "Prompt Injection Defense", "Policy-Based AI", "IAM Concepts", "Dempster-Shafer Fusion"],
     },
     certifications: [
-      "Deep Learning Certification – Code 213 (November 2025 – June 2026) · Final Training Capstone",
-      "MedGuardAI – Real-Time IoT Patient Monitoring Platform (USTHB Licence Capstone / PFE)",
-      "MuCAT – Multilingual Uncertainty-Calibrated Attention Transformer (CERIST UbiSys DTISI — 98.20% Test Acc across AR/ARQ/KAB/SHY/FR/EN)",
-      "AI ECG Arrhythmia Classification v7 – MIT-BIH Inter-Patient Study & TFLite Deployment",
+      "AsthmaExpertUltra – Anticipatory Multi-Task Transformer & Android Edge Deployment (CERIST AI Research)",
+      "AI ECG Arrhythmia Classification v7 – MIT-BIH DS1/DS2 Inter-Patient Study & 155 KB INT8 TFLite",
+      "MuCAT – Multilingual Uncertainty-Calibrated Attention Transformer (CERIST UbiSys DTISI — 98.20% Test Acc across 6 languages)",
+      "MedGuardAI – Real-Time IoT Patient Monitoring Platform (USTHB Licence Capstone / PFE 2022–2025)",
+      "Deep Learning Certification – Code 213 · Final Training Capstone",
     ],
     languages: [
       { name: "Arabic", level: "Native" },
@@ -90,12 +86,12 @@ const resumeData = {
     ],
   },
   fr: {
-    role: "Ingénieur IA | Machine Learning | Deep Learning | NLP | Ingénierie logicielle de l'IA",
+    role: "Ingénieur en IA Appliquée | NLP, Deep Learning & Systèmes LLM",
     location: "Alger, Algérie",
     printBtn: "Télécharger CV (PDF)",
     summaryTitle: "Résumé Professionnel",
     summaryText:
-      "Étudiant en ingénierie de l'IA à l'USTHB, avec environ 2 ans d'expérience en développement full-stack freelance et cinq stages en IA au CERIST. Expérience pratique dans la conception de systèmes de machine learning et de deep learning, d'applications NLP/Transformers, de chatbots et d'applications web et desktop intégrant l'IA. Développement et intégration de modèles d'IA dans des interfaces logicielles exploitables, notamment une plateforme de suivi de patients en temps réel utilisant des capteurs d'ECG et de glycémie (MedGuardAI). Conception de MUCAT, une architecture personnalisée basée sur BERT/Transformer pour l'expérimentation en NLP multilingue. Actuellement concentré sur l'IA générative, l'IA agentique, l'automatisation par l'IA, l'IA explicable et l'IA de confiance.",
+      "Candidat au Master en Intelligence Artificielle à l'USTHB (Sept. 2025 – Prévu Juin 2027), diplômé de la Licence en Informatique à l'USTHB (2022–2025), avec des stages de recherche en IA au CERIST (2024–2025) et 2+ ans d'expérience en ingénierie logicielle commerciale (Janv. 2024 – Présent). Conception d'architectures deep learning évaluées rigoureusement : AsthmaExpertUltra (Transformer multi-tâches, 76.0% acc, 92.3% rappel sévère, <1.0s Android PyTorch Lite), MIT-BIH v7 ECG Holter (90.13% ensemble 5-fold, 155 Ko INT8 TFLite), MuCAT Transformer multilingue (98.20% test acc sur 6 langues) et 6 systèmes commerciaux livrés.",
     expTitle: "Expérience Professionnelle",
     eduTitle: "Formation",
     skillsTitle: "Compétences Techniques",
@@ -103,24 +99,13 @@ const resumeData = {
     langTitle: "Langues",
     experience: [
       {
-        title: "Stagiaire en ingénierie de l'intelligence artificielle",
-        company: "CERIST · Alger, Algérie",
-        period: "Juin 2026 – Présent",
+        title: "Stagiaire Chercheur en Ingénierie de l'IA",
+        company: "CERIST (Équipe UbiSys DTISI) · Alger, Algérie",
+        period: "2024 – 2025",
         responsibilities: [
-          "Développement et expérimentation de systèmes d'IA, de deep learning et de NLP, avec un accent sur les architectures basées sur Transformer/BERT et le développement pratique de modèles.",
-          "Travail sur des scénarios de NLP multilingue impliquant l'arabe, le français et l'anglais, y compris des applications orientées chatbot.",
-          "Contribution aux workflows d'ingénierie de l'IA couvrant l'expérimentation, l'évaluation et l'intégration de modèles, ainsi que le développement orienté application.",
-        ],
-      },
-      {
-        title: "Stages en ingénierie de l'IA – Affectations supplémentaires (4 stages)",
-        company: "CERIST · Alger, Algérie",
-        period: "Stages précédents",
-        responsibilities: [
-          "Réalisation de quatre stages supplémentaires en IA au CERIST dans les domaines de l'IA pour la santé, du NLP et du deep learning.",
-          "Travail sur des applications de suivi de l'ECG et de la glycémie et de détection d'anomalies, incluant l'intégration temps réel entre capteurs et logiciel et des fonctionnalités d'alerte.",
-          "Conception et évaluation de MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) au sein de l'équipe UbiSys (DTISI, encadré par Nadir Bouchama) : empilement d'un pooling par attention hiérarchique (HAP), d'une modulation FiLM conditionnée par la langue (LAG), d'une tête évidentielle de Dirichlet (incertitude calibrée native u = K/S) et d'une tête auxiliaire sur mDeBERTa-v3-base (6 langues : arabe standard, arabe algérien, kabyle, chaoui, français, anglais), atteignant 98,20 % de test accuracy contre 23,74 % pour l'ablation mDeBERTa-v3 et 3,88 % pour XLM-RoBERTa-base.",
-          "Travail avec le deep learning, les méthodes Transformer/BERT, le traitement de texte multilingue et le développement d'applications d'IA.",
+          "Conception d'AsthmaExpertUltra : Transformer Multi-Tâches pour la sévérité des crises (76.0% acc, 92.3% rappel sévère) et l'anticipation temporelle (69.0% acc), fusion évidentielle de Dempster-Shafer et déploiement Android PyTorch Lite (<1.0s).",
+          "Conception de MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) au CERIST UbiSys (DTISI) : mDeBERTa-v3 + HAP + FiLM Language Gating + tête évidentielle Dirichlet (u = K/S) sur 6 langues (98,20 % test accuracy).",
+          "Développement du système ECG Arrhythmia v7 sur le protocole inter-patient MIT-BIH DS1/DS2 (90,13 % précision ensemble 5-fold, 155,4 Ko INT8 TFLite, 0,32 ms/battement).",
         ],
       },
       {
@@ -128,10 +113,9 @@ const resumeData = {
         company: "Missions Clients Commerciales · Alger, Sidi Bel Abbès & Mascara, Algérie",
         period: "Janv. 2024 – Présent",
         responsibilities: [
-          "Conception de bout en bout d'applications web, de sites web et d'applications desktop, couvrant le frontend, le backend, les bases de données, les API, le déploiement et l'intégration de l'IA.",
-          "Développement de modèles d'IA et de deep learning et connexion à des interfaces logicielles exploitables, y compris des interfaces web en direct pour le test et la démonstration des modèles.",
-          "Travail avec React, Next.js, Node.js, TypeScript, Electron, PHP, Laravel, MongoDB, PostgreSQL et SQL.",
-          "Intégration de capacités d'IA dans des applications concrètes, plutôt que de se limiter à des notebooks ou à des prototypes de modèles isolés.",
+          "Livraison de 6 systèmes commerciaux en production : Tadjmeel Clinica Alger (Site + applications desktop Electron Médecin & Réceptionniste), ERP Algérien DZD & Bilan Fiscal G50, ALLURE HOMME, GK STORE, CASUAL 29 et AURA.",
+          "Déploiement d'applications IA interactives : Speech-to-Text ASR & Synthèse SOAP, RAG Hybride Dense+BM25, Orchestration Multi-Agents ReAct et Évaluation LLM.",
+          "Stack de production : React, Next.js, Node.js, TypeScript, Electron, PHP, Laravel, MongoDB, PostgreSQL et Docker.",
         ],
       },
     ],
@@ -148,21 +132,28 @@ const resumeData = {
         period: "Sept. 2022 – Juin 2025 (Diplômé)",
         description: "Diplôme de Licence en Informatique. Projet de Fin d'Études (PFE) : MedGuardAI — Plateforme IoT et IA de suivi médical en temps réel.",
       },
+      {
+        degree: "Baccalauréat en Sciences Exactes",
+        institution: "Alger, Algérie",
+        period: "2022",
+        description: "Diplôme national d'études secondaires en série Sciences Exactes.",
+      },
     ],
     skills: {
       "IA / ML": ["Intelligence artificielle", "Machine Learning", "Deep Learning", "NLP", "Transformers", "BERT", "IA générative", "Applications LLM", "Détection d'anomalies", "Chatbots"],
       "Agents IA / Systèmes LLM": ["IA agentique", "Agents IA", "ReAct", "Appel d'outils (Tool Calling)", "Workflows LLM", "Automatisation IA", "Guardrails", "Explicabilité", "IA de confiance"],
-      "Frameworks / Bibliothèques": ["PyTorch", "TensorFlow", "Keras", "Hugging Face Transformers", "FastAPI", "WebRTC", "TFLite INT8"],
-      "Programmation": ["TypeScript", "JavaScript", "PHP", "Java", "C#", "SQL", "HTML/CSS"],
+      "Frameworks / Bibliothèques": ["PyTorch", "TensorFlow", "Keras", "Hugging Face Transformers", "FastAPI", "WebRTC", "TFLite INT8", "PyTorch Lite (.ptl)"],
+      "Programmation": ["TypeScript", "JavaScript", "Python", "PHP", "Java", "C#", "SQL", "HTML/CSS"],
       "Full-Stack / Desktop": ["React", "Next.js", "Node.js", "Electron", "Laravel", "API REST", "Applications temps réel"],
       "Bases de données / Outils": ["MongoDB", "PostgreSQL", "Supabase", "SQL", "Git", "Docker", "VS Code", "Jupyter", "Google Colab"],
-      "Recherche / Sécurité": ["Estimation de l'incertitude et confiance", "Protocole inter-patient DS1/DS2", "Sensibilisation injection de prompt", "Systèmes basés sur des politiques", "IAM", "IA neuro-symbolique"],
+      "Recherche / Sécurité": ["Estimation de l'incertitude et confiance", "Protocole inter-patient DS1/DS2", "Sensibilisation injection de prompt", "Systèmes basés sur des politiques", "IAM", "Fusion Dempster-Shafer"],
     },
     certifications: [
-      "Certification en Deep Learning – Code 213 (Novembre 2025 – Juin 2026) · Projet final de formation",
-      "MedGuardAI – Plateforme de suivi de patients en temps réel (PFE Licence USTHB)",
-      "MuCAT – Multilingual Uncertainty-Calibrated Attention Transformer (CERIST UbiSys DTISI — 98,20 % Test Acc sur 6 langues)",
-      "Classification d'arythmies ECG par IA (v7) – MIT-BIH Inter-Patient & TFLite",
+      "AsthmaExpertUltra – Transformer Multi-Tâches & Déploiement Edge Android (Recherche IA CERIST)",
+      "Classification d'arythmies ECG par IA (v7) – MIT-BIH Inter-Patient & 155 Ko INT8 TFLite",
+      "MuCAT – Multilingual Uncertainty-Calibrated Attention Transformer (CERIST UbiSys DTISI — 98,20 % Test Acc)",
+      "MedGuardAI – Plateforme de suivi de patients en temps réel (PFE Licence USTHB 2022–2025)",
+      "Certification en Deep Learning – Code 213 · Projet final de formation",
     ],
     languages: [
       { name: "Arabe", level: "Langue maternelle" },
@@ -188,23 +179,32 @@ export default function ResumePage() {
               <p className="text-base sm:text-lg text-purple-400 font-semibold mb-4">
                 {data.role}
               </p>
-              <div className="flex flex-wrap gap-4 text-xs sm:text-sm text-slate-300 font-light">
-                <a href="mailto:hanighena4@gmail.com" className="flex items-center gap-1.5 hover:text-purple-300 transition-colors">
-                  <Mail className="w-4 h-4 text-purple-400" />
-                  hanighena4@gmail.com
-                </a>
-                <a href="tel:+213541894743" className="flex items-center gap-1.5 hover:text-purple-300 transition-colors">
-                  <Phone className="w-4 h-4 text-purple-400" />
-                  0541894743 (+213 541 89 47 43)
-                </a>
-                <a href="https://www.linkedin.com/in/ghena-hani-3543a3375/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-purple-300 transition-colors">
-                  <Linkedin className="w-4 h-4 text-purple-400" />
-                  LinkedIn
-                </a>
-                <span className="flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-purple-400" />
-                  {data.location}
-                </span>
+              {/* Two-row contact header to eliminate right margin clipping */}
+              <div className="space-y-2 text-xs sm:text-sm text-slate-300 font-light">
+                <div className="flex flex-wrap items-center gap-4">
+                  <a href="mailto:hanighena4@gmail.com" className="flex items-center gap-1.5 hover:text-purple-300 transition-colors">
+                    <Mail className="w-4 h-4 text-purple-400" />
+                    hanighena4@gmail.com
+                  </a>
+                  <a href="tel:+213541894743" className="flex items-center gap-1.5 hover:text-purple-300 transition-colors">
+                    <Phone className="w-4 h-4 text-purple-400" />
+                    +213 541 89 47 43
+                  </a>
+                  <span className="flex items-center gap-1.5">
+                    <MapPin className="w-4 h-4 text-purple-400" />
+                    {data.location}
+                  </span>
+                </div>
+                <div className="flex flex-wrap items-center gap-4 text-purple-300 font-medium">
+                  <a href="https://www.linkedin.com/in/ghena-hani-3543a3375/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
+                    <Linkedin className="w-4 h-4 text-purple-400" />
+                    linkedin.com/in/ghena-hani-3543a3375
+                  </a>
+                  <a href="https://github.com/HANIDEVINF" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
+                    <FileText className="w-4 h-4 text-purple-400" />
+                    github.com/HANIDEVINF
+                  </a>
+                </div>
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-3">

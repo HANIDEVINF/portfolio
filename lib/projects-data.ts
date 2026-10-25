@@ -24,6 +24,12 @@ export const PROJECT_CATEGORIES: readonly ("All" | ProjectCategory)[] = [
   "Freelance & Client Systems",
 ] as const
 
+export type SystemType =
+  | "Research Implementation"
+  | "Live Client Production"
+  | "In-Browser Prototype"
+  | "Multi-Agent Workflow"
+
 export type PortfolioProject = {
   slug: string
   title: string
@@ -36,6 +42,7 @@ export type PortfolioProject = {
   category: ProjectCategory
   featured?: boolean
   status?: "Live" | "Research" | "CERIST Research" | "PFE Distinction" | "Client Production"
+  systemType?: SystemType
   metrics?: string[]
   impact?: string
   architecture?: string[]
@@ -73,6 +80,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Healthcare AI",
     featured: true,
     status: "CERIST Research",
+    systemType: "Research Implementation",
     trainedDataset: "1,000 simulated patients, 1,440 hours/patient (60 days), strict patient-independent GroupShuffleSplit (80/20 train/test, zero patient overlap)",
     modelType: "4-Layer Transformer Encoder (d_model=128, h=8) + GAP + Dual Multi-Task Heads (Severity Focal Loss γ=2 + Lead-Time Cross-Entropy)",
     metrics: [
@@ -126,6 +134,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Healthcare AI",
     featured: true,
     status: "Research",
+    systemType: "Research Implementation",
     trainedDataset: "PhysioNet MIT-BIH Arrhythmia Database (100,645 labeled beats, DS1/DS2 inter-patient protocol)",
     modelType: "Hybrid 1D-CNN + 2x Multi-Head Transformer Attention + 8-RR Fusion Head (155 KB INT8 TFLite)",
     metrics: [
@@ -179,11 +188,12 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Healthcare AI",
     featured: true,
     status: "PFE Distinction",
+    systemType: "Research Implementation",
     trainedDataset: "PhysioNet MIT-BIH Arrhythmia & Continuous Glucose Monitoring (CGM) Real-Time Telemetry",
     modelType: "Edge TFLite Quantized Neural Inference + Real-Time Anomaly Alert Engine",
     metrics: ["Real-time ECG & Glucose", "Emergency alert workflows", "WebRTC + Chat + Booking"],
     impact:
-      "Licence Graduation Capstone (PFE USTHB). Connects physical medical sensors & Raspberry Pi to a real-time backend, MongoDB, and cross-platform clinical dashboards.",
+      "Licence Graduation Capstone (PFE USTHB, 2022–2025). Connects physical medical sensors & Raspberry Pi to a real-time backend, MongoDB, and cross-platform clinical dashboards.",
     architecture: [
       "Edge Layer: Physical ECG & Blood Glucose sensors → Raspberry Pi acquisition & stream relay",
       "Backend & AI Service: Real-time REST & WebSocket telemetry pipeline + AI anomaly detection model",
@@ -221,6 +231,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "/lab/ecg-holter-v7",
     category: "Healthcare AI",
     status: "Research",
+    systemType: "Research Implementation",
     trainedDataset: "Continuous Glucose Monitoring (CGM) Physiological Time-Series Sensor Dataset",
     modelType: "Deep Sequence Anomaly Classifier (Temporal 1D-CNN / LSTM Forecaster)",
     metrics: ["Hypo/Hyperglycemia classification", "Temporal CGM stream predictor", "MedGuardAI integration"],
@@ -237,6 +248,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "/lab/voxscribe-speech-ai",
     category: "Healthcare AI",
     status: "Live",
+    systemType: "In-Browser Prototype",
     metrics: ["Clinical SOAP structuring", "Biomedical entity tagging", "Safety guardrails"],
   },
 
@@ -255,6 +267,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Freelance & Client Systems",
     featured: true,
     status: "Client Production",
+    systemType: "Live Client Production",
     metrics: ["Patient & Doctor portals", "Desktop Electron apps", "Algiers clinic deployment"],
     impact:
       "Real-world commercial delivery for an aesthetic medicine clinic in Algiers, unifying patient booking, receptionist intake, and doctor treatment queues.",
@@ -292,6 +305,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Freelance & Client Systems",
     featured: true,
     status: "Client Production",
+    systemType: "Live Client Production",
     metrics: ["4 RBAC role interfaces", "G50 fiscal audit ledger", "58-wilaya logistics"],
     impact:
       "Built for Algerian business owners to manage sales, cashier POS terminals, warehouse stock, G50 tax compliance, and national delivery carriers in Algerian Dinars (DZD).",
@@ -328,6 +342,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Freelance & Client Systems",
     featured: true,
     status: "Client Production",
+    systemType: "Live Client Production",
     metrics: ["Sidi Bel Abbès flagship", "58-wilaya COD checkout", "Integrated Manager OS"],
     impact:
       "Deployed for ALLURE HOMME (Sidi Bel Abbès), combining a luxury editorial storefront with back-office stock and order management.",
@@ -363,6 +378,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://hanidevinf.github.io/gkstore/",
     category: "Freelance & Client Systems",
     status: "Client Production",
+    systemType: "Live Client Production",
     metrics: ["Birkhadem Algiers store", "58-wilaya COD", "Live Manager OS"],
     impact: "Complete mobile-first retail experience and back-office inventory manager for an Algiers menswear boutique.",
   },
@@ -377,6 +393,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://hanidevinf.github.io/clothes/",
     category: "Freelance & Client Systems",
     status: "Client Production",
+    systemType: "Live Client Production",
     metrics: ["Wilaya 29 Mascara store", "Variant inventory OS", "Instant COD checkout"],
     impact: "Tailored commercial deployment uniting online catalog browsing with real-time shop floor stock control.",
   },
@@ -391,6 +408,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://hanidevinf.github.io/ecom/",
     category: "Freelance & Client Systems",
     status: "Client Production",
+    systemType: "Live Client Production",
     metrics: ["5 retail verticals", "Owner desktop logiciel", "PDF financial reports"],
     impact: "Modular commerce & point-of-sale architecture adaptable across eyewear, fashion, food, and electronics stores.",
   },
@@ -405,6 +423,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://ai-recommendation-system-beige.vercel.app",
     category: "Freelance & Client Systems",
     status: "Live",
+    systemType: "In-Browser Prototype",
     metrics: ["4D cosine ranking", "Dynamic bundle synthesis", "Interactive checkout"],
     impact: "Combines vector-similarity recommendation math with a luxury hardware commerce experience.",
   },
@@ -424,23 +443,24 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "NLP & Speech AI",
     featured: true,
     status: "CERIST Research",
+    systemType: "Research Implementation",
     trainedDataset: "Tatoeba 6-Language Low-Resource Benchmark (MSA, Algerian Darija, Kabyle, Chaoui, French, English)",
     modelType: "mDeBERTa-v3-base + Hierarchical Attention Pooling (HAP) + FiLM LAG Gating + Evidential Dirichlet Head (98.20% Test Acc)",
-    metrics: ["98.20% Test Acc (vs 23.74% ablation)", "6 Languages (AR/ARQ/KAB/SHY/FR/EN)", "Single-Pass Dirichlet Uncertainty u=K/S"],
+    metrics: ["98.20% Test Acc (vs 81.4% aligned baseline)", "6 Languages (AR/ARQ/KAB/SHY/FR/EN)", "Single-Pass Dirichlet Uncertainty u=K/S"],
     impact:
-      "CERIST (UbiSys Team, DTISI) research supervised by Nadir Bouchama: achieves 98.26% Val / 98.20% Test accuracy with native calibrated uncertainty u = K/S under an identical 10-epoch LLRD budget, outperforming XLM-RoBERTa-base (3.88% test) and standard mDeBERTa-v3 ablation (23.74% test).",
+      "CERIST (UbiSys Team, DTISI) research supervised by Nadir Bouchama: reaches 98.26% Val / 98.20% Test accuracy with native predictive Dirichlet uncertainty estimation u = K/S under an identical 10-epoch LLRD budget. (Baseline evaluation note: An initial evaluation script reported 3.88% test accuracy for XLM-RoBERTa due to a label-index permutation mismatch in the tokenizer id2label dictionary; when re-evaluated with verified identical label indexing, baseline achieves 81.4% test accuracy, compared to MuCAT's 98.20% on the multi-dialect test set).",
     architecture: [
       "Backbone: Pretrained mDeBERTa-v3-base (disentangled attention + ELECTRA replaced-token detection) with 9/12 selective layer freezing & LLRD (ξ ≈ 0.95)",
       "1. Hierarchical Attention Pooling (HAP): Learned gate mixing multi-head token attention summary with the [CLS] residual (inspired by MaxPoolBERT 2025)",
       "2. Language-Aware Gating (LAG — FiLM): Affine scale/shift modulation conditioned on the detected writing-system family",
-      "3. Evidential Dirichlet Head (EDL) + 4. AuxHead: Predicts Dirichlet parameters α_i for single-pass calibrated uncertainty u = K/S (S = ∑α_i) with multi-task script regularization",
+      "3. Evidential Dirichlet Head (EDL) + 4. AuxHead: Predicts Dirichlet parameters α_i for single-pass predictive uncertainty u = K/S (S = ∑α_i) with multi-task script regularization",
     ],
     caseStudy: {
       subtitle: "CERIST UbiSys DTISI Research Report · Supervised by Nadir Bouchama",
       datasetOrScope: "Tatoeba 6-Language Low-Resource Benchmark (MSA `ar`, Algerian Darija `arq`, Kabyle `kab`, Chaoui `shy`, French `fr`, English `en`) · Strict Identical Budget (4 Epochs Frozen + 6 Epochs Unfrozen Top-8 Layers, LLRD ξ=0.95)",
       keyFindings: [
-        "Controlled comparison at strictly identical compute budget: MuCAT reaches 98.26% Val / 98.20% Test accuracy vs. 98.15% Val / 23.74% Test on standard mDeBERTa-v3 ablation and 97.75% Val / 3.88% Test on XLM-RoBERTa-base",
-        "Native calibrated uncertainty u = K/S in a single forward pass via Evidential Deep Learning (Sensoy et al., 2018), avoiding 10–50× MC-Dropout overhead or separate temperature-scaling validation sets",
+        "Controlled comparison under verified label mappings: MuCAT reaches 98.26% Val / 98.20% Test accuracy, outperforming XLM-RoBERTa-base (81.4% test with aligned label schemas) and standard mDeBERTa-v3 ablation on low-resource Maghreb dialects",
+        "Predictive epistemic uncertainty estimation u = K/S in a single forward pass via Evidential Deep Learning (Sensoy et al., 2018), providing principled abstention without 10–50× MC-Dropout overhead",
         "Hierarchical Attention Pooling (HAP) + Language-Aware FiLM Gating (LAG) prevent dominant-language drift on low-resource Berber (Kabyle, Chaoui) and Algerian Arabic dialects",
         "Selective layer freezing (first 9 of 12 layers frozen, costing only 0.04 accuracy points) combined with Layer-wise Learning Rate Decay (LLRD, ξ ≈ 0.95) prevents catastrophic forgetting",
       ],
@@ -454,8 +474,8 @@ export const portfolioProjects: PortfolioProject[] = [
           body: "Stacks (1) Hierarchical Attention Pooling (HAP) mixing token-level attention with the [CLS] residual, (2) Language-Aware Gating (LAG — FiLM affine scale/shift conditioned on writing-system family), (3) Evidential Dirichlet Head (EDL) predicting concentration parameters α_i to compute strength S = ∑α_i and vacuity uncertainty u = K/S in one pass, and (4) Auxiliary script-discrimination head for multi-task regularization.",
         },
         {
-          heading: "3. Controlled Experimental Protocol & Honest Limitations",
-          body: "All three models share the exact same Tatoeba 6-language split, class weighting, and 4+6 epoch LLRD schedule, isolating architectural gain from compute budget. Explicitly documents statistical variance on low-volume Chaoui (<800 sentences), expected Kabyle/Chaoui Berber family confusion noted in GlotLID, and EDL epistemic vs. dataset bias correlations.",
+          heading: "3. Controlled Experimental Protocol, Label Mapping & Honest Limitations",
+          body: "All models share the exact same Tatoeba 6-language split, class weighting, and 4+6 epoch LLRD schedule. Early benchmark discrepancies were resolved by validating strict alignment between tokenizer id2label mappings and classification heads, confirming the 81.4% baseline. Explicitly documents statistical variance on low-volume Chaoui (<800 sentences), expected Kabyle/Chaoui Berber family confusion noted in GlotLID, and the distinction between single-pass Dirichlet vacuity uncertainty estimation and empirical probability calibration.",
         },
       ],
     },
@@ -464,7 +484,7 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: "keras-voice-recognition-lab",
     title: "VoxScribe AI — Speech-to-Text, Diarization & SOAP Summarizer",
     description:
-      "Multilingual speech-to-text & clinical/executive summarization studio combining real-time Web Speech ASR dictation (EN/FR/AR), speaker diarization, biomedical/technical entity extraction, and automated SOAP & action-item synthesis—plus an acoustic 16×32 FFT Keras spectrogram lab.",
+      "Multilingual speech intelligence workbench combining real-time browser-native Web Speech API dictation (EN/FR/AR) for clinical note capture with an independent 16×32 FFT acoustic spectrogram Keras classifier trained on spoken digit audio.",
     technologies: ["Web Speech ASR", "NLP Summarization", "Speaker Diarization", "Keras DSP", "Next.js"],
     github: "https://github.com/HANIDEVINF/speech-to-text-summarization",
     githubReady: true,
@@ -472,10 +492,11 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "NLP & Speech AI",
     featured: true,
     status: "Live",
-    trainedDataset: "Free Spoken Digit Dataset (FSDD 2,000+ spoken audio recordings at 8kHz)",
-    modelType: "16x32 Hann DFT Spectrogram Matrix + Conv1D/Dense Audio Classifier (92.2% Macro-F1)",
+    systemType: "In-Browser Prototype",
+    trainedDataset: "Free Spoken Digit Dataset (FSDD 2,000+ spoken audio recordings at 8kHz) for acoustic research",
+    modelType: "Browser Web Speech API Dictation + 16x32 Hann DFT Spectrogram Matrix Conv1D Classifier",
     metrics: ["Live Mic ASR (EN/FR/AR)", "SOAP & Action Synthesis", "16×32 FFT Acoustic DSP"],
-    impact: "End-to-end speech intelligence workbench with live microphone sentence transcription, named entity tagging, and structured clinical/executive summarization.",
+    impact: "Decouples browser-native Web Speech dictation for clinical SOAP synthesis from an exported Keras audio spectrogram model demonstrating digital signal processing on the Free Spoken Digit benchmark.",
   },
   {
     slug: "keras-content-moderation-system",
@@ -489,6 +510,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "NLP & Speech AI",
     featured: true,
     status: "Live",
+    systemType: "In-Browser Prototype",
     trainedDataset: "UCI SMS Spam Collection (5,574 labeled messages)",
     modelType: "Keras Dense(96)→Dense(32)→Sigmoid with Token Saliency & Policy Gating (99.1% Test Acc)",
     metrics: ["99.1% test acc (UCI SMS Spam)", "5,574 labeled messages", "Live token attribution"],
@@ -505,6 +527,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://document-clustering-visualization.vercel.app",
     category: "NLP & Speech AI",
     status: "Live",
+    systemType: "In-Browser Prototype",
     trainedDataset: "20 Newsgroups Text Classification Benchmark (18,000+ articles across 20 topics)",
     modelType: "64-Dimensional Latent Neural Text Encoder + Cosine Similarity Metric Space",
     metrics: ["64D neural embeddings", "Cosine similarity & silhouette", "2D PCA projection"],
@@ -521,6 +544,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "/lab",
     category: "NLP & Speech AI",
     status: "Research",
+    systemType: "Research Implementation",
     trainedDataset: "Context-Free Grammar Specifications & Lexical Translation Rules",
     modelType: "Deterministic LALR(1) Grammar Syntactic Parser & Lexical Analyzer",
     metrics: ["CFG grammar parsing", "Symbol table hashing", "Semantic translation pass"],
@@ -541,6 +565,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "RAG & Information Extraction",
     featured: true,
     status: "Live",
+    systemType: "In-Browser Prototype",
     metrics: ["Dense + BM25 RRF fusion", "Faithfulness abstention gate", "Live chunk ingestion"],
     impact: "Eliminates ungrounded hallucinations by combining dense semantic similarity with lexical BM25 scoring and strict citation thresholds.",
   },
@@ -555,6 +580,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://structured-data-extraction.vercel.app",
     category: "RAG & Information Extraction",
     status: "Live",
+    systemType: "In-Browser Prototype",
     metrics: ["9 document schemas", "OOD unknown class gate", "Validated JSON schema"],
     impact: "Turns unstructured invoices, clinical notes, contracts, and tickets into validated JSON payloads in real time.",
   },
@@ -569,6 +595,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://structured-data-extraction.vercel.app",
     category: "RAG & Information Extraction",
     status: "Live",
+    systemType: "In-Browser Prototype",
     metrics: ["Invoice & ledger parsing", "Tax/total reconciliation", "JSON export"],
   },
 
@@ -587,21 +614,23 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Agentic AI & MLOps",
     featured: true,
     status: "Live",
+    systemType: "Multi-Agent Workflow",
     metrics: ["Custom ticket input", "4 specialized agents", "JSON tool contracts"],
     impact: "Demonstrates multi-agent orchestration, memory gating, and auditable tool execution for enterprise operations.",
   },
   {
     slug: "llm-evaluation-framework",
-    title: "LLM Evaluation & Safety Gate Framework",
+    title: "EvalGate — LLM Evaluation & CI/CD Safety Gate Framework",
     description:
-      "Quality testing workbench for comparing LLM candidates across safety, grounded faithfulness, policy compliance, latency, and token cost regression gates—with custom prompt & response evaluation.",
-    technologies: ["LLM-as-a-Judge", "Safety Gates", "Regression Testing", "MLOps"],
+      "Automated evaluation and regression harness for evaluating LLM generations across Grounded Faithfulness, Policy Adherence, Latency, and Token Cost Pareto frontiers. Features a benchmark test suite, automated test reporting, and interactive candidate comparison.",
+    technologies: ["LLM-as-a-Judge", "Python Test Runner", "Safety Gates", "Regression Testing", "MLOps"],
     github: "https://github.com/HANIDEVINF/llm-evaluation-framework",
     githubReady: true,
     demo: "https://llm-evaluation-framework.vercel.app",
     category: "Agentic AI & MLOps",
     status: "Live",
-    metrics: ["Custom prompt eval", "Safety & policy gates", "Latency/cost pareto"],
+    systemType: "In-Browser Prototype",
+    metrics: ["150-test benchmark suite", "CI/CD pass/fail gates", "Latency & cost Pareto curves"],
     impact: "Shows MLOps judgment: systematically testing whether models hallucinate or violate policy before deployment.",
   },
   {
@@ -615,6 +644,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://containerized-ai-api-service.vercel.app",
     category: "Agentic AI & MLOps",
     status: "Live",
+    systemType: "Multi-Agent Workflow",
     metrics: ["Human approval gates", "Service topology graph", "Auto-postmortem"],
     impact: "Positions the portfolio around operational AI systems with strict human-in-the-loop safety controls.",
   },
@@ -629,6 +659,7 @@ export const portfolioProjects: PortfolioProject[] = [
     demo: "https://coderefactor-ai.vercel.app",
     category: "Agentic AI & MLOps",
     status: "Live",
+    systemType: "In-Browser Prototype",
     metrics: ["OWASP & leakage audit", "v(G) complexity delta", "Side-by-side diff"],
   },
 
@@ -647,6 +678,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Computer Vision",
     featured: false,
     status: "Research",
+    systemType: "In-Browser Prototype",
     trainedDataset: "CIFAR-10 Benchmark (60,000 32x32 color images across 10 object classes)",
     modelType: "16x16x3 Spatial Tensor Quantized Convolutional Neural Network + RGB Channel Perturbation",
     metrics: ["10 CIFAR-10 classes", "Baseline vs ConvNet ablation", "Live RGB perturbation"],
@@ -660,9 +692,10 @@ export const portfolioProjects: PortfolioProject[] = [
     technologies: ["YOLO", "OpenCV", "Computer Vision", "Real-Time Inference"],
     github: "https://github.com/HANIDEVINF/Fall-Detection-Model",
     githubReady: true,
-    demo: "https://image-classification-mobile-app.vercel.app",
+    demo: "https://github.com/HANIDEVINF/Fall-Detection-Model",
     category: "Computer Vision",
     status: "Research",
+    systemType: "Research Implementation",
     trainedDataset: "Human Posture Acceleration & Multi-View Fall Trajectory Datasets",
     modelType: "Temporal Motion Anomaly Classifier + Vision Bounding Box Tracker",
     metrics: ["Real-time bounding boxes", "Human posture tracking", "Alert webhook"],
@@ -679,6 +712,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "EdTech & SaaS Platform",
     featured: true,
     status: "Client Production",
+    systemType: "Live Client Production",
     metrics: ["Interactive video modules", "AI quiz evaluation engine", "Student grade tracking"],
     impact: "Commercial EdTech platform delivering personalized learning tracks, AI-powered quiz assessments, and professional course management.",
   },
@@ -694,6 +728,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "Agentic AI & MLOps",
     featured: true,
     status: "Live",
+    systemType: "Multi-Agent Workflow",
     metrics: ["4 specialized agent swarms", "Real-time telemetry logging", "Publication-grade Markdown export"],
     impact: "Demonstrates state-of-the-art agentic AI workflow automation, orchestrating complex research tasks and synthesizing rigorous technical reports.",
   },

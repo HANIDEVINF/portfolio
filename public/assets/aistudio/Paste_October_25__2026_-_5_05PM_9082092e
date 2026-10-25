@@ -1,0 +1,487 @@
+Hani, here's my professional assessment
+I reviewed your live portfolio and GitHub profile, and attempted to access your LinkedIn profile. I'm evaluating you against the standard for someone seeking a junior AI Engineer, Machine Learning Engineer, or Applied AI Engineer position, including international opportunities.
+
+My main recommendation is this: position yourself as an AI engineer who can build, evaluate, and deploy reliable AI systems—not as someone who simply has many AI projects.
+
+Your portfolio already presents a more ambitious profile than a typical student portfolio. It highlights five CERIST AI research internships, multilingual transformer research, healthcare AI, computer vision, agentic AI, and full-stack development. It also makes detailed technical claims about model accuracy, uncertainty estimation, and deployment on edge devices. 
+
+AI Engineer & Full-Stack Systems Architect
+
+
+
+
+That is promising, but it creates a higher bar: a recruiter or technical interviewer will expect your repositories, experiments, and demos to substantiate those claims. The priority is to make your strongest work independently verifiable, not to add more impressive-sounding terminology.
+1. Portfolio: what I would change first
+
+The positioning is too senior and too broad.
+
+Your hero describes you as an “AI Engineer & Full-Stack Systems Architect.” For an MSc candidate, Systems Architect risks sounding inflated unless you have substantial architecture ownership in production environments. Your page also markets AI research, healthcare, NLP, computer vision, RAG, agentic AI, commercial applications, and desktop systems all at once. 
+
+AI Engineer & Full-Stack Systems Architect
+
+
+
+
+Change: Lead with Applied AI Engineer | Machine Learning, NLP & LLM Systems. Keep commercial software development as a supporting strength.
+
+
+
+
+You show too many projects before establishing which ones matter.
+
+Your site advertises 17+ projects, nine or more AI workbenches, multiple trained models, and six commercial systems. That is a lot for a recruiter to process before deciding whether to interview you. 
+
+AI Engineer & Full-Stack Systems Architect
+
+
+
+
+Change: Feature three flagship AI case studies and one commercial software case study. Put the other work in an archive or secondary project directory. The goal is not to prove you have the longest project list; it is to prove that you can solve difficult problems.
+
+
+
+
+Your biggest risk is credibility, not design.
+
+Several projects have precise numerical claims, including 98.20% accuracy for MuCAT, 90.13% for ECG classification, 99.1% for a moderation model, and 0.32 ms inference latency. Those figures attract technical interviewers, but they also invite scrutiny. 
+
+AI Engineer & Full-Stack Systems Architect
++2
+
+
+
+
+Change: For every important metric, provide the evaluation protocol, baseline, test-set definition, limitations, and reproducible results. If a figure cannot be reproduced, correct it or remove it.
+
+
+
+
+Your dates need a consistency pass.
+
+The portfolio describes your Master's studies as “2024–Present,” while the downloadable CV gives “September 2025–June 2027 expected.” The portfolio also shows “2022–2024” for the capstone timeline, whereas the CV lists the Bachelor's degree as September 2022–June 2025. Its freelance timeline also needs reconciling with the CV. 
+
+Change: Establish one authoritative education and employment timeline and use it consistently across the website, CV, GitHub README, and LinkedIn.
+
+
+
+Replace your hero section with this
+Here is the direction I recommend, rather than a complete redesign of your website.
+SUGGESTED PORTFOLIO INTRODUCTION
+Hani Ghena
+Applied AI Engineer | NLP, Deep Learning & LLM Systems
+MSc candidate in Artificial Intelligence Engineering at USTHB, with research experience at CERIST and hands-on projects in transformer-based NLP, deep learning, retrieval-augmented generation, and AI application development.
+
+I focus on building and evaluating AI systems with reproducible experiments, clear performance measurements, and practical software implementations.
+
+ Flagship projects
+
+ Download CV
+
+ GitHub
+
+ Contact
+
+
+
+Only say that you focus on reproducible experiments if the projects you publish actually meet that standard. Likewise, describe CERIST as previous research experience unless your current employment or internship status supports saying that you are presently there.
+2. The technical issues I would fix before applying
+I inspected the public portfolio content, several live demos, and your public GitHub repositories. These are the points I would prioritize in a technical screening.
+A. MuCAT: validate the benchmark before using it as your main selling point
+Your portfolio claims that MuCAT reaches 98.20% test accuracy, compared with 23.74% for the mDeBERTa-v3 ablation and 3.88% for XLM-RoBERTa-base under the same training budget. 
+
+AI Engineer & Full-Stack Systems Architect
++1
+
+
+
+
+That is an unusually large gap. It is not proof that the results are wrong, but the baseline numbers are sufficiently concerning that I would verify them before using them in interviews. On a balanced six-class task, random guessing would yield about 16.7% accuracy, so 3.88% deserves particular scrutiny if this is a six-class classification benchmark.
+
+Check the following:
+- Are the dataset, label mapping, train/validation/test split, and evaluation code identical across models?
+- Is the metric calculated on the same test examples for each model?
+- Are padding, tokenization, model outputs, and label IDs handled correctly?
+- Is the test set independent of training, model selection, and hyperparameter tuning?
+- Do the confusion matrices, per-language results, and macro-F1 support the headline accuracy?
+Publish a reproducible comparison table and an ablation study. Explain the task, dataset composition, split strategy, and any limitations. Do not lead with the 98.20% figure until you can defend the entire experiment.
+B. ECG v7: show the difficult metrics, not just the accuracy
+Your public ECG repository is one of the more promising technical assets in your portfolio. It includes training scripts, notebooks, technical reports, a model artifact, and documentation of the MIT-BIH DS1/DS2 patient-wise evaluation protocol. 
+
+GitHub
++1
+
+
+
+
+However, your repository's own results reveal a limitation that should be prominent in your case study:
+5-fold ensemble accuracy
+90.13%
+
+5-fold ensemble macro-F1
+0.529
+
+S-class sensitivity
+16.2%
+
+INT8 model size
+155.4 KB
+
+
+These figures come from the ECG repository's documented evaluation results. 
+
+GitHub
++1
+
+
+
+
+The 90.13% accuracy looks strong in isolation, but the macro-F1 and low sensitivity for the S class show that performance is not equally strong across arrhythmia classes. A high overall accuracy can conceal poor minority-class detection.
+
+What to do: show the confusion matrix, per-class precision and recall, macro-F1, the majority-class baseline, and the exact split protocol next to the headline result. Explain the failure modes and what you would improve next.
+
+For latency, report the hardware, inference runtime, input preparation, and measurement method. Keep the 155.4 KB quantization result if you can reproduce it. Do not imply that this research prototype is clinically validated or ready to diagnose patients.
+C. Separate genuine AI inference from interactive simulations
+Some of your projects demonstrate meaningful engineering, including browser-based inference with exported neural-network weights. Your moderation repository, for example, documents model training, exported artifacts, and an explicit run procedure. 
+
+GitHub
+
+
+
+
+Other projects describe integrations or capabilities that cannot be established from the interface alone. For example, ResolveAI shows Stripe-like invoice queries and multiple agent tool calls, while its repository describes an interactive Next.js demo. The public OpsPilot repository likewise presents a Next.js application with a fairly minimal run/deploy README. That doesn't establish that the systems are fake; it does mean the page and code should make the real integration boundaries clear. 
+
+Multi-Agent Support Bot
++1
+
+
+
+
+Add a clear status label to every project:
+Status	What it means
+Deployed application	A usable application with a real backend and actual integrations
+Research implementation	A model or experiment whose results are documented and reproducible
+Interactive prototype	A user interface demonstrating a proposed workflow
+Simulation / mock integration	Scripted responses or simulated tools rather than real external actions
+
+Apply these labels honestly. In particular, don't describe a Stripe, Datadog, or CRM tool call as an actual integration unless it reaches the real service in a working environment.
+
+Also avoid absolute phrases such as “zero hallucinations,” “zero-regression verified,” or “eliminates hallucinations” unless you can precisely substantiate them. A better description is “citation-grounded RAG with threshold-based abstention, evaluated on a defined test set.”
+
+That distinction is important: a polished AI interface is useful, but it is not the same thing as evidence that the underlying model or agent works reliably.
+3. GitHub: strong raw material, but make the repositories more convincing
+Your GitHub profile currently displays 28 public repositories. I examined the profile README, the MuCAT repository, the ECG repository, and several AI application repositories. 
+
+GitHub
++2
+
+
+
+
+My assessment is that the repository quality is uneven. Some projects document real experiments in useful detail; others read more like interactive application demos than complete AI engineering systems.
+The repositories I would prioritize
+
+
+
+
+
+
+
+
+
+1. ECG Arrhythmia Classification v7
+Keep and improve
+This repository has a useful structure: training scripts, notebooks, model artifacts, a technical report, and an explicit evaluation protocol. That is better evidence than a notebook containing only a training loop. 
+
+GitHub
+
+
+
+
+Improve the evaluation presentation first, particularly the minority-class results, then make the complete process reproducible from a clean environment.
+
+
+
+
+
+
+
+
+
+
+
+
+2. MuCAT Multilingual Transformer
+Validate first
+This is potentially your strongest research differentiator. Its README describes the architecture, six target languages, training budget, ablations, and test results. But the baseline validation-to-test discrepancy I discussed above must be resolved before you treat the results as evidence of a breakthrough. 
+
+GitHub
+
+
+
+
+Once validated, make this your leading research project on your portfolio and pin it on GitHub.
+
+
+
+
+
+
+
+
+
+
+
+
+3. LLM Evaluation Framework
+Upgrade
+This is relevant to Applied AI, LLM engineering, and evaluation roles. However, its public README mostly describes an interactive Next.js demo and standard installation commands. 
+
+GitHub
+
+
+
+
+Turn it into a demonstrable evaluation framework with a real evaluation dataset, a runnable evaluation pipeline, explicit metrics, regression tests, and a report comparing systems. If it is currently a frontend demonstration, label it accordingly until the backend and evaluation are implemented.
+
+
+
+
+
+
+
+
+
+
+
+
+4. MedGuardAI
+
+Keep this as evidence that you can integrate software, sensors, and AI into one application. It supports your software engineering profile alongside the research projects. 
+
+GitHub
+
+
+
+
+Explain exactly what you implemented, what was developed for your academic capstone, what ran on physical hardware, and what is demonstrated using simulated data.
+
+
+
+These are starting points, not a claim that every repository is ready for hiring. I would inspect the implementation and reproduce its results before giving any of them a stronger endorsement.
+What to change across GitHub
+First, simplify your profile README. It currently contains a long table of systems and quantitative claims. Use it to direct visitors toward the few projects that best demonstrate your skills, instead of repeating your portfolio website.
+
+I would pin four to six repositories at most: MuCAT, ECG v7, your improved RAG evaluation framework, MedGuardAI, and one well-documented commercial project. Add a sixth only if it shows a distinct skill that the others do not.
+
+Second, establish a consistent engineering standard for every featured repository.
+File or section	What I expect to find
+README.md	Problem, contribution, architecture, demo, limitations
+requirements.txt or lockfile	Reproducible dependency versions
+scripts/	Clear training, inference, and evaluation commands
+tests/	Tests for critical preprocessing, model behavior, and application logic
+reports/	Results, baselines, confusion matrices, and experiment configuration
+.env.example	Required environment variables without actual secrets
+GitHub Actions	Automated tests and build checks, where applicable
+
+For deep-learning research, document the dataset source, its license, preprocessing, split strategy, random seeds, model configuration, evaluation metrics, and hardware used for latency measurements. A hiring manager should be able to understand how a result was obtained without relying on your website's description.
+
+One specific issue: the OpsPilot repository is presented under a name suggesting a containerized API, but its visible file structure is centered on a Next.js application and does not show an obvious separate API service or Docker setup. 
+
+GitHub
+
+
+ Either rename it to accurately describe the current implementation or complete the architecture the name promises.
+
+Do not spend your time chasing GitHub stars. They may help discoverability, but they do not substitute for reproducible experiments, readable code, tests, and evidence that you understand your own implementation.
+
+4. Your downloadable CV: keep the foundation, change the emphasis
+I opened the one-page PDF linked from your portfolio. It already has recognizable sections for research experience, commercial projects, education, and technical skills. The structure is a reasonable starting point. 
+
+The problem is that the CV tries to sell almost your entire technical identity at once.
+What I would change
+1. Replace the headline.
+
+Current direction: “AI Engineer & Full-Stack Systems Architect | Deep Learning - NLP - RAG - Agentic AI”
+
+Recommended:
+
+Applied AI / Machine Learning Engineer | NLP, Transformers & LLM Systems
+
+That is more targeted and makes sense for a candidate applying to junior engineering positions. Use a separate software engineering CV when applying to roles that primarily involve building full-stack products.
+
+2. Rewrite the summary.
+
+Here is a more credible version:
+M.Sc. candidate in Artificial Intelligence Engineering at USTHB with AI research experience at CERIST and hands-on projects in multilingual NLP, deep learning, retrieval-augmented generation, and model deployment. Experienced in designing ML experiments, evaluating model performance, and integrating AI capabilities into software applications. Seeking junior Applied AI / Machine Learning Engineer opportunities.
+
+
+
+
+Keep the summary only as long as it needs to be. You do not need to describe every framework, product, and research method in the opening paragraph.
+
+3. Make the CERIST experience more specific.
+
+The CV says you completed five AI research internship appointments and presents MuCAT as a key result. 
+
+List the actual periods clearly. If these were five appointments under the same team, distinguish the appointments from five entirely separate positions. Then use two or three achievement-focused bullets explaining what you personally designed, implemented, measured, or evaluated.
+
+For MuCAT, the bullet should contain the task, architecture contribution, validated evaluation protocol, and defensible results. Do not use the current accuracy comparison until the baseline discrepancy is explained.
+
+4. Do not let accuracy hide the engineering.
+
+An example of how I would frame your ECG work, once you verify the figures, is:
+Developed an ECG classification pipeline using a 1D-CNN and Transformer architecture with RR-interval features. Evaluated using a patient-wise MIT-BIH protocol and investigated INT8 TFLite deployment, achieving 90.13% ensemble accuracy while identifying weak sensitivity for a minority arrhythmia class.
+
+That tells a hiring manager more about your engineering judgment than simply saying the model achieved 90.13% accuracy. Use the actual macro-F1 and class-specific results in the linked report.
+
+5. Shorten the contact row.
+
+Your CV has a long contact line containing your email, phone number, GitHub, and LinkedIn. Simplify it to a short email address, phone, location, and compact clickable links for GitHub, LinkedIn, and portfolio. Check that nothing is clipped at the right margin and that all links open correctly.
+
+For now, keep the CV to one page, use a simple single-column structure, and limit the skills section to technologies you can explain and demonstrate. There is no need to add more projects or certificates to the page.
+Create two versions, not one overloaded CV
+Version A — Applied AI / ML Engineer
+Primary version
+
+Lead with MuCAT, validated ECG experiments, and RAG evaluation. Emphasize Python, PyTorch or TensorFlow, Hugging Face Transformers, model evaluation, and deployment.
+
+Version B — AI Product / Software Engineer
+Secondary version
+
+Lead with a working AI application, backend/API integration, data persistence, testing, and one real client project. Treat model research as an additional advantage rather than the entire narrative.
+
+
+Your current background can support both directions, but the CV for each job should make the most relevant evidence obvious within the first few seconds.
+
+5. LinkedIn: what I recommend
+LinkedIn restricted direct access during my review, so I could not reliably inspect your current headline, About section, or Experience entries. I will not pretend that I verified those details. The following is a targeted revision template.
+Recommended headline
+M.Sc. AI Engineering @ USTHB | AI Research Experience at CERIST | Applied ML, NLP & RAG | Python • PyTorch • Transformers
+
+
+
+
+Adjust “AI Research Experience at CERIST” to your actual employment history and current status.
+Recommended About section
+I am an M.Sc. candidate in Artificial Intelligence Engineering at USTHB, with research experience at CERIST and hands-on experience building AI and software applications.
+
+My main interests are applied machine learning, transformer-based NLP, retrieval-augmented generation, and AI evaluation. My projects include multilingual NLP research, ECG classification experiments, document retrieval systems, and applications that integrate AI with practical software workflows.
+
+I care about understanding how a model performs, evaluating its limitations, and turning research ideas into systems that can be tested and used.
+
+I am interested in junior Applied AI / Machine Learning Engineer roles and R&D opportunities focused on NLP, LLM systems, and model deployment.
+
+Portfolio: [your portfolio URL]
+GitHub: https://github.com/HANIDEVINF
+
+
+
+
+The rest of your LinkedIn profile
+Your Experience section should explain the work, not just list technologies. Give each CERIST period the correct dates and describe the project, your individual contribution, the method, and the outcome. Add your strongest public project links to the Featured section, along with your portfolio and downloadable CV.
+
+Keep the profile coherent with your website. A recruiter should see the same candidate in all three places, with consistent dates, role titles, project names, and metrics.
+
+6. The portfolio I would actually build for interviews
+I would not build another ten applications right now. I would complete and document three technically strong projects.
+
+Project 1 — MuCAT
+Your research differentiator
+
+
+Resolve the baseline issue first. Then publish a clear architecture diagram, reproducible comparison script, dataset and split details, per-language results, confusion matrices, ablation study, and uncertainty calibration analysis. If CERIST owns any confidential material, publish only what you are authorized to share.
+
+Project 2 — Real RAG Evaluation
+Your LLM engineering proof
+
+
+Build a real, runnable evaluation pipeline for a defined document collection. Compare dense retrieval, BM25, and hybrid retrieval. Measure retrieval quality, answer correctness, citation support, latency, and cost where applicable. Include a small curated question-answer benchmark, automated tests, and a report showing what works and what fails.
+
+Your existing VeriCite and EvalGate applications provide a starting point, so concentrate on implementation depth rather than another UI.
+
+
+Project 3 — ECG Edge Inference
+Your deployment and model-evaluation proof
+
+
+Keep ECG v7, but present it as an engineering and evaluation case study rather than a clinically validated model. Show the data pipeline, leakage prevention, model architecture, minority-class weaknesses, quantization comparison, latency setup, and deployment limitations.
+
+Then feature one commercial client system as secondary evidence that you can also deliver complete software. Tadjmeel Clinica or a retail system could serve this purpose, provided you can substantiate your contribution and have permission to show the project details.
+
+A good project case study should answer six questions: What problem did you solve? What did you personally build? Why did you choose that method? How did you evaluate it? What failed or remains incomplete? How can another engineer reproduce or test it?
+
+That is the standard I would aim for. A recruiter can skim it; a technical interviewer can investigate it.
+
+7. Your 30-day execution plan
+The order matters. There is little benefit in sending an impressive-looking CV to hundreds of employers if the technical claims are inconsistent.
+01
+Days 1–3
+
+Correct the evidence
+
+Audit the MuCAT results and ECG metrics. Reconcile all education, internship, and freelance dates. Classify each demo accurately as a real integration, research implementation, prototype, or simulation.
+
+
+
+02
+Days 4–10
+
+Repair the portfolio and GitHub
+
+Reduce the landing page to three flagship AI projects and one commercial case study. Improve the pinned repositories, add setup and evaluation instructions, and make the important technical results easy to verify.
+
+
+
+03
+Days 11–17
+
+Finish one flagship case study
+
+Prioritize the project with the most defensible contribution. Add tests, a reproducible evaluation command, architecture documentation, and a clear limitations section. Avoid starting another project unless it addresses a genuine gap in your target role.
+
+
+
+04
+Days 18–23
+
+Finalize the CV and LinkedIn
+
+Prepare the two targeted CV versions, align the experience dates, use the same role positioning across profiles, and make sure the project links work. Practice explaining each major metric and technical decision without relying on memorized terminology.
+
+
+
+05
+Days 24–30
+
+Start a focused application campaign
+
+Apply to roles that match your evidence, tailor the CV to each position, and contact relevant engineers, researchers, alumni, and hiring managers with a brief personal message and one relevant project. Track applications, replies, interviews, and the roles that generate responses.
+
+
+
+8. How I would approach getting interviews
+Target these job titles first:
+Priority	Job titles
+Primary	Junior Applied AI Engineer, Junior Machine Learning Engineer
+Strong secondary	NLP Engineer, Junior Generative AI Engineer, AI Research Engineer / Assistant
+Alternative	AI Software Engineer, Full-Stack Engineer with AI integration
+
+For each application, make the match explicit. If the job is NLP-focused, lead with the validated MuCAT research and a credible RAG implementation. If it is an ML deployment role, lead with the ECG pipeline and its quantified engineering trade-offs. If it is a software role, feature the production systems and explain the backend, testing, deployment, and your personal contribution.
+
+Do not send the same general CV to every employer. Use a tracking spreadsheet and spend time on targeted applications and direct networking instead of relying on portfolio traffic alone. A polished portfolio supports an application; it does not replace role fit, a clear CV, and a good technical interview.
+My final verdict
+You have a potentially valuable combination of research experience, ambitious AI projects, and commercial software development. The ECG repository already contains more useful technical documentation than a typical showcase-only project, and the multilingual Transformer work could become a strong differentiator if its evaluation withstands scrutiny. 
+
+GitHub
++1
+
+
+
+
+However, I would not prioritize visual effects, more projects, more badges, or more technologies right now.
+
+My three immediate priorities are:
+1. Validate MuCAT's anomalous baseline results and present ECG performance honestly.
+2. Reduce the portfolio to a few defensible case studies and improve their repositories.
+3. Make the CV and LinkedIn consistent, specific, and targeted to junior Applied AI / ML roles.
+The distinction between an impressive-looking candidate and an interview-ready candidate is whether the evidence stands up to a technical interview. Your next step should be to make that evidence stronger—not to make the claims bigger.

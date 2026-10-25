@@ -101,10 +101,25 @@ export default function ProjectsPage() {
                         <div className="relative aspect-[16/9] bg-gradient-to-br from-purple-950/60 via-[#140b28] to-[#0e091d] overflow-hidden p-5 border-b border-purple-500/15">
                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(168,85,247,0.2),transparent_40%)]" />
                           <div className="relative flex h-full flex-col justify-between">
-                            <div className="flex items-center justify-between">
-                              <span className="inline-block text-xs px-2.5 py-1 bg-purple-950/80 border border-purple-500/30 text-purple-300 rounded-full font-medium">
-                                {project.category}
-                              </span>
+                            <div className="flex items-center justify-between gap-2 flex-wrap">
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <span className="inline-block text-xs px-2.5 py-1 bg-purple-950/80 border border-purple-500/30 text-purple-300 rounded-full font-medium">
+                                  {project.category}
+                                </span>
+                                {project.systemType && (
+                                  <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[10.5px] font-medium ${
+                                    project.systemType === "Research Implementation"
+                                      ? "border-emerald-500/35 bg-emerald-950/70 text-emerald-300"
+                                      : project.systemType === "Live Client Production"
+                                      ? "border-cyan-500/35 bg-cyan-950/70 text-cyan-300"
+                                      : project.systemType === "Multi-Agent Workflow"
+                                      ? "border-amber-500/35 bg-amber-950/70 text-amber-300"
+                                      : "border-purple-500/35 bg-purple-950/70 text-purple-300"
+                                  }`}>
+                                    {project.systemType}
+                                  </span>
+                                )}
+                              </div>
                               {project.status && (
                                 <span className="inline-flex items-center gap-1 rounded-full border border-purple-400/30 bg-purple-500/20 px-2.5 py-0.5 text-xs text-purple-200 font-semibold">
                                   <Activity className="h-3 w-3" />

@@ -93,47 +93,55 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
     font: "F2",
     size: 21,
     color: [0.06, 0.04, 0.14],
-    spacingAfter: 5,
+    spacingAfter: 4,
   })
   lines.push({
     text:
       lang === "fr"
-        ? "Ingenieur IA & Architecte Full-Stack | Deep Learning - NLP - RAG - IA Agentique"
-        : "AI Engineer & Full-Stack Systems Architect | Deep Learning - NLP - RAG - Agentic AI",
+        ? "Ingenieur en IA Appliquee | NLP, Deep Learning & Systemes LLM"
+        : "Applied AI Engineer | NLP, Deep Learning & LLM Systems",
     font: "F2",
     size: 10.5,
     color: [0.42, 0.16, 0.85],
     spacingAfter: 5,
   })
+  // Split contact info across 2 rows so nothing ever extends beyond page margin
   lines.push({
-    text: "Algiers, Algeria  |  hanighena4@gmail.com  |  0541894743 (+213 541 89 47 43)  |  github.com/HANIDEVINF  |  linkedin.com/in/ghena-hani-3543a3375",
+    text: "Algiers, Algeria   |   hanighena4@gmail.com   |   +213 541 89 47 43",
     font: "F1",
     size: 8.8,
     color: [0.32, 0.32, 0.38],
-    spacingAfter: 12,
+    spacingAfter: 3,
+  })
+  lines.push({
+    text: "github.com/HANIDEVINF   |   linkedin.com/in/ghena-hani-3543a3375",
+    font: "F1",
+    size: 8.8,
+    color: [0.32, 0.32, 0.38],
+    spacingAfter: 11,
   })
 
   if (lang === "en") {
     addHeader("Executive Summary")
     addParagraph(
-      "Applied AI Engineer & M.Sc. Candidate in Artificial Intelligence at USTHB (Expected June 2027) with 5 AI research internships at CERIST (2024 - Present) and 2+ years of commercial full-stack software delivery (Jan 2024 - Present). Proven track record designing evaluated deep learning architectures (MuCAT 6-language Transformer, MIT-BIH v7 INT8 TFLite ECG classifier), real-time IoT clinical platforms (MedGuardAI), hybrid RAG pipelines, and 6 deployed commercial client systems."
+      "Applied AI Engineer & M.Sc. Candidate in Artificial Intelligence at USTHB (Sep 2025 - Expected June 2027), Licence in Computer Science graduate from USTHB (2022 - 2025), with AI research appointments at CERIST (2024 - 2025) and commercial full-stack software delivery (Jan 2024 - Present). Proven track record designing evaluated deep learning architectures (AsthmaExpertUltra Multi-Task Transformer, MuCAT 6-language Transformer, MIT-BIH v7 INT8 TFLite ECG classifier), real-time IoT clinical platforms (MedGuardAI), hybrid RAG pipelines, and 6 deployed commercial client systems."
     )
 
     addHeader("Professional & Research Experience")
     addParagraph(
-      "AI Engineering Research Intern (5 Appointments, UbiSys Team DTISI) - CERIST, Algiers (2024 - Present)",
+      "AI Engineering Research Intern - CERIST (UbiSys Team DTISI), Algiers (2024 - 2025)",
       9.6,
       true,
       [0.08, 0.08, 0.15]
     )
     addBullet(
-      "Designed MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) in CERIST UbiSys (DTISI): mDeBERTa-v3-base + Hierarchical Attention Pooling (HAP) + FiLM Language Gating + Evidential Dirichlet Head (u=K/S) across 6 languages (MSA, Algerian Darija, Kabyle, Chaoui, FR, EN), reaching 98.20% test accuracy vs 23.74% mDeBERTa-v3 ablation."
+      "Designed AsthmaExpertUltra: 4-layer Transformer Encoder predicting crisis severity (76.0% acc, 92.3% severe recall) and lead-time proximity (69.0% acc) from 8 multimodal IoT streams, with Dempster-Shafer fusion & Android PyTorch Lite deployment (<1.0s)."
+    )
+    addBullet(
+      "Designed MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) in CERIST UbiSys (DTISI): mDeBERTa-v3-base + Hierarchical Attention Pooling (HAP) + FiLM Language Gating + Evidential Dirichlet Head (u=K/S) across 6 languages (MSA, Algerian Darija, Kabyle, Chaoui, FR, EN), reaching 98.20% test accuracy."
     )
     addBullet(
       "Engineered AI ECG Arrhythmia Classification (v7) on the strict inter-patient MIT-BIH DS1/DS2 benchmark (90.13% 5-fold accuracy, 155.4 KB INT8 TFLite, 0.32 ms/beat latency)."
-    )
-    addBullet(
-      "Developed real-time ECG and blood glucose anomaly detection pipelines connected to physical medical sensors and emergency clinical alert workflows."
     )
 
     addParagraph(
@@ -151,13 +159,16 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
 
     addHeader("Key Deployed Systems & Research")
     addBullet(
+      "AsthmaExpertUltra (CERIST AI Research): Multi-Task Transformer for asthma crisis severity & lead-time with Android PyTorch Lite."
+    )
+    addBullet(
       "AI ECG Arrhythmia Classification (v7): 1D-CNN + 2x Multi-Head Transformer + 8 RR features on MIT-BIH DS1/DS2."
     )
     addBullet(
-      "MedGuardAI (USTHB Capstone Distinction): Real-time IoT ECG/Glucose sensor streaming, AI anomaly alerts & WebRTC telemedicine."
+      "MuCAT Multilingual Transformer: mDeBERTa-v3 + HAP + FiLM Gating + Dirichlet Uncertainty (98.20% Test Acc, 6 languages)."
     )
     addBullet(
-      "MuCAT Multilingual Transformer: mDeBERTa-v3 + HAP + FiLM Gating + Dirichlet Uncertainty (98.20% Test Acc, 6 languages)."
+      "MedGuardAI (USTHB Capstone Distinction): Real-time IoT ECG/Glucose sensor streaming, AI anomaly alerts & WebRTC telemedicine."
     )
     addBullet(
       "Commercial Production Suite: Tadjmeel Clinica Algiers, Enterprise DZD G50 ERP, ALLURE HOMME, GK STORE & CASUAL 29."
@@ -174,6 +185,11 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
       9.4,
       true
     )
+    addParagraph(
+      "Baccalaureat in Exact Sciences - Algiers (2022)",
+      9.4,
+      false
+    )
 
     addHeader("Technical Competencies & Languages")
     addParagraph(
@@ -188,24 +204,24 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
   } else {
     addHeader("Resume Executif")
     addParagraph(
-      "Ingenieur en IA Appliquee et Candidat au Master en Intelligence Artificielle a l'USTHB (Prevu Juin 2027) avec 5 stages de recherche en IA au CERIST (2024 - Present) et 2+ ans d'experience en developpement full-stack commercial (Janv. 2024 - Present). Conception d'architectures Transformer/BERT multilingues (MuCAT), systemes medicaux IoT & IA temps reel (MedGuardAI, ECG v7 INT8 TFLite), pipelines RAG hybrides et 6 logiciels commerciaux en production."
+      "Ingenieur en IA Appliquee et Candidat au Master en Intelligence Artificielle a l'USTHB (Sept. 2025 - Prevu Juin 2027), diplome de la Licence en Informatique a l'USTHB (2022 - 2025), avec des stages de recherche en IA au CERIST (2024 - 2025) et 2+ ans d'experience en developpement full-stack commercial (Janv. 2024 - Present). Conception d'architectures Transformer de pointe (AsthmaExpertUltra, MuCAT 6 langues), systemes medicaux IoT & IA temps reel (MedGuardAI, ECG v7 INT8 TFLite) et 6 logiciels commerciaux en production."
     )
 
     addHeader("Experience Professionnelle & Recherche")
     addParagraph(
-      "Stagiaire Chercheur en Ingenierie de l'IA (5 Stages, Equipe UbiSys DTISI) - CERIST, Alger (2024 - Present)",
+      "Stagiaire Chercheur en Ingenierie de l'IA (Equipe UbiSys DTISI) - CERIST, Alger (2024 - 2025)",
       9.6,
       true,
       [0.08, 0.08, 0.15]
     )
     addBullet(
-      "Conception de MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) au CERIST UbiSys (DTISI) : mDeBERTa-v3 + HAP + FiLM Language Gating + tete evidentielle Dirichlet (u=K/S) sur 6 langues (Arabe, Darija, Kabyle, Chaoui, FR, EN), atteignant 98.20% test accuracy contre 23.74% en ablation."
+      "Conception d'AsthmaExpertUltra : Transformer Multi-Taches pour la severite des crises (76.0% acc, 92.3% rappel severe) et l'anticipation temporelle (69.0% acc), fusion evidentielle de Dempster-Shafer et deploiement Android PyTorch Lite (<1.0s)."
+    )
+    addBullet(
+      "Conception de MuCAT au CERIST UbiSys (DTISI) : mDeBERTa-v3 + HAP + FiLM Language Gating + tete evidentielle Dirichlet (u=K/S) sur 6 langues (Arabe, Darija, Kabyle, Chaoui, FR, EN), atteignant 98.20% de precision test."
     )
     addBullet(
       "Developpement du systeme ECG Arrhythmia v7 sur le protocole inter-patient MIT-BIH DS1/DS2 (90.13% precision ensemble 5-fold, 155.4 Ko INT8 TFLite, 0.32 ms/battement)."
-    )
-    addBullet(
-      "Developpement de pipelines de detection d'anomalies ECG et glycemie en temps reel connectes a des capteurs medicaux."
     )
 
     addParagraph(
@@ -231,6 +247,11 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
       "Licence en Informatique - USTHB, Alger (Sept. 2022 - Juin 2025 Diplome - PFE : MedGuardAI)",
       9.4,
       true
+    )
+    addParagraph(
+      "Baccalaureat en Sciences Exactes - Alger (2022)",
+      9.4,
+      false
     )
 
     addHeader("Competences & Langues")

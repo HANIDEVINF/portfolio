@@ -1,6 +1,3 @@
-"use client"
-
-import { use } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { ArrowLeft, Calendar, Clock } from "lucide-react"
@@ -97,8 +94,12 @@ In healthcare IoT applications like **MedGuardAI**, clinical dashboards must ren
   },
 }
 
-export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = use(params)
+export function generateStaticParams() {
+  return Object.keys(posts).map((slug) => ({ slug }))
+}
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params
   const post = posts[resolvedParams.slug] || posts["ai-ecg-arrhythmia-classification-mit-bih"]
 
   return (
