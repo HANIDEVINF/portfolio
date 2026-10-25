@@ -33,7 +33,7 @@ export function HeroSection() {
 
         {/* First-5-Second Executive AI Specialization Kicker */}
         <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.18em] text-purple-300 mb-3">
-          AI Engineer | Deep Learning • NLP • Computer Vision | Building Production AI Systems
+          Applied AI Engineer | NLP, Deep Learning &amp; LLM Systems
         </p>
 
         {/* Big Headline */}
@@ -43,14 +43,14 @@ export function HeroSection() {
           </span>
         </h1>
 
-        {/* Freelance & Software Positioning Strip */}
+        {/* Supporting Engineering Strip */}
         <p className="text-xs sm:text-sm font-mono text-cyan-300/90 tracking-wide mb-5">
-          AI Engineering &amp; Software Development — AI Systems • Web Applications • Desktop Suites • Intelligent Automation
+          M.Sc. AI @ USTHB · CERIST AI Researcher · PyTorch, Transformers, Medical AI &amp; Edge Inference
         </p>
 
         {/* Concise Value Proposition */}
         <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-light mb-9">
-          5× CERIST AI Research Intern (BERT / Transformers &amp; Healthcare AI) and Full-Stack Systems Architect shipping real neural models and commercial software platforms.
+          M.Sc. candidate in Artificial Intelligence Engineering at USTHB, with AI research experience at CERIST and hands-on projects in transformer-based NLP, medical deep learning, RAG, and edge AI deployment. Focused on building and evaluating reliable AI systems with reproducible experiments and production software implementations.
         </p>
 
         {/* Primary Recruiter & Client Conversion Bar: CV -> LinkedIn -> GitHub -> Contact -> Projects */}

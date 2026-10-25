@@ -8,11 +8,10 @@ import { Menu, X, Github, Linkedin, Mail } from "lucide-react"
 const navLinks = [
   { name: "About", href: "/#about" },
   { name: "Projects", href: "/projects" },
-  { name: "EdTech SaaS", href: "/edtech" },
-  { name: "Client Systems", href: "/lab/client-systems" },
+  { name: "Asthma AI Lab", href: "/lab/asthma-expert-ultra" },
   { name: "Live AI Lab", href: "/lab" },
+  { name: "Client Systems", href: "/lab/client-systems" },
   { name: "Agentic Studio", href: "/lab/agentic-research" },
-  { name: "Blog", href: "/blog" },
   { name: "Resume", href: "/resume" },
   { name: "Contact", href: "/contact" },
 ]

@@ -54,6 +54,66 @@ export const portfolioProjects: PortfolioProject[] = [
   // 1. HEALTHCARE AI
   // ==========================================================================
   {
+    slug: "asthma-expert-ultra-transformer",
+    title: "AsthmaExpertUltra — Multi-Task Transformer for Asthma Crisis Prediction",
+    description:
+      "Anticipatory edge-AI clinical monitoring system predicting asthma crisis severity (4 classes) and temporal lead-time proximity (4 bins) 4 to 8 hours before clinical onset. Built with a 4-layer Transformer Encoder, class-weighted Focal Loss, and Dempster–Shafer spirometric safety fusion, deployed on Android via PyTorch Lite.",
+    technologies: [
+      "PyTorch",
+      "Transformer Encoder",
+      "Multi-Task Learning",
+      "Dempster-Shafer Fusion",
+      "PyTorch Lite (.ptl)",
+      "Android Edge AI"
+    ],
+    github: "https://github.com/HANIDEVINF/asthma-expert-ultra",
+    githubReady: true,
+    demo: "/lab/asthma-expert-ultra",
+    caseStudyUrl: "/lab/asthma-expert-ultra",
+    category: "Healthcare AI",
+    featured: true,
+    status: "CERIST Research",
+    trainedDataset: "1,000 simulated patients, 1,440 hours/patient (60 days), strict patient-independent GroupShuffleSplit (80/20 train/test, zero patient overlap)",
+    modelType: "4-Layer Transformer Encoder (d_model=128, h=8) + GAP + Dual Multi-Task Heads (Severity Focal Loss γ=2 + Lead-Time Cross-Entropy)",
+    metrics: [
+      "76.0% 4-Class Severity Accuracy (vs 61.8% XGBoost, 57.7% PatchTST)",
+      "69.0% 4-Bin Lead-Time Accuracy (vs 59.3% LSTM)",
+      "< 1.0s On-Device Inference on Android (PyTorch Lite .ptl)"
+    ],
+    impact:
+      "CERIST AI Research internship project. Evaluated on 1,000 patients with a leakage-free patient-grouped protocol. Class-weighted Focal Loss [1,5,5,10] escalates Severe class recall from 0.3% to 92.3%, and Dempster-Shafer fusion dynamically overrides borderline cases when FEV1/VEMS drops below 50%.",
+    architecture: [
+      "Input Window: 24h temporal sliding window (24 × 8) of 8 multimodal signals (FEV1, PEF, SpO2, HR, RR, PM2.5, Pollen, Temp) with patient-specific Z-score normalisation",
+      "Module 1 (Transformer Encoder): Linear projection (8 → 128) + Sinusoidal Positional Encoding → 4-layer Transformer Encoder (8 heads, FFN 512, LayerNorm) → Global Average Pooling context h_GAP (128-d)",
+      "Module 2 (Multi-Task Heads): Severity Head (128 → 64 → 4, Focal Loss γ=2, w=[1,5,5,10]) and Lead-Time Head (128 → 64 → 4, Cross-Entropy) trained jointly (0.5/0.5)",
+      "Safety Layer & Edge Deployment: Dempster-Shafer evidence fusion with independent spirometric rule (VEMS < 50% critical emergency override), exported to TorchScript and PyTorch Lite (.ptl) for offline Android execution"
+    ],
+    caseStudy: {
+      subtitle: "CERIST Research Technical Report — Multi-Task Transformer & Android Edge Deployment",
+      datasetOrScope: "1,000 Patients · 1,440 Hours Each · Strict Patient-Independent Split · 8 Multimodal Channels",
+      keyFindings: [
+        "AsthmaExpertUltra reaches 76.0% accuracy on 4-class severity and 69.0% on 4-bin lead-time, outperforming XGBoost (61.8%), LSTM (59.3%), and 2023 PatchTST (57.7%) on severity",
+        "Asymmetric Focal Loss weighting [1, 5, 5, 10] raises Severe crisis recall from 0.3% to 92.3%, ensuring life-threatening exacerbations are detected reliably",
+        "Dempster-Shafer decision fusion escalates 47.3% of critical low-VEMS readings to immediate triage while de-escalating false alarms in stable patients",
+        "Full PyTorch Lite (.ptl) export achieves sub-second (<1.0s) inference latency on Android with zero cloud reliance"
+      ],
+      sections: [
+        {
+          heading: "Why Anticipatory Multi-Task Monitoring Matters",
+          body: "Asthma management is conventionally reactive: patients only receive intervention after airway constriction begins. AsthmaExpertUltra shifts this paradigm by tracking subtle physiological degradation (FEV1 decline, compensatory respiratory rate climb, SpO2 dips) 4 to 8 hours prior to onset."
+        },
+        {
+          heading: "Patient-Independent Splitting & Benchmark Rigor",
+          body: "Unlike naive random train/test splits that leak patient identities and produce deceptively high scores, AsthmaExpertUltra enforces a strict GroupShuffleSplit by patient ID. The model was benchmarked against XGBoost, Simple RNN, LSTM, and 2023 Patch-based Transformers on an identical test cohort."
+        },
+        {
+          heading: "Clinical Safety Override & Edge Privacy",
+          body: "To bridge deep learning and medical practice, the network's probabilistic belief is fused with deterministic clinical guidelines: if a patient's VEMS falls below 50% of their reference value, an emergency alert triggers immediately. The complete system runs locally on an Android device via PyTorch Lite."
+        }
+      ]
+    }
+  },
+  {
     slug: "ai-ecg-arrhythmia-classification-v7",
     title: "AI ECG Arrhythmia Classification (v7)",
     description:
@@ -69,12 +129,12 @@ export const portfolioProjects: PortfolioProject[] = [
     trainedDataset: "PhysioNet MIT-BIH Arrhythmia Database (100,645 labeled beats, DS1/DS2 inter-patient protocol)",
     modelType: "Hybrid 1D-CNN + 2x Multi-Head Transformer Attention + 8-RR Fusion Head (155 KB INT8 TFLite)",
     metrics: [
-      "87.63% raw / 90.13% 5-fold ensemble",
-      "97,045 params (155.4 KB INT8)",
-      "0.32 ms/beat TFLite latency",
+      "90.13% 5-fold ensemble (87.63% single)",
+      "0.529 macro-F1 (16.2% S-class sensitivity)",
+      "155.4 KB INT8 TFLite (0.32 ms/beat latency)",
     ],
     impact:
-      "Strict inter-patient DS1/DS2 split (49,668 held-out test beats), 5-fold StratifiedGroupKFold by patient, focal loss (γ=2), DS1-only OOF logit calibration, and 99.82% Keras-to-TFLite argmax agreement.",
+      "Strict inter-patient DS1/DS2 split (49,668 held-out test beats), 5-fold StratifiedGroupKFold by patient, focal loss (γ=2), DS1-only OOF logit calibration, and 99.82% Keras-to-TFLite argmax agreement. Openly reports minority-class challenges (S-class 16.2% sensitivity) rather than masking with headline accuracy.",
     architecture: [
       "Input A: Dual-lead ECG (200 × 2) → 0.5–45 Hz zero-phase Butterworth + per-beat z-score",
       "Morphology Branch: Conv1D(32, k=7) → Conv1D(64, k=5) → Conv1D(64, k=3) → 2× Transformer (4 heads, FFN 128) → GlobalAvgPool(64)",
@@ -86,7 +146,7 @@ export const portfolioProjects: PortfolioProject[] = [
       datasetOrScope: "MIT-BIH Arrhythmia Database · DS1 (50,977 train beats, 22 patients) / DS2 (49,668 test beats, 22 unseen patients)",
       keyFindings: [
         "Single raw model achieves 87.63% accuracy and 0.5172 macro-F1 (N/S/V/F) on unseen DS2 patients",
-        "5-fold patient-grouped ensemble reaches 90.13% accuracy and 0.5290 macro-F1",
+        "5-fold patient-grouped ensemble reaches 90.13% accuracy and 0.5290 macro-F1, honestly noting 16.2% S-class sensitivity",
         "Out-of-fold prior calibration (τ = 1.5) reaches 94.56% accuracy, explicitly analyzed as a class-N-dominated operating point rather than inflated headline accuracy",
         "INT8 TFLite quantization compresses model to 155.4 KB with 0.32 ms/beat inference and 99.82% argmax fidelity",
       ],

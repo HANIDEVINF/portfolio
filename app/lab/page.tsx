@@ -471,6 +471,42 @@ export default function InteractiveAiCommercialLabPage({
           </div>
         </div>
 
+        {/* Featured CERIST Research Banner: AsthmaExpertUltra */}
+        <div className="mb-8 overflow-hidden rounded-3xl border border-cyan-500/30 bg-gradient-to-r from-cyan-950/40 via-violet-950/30 to-[#0d0718] p-6 shadow-xl shadow-cyan-950/20">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-[11px] font-semibold text-cyan-300">
+                <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+                NEW CERIST Research Project · 2024
+              </div>
+              <h2 className="text-xl font-bold text-white">
+                AsthmaExpertUltra — Multi-Task Transformer &amp; Dempster-Shafer Fusion Workbench
+              </h2>
+              <p className="max-w-2xl text-xs text-zinc-300 leading-relaxed">
+                Dual-head deep architecture for real-time asthma crisis severity &amp; lead-time forecasting from 8 multimodal IoT streams. Features patient-independent GroupShuffleSplit (1,000 patients / 1,440h), Dempster-Shafer evidential fusion, deterministic safety override, and sub-second Android PyTorch Lite deployment.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="https://github.com/HANIDEVINF/asthma-expert-ultra"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-semibold text-zinc-200 hover:border-white/30 hover:text-white"
+              >
+                <Code2 className="h-3.5 w-3.5" />
+                GitHub Repo
+              </a>
+              <Link
+                href="/lab/asthma-expert-ultra"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-cyan-500/20 hover:opacity-95"
+              >
+                Launch Live Neural Workbench
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Studio Selector Grid */}
         <div className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {filteredStudios.map((st) => {

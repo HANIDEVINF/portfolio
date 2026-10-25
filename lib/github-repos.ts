@@ -14,6 +14,17 @@ export type GithubRepoInfo = {
 export const ALL_GITHUB_REPOSITORIES: GithubRepoInfo[] = [
   // 1. Healthcare Deep Learning
   {
+    name: "asthma-expert-ultra",
+    fullName: "HANIDEVINF/asthma-expert-ultra",
+    description: "AsthmaExpertUltra (CERIST Research) — Transformer-Based Multi-Task Deep Learning for Real-Time Asthma Crisis Severity & Lead-Time Prediction on Android (PyTorch Lite).",
+    language: "Python / Jupyter Notebook",
+    category: "Healthcare Deep Learning",
+    trainedDataset: "1,000 simulated patients, 1,440 hours/patient (60 days), strict patient-independent GroupShuffleSplit (80/20 train/test)",
+    modelType: "4-Layer Transformer Encoder (d_model=128, h=8) + GAP + Multi-Task Focal Loss Heads + PyTorch Lite (.ptl)",
+    isTrainedModel: true,
+    topics: ["deep-learning", "healthcare-ai", "asthma-prediction", "transformers", "pytorch", "pytorch-lite", "cerist-research", "edge-ai"],
+  },
+  {
     name: "deep-learning-model-for-anomaly-detection-of-ECG",
     fullName: "HANIDEVINF/deep-learning-model-for-anomaly-detection-of-ECG",
     description: "AI ECG Arrhythmia Classification (v7) — Hybrid 1D-CNN + Transformer + 8 RR Context Features on MIT-BIH Inter-Patient DS1/DS2 (90.13% Ensemble, 155KB INT8 TFLite).",
