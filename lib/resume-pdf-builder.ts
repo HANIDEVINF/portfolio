@@ -105,20 +105,27 @@ export function buildResumePdfBytes(lang: "en" | "fr" = "en"): Uint8Array {
     color: [0.42, 0.16, 0.85],
     spacingAfter: 5,
   })
-  // Split contact info across 2 rows so nothing ever extends beyond page margin
+  // Three well-spaced contact rows with full https links for automatic PDF clickability without right-margin clipping
   lines.push({
     text: "Algiers, Algeria   |   hanighena4@gmail.com   |   +213 541 89 47 43",
     font: "F1",
     size: 8.8,
     color: [0.32, 0.32, 0.38],
-    spacingAfter: 3,
+    spacingAfter: 2.5,
   })
   lines.push({
-    text: "github.com/HANIDEVINF   |   linkedin.com/in/ghena-hani-3543a3375",
+    text: "Portfolio: https://myportfolio-rho-seven-15.vercel.app",
     font: "F1",
-    size: 8.8,
+    size: 8.5,
+    color: [0.38, 0.18, 0.75],
+    spacingAfter: 2.5,
+  })
+  lines.push({
+    text: "GitHub: https://github.com/HANIDEVINF   |   LinkedIn: https://linkedin.com/in/ghena-hani-3543a3375",
+    font: "F1",
+    size: 8.5,
     color: [0.32, 0.32, 0.38],
-    spacingAfter: 11,
+    spacingAfter: 9,
   })
 
   if (lang === "en") {

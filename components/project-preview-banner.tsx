@@ -87,28 +87,28 @@ function renderProjectScreen(slug: string) {
         <div className="h-full w-full bg-gradient-to-br from-[#07131e] via-[#0b192c] to-[#090d1a] p-4 font-sans text-xs">
           <div className="flex items-center justify-between mb-2.5">
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
               <span className="font-bold text-white text-xs">MedGuardAI Telemedicine &amp; IoT Hub</span>
             </div>
-            <span className="rounded bg-rose-500/20 border border-rose-400/40 px-2 py-0.5 text-[10px] font-mono text-rose-200">
-              Raspberry Pi Sensor Live
+            <span className="rounded bg-cyan-500/20 border border-cyan-400/40 px-2 py-0.5 text-[10px] font-mono text-cyan-200">
+              Simulated Telemetry Demo
             </span>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <div className="rounded-lg border border-cyan-500/30 bg-cyan-950/30 p-2.5">
               <div className="text-[10px] text-cyan-300">Heart Rate (ECG)</div>
               <div className="text-lg font-black text-white mt-0.5">78 BPM</div>
-              <div className="text-[9px] text-emerald-300">Normal Sinus</div>
+              <div className="text-[9px] text-slate-400">Sample Stream (AD8232)</div>
             </div>
             <div className="rounded-lg border border-purple-500/30 bg-purple-950/30 p-2.5">
               <div className="text-[10px] text-purple-300">Blood Glucose</div>
               <div className="text-lg font-black text-white mt-0.5">104 mg/dL</div>
-              <div className="text-[9px] text-emerald-300">Sensor Calibrated</div>
+              <div className="text-[9px] text-slate-400">Sample Stream (MAX30102)</div>
             </div>
             <div className="rounded-lg border border-emerald-500/30 bg-emerald-950/30 p-2.5">
-              <div className="text-[10px] text-emerald-300">WebRTC Consult</div>
-              <div className="text-xs font-bold text-white mt-1">Dr. Benali Online</div>
-              <div className="text-[9px] text-cyan-200 mt-0.5">Rx Sheet Ready</div>
+              <div className="text-[10px] text-emerald-300">WebRTC Telehealth</div>
+              <div className="text-xs font-bold text-white mt-1">Doctor Portal UI</div>
+              <div className="text-[9px] text-cyan-200 mt-0.5">Mock Consult Queue</div>
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@ function renderProjectScreen(slug: string) {
             ))}
           </div>
           <div className="rounded-lg border border-purple-500/25 bg-black/50 p-2 flex items-center justify-between font-mono text-[10px]">
-            <span className="text-slate-300">XLM-R: 3.88% | Ablation: 23.74%</span>
+            <span className="text-slate-300">XLM-R: 81.4% | mDeBERTa: 89.6%</span>
             <span className="text-cyan-300 font-bold">MuCAT: 98.20% (u = K/S = 0.08)</span>
           </div>
         </div>
@@ -179,9 +179,9 @@ function renderProjectScreen(slug: string) {
       return (
         <div className="h-full w-full bg-[#0b091a] p-4 text-xs">
           <div className="flex items-center justify-between mb-2">
-            <span className="font-bold text-white">VoxScribe AI · Live ASR &amp; 16×32 FFT DSP</span>
+            <span className="font-bold text-white">VoxScribe · Web Speech Dictation + 16×32 FFT DSP</span>
             <span className="rounded bg-fuchsia-500/20 border border-fuchsia-400/40 px-2 py-0.5 text-[10px] font-mono text-fuchsia-200">
-              EN · FR · AR Mic
+              Web Speech API + Keras DSP
             </span>
           </div>
           {/* Spectrogram Bars */}

@@ -2,53 +2,53 @@
 
 const experiences = [
   {
-    period: "June 2026 - Present & 4 Previous Appointments",
-    title: "AI Engineering Research Intern (5× Consecutive Appointments — UbiSys Team, DTISI)",
+    period: "2024 - 2025",
+    title: "AI Research Fellow / Intern (UbiSys Team, DTISI)",
     company: "CERIST — Research Center on Scientific and Technical Information (Algiers)",
-    highlight: "Flagship Research & Deep Learning Track",
+    highlight: "MuCAT Multilingual Transformer & Healthcare AI",
     description:
-      "Selected for five consecutive AI research internships at Algeria's national scientific research center (UbiSys Team, DTISI, supervised by Team Leader Nadir Bouchama). Designed and evaluated MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer): a language-conditioned mDeBERTa-v3-base architecture stacking Hierarchical Attention Pooling (HAP), Language-Aware FiLM Gating (LAG), an Evidential Dirichlet Head (EDL, native single-pass uncertainty u = K/S), and an auxiliary script regularization head across 6 languages (MSA, Algerian Darija, Kabyle, Chaoui, French, English)—achieving 98.20% test accuracy vs. 23.74% on the standard mDeBERTa-v3 ablation and 3.88% on XLM-RoBERTa-base under an identical LLRD training budget.",
+      "AI research appointments at Algeria's national scientific research center (UbiSys Team, DTISI, supervised by Team Leader Nadir Bouchama). Architected and evaluated MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer): an mDeBERTa-v3 architecture combining Hierarchical Attention Pooling (HAP), Language-Aware FiLM Gating (LAG), and an Evidential Dirichlet Head (EDL) for single-pass closed-form epistemic uncertainty estimation (u = K/S). Achieved 98.20% test accuracy across 6 languages/dialects (MSA, Algerian Darija, Kabyle, Chaoui, French, English), outperforming baselines (81.40% XLM-RoBERTa, 89.60% standard mDeBERTa-v3 under verified aligned label index mappings).",
     technologies: [
       "MuCAT Architecture",
       "mDeBERTa-v3 / XLM-R",
       "Evidential Deep Learning (Dirichlet)",
       "FiLM Language Gating",
       "Algerian & Berber NLP (kab/shy/arq)",
-      "Healthcare AI & ECG",
+      "Healthcare AI & Multi-Task Transformers",
     ],
   },
   {
-    period: "2024 - Present",
-    title: "Master in Artificial Intelligence Engineering",
+    period: "Sep 2025 - Expected June 2027",
+    title: "Master's in Artificial Intelligence (M.Sc.)",
     company: "USTHB — University of Science and Technology Houari Boumediene",
     highlight: "Graduate AI Specialization",
     description:
-      "Graduate research and engineering in Deep Learning, Transformer Architectures, Natural Language Processing, Computer Vision, Multi-Agent Systems, Knowledge Representation, and AI Security / Trustworthy AI.",
+      "Graduate coursework and thesis research in Deep Learning, Transformer Architectures, Natural Language Processing, Computer Vision, Multi-Agent Systems, Evidential Deep Learning, and Trustworthy AI.",
     technologies: ["Deep Learning", "Transformers", "NLP", "Computer Vision", "Agentic AI", "Trustworthy AI"],
   },
   {
-    period: "2024 - Present",
-    title: "Deep Learning & Applied AI Systems Researcher",
-    company: "Independent AI Research & Open-Source Engineering",
-    highlight: "Production & Edge Model Deployment",
+    period: "Jan 2024 - Present",
+    title: "Applied AI Systems & Open-Source Researcher",
+    company: "Independent Applied AI & Biomedical Deep Learning",
+    highlight: "Model Evaluation & Edge Deployment",
     description:
-      "Engineered MIT-BIH ECG Arrhythmia Classification v7 (97,045-parameter 1D-CNN + Multi-Head Transformer + 8 RR features, strict DS1/DS2 inter-patient split, 90.13% 5-fold ensemble, quantized to 155.4 KB INT8 TFLite at 0.32 ms/beat), hybrid Dense+BM25 RAG pipelines, and multi-agent ReAct orchestrators.",
+      "Engineered MIT-BIH ECG Arrhythmia Classification v7 (97,045-parameter 1D-CNN + Multi-Head Transformer + 8 RR features, strict DS1/DS2 inter-patient split, 90.13% 5-fold ensemble, 0.529 macro-F1, quantized to 155.4 KB INT8 TFLite at 0.32 ms/beat on ARM Cortex-A72), hybrid Dense+BM25 RAG pipelines, and multi-agent ReAct orchestrators.",
     technologies: ["PyTorch", "TensorFlow / Keras", "TFLite INT8", "Hybrid RAG", "LLM Evaluation", "Docker"],
   },
   {
-    period: "2023 - Present (~2 Years)",
-    title: "Freelance AI & Full-Stack Systems Architect",
+    period: "Jan 2024 - Present",
+    title: "Freelance Software & AI Systems Engineer",
     company: "Independent Commercial Delivery (Algiers, Sidi Bel Abbès, Mascara)",
-    highlight: "6 Deployed Client Production Platforms",
+    highlight: "Commercial Client Platforms Delivered",
     description:
       "Architected and delivered complete commercial systems for real businesses: Tadjmeel Clinica (Algiers medical aesthetic platform + Doctor & Receptionist Electron desktop apps), Enterprise DZD ERP/POS & G50 Fiscal Suite, ALLURE HOMME, GK STORE, CASUAL 29, and AURA Multi-Vertical Retail OS.",
     technologies: ["React", "Next.js", "TypeScript", "Electron Desktop", "Node.js", "PostgreSQL / MongoDB"],
   },
   {
-    period: "2022 - 2024",
-    title: "B.Sc. (Licence) in Computer Science — PFE Distinction (MedGuardAI)",
+    period: "Sep 2022 - June 2025",
+    title: "Licence (B.Sc.) in Computer Science — Graduated",
     company: "USTHB — University of Science and Technology Houari Boumediene",
-    highlight: "Capstone: Real-Time Medical IoT + AI",
+    highlight: "Capstone: Real-Time Medical IoT + AI (MedGuardAI)",
     description:
       "Graduated with distinction on MedGuardAI: an end-to-end medical IoT and telemedicine platform connecting physical ECG and blood glucose sensors via Raspberry Pi to real-time AI anomaly detection, emergency alerts, and WebRTC doctor-patient consultations.",
     technologies: ["Medical IoT", "Raspberry Pi", "WebRTC", "Real-Time Telemetry", "Algorithms & Systems"],

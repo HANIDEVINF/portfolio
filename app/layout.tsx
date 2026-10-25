@@ -14,23 +14,23 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://myportfolio-rho-seven-15.vercel.app'),
-  title: 'Hani Ghena | AI Engineer & Full-Stack Systems Architect',
-  description: 'Portfolio of Hani Ghena — AI Engineer & Master Researcher at USTHB and CERIST specializing in Deep Learning, Multilingual Transformers, Healthcare AI, RAG, Agentic Systems, and Commercial Software.',
-  keywords: ['AI Engineering', 'Machine Learning', 'Deep Learning', 'PyTorch', 'Transformers', 'BERT', 'ECG Arrhythmia', 'MedGuardAI', 'RAG', 'Agentic AI', 'Full-Stack Architect', 'USTHB', 'CERIST'],
+  title: 'Hani Ghena | Applied AI Engineer | Deep Learning, NLP & LLM Systems',
+  description: 'Portfolio of Hani Ghena — Applied AI Engineer & M.Sc. in Artificial Intelligence candidate at USTHB (2025–2027), CERIST AI Researcher (2024–2025). Specializing in Deep Learning, Transformers, Biomedical Signal Processing, RAG & LLM Evaluation.',
+  keywords: ['Applied AI Engineer', 'Machine Learning', 'Deep Learning', 'PyTorch', 'Transformers', 'BERT', 'ECG Arrhythmia', 'MedGuardAI', 'MuCAT', 'RAG', 'Agentic AI', 'LLM Evaluation', 'USTHB', 'CERIST'],
   authors: [{ name: 'Hani Ghena' }],
   creator: 'Hani Ghena',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'Hani Ghena | AI Engineer & Full-Stack Systems Architect',
-    description: 'Designing and shipping production AI systems, custom neural architectures, and enterprise software platforms.',
+    title: 'Hani Ghena | Applied AI Engineer | Deep Learning, NLP & LLM Systems',
+    description: 'Applied AI Engineer specializing in Deep Learning, Multilingual Transformers, Healthcare AI, RAG, and Production Systems.',
     siteName: 'Hani Ghena Portfolio',
     images: ['/images/profile-square.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hani Ghena | AI Engineer & Full-Stack Systems Architect',
-    description: 'Designing and shipping production AI systems, custom neural architectures, and enterprise software platforms.',
+    title: 'Hani Ghena | Applied AI Engineer | Deep Learning, NLP & LLM Systems',
+    description: 'Applied AI Engineer specializing in Deep Learning, Multilingual Transformers, Healthcare AI, RAG, and Production Systems.',
     images: ['/images/profile-square.jpg'],
   },
   icons: {

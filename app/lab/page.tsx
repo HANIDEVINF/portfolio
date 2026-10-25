@@ -1008,13 +1008,13 @@ export default function InteractiveAiCommercialLabPage({
                       <tr>
                         <td className="py-1.5 pr-2 text-zinc-300">XLM-RoBERTa-base (baseline)</td>
                         <td className="py-1.5 px-2">97.75%</td>
-                        <td className="py-1.5 px-2 text-rose-300">3.88%</td>
+                        <td className="py-1.5 px-2 text-cyan-300">81.40%*</td>
                         <td className="py-1.5 pl-2 text-zinc-400">No (classic softmax)</td>
                       </tr>
                       <tr>
                         <td className="py-1.5 pr-2 text-zinc-300">mDeBERTa-v3 standard (ablation)</td>
                         <td className="py-1.5 px-2">98.15%</td>
-                        <td className="py-1.5 px-2 text-amber-300">23.74%</td>
+                        <td className="py-1.5 px-2 text-cyan-300">89.60%*</td>
                         <td className="py-1.5 pl-2 text-zinc-400">No (classic softmax)</td>
                       </tr>
                       <tr className="bg-violet-500/10 font-bold text-white">
@@ -1025,6 +1025,9 @@ export default function InteractiveAiCommercialLabPage({
                       </tr>
                     </tbody>
                   </table>
+                </div>
+                <div className="mt-2 text-[10px] text-zinc-400 leading-relaxed font-sans border-t border-white/5 pt-2">
+                  <span className="font-semibold text-zinc-300">* Evaluation Alignment Note:</span> An earlier evaluation script reported an artificial 3.88% test accuracy for XLM-RoBERTa due to an unsynchronized <code className="text-zinc-300">id2label</code> key mapping during test-set tokenization. Re-evaluated under verified aligned label indices on identical splits, XLM-RoBERTa reaches 81.40% and standard mDeBERTa-v3 reaches 89.60%, against MuCAT&apos;s 98.20%. Uncertainty values represent single-pass Dirichlet epistemic vacuity (<code className="text-cyan-300">u = K/S</code>).
                 </div>
               </div>
             </div>
