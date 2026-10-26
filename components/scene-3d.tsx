@@ -1,6 +1,8 @@
 "use client"
 
-import React, { useRef, useState, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
+
+type Node = { x: number; y: number; vx: number; vy: number; radius: number }
 
 export function Scene3D() {
   const [mounted, setMounted] = useState(false)
@@ -11,96 +13,133 @@ export function Scene3D() {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    const context = canvas.getContext("2d", { alpha: true })
+    if (!context) return
 
-    const prefersReducedMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const isSmallScreen = window.innerWidth < 768
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5)
+    let width = window.innerWidth
+    let height = window.innerHeight
+    let animationFrame = 0
+    let running = false
 
-    let animationFrameId: number
-    let width = (canvas.width = window.innerWidth)
-    let height = (canvas.height = window.innerHeight)
-
-    const handleResize = () => {
-      if (!canvas) return
-      width = canvas.width = window.innerWidth
-      height = canvas.height = window.innerHeight
+    const setCanvasSize = () => {
+      width = window.innerWidth
+      height = window.innerHeight
+      canvas.width = Math.round(width * pixelRatio)
+      canvas.height = Math.round(height * pixelRatio)
+      canvas.style.width = width + "px"
+      canvas.style.height = height + "px"
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
     }
 
-    window.addEventListener("resize", handleResize)
+    setCanvasSize()
 
-    const starCount = prefersReducedMotion ? 24 : isMobile ? 35 : 70
-    const stars = Array.from({ length: starCount }, () => ({
+    const nodeCount = reduceMotion ? 22 : isSmallScreen ? 24 : 38
+    const nodes: Node[] = Array.from({ length: nodeCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 1.6 + 0.5,
-      alpha: Math.random() * 0.65 + 0.2,
-      speed: Math.random() * 0.25 + 0.08,
-      color:
-        Math.random() < 0.45
-          ? "rgba(192, 132, 252, " // purple
-          : Math.random() < 0.75
-            ? "rgba(244, 114, 182, " // pink
-            : "rgba(34, 211, 238, ", // cyan
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.14,
+      radius: Math.random() * 1.25 + 0.55,
     }))
 
-    const drawStatic = () => {
-      ctx.clearRect(0, 0, width, height)
-      for (const star of stars) {
-        ctx.fillStyle = `${star.color}${star.alpha})`
-        ctx.beginPath()
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2)
-        ctx.fill()
-      }
-    }
+    const draw = (animate: boolean) => {
+      context.clearRect(0, 0, width, height)
 
-    if (prefersReducedMotion) {
-      drawStatic()
-      return () => {
-        window.removeEventListener("resize", handleResize)
+      if (animate) {
+        for (const node of nodes) {
+          node.x += node.vx
+          node.y += node.vy
+          if (node.x < -8) node.x = width + 8
+          if (node.x > width + 8) node.x = -8
+          if (node.y < -8) node.y = height + 8
+          if (node.y > height + 8) node.y = -8
+        }
+      }
+
+      for (let i = 0; i < nodes.length; i += 1) {
+        const node = nodes[i]
+        for (let j = i + 1; j < nodes.length; j += 1) {
+          const other = nodes[j]
+          const dx = node.x - other.x
+          const dy = node.y - other.y
+          const distance = Math.sqrt(dx * dx + dy * dy)
+          if (distance < 145) {
+            const alpha = (1 - distance / 145) * 0.12
+            context.strokeStyle = "rgba(125, 211, 252, " + alpha + ")"
+            context.lineWidth = 0.7
+            context.beginPath()
+            context.moveTo(node.x, node.y)
+            context.lineTo(other.x, other.y)
+            context.stroke()
+          }
+        }
+      }
+
+      for (const node of nodes) {
+        context.beginPath()
+        context.fillStyle = "rgba(167, 187, 255, 0.42)"
+        context.arc(node.x, node.y, node.radius, 0, Math.PI * 2)
+        context.fill()
       }
     }
 
     const render = () => {
-      ctx.clearRect(0, 0, width, height)
-
-      for (const star of stars) {
-        star.y -= star.speed
-        if (star.y < 0) {
-          star.y = height
-          star.x = Math.random() * width
-        }
-
-        ctx.fillStyle = `${star.color}${star.alpha})`
-        ctx.beginPath()
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2)
-        ctx.fill()
-      }
-
-      animationFrameId = requestAnimationFrame(render)
+      draw(true)
+      if (running) animationFrame = window.requestAnimationFrame(render)
     }
 
-    render()
+    const start = () => {
+      if (running || reduceMotion || document.hidden) return
+      running = true
+      animationFrame = window.requestAnimationFrame(render)
+    }
+
+    const stop = () => {
+      running = false
+      window.cancelAnimationFrame(animationFrame)
+    }
+
+    const handleVisibility = () => {
+      if (document.hidden) {
+        stop()
+      } else {
+        start()
+      }
+    }
+
+    const handleResize = () => {
+      setCanvasSize()
+      if (reduceMotion) draw(false)
+    }
+
+    window.addEventListener("resize", handleResize, { passive: true })
+    document.addEventListener("visibilitychange", handleVisibility)
+
+    if (reduceMotion) {
+      draw(false)
+    } else {
+      start()
+    }
 
     return () => {
+      stop()
       window.removeEventListener("resize", handleResize)
-      cancelAnimationFrame(animationFrameId)
+      document.removeEventListener("visibilitychange", handleVisibility)
     }
   }, [])
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 bg-[#07050d] overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-15%,rgba(168,85,247,0.18),rgba(255,255,255,0))]" />
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-purple-600/10 blur-[120px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-fuchsia-600/10 blur-[140px]" />
-
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#080b12]" aria-hidden="true">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_-10%,rgba(94,114,228,0.16),transparent_75%)]" />
+      <div className="absolute -left-56 top-[12%] h-[30rem] w-[30rem] rounded-full bg-violet-600/[0.08] blur-[130px]" />
+      <div className="absolute -right-48 top-[42%] h-[32rem] w-[32rem] rounded-full bg-sky-400/[0.06] blur-[150px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#080b12]/10 to-[#080b12]/70" />
       <canvas
         ref={canvasRef}
-        className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ${
-          mounted ? "opacity-100" : "opacity-0"
-        }`}
+        className={"absolute inset-0 h-full w-full transition-opacity duration-700 " + (mounted ? "opacity-100" : "opacity-0")}
       />
     </div>
   )
