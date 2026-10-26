@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence, useReducedMotion, useScroll, useSpring } from "framer-motion"
 import { ArrowUpRight, Github, Linkedin, Mail, Menu, X } from "lucide-react"
@@ -26,11 +26,12 @@ export function Navigation() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 180, damping: 32, restDelta: 0.001 })
 
-  useState(() => {
-    if (typeof window !== "undefined") {
-      setScrolled(window.scrollY > 28)
-    }
-  })
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 28)
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
     <header
@@ -84,7 +85,7 @@ export function Navigation() {
         <button
           type="button"
           onClick={() => setIsOpen((open) => !open)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-white/20 hover:bg-white/[0.08] md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-white/20 hover:bg-white/[0.08] lg:hidden"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
@@ -101,7 +102,7 @@ export function Navigation() {
             animate={{ opacity: 1, height: "auto" }}
             exit={reduceMotion ? undefined : { opacity: 0, height: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.22, ease: "easeOut" }}
-            className="overflow-hidden border-t border-white/[0.08] bg-[#080b12]/95 backdrop-blur-2xl md:hidden"
+            className="overflow-hidden border-t border-white/[0.08] bg-[#080b12]/95 backdrop-blur-2xl lg:hidden"
           >
             <div className="mx-auto max-w-7xl px-5 pb-5 pt-3 sm:px-8">
               <div className="grid gap-1">
