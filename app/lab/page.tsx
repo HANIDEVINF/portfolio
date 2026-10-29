@@ -446,10 +446,10 @@ export default function InteractiveAiCommercialLabPage({
                 Back to Projects Directory
               </Link>
               <span>·</span>
-              <span>Full-Stack AI & Commercial Systems Interactive Command Center</span>
+              <span>AI project demonstrations and commercial UI prototypes</span>
             </div>
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Live AI Engineering & Commercial Systems Lab
+              Interactive AI Engineering & Commercial Systems Prototypes
             </h1>
             <p className="mt-2 max-w-3xl text-sm text-zinc-300">
               Explore interactive UI prototypes, preset datasets, browser-native speech features where available, and deterministic calculations. The lab does not load the trained ECG/MuCAT models; outputs from each studio have different data sources and limitations.
@@ -848,7 +848,7 @@ export default function InteractiveAiCommercialLabPage({
 
             <div className="space-y-4 rounded-3xl border border-white/10 bg-[#100a1e]/90 p-6 lg:col-span-6">
               <h3 className="text-base font-bold text-white">
-                Neural Abstractive Summary, Extracted Entities & SOAP Note
+                Rule-Based Text Summary & Regex Entity Demo
               </h3>
               <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 text-xs leading-relaxed text-zinc-200">
                 <div className="font-semibold text-violet-300">Executive Synthesis</div>
@@ -874,7 +874,7 @@ export default function InteractiveAiCommercialLabPage({
                 </div>
 
                 <div className="rounded-xl border border-white/10 bg-black/40 p-3.5">
-                  <div className="font-semibold text-emerald-300">Automated Action Plan & SLA Routing</div>
+                  <div className="font-semibold text-emerald-300">Text After “Action:” (Demo Extraction)</div>
                   <p className="mt-1 text-zinc-300">
                     {customSpeechInput.split(/Action:|action:/i)[1] ||
                       customSpeechInput.slice(Math.max(0, customSpeechInput.length - 140))}
