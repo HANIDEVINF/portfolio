@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { Bot, Sparkles, Send, CheckCircle2, Download, RefreshCw, FileText, Cpu, Layers } from "lucide-react"
+import { Bot, Sparkles, Send, Download, RefreshCw, FileText, Cpu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Markdown from "react-markdown"
