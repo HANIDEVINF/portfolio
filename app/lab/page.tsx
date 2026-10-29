@@ -65,27 +65,27 @@ const STUDIOS: StudioMeta[] = [
   {
     id: "ecg-holter-v7",
     title: "CardioWave v7 — ECG Holter & Transformer Workbench",
-    subtitle: "Dual-Lead MIT-BIH DS1/DS2 Inter-Patient Simulator · 8-Feature RR Context · TFLite INT8 Calibrator",
+    subtitle: "Preset ECG scenarios · deterministic score simulation · not trained-model inference",
     track: "AI & Medical Research",
     repoUrl: "https://github.com/HANIDEVINF/deep-learning-model-for-anomaly-detection-of-ECG",
-    metrics: "90.13% 5-Fold Acc · 155.4 KB INT8 · 0.32 ms/beat",
+    metrics: "Reported repository metrics; see ECG README/report for protocol and limits",
   },
   {
     id: "voxscribe-speech-ai",
     title: "VoxScribe AI — Speech-to-Text, Diarization & SOAP Studio",
-    subtitle: "Real-Time Web Speech ASR · Multi-Speaker Clinical & Engineering Transcription · Entity & Action Synthesis",
+    subtitle: "Browser speech recognition where supported · preset text with heuristic entity extraction",
     track: "Full-Stack AI Infrastructure",
     repoUrl: "https://github.com/HANIDEVINF/speech-to-text-summarization",
     externalDemoUrl: "https://speech-to-text-summarization.vercel.app",
-    metrics: "Live Mic ASR (EN/FR/AR) · Automated SOAP & SLA Routing",
+    metrics: "Browser ASR (if supported) · illustrative summary and action extraction",
   },
   {
     id: "mucat-transformer",
     title: "MuCAT — Multilingual Uncertainty-Calibrated Attention Transformer",
-    subtitle: "CERIST UbiSys DTISI Research · mDeBERTa-v3 + HAP + FiLM Language Gating + Evidential Dirichlet Uncertainty (u = K/S)",
+    subtitle: "MuCAT task-head research prototype; end-to-end training/evaluation currently not reproducible from public repo",
     track: "AI & Medical Research",
     repoUrl: "https://github.com/HANIDEVINF/MUCAT-Multilingual-Transformer",
-    metrics: "98.20% Test Acc · 6 Languages (AR/ARQ/KAB/SHY/FR/EN) · Dirichlet u=K/S",
+    metrics: "Six-language architecture target · reported results pending reproduction",
   },
   {
     id: "tadjmeel-clinica",
@@ -117,20 +117,20 @@ const STUDIOS: StudioMeta[] = [
   {
     id: "vericite-hybrid-rag",
     title: "VeriCite Hybrid RAG & Neural Schema Router",
-    subtitle: "Dense Vector + BM25 Lexical Retrieval · Hallucination Abstention Gate · Live Document Chunk Ingestion",
+    subtitle: "Seeded corpus with keyword/domain heuristic ranking; no real embeddings or LLM generation",
     track: "Full-Stack AI Infrastructure",
     repoUrl: "https://github.com/HANIDEVINF/document-qa-rag",
     externalDemoUrl: "https://document-qa-rag-sand.vercel.app",
-    metrics: "Reciprocal Rank Fusion · Faithfulness Guardrail",
+    metrics: "Illustrative retrieval UI; no validated faithfulness score",
   },
   {
     id: "neural-moderation-eval",
     title: "GuardRail AI — Content Safety, Multi-Agent & LLM Eval Suite",
-    subtitle: "Token-Level Risk Attribution · LLM-as-a-Judge Pareto Frontier · Multi-Agent Support Tool Contracts",
+    subtitle: "Deterministic smoke-check runner and illustrative evaluation UI; no live model calls",
     track: "Full-Stack AI Infrastructure",
     repoUrl: "https://github.com/HANIDEVINF/llm-evaluation-framework",
     externalDemoUrl: "https://llm-evaluation-framework.vercel.app",
-    metrics: "99.1% Keras Safety Gate · 4-Agent ReAct Orchestrator",
+    metrics: "Four-case runner checks; frontend preset values are illustrative",
   },
 ]
 
@@ -430,6 +430,11 @@ export default function InteractiveAiCommercialLabPage({
   return (
     <main className="min-h-screen bg-[#07050d] text-zinc-100">
       <Navigation />
+      <div role="note" className="mx-auto max-w-7xl px-4 pt-24 sm:px-6 lg:px-8">
+        <div className="rounded-xl border border-amber-500/25 bg-amber-950/20 px-4 py-3 text-sm leading-relaxed text-amber-100">
+          <strong>Portfolio demonstration notice:</strong> many panels use preset records, heuristic calculations or browser-native APIs. The ECG and MuCAT panels do not load the trained research models; clinical and commercial panels are not connected to production systems in this page. Treat sample outputs as demonstrations, not medical, financial, or operational advice. See each repository for implementation status and reproducibility limits.
+        </div>
+      </div>
 
       <div className="mx-auto max-w-7xl px-4 pt-28 pb-20 sm:px-6 lg:px-8">
         {/* Header */}
@@ -447,9 +452,7 @@ export default function InteractiveAiCommercialLabPage({
               Live AI Engineering & Commercial Systems Lab
             </h1>
             <p className="mt-2 max-w-3xl text-sm text-zinc-300">
-              Test every flagship system directly in your browser with real domain logic: MIT-BIH ECG v7 Dual-Branch
-              Inference, Multilingual Speech-to-Text & Clinical SOAP Summarization, MUCAT Trilingual Attention,
-              Tadjmeel Clinica Algiers Multi-Role OS, and Algerian DZD G50 Fiscal ERP.
+              Explore interactive UI prototypes, preset datasets, browser-native speech features where available, and deterministic calculations. The lab does not load the trained ECG/MuCAT models; outputs from each studio have different data sources and limitations.
             </p>
           </div>
 
@@ -477,13 +480,13 @@ export default function InteractiveAiCommercialLabPage({
             <div className="space-y-1">
               <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-[11px] font-semibold text-cyan-300">
                 <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-                NEW CERIST Research Project · 2024
+                CERIST Research Prototype · Synthetic Data
               </div>
               <h2 className="text-xl font-bold text-white">
                 AsthmaExpertUltra — Multi-Task Transformer &amp; Dempster-Shafer Fusion Workbench
               </h2>
               <p className="max-w-2xl text-xs text-zinc-300 leading-relaxed">
-                Dual-head deep architecture for real-time asthma crisis severity &amp; lead-time forecasting from 8 multimodal IoT streams. Features patient-independent GroupShuffleSplit (1,000 patients / 1,440h), Dempster-Shafer evidential fusion, deterministic safety override, and sub-second Android PyTorch Lite deployment.
+                Simulation-based research prototype on generated time-series data. The interactive lab uses deterministic heuristic formulas, not the trained model. The reported metrics are not clinical evidence; the public repository does not provide a standalone Android app or independently verifiable device latency.
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-3">
@@ -571,9 +574,9 @@ export default function InteractiveAiCommercialLabPage({
           <div className="grid gap-6 lg:grid-cols-12">
             <div className="space-y-6 rounded-3xl border border-white/10 bg-[#100a1e]/90 p-6 lg:col-span-5">
               <div>
-                <h3 className="text-base font-bold text-white">1. Select Unseen DS2 MIT-BIH Patient Beat</h3>
+                <h3 className="text-base font-bold text-white">1. Select an Illustrative ECG Scenario</h3>
                 <p className="text-xs text-zinc-400">
-                  Evaluated under the strict de Chazal DS1/DS2 inter-patient split (49,668 held-out test beats)
+                  Scenario inspired by the repository's reported DS1/DS2 protocol. This page uses hard-coded logits and hand-written formulas; it does not load the trained ECG model or evaluate the actual MIT-BIH test beats.
                 </p>
               </div>
 
@@ -850,8 +853,7 @@ export default function InteractiveAiCommercialLabPage({
               <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 text-xs leading-relaxed text-zinc-200">
                 <div className="font-semibold text-violet-300">Executive Synthesis</div>
                 <p className="mt-1">
-                  Processed {customSpeechInput.split(/\s+/).filter(Boolean).length} spoken tokens. High-salience
-                  telemetry and actionable directives isolated with 99.1% entity confidence.
+                  Processed {customSpeechInput.split(/\s+/).filter(Boolean).length} text tokens. Entities below are extracted with simple regular expressions; the 99.1% value is not a measured confidence score.
                 </p>
               </div>
 
@@ -902,7 +904,7 @@ export default function InteractiveAiCommercialLabPage({
                 {[
                   "Le patient présente une tachycardie supraventriculaire à 138 bpm — المريض يحتاج إلى متابعة طبية عاجلة في العيادة before Friday's cardiology review.",
                   "Azul fell-awen diத் tamurt n Taqbaylit d Tacawit di Awrass — راني مليح في دزاير avec une incertitude calibrée Dirichlet u = K/S.",
-                  "MuCAT combines mDeBERTa-v3-base, Hierarchical Attention Pooling (HAP), FiLM Language-Aware Gating (LAG), and Evidential Deep Learning (98.20% Test Acc).",
+                  "MuCAT is documented as using mDeBERTa-v3-base, HAP, FiLM Language-Aware Gating (LAG), and an evidential output head; reported test results are pending end-to-end reproduction.",
                 ].map((sample, idx) => (
                   <button
                     key={idx}
@@ -989,46 +991,11 @@ export default function InteractiveAiCommercialLabPage({
                 ))}
               </div>
 
-              {/* Controlled Experimental Comparison Table from CERIST Report */}
-              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 text-xs text-zinc-300 space-y-2.5">
-                <div className="font-semibold text-white">
-                  Controlled Experimental Comparison (Identical Budget: 4 Epochs Frozen + 6 Epochs Unfrozen Top-8, LLRD ξ=0.95)
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left font-mono text-[11px]">
-                    <thead>
-                      <tr className="border-b border-white/10 text-zinc-400">
-                        <th className="py-1.5 pr-2">Model</th>
-                        <th className="py-1.5 px-2">Val Acc</th>
-                        <th className="py-1.5 px-2">Test Acc</th>
-                        <th className="py-1.5 pl-2">Native Uncertainty</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/5">
-                      <tr>
-                        <td className="py-1.5 pr-2 text-zinc-300">XLM-RoBERTa-base (baseline)</td>
-                        <td className="py-1.5 px-2">97.75%</td>
-                        <td className="py-1.5 px-2 text-cyan-300">81.40%*</td>
-                        <td className="py-1.5 pl-2 text-zinc-400">No (classic softmax)</td>
-                      </tr>
-                      <tr>
-                        <td className="py-1.5 pr-2 text-zinc-300">mDeBERTa-v3 standard (ablation)</td>
-                        <td className="py-1.5 px-2">98.15%</td>
-                        <td className="py-1.5 px-2 text-cyan-300">89.60%*</td>
-                        <td className="py-1.5 pl-2 text-zinc-400">No (classic softmax)</td>
-                      </tr>
-                      <tr className="bg-violet-500/10 font-bold text-white">
-                        <td className="py-1.5 pr-2 text-violet-300">MuCAT (HAP+LAG+EDL+Aux)</td>
-                        <td className="py-1.5 px-2 text-emerald-300">98.26%</td>
-                        <td className="py-1.5 px-2 text-emerald-300">98.20%</td>
-                        <td className="py-1.5 pl-2 text-cyan-300">Yes — Dirichlet (u=K/S)</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400 leading-relaxed font-sans border-t border-white/5 pt-2">
-                  <span className="font-semibold text-zinc-300">* Evaluation Alignment Note:</span> An earlier evaluation script reported an artificial 3.88% test accuracy for XLM-RoBERTa due to an unsynchronized <code className="text-zinc-300">id2label</code> key mapping during test-set tokenization. Re-evaluated under verified aligned label indices on identical splits, XLM-RoBERTa reaches 81.40% and standard mDeBERTa-v3 reaches 89.60%, against MuCAT&apos;s 98.20%. Uncertainty values represent single-pass Dirichlet epistemic vacuity (<code className="text-cyan-300">u = K/S</code>).
-                </div>
+              <div role="note" className="rounded-2xl border border-amber-500/25 bg-amber-950/20 p-4 text-xs text-amber-100 space-y-2">
+                <div className="font-semibold text-white">Reported experiment — reproduction pending</div>
+                <p>The figures in the previous comparison table came from project notes but are not reproducible from the current public checkout, which does not include the complete backbone-loading, tokenization, training, and evaluation pipeline. The earlier baseline values of 3.88% and 23.74% were identified as invalid due to a label-mapping bug; the corrected 81.40% and 89.60% figures are also project-reported and not independently reproduced here.</p>
+                <p>This interactive panel shows illustrative inputs and deterministic browser outputs. It does not execute MuCAT weights and must not be treated as model inference or evidence that Dirichlet uncertainty is empirically calibrated.</p>
+                <a href="https://github.com/HANIDEVINF/MUCAT-Multilingual-Transformer" target="_blank" rel="noopener noreferrer" className="inline-flex text-cyan-300 underline underline-offset-2">Review repository limitations and architecture source</a>
               </div>
             </div>
           </div>
