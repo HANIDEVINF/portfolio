@@ -23,6 +23,7 @@ import {
   GitBranch,
   HeartPulse,
   Layers,
+  Lock,
   Mic,
   Play,
   Plus,
