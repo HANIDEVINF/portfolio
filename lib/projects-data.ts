@@ -41,7 +41,7 @@ export type PortfolioProject = {
   caseStudyUrl?: string
   category: ProjectCategory
   featured?: boolean
-  status?: "Live" | "Research" | "CERIST Research" | "PFE Distinction" | "Client Production"
+  status?: "Live" | "Research" | "CERIST Research" | "PFE Distinction" | "Client Production" | "Prototype" | "Academic Case Study"
   systemType?: SystemType
   metrics?: string[]
   impact?: string
