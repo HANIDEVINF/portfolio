@@ -15,7 +15,9 @@ export default function AgenticResearchStudioPage() {
     query: string
     report: string
     timestamp: string
-    agentsExecuted: { name: string; status: string; latency: string }[]
+    source: string
+    executionMode: string
+    latencyMs: number
   } | null>(null)
 
   async function handleRunResearch(e: React.FormEvent) {
@@ -53,10 +55,10 @@ export default function AgenticResearchStudioPage() {
             Autonomous Multi-Agent Research & Report Studio
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 tracking-tight">
-            Multi-Agent Autonomous AI Research & Report Generator
+            AI-Assisted Research Synthesis Prototype
           </h1>
           <p className="text-base sm:text-lg text-slate-300 max-w-3xl mb-8 leading-relaxed font-light">
-            Orchestrate specialized AI agent swarms (Planner, Deep Retriever, Data Synthesizer, and Critical Reviewer) to investigate complex engineering topics and produce publication-grade research reports.
+            Generate a structured technical draft with one Gemini model call. This prototype does not browse external sources, run independent agents, or verify citations. Treat outputs as a starting point and check factual claims and sources independently.
           </p>
 
           {/* Research Prompt Form */}
@@ -89,34 +91,37 @@ export default function AgenticResearchStudioPage() {
                 ) : (
                   <>
                     <Sparkles className="mr-2 h-4 w-4" />
-                    Run Multi-Agent Swarm
+                    Generate Research Draft
                   </>
                 )}
               </Button>
             </div>
           </form>
 
-          {/* Agent Execution Pipeline Status */}
+          {/* Honest execution metadata: one model call, no fabricated per-agent telemetry */}
           {reportData && (
             <div className="mb-10 rounded-2xl border border-purple-500/25 bg-[#120a26]/90 p-6">
               <h3 className="text-sm font-mono uppercase tracking-wider text-purple-300 mb-4 flex items-center gap-2">
                 <Cpu className="h-4 w-4 text-purple-400" />
-                Active Agent Execution Telemetry
+                Execution details
               </h3>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                {reportData.agentsExecuted.map((agent) => (
-                  <div key={agent.name} className="rounded-xl border border-purple-500/20 bg-[#0c071a] p-3.5">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-bold text-white truncate">{agent.name}</span>
-                      <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                    </div>
-                    <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
-                      <span>Status: {agent.status}</span>
-                      <span className="text-purple-300">{agent.latency}</span>
-                    </div>
-                  </div>
-                ))}
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div className="rounded-xl border border-purple-500/20 bg-[#0c071a] p-3.5">
+                  <div className="text-xs text-slate-400 mb-1">Execution mode</div>
+                  <div className="text-sm font-semibold text-white">Single model call</div>
+                </div>
+                <div className="rounded-xl border border-purple-500/20 bg-[#0c071a] p-3.5">
+                  <div className="text-xs text-slate-400 mb-1">Model provider</div>
+                  <div className="text-sm font-semibold text-white">{reportData.source}</div>
+                </div>
+                <div className="rounded-xl border border-purple-500/20 bg-[#0c071a] p-3.5">
+                  <div className="text-xs text-slate-400 mb-1">Server-side elapsed time</div>
+                  <div className="text-sm font-semibold text-white">{reportData.latencyMs} ms</div>
+                </div>
               </div>
+              <p className="mt-3 text-xs leading-relaxed text-slate-400">
+                Elapsed time covers the model API call on the server. No external retrieval, independent reviewer, or multi-agent execution is performed.
+              </p>
             </div>
           )}
 
