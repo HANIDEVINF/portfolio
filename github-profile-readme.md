@@ -1,43 +1,34 @@
-# Hi there, I'm Hani Ghena 👋
-### AI Engineer & Medical AI Researcher | M.Sc. AI @ USTHB · 5x CERIST AI Research Intern
+# Hani Ghena — AI Engineering
 
-<p align="left">
-  <img src="https://img.shields.io/badge/AI_Engineer-Deep_Learning_&_Transformers-purple?style=for-the-badge&logo=openai" />
-  <img src="https://img.shields.io/badge/Research-CERIST_UbiSys-blue?style=for-the-badge&logo=python" />
-  <img src="https://img.shields.io/badge/Status-Client_Production_%26_PFE_Distinction-success?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Code_Policy-Protected_IP_%26_Client_Security-orange?style=for-the-badge&logo=github" />
-</p>
+M.Sc. student in Artificial Intelligence Engineering at USTHB, with AI research internship experience including CERIST and projects in deep learning, NLP, model evaluation, and LLM applications.
 
----
+## Focus areas
 
-## 🔬 Core Expertise & Research Focus
-- **Deep Learning & Neural Architectures:** PyTorch, TensorFlow/Keras, mDeBERTa-v3, Custom Transformers, 1D-CNNs, TFLite INT8 Quantization.
-- **Healthcare AI & Signal Processing:** PhysioNet MIT-BIH Arrhythmia (DS1/DS2 inter-patient protocol), Continuous Glucose Monitoring (CGM) Anomaly Detection, MedGuardAI (PFE Capstone).
-- **Multilingual NLP for Maghreb Languages:** MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer for MSA, Algerian Darija, Kabyle, Chaoui, French, and English).
-- **Agentic AI & MLOps Workflows:** ReAct multi-agent support orchestrators, LLM-as-a-Judge evaluation gates, and SRE incident copilots.
-- **Commercial Full-Stack Client Systems:** Enterprise DZD ERP/POS suites, G50 tax ledgers, and boutique e-commerce platforms deployed across Algiers, Sidi Bel Abbès, Mascara, and Birkhadem.
+- **Machine learning:** PyTorch, TensorFlow/Keras, scikit-learn, experiment design and evaluation.
+- **NLP and transformers:** multilingual text processing, attention modules and uncertainty-aware classification research.
+- **LLM applications:** RAG prototypes, structured extraction, tool calling and evaluation workflows.
+- **Software engineering:** Python, TypeScript, React/Next.js, APIs, databases and deployment.
 
----
+## Selected work
 
-## 📊 Trained Deep Learning Models & Datasets
-1. **AI ECG Arrhythmia Classification (v7):** PhysioNet MIT-BIH Arrhythmia Database (100,645 beats, DS1/DS2 inter-patient protocol) — **90.13% 5-fold ensemble, 155 KB INT8 TFLite**.
-2. **MuCAT Multilingual Transformer:** Tatoeba 6-Language Low-Resource Benchmark — **98.20% Test Accuracy** with Evidential Dirichlet uncertainty calibration.
-3. **Continuous Glucose (CGM) Anomaly Model:** Physiological Sensor Time-Series Dataset for acute glycemic risk forecasting.
-4. **GuardRail Policy & Spam Classifier:** UCI SMS Spam Collection (5,574 labeled messages) — **99.1% test accuracy** with token attribution.
-5. **EmbedCluster 64D Representation:** 20 Newsgroups Benchmark (18,000+ articles) for neural text embedding geometry.
-6. **VisionTensor CIFAR-10 Classifier:** 60,000 color images across 10 classes with spatial tensor quantization.
+- **ECG Arrhythmia Classification v7:** patient-independent MIT-BIH experiment with a hybrid CNN/Transformer model and TensorFlow Lite export. The repository reports 90.13% ensemble accuracy and 0.529 macro-F1; minority-class sensitivity remains a key limitation. Research/educational use only.
+- **MuCAT Multilingual Transformer:** architecture prototype for low-resource Maghreb language classification. Full end-to-end training/evaluation reproduction is not yet available in the public repository, so its reported headline accuracy is intentionally omitted here.
+- **EvalGate:** a four-case deterministic smoke-check prototype for grounding phrases, refusal indicators, synthetic identifier redaction and tool-call schemas. The front-end preset values are illustrative, not measured model results.
+- **AsthmaExpertUltra:** a simulation-based research prototype using generated time-series data. Its live portfolio lab uses deterministic heuristic formulas and is not trained-model inference or clinical validation.
+- **MedGuardAI:** academic health-IoT and telehealth capstone. Any demo or simulated measurements are not real patient monitoring.
 
----
+## Technical approach
 
-## 🛡️ Intellectual Property & Code Protection Notice
-> **Notice to Visitors & Evaluators:** All source code across my repositories (`HANIDEVINF/*`) is showcased for portfolio verification and live interactive testing. Direct cloning, raw downloads, and unauthorized code redistribution are restricted to protect proprietary commercial client systems and academic research intellectual property (CERIST / USTHB). 
-> 
-> *For engineering hiring managers or academic collaborators wishing to request a private code walkthrough, please contact via email or LinkedIn.*
+1. Start with a clear task and understand the data.
+2. Compare against simple baselines and make evaluation splits explicit.
+3. Report class-level metrics and failure modes, not accuracy alone.
+4. Provide reproducible setup instructions, tests and honest limitations.
+5. Distinguish implemented functionality from mock integrations or future work.
 
----
+## Connect
 
-### 🌐 Connect & Test Live Workbenches
-- **Portfolio & Live Lab:** [portfolio-rho-seven-15.vercel.app](https://myportfolio-rho-seven-15.vercel.app)
-- **LinkedIn:** [ghena-hani-3543a3375](https://www.linkedin.com/in/ghena-hani-3543a3375/)
-- **Email:** hanighena4@gmail.com
-- **Phone / WhatsApp:** +213 541 89 47 43
+- [Portfolio](https://myportfolio-rho-seven-15.vercel.app/)
+- [LinkedIn](https://www.linkedin.com/in/ghena-hani-3543a3375/)
+- [Email](mailto:hanighena4@gmail.com)
+
+*For exact dates, responsibilities, licensing and sharing status, refer to my CV and the individual repositories. Research and client work may have separate disclosure restrictions.*
