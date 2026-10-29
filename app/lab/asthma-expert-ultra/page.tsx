@@ -503,7 +503,7 @@ export default function AsthmaExpertUltraWorkbench() {
                 </div>
               </div>
 
-              {/* Right Column: Live Neural Multi-Task Prediction & Dempster-Shafer Logic */}
+              {/* Right Column: Illustrative Heuristic Scoring and Demo Fusion */}
               <div className="lg:col-span-6 space-y-6">
                 {/* Critical Safety Override Alert */}
                 {isCriticalOverride ? (
@@ -512,10 +512,10 @@ export default function AsthmaExpertUltraWorkbench() {
                       <ShieldAlert className="h-7 w-7 text-red-400 shrink-0" />
                       <div>
                         <div className="text-base font-black text-red-200 uppercase tracking-wide">
-                          CRITICAL SAFETY OVERRIDE ACTIVE (Algorithm 1, Line 28)
+                          DEMO THRESHOLD RULE TRIGGERED
                         </div>
                         <p className="text-xs text-red-300 mt-1">
-                          Patient VEMS ({fev1}%) &lt; 50% of reference value. The deterministic clinical safety rule overrides model output to trigger an immediate clinical emergency alert.
+                          In this browser simulation, the slider value is below an illustrative threshold. No real patient is assessed and no external alert is triggered.
                         </p>
                       </div>
                     </div>
@@ -525,11 +525,11 @@ export default function AsthmaExpertUltraWorkbench() {
                     <div className="flex items-center gap-2.5">
                       <ShieldCheck className="h-5 w-5 text-emerald-400" />
                       <span className="text-xs text-emerald-200">
-                        Spirometric Safety Status: Normal ({fev1}% &ge; 50% VEMS threshold)
+                        Demo threshold rule not triggered ({fev1}% entered; illustrative cutoff only)
                       </span>
                     </div>
                     <span className="text-[10px] font-mono text-emerald-300 border border-emerald-500/30 bg-emerald-950/40 px-2 py-0.5 rounded">
-                      DS FUSION ACTIVE
+                      DEMO FUSION ACTIVE
                     </span>
                   </div>
                 )}
@@ -539,7 +539,7 @@ export default function AsthmaExpertUltraWorkbench() {
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-xs font-mono uppercase tracking-wider text-purple-400 font-semibold flex items-center gap-2">
                       <Brain className="h-4 w-4" />
-                      Task Head A: 4-Class Crisis Severity (y_sev)
+                      Demo Formula A: Illustrative Severity Class
                     </div>
                     <span className="rounded-md border border-purple-500/25 bg-purple-950/50 px-2.5 py-0.5 text-[11px] font-mono text-purple-200">
                       Focal Loss γ=2
@@ -547,7 +547,7 @@ export default function AsthmaExpertUltraWorkbench() {
                   </div>
 
                   <div className="mb-4 flex items-center justify-between">
-                    <span className="text-sm text-slate-300">Predicted Severity Tier:</span>
+                    <span className="text-sm text-slate-300">Illustrative Severity Class:</span>
                     <span
                       className={`text-xl font-black px-3 py-1 rounded-xl ${
                         isCriticalOverride || fusedSevIndex === 3
@@ -590,7 +590,7 @@ export default function AsthmaExpertUltraWorkbench() {
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold flex items-center gap-2">
                       <Clock className="h-4 w-4" />
-                      Task Head B: Lead-Time Proximity Bins (y_time)
+                      Demo Formula B: Illustrative Time Bin
                     </div>
                     <span className="rounded-md border border-cyan-500/25 bg-cyan-950/50 px-2.5 py-0.5 text-[11px] font-mono text-cyan-200">
                       Cross-Entropy
@@ -598,7 +598,7 @@ export default function AsthmaExpertUltraWorkbench() {
                   </div>
 
                   <div className="mb-4 flex items-center justify-between">
-                    <span className="text-sm text-slate-300">Estimated Horizon to Onset:</span>
+                    <span className="text-sm text-slate-300">Illustrative Time-Bin Output:</span>
                     <span className="text-lg font-bold text-cyan-300 font-mono px-3 py-1 rounded-xl bg-cyan-950/50 border border-cyan-500/30">
                       {timeBins[predictedTimeIndex]}
                     </span>
@@ -631,23 +631,23 @@ export default function AsthmaExpertUltraWorkbench() {
                     Dempster–Shafer Decision Fusion Mechanism
                   </div>
                   <p className="leading-relaxed font-light text-[11.5px]">
-                    Fuses neural probability output (m_IA) with spirometric prior belief (m_physio) based on FEV1. If neural output is uncertain, the clinical prior guides the alert.
+                    This demo combines hand-authored probability arrays with an illustrative prior derived from the slider. It does not use neural-network output or a validated clinical prior.
                   </p>
                   <div className="grid grid-cols-3 gap-2 font-mono text-[10.5px] text-center pt-1">
                     <div className="bg-[#0b0616] p-2 rounded-lg border border-purple-500/15">
-                      <div className="text-slate-400 mb-1">Raw Network m_IA</div>
+                      <div className="text-slate-400 mb-1">Raw Heuristic Scores</div>
                       <div className="text-purple-300 font-bold">{sevClasses[rawSevIndex]}</div>
-                      <div className="text-[9.5px] text-slate-500">{(rawSevProbs[rawSevIndex] * 100).toFixed(0)}% conf</div>
+                      <div className="text-[9.5px] text-slate-500">{(rawSevProbs[rawSevIndex] * 100).toFixed(0)}% score</div>
                     </div>
                     <div className="bg-[#0b0616] p-2 rounded-lg border border-purple-500/15">
                       <div className="text-slate-400 mb-1">Spirometric m_physio</div>
                       <div className="text-cyan-300 font-bold">FEV1 {fev1}%</div>
-                      <div className="text-[9.5px] text-slate-500">Prior distribution</div>
+                      <div className="text-[9.5px] text-slate-500">Illustrative Prior</div>
                     </div>
                     <div className="bg-[#0b0616] p-2 rounded-lg border border-purple-500/15">
-                      <div className="text-slate-400 mb-1">Fused Decision</div>
+                      <div className="text-slate-400 mb-1">Combined Demo Class</div>
                       <div className="text-emerald-300 font-bold">{sevClasses[fusedSevIndex]}</div>
-                      <div className="text-[9.5px] text-slate-500">{(fusedProbs[fusedSevIndex] * 100).toFixed(0)}% conf</div>
+                      <div className="text-[9.5px] text-slate-500">{(fusedProbs[fusedSevIndex] * 100).toFixed(0)}% score</div>
                     </div>
                   </div>
                 </div>
@@ -657,16 +657,16 @@ export default function AsthmaExpertUltraWorkbench() {
         </section>
       )}
 
-      {/* TAB 2: MEASURED BENCHMARKS VS SOTA */}
+      {/* TAB 2: PROJECT-REPORTED METRICS ON SYNTHETIC DATA */}
       {activeTab === "benchmarks" && (
         <section className="py-12 px-6">
           <div className="max-w-6xl mx-auto space-y-8">
             <div className="border-b border-purple-500/20 pb-4">
               <h2 className="text-2xl sm:text-3xl font-black text-white">
-                Empirical Evaluation & Baseline Comparisons
+                Project-Reported Metrics on Synthetic Data
               </h2>
               <p className="text-sm text-slate-300 font-light mt-1">
-                All numbers are measured on a strict, patient-independent test set (80/20 GroupShuffleSplit, zero patient leakage) evaluated across 1,000 simulated patients over 1,440 hours.
+                These numbers are transcribed from the project report for a synthetic cohort and have not been independently rerun from this public repository. They are not clinical evidence. The listed lead-time accuracy is lower than the listed baselines; the interactive controls do not run the trained model.
               </p>
             </div>
 
@@ -680,20 +680,20 @@ export default function AsthmaExpertUltraWorkbench() {
                     <th className="p-4">Severity Macro-F1</th>
                     <th className="p-4">Lead-Time Acc</th>
                     <th className="p-4">Lead-Time Macro-F1</th>
-                    <th className="p-4">Edge Android Latency</th>
+                    <th className="p-4">Device Latency (Not Verified)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-purple-500/15 font-light text-slate-200">
                   <tr className="bg-purple-950/30 font-semibold text-white">
                     <td className="p-4 flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-purple-400" />
-                      AsthmaExpertUltra (Ours)
+                      AsthmaExpertUltra (reported)
                     </td>
                     <td className="p-4 text-emerald-300 font-bold">76.0%</td>
                     <td className="p-4 font-mono">0.460</td>
                     <td className="p-4 text-cyan-300 font-bold">69.0%</td>
                     <td className="p-4 font-mono">0.640</td>
-                    <td className="p-4 font-mono text-purple-300">&lt; 1.0 s (.ptl)</td>
+                    <td className="p-4 font-mono text-purple-300">Not independently verified</td>
                   </tr>
                   <tr>
                     <td className="p-4 font-medium">XGBoost (Flattened Windows)</td>
@@ -759,16 +759,16 @@ export default function AsthmaExpertUltraWorkbench() {
         </section>
       )}
 
-      {/* TAB 3: ABLATION STUDIES EVIDENCE */}
+      {/* TAB 3: REPORTED ABLATION SUMMARY (SYNTHETIC DATA) */}
       {activeTab === "ablation" && (
         <section className="py-12 px-6">
           <div className="max-w-6xl mx-auto space-y-8">
             <div className="border-b border-purple-500/20 pb-4">
               <h2 className="text-2xl sm:text-3xl font-black text-white">
-                Ablation Studies: Why Every Architectural Choice Matters
+                Reported Ablation Summary (Synthetic Data; Reproduction Pending)
               </h2>
               <p className="text-sm text-slate-300 font-light mt-1">
-                Direct empirical proof from the research notebook isolating the contribution of class-weighted Focal Loss and Dempster–Shafer belief fusion.
+                The research report describes these ablations on generated data. The current repository does not provide an end-to-end reproducible run from a clean checkout, so these values are project-reported—not independently verified and not real-patient evidence.
               </p>
             </div>
 
@@ -780,11 +780,11 @@ export default function AsthmaExpertUltraWorkbench() {
                   Ablation 1: Effect of Class-Weighted Focal Loss (w = [1, 5, 5, 10], γ = 2)
                 </h3>
                 <span className="text-xs font-mono text-emerald-400 border border-emerald-500/30 bg-emerald-950/40 px-2.5 py-0.5 rounded">
-                  92.3% Severe Recall
+                  Reported: 92.3% Severe-Class Recall
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                Standard unweighted cross-entropy loss causes the model to ignore minority severe crisis events in favor of the dominant stable class. Introducing class-weighted Focal Loss dramatically shifts model capacity toward life-critical emergency detection:
+                In the synthetic experiment described by the report, class-weighted Focal Loss changed the reported class-level recall distribution. These figures do not establish reliable detection of severe asthma crises in real patients:
               </p>
 
               <div className="grid sm:grid-cols-2 gap-4 pt-2">
@@ -794,7 +794,7 @@ export default function AsthmaExpertUltraWorkbench() {
                     <div className="flex justify-between"><span>Stable Recall:</span><span className="font-bold">98.0%</span></div>
                     <div className="flex justify-between"><span>Mild Recall:</span><span>6.2%</span></div>
                     <div className="flex justify-between"><span>Moderate Recall:</span><span>77.9%</span></div>
-                    <div className="flex justify-between text-red-400 font-bold"><span>Severe Crisis Recall:</span><span>0.3% (Fails)</span></div>
+                    <div className="flex justify-between text-red-400 font-bold"><span>Severe Crisis Recall:</span><span>0.3% (reported synthetic)</span></div>
                   </div>
                 </div>
                 <div className="rounded-xl border border-emerald-500/25 bg-emerald-950/20 p-4">
@@ -803,7 +803,7 @@ export default function AsthmaExpertUltraWorkbench() {
                     <div className="flex justify-between"><span>Stable Recall:</span><span>87.2%</span></div>
                     <div className="flex justify-between"><span>Mild Recall:</span><span>1.0%</span></div>
                     <div className="flex justify-between"><span>Moderate Recall:</span><span>0.2%</span></div>
-                    <div className="flex justify-between text-emerald-400 font-bold"><span>Severe Crisis Recall:</span><span>92.3% (Verified)</span></div>
+                    <div className="flex justify-between text-emerald-400 font-bold"><span>Severe Crisis Recall:</span><span>92.3% (reported synthetic; not independently verified)</span></div>
                   </div>
                 </div>
               </div>
@@ -814,26 +814,26 @@ export default function AsthmaExpertUltraWorkbench() {
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-bold text-white flex items-center gap-2">
                   <Zap className="h-5 w-5 text-amber-400" />
-                  Ablation 2: Decision Modulation via Dempster–Shafer Fusion
+                  Illustrative Decision-Fusion Calculation (Not Clinically Validated)
                 </h3>
                 <span className="text-xs font-mono text-amber-400 border border-amber-500/30 bg-amber-950/40 px-2.5 py-0.5 rounded">
-                  Safety Overrides
+                  Demo Rule Examples
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                By fusing the deep learning model's raw softmax output with deterministic spirometric reference guidelines, the system behaves as a safety-first clinical agent rather than an unconstrained statistical model:
+                The report describes a Dempster–Shafer fusion concept. The interactive page uses hand-authored arrays and slider-based rules, not the trained model or validated clinical guidelines:
               </p>
 
               <div className="grid md:grid-cols-3 gap-3 pt-2 font-mono text-xs">
                 <div className="rounded-xl border border-purple-500/20 bg-[#120a26] p-4 text-center">
                   <div className="text-slate-400 mb-1">VEMS 90% (Safe)</div>
                   <div className="text-lg font-bold text-white">53.0%</div>
-                  <div className="text-slate-400 text-[11px] mt-1">de-escalated false alarms</div>
+                  <div className="text-slate-400 text-[11px] mt-1">illustrative score shift</div>
                 </div>
                 <div className="rounded-xl border border-purple-500/20 bg-[#120a26] p-4 text-center">
                   <div className="text-slate-400 mb-1">VEMS 70% (Borderline)</div>
                   <div className="text-lg font-bold text-white">17.7%</div>
-                  <div className="text-slate-400 text-[11px] mt-1">decision shifts</div>
+                  <div className="text-slate-400 text-[11px] mt-1">illustrative score shift</div>
                 </div>
                 <div className="rounded-xl border border-purple-500/20 bg-[#120a26] p-4 text-center">
                   <div className="text-slate-400 mb-1">VEMS 50% (Distress)</div>
