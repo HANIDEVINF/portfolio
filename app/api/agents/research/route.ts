@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
     "- Clearly label claims that need independent verification, especially current facts, numbers, laws, clinical claims, and research comparisons.",
     "- Prefer explaining what evidence would be needed over inventing an answer when uncertain.",
     "- The output is a starting point for human review, not a verified research report.",
-  ].join("\\n")
+  ].join("\n")
 
   const startedAt = Date.now()
   try {
