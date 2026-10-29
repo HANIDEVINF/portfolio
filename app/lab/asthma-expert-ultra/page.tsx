@@ -227,7 +227,7 @@ export default function AsthmaExpertUltraWorkbench() {
             AsthmaExpertUltra: Simulation Explorer (Heuristic Demo)
           </h1>
           <p className="text-base sm:text-lg text-slate-300 max-w-4xl font-light leading-relaxed mb-8">
-            This page computes illustrative probabilities using deterministic formulas and rules; it does not load the trained Transformer or PyTorch Lite model. The underlying notebook reports experiments on synthetic patients, not clinical validation. This is not a diagnostic tool. The research architecture described in the report includes a 4-layer Transformer Encoder and class-weighted Focal Loss (<span className="font-mono text-purple-300">γ=2, w=[1,5,5,10]</span>), and Dempster–Shafer spirometric safety fusion, exported to PyTorch Lite for sub-second offline inference on Android.
+            This page computes illustrative probabilities using deterministic formulas and rules; it does not load the trained Transformer or PyTorch Lite model. The underlying notebook reports experiments on synthetic patients, not clinical validation. This is not a diagnostic tool. The repository documents a research architecture and an intended edge-export path, but this page does not provide model inference or demonstrate device-level latency.
           </p>
 
           {/* Key Metric Highlights Strip */}
