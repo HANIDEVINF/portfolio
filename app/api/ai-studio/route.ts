@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
 - Clinical Context / Patient Notes: ${patientNotes || "Ambulatory 2-lead Holter (MLII + V1)"}`,
           config: {
             systemInstruction:
-              "You are a senior clinical electrophysiology AI copilot integrated with the ECG_CNN_Attention_v7 Holter model. Return a rigorous, medically grounded JSON evaluation.",
+              "You are an educational text-generation assistant. You are not connected to the trained ECG_CNN_Attention_v7 model unless actual model outputs are explicitly supplied. Interpret only the supplied values, describe uncertainty, do not diagnose, and do not prescribe medication or treatment. Return a cautious JSON draft for clinician review.",
             responseMimeType: "application/json",
             responseSchema: {
               type: Type.OBJECT,
@@ -54,11 +54,15 @@ export async function POST(req: NextRequest) {
           },
         })
         const parsed = JSON.parse(response.text || "{}")
-        return NextResponse.json({ source: "gemini-3.8-flash", result: parsed })
+        return NextResponse.json({ source: "gemini-3.8-flash", mode: "model_generated_unverified", modelGenerated: true, demoOnly: false, disclaimer: "AI-generated draft; not independently verified. Clinical content requires qualified clinician review and must not be used as a standalone diagnosis or treatment recommendation.", result: parsed })
       }
 
       return NextResponse.json({
-        source: "deterministic-electrophysiology-engine",
+        source: "demo-only-fallback-ecg",
+        mode: "demo_fallback",
+        modelGenerated: false,
+        demoOnly: true,
+        disclaimer: "Illustrative hard-coded fallback, not model inference and not medical advice. Do not use to diagnose, triage, or change medication.",
         result: {
           clinicalSummary: `Detected AAMI Class ${rhythmClass} beat at ${heartRateBpm} BPM with prematurity ratio ${prematurityRatio} and compensatory pause ratio ${compensatoryRatio}.`,
           morphologyAndRhythmMechanism:
@@ -105,7 +109,7 @@ export async function POST(req: NextRequest) {
           contents: `Analyze this dictated consultation note (${language || "Trilingual AR/FR/EN"}): "${finalTranscript}"`,
           config: {
             systemInstruction:
-              "You are an AI Clinical & Executive Scribe. Convert raw voice dictation (which may include English, French, or Algerian Arabic medical terminology) into a structured SOAP note, ICD-10 candidate codes, and actionable follow-ups.",
+              "You are a drafting assistant, not a clinician. Convert the supplied dictation into a structured draft, clearly distinguish spoken facts from inferred content, do not invent patient measurements or diagnoses, and state that all clinical content and code candidates require qualified human verification.",
             responseMimeType: "application/json",
             responseSchema: {
               type: Type.OBJECT,
@@ -132,11 +136,15 @@ export async function POST(req: NextRequest) {
             },
           },
         })
-        return NextResponse.json({ source: "gemini-3.8-flash", result: JSON.parse(soapRes.text || "{}") })
+        return NextResponse.json({ source: "gemini-3.8-flash", mode: "model_generated_unverified", modelGenerated: true, demoOnly: false, disclaimer: "AI-generated transcription and SOAP draft; verify against the original audio and clinical record. Do not use as a standalone diagnosis or treatment plan.", result: JSON.parse(soapRes.text || "{}") })
       }
 
       return NextResponse.json({
-        source: "clinical-nlp-engine",
+        source: "demo-only-fallback-soap",
+        mode: "demo_fallback",
+        modelGenerated: false,
+        demoOnly: true,
+        disclaimer: "Illustrative sample note, not generated from the supplied transcript and not a real medical record. Do not use for care decisions.",
         result: {
           cleanedTranscript: transcript,
           subjective: "Patient reports intermittent palpitations and mild exertional fatigue over the past 72 hours.",
@@ -164,7 +172,7 @@ export async function POST(req: NextRequest) {
           contents: `Perform MUCAT trilingual (Arabic / French / English) code-switched NLP analysis on: "${text}"`,
           config: {
             systemInstruction:
-              "You are the MUCAT (Multilingual Custom Attention Transformer) Analyzer. Analyze code-switched Arabic/Darja, French, and English text. Return token-level language gating weights, morphological root extraction, intent classification, and normalized translations in AR, FR, and EN.",
+              "You are a generic language-model demo for code-switched Arabic/Darja, French, and English text. You are not executing the MuCAT trained weights and must not present invented token weights as measured model attention. Clearly treat language weights and token-level labels as illustrative estimates.",
             responseMimeType: "application/json",
             responseSchema: {
               type: Type.OBJECT,
@@ -207,11 +215,15 @@ export async function POST(req: NextRequest) {
             },
           },
         })
-        return NextResponse.json({ source: "gemini-3.8-flash", result: JSON.parse(res.text || "{}") })
+        return NextResponse.json({ source: "gemini-3.8-flash", mode: "model_generated_unverified", modelGenerated: true, demoOnly: false, disclaimer: "Generic Gemini output, not inference from the MuCAT trained model. Token weights are generated estimates, not measured attention values.", result: JSON.parse(res.text || "{}") })
       }
 
       return NextResponse.json({
-        source: "mucat-attention-engine",
+        source: "demo-only-fallback-mucat",
+        mode: "demo_fallback",
+        modelGenerated: false,
+        demoOnly: true,
+        disclaimer: "Canned illustrative sample, not MuCAT inference. The language-gating weights and token weights are fixed fixture values, not measured model outputs.",
         result: {
           detectedIntent: "Clinical / Commercial Appointment & Order Inquiry",
           sentimentUrgency: "High Priority · Actionable Request",
@@ -244,7 +256,7 @@ export async function POST(req: NextRequest) {
 - Executive Query: ${query}`,
           config: {
             systemInstruction:
-              "You are an Algerian Enterprise ERP & G50 Fiscal AI Auditor. Provide precise DZD accounting analysis, G50 declaration checks, and 58-wilaya COD cashflow optimization advice.",
+              "You are an informational accounting assistant, not a certified Algerian tax auditor. Do not guarantee compliance, invent official deadlines or regulatory interpretations, and clearly state that calculations and tax suggestions need checking against current DGI rules and a qualified professional.",
             responseMimeType: "application/json",
             responseSchema: {
               type: Type.OBJECT,
@@ -257,12 +269,16 @@ export async function POST(req: NextRequest) {
             },
           },
         })
-        return NextResponse.json({ source: "gemini-3.8-flash", result: JSON.parse(res.text || "{}") })
+        return NextResponse.json({ source: "gemini-3.8-flash", mode: "model_generated_unverified", modelGenerated: true, demoOnly: false, disclaimer: "AI-generated tax/accounting draft only. It is not a compliance determination; verify figures, deadlines and applicable Algerian rules with current official guidance or a qualified professional.", result: JSON.parse(res.text || "{}") })
       }
 
       const netTva = Math.max(0, (vatCollectedDzd || 0) - (deductibleVatDzd || 0))
       return NextResponse.json({
-        source: "g50-fiscal-auditor",
+        source: "demo-only-fallback-erp",
+        mode: "demo_fallback",
+        modelGenerated: false,
+        demoOnly: true,
+        disclaimer: "Illustrative fallback only. This is not an Algerian tax compliance check and does not verify official deadlines, invoices, or DGI rules.",
         result: {
           auditVerdict: `G50 Declaration Balanced — Net Payable TVA: ${netTva.toLocaleString()} DZD (Filing Deadline: 20th of following month)`,
           g50SummaryNote:
