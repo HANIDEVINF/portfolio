@@ -70,8 +70,8 @@ export const portfolioProjects: PortfolioProject[] = [
       "Transformer Encoder",
       "Multi-Task Learning",
       "Dempster-Shafer Fusion",
-      "PyTorch Lite (.ptl)",
-      "Android Edge AI"
+      "Intended PyTorch Lite Export (not bundled)",
+      "Edge AI Design"
     ],
     github: "https://github.com/HANIDEVINF/asthma-expert-ultra",
     githubReady: true,
@@ -85,7 +85,7 @@ export const portfolioProjects: PortfolioProject[] = [
     modelType: "4-Layer Transformer Encoder (d_model=128, h=8) + GAP + Dual Multi-Task Heads (Severity Focal Loss γ=2 + Lead-Time Cross-Entropy)",
     metrics: [
       "76.0% 4-Class Severity Accuracy (vs 61.8% XGBoost, 57.7% PatchTST)",
-      "69.0% 4-Bin Lead-Time Accuracy (vs 59.3% LSTM)",
+      "69.0% 4-Bin Lead-Time Accuracy (below report-listed XGBoost 85.1%, LSTM 85.7%, PatchTST 85.0%)",
       "No standalone Android app or exported .ptl artifact included in the public repo"
     ],
     impact:
@@ -94,29 +94,29 @@ export const portfolioProjects: PortfolioProject[] = [
       "Input Window: 24h temporal sliding window (24 × 8) of 8 multimodal signals (FEV1, PEF, SpO2, HR, RR, PM2.5, Pollen, Temp) with patient-specific Z-score normalisation",
       "Module 1 (Transformer Encoder): Linear projection (8 → 128) + Sinusoidal Positional Encoding → 4-layer Transformer Encoder (8 heads, FFN 512, LayerNorm) → Global Average Pooling context h_GAP (128-d)",
       "Module 2 (Multi-Task Heads): Severity Head (128 → 64 → 4, Focal Loss γ=2, w=[1,5,5,10]) and Lead-Time Head (128 → 64 → 4, Cross-Entropy) trained jointly (0.5/0.5)",
-      "Safety Layer & Edge Deployment: Dempster-Shafer evidence fusion with independent spirometric rule (VEMS < 50% critical emergency override), exported to TorchScript and PyTorch Lite (.ptl) for offline Android execution"
+      "Intended safety/edge concept: the report describes Dempster-Shafer fusion and a VEMS threshold rule; the public repository does not include a standalone .ptl artifact or Android application, and the live demo does not run the trained model"
     ],
     caseStudy: {
-      subtitle: "CERIST Research Technical Report — Multi-Task Transformer & Android Edge Deployment",
+      subtitle: "CERIST research report — synthetic-data experiment and intended edge-export design",
       datasetOrScope: "1,000 Patients · 1,440 Hours Each · Strict Patient-Independent Split · 8 Multimodal Channels",
       keyFindings: [
         "On the reported synthetic cohort, AsthmaExpertUltra records 76.0% severity accuracy and 69.0% lead-time accuracy; these are simulation-only results and not clinical performance estimates",
         "The project notes report a severe-class recall change under asymmetric focal-loss weighting on synthetic data; this does not establish reliable detection of life-threatening crises in real patients",
-        "Dempster-Shafer decision fusion escalates 47.3% of critical low-VEMS readings to immediate triage while de-escalating false alarms in stable patients",
+        "The report describes 47.3% of selected synthetic low-VEMS cases being escalated by its fusion rule; this is not real patient triage evidence and is not independently reproduced in the interactive lab",
         "An edge-export workflow is described in project notes, but this repository does not include a standalone .ptl file or device-level latency evidence"
       ],
       sections: [
         {
           heading: "Why Anticipatory Multi-Task Monitoring Matters",
-          body: "Asthma management is conventionally reactive: patients only receive intervention after airway constriction begins. AsthmaExpertUltra shifts this paradigm by tracking subtle physiological degradation (FEV1 decline, compensatory respiratory rate climb, SpO2 dips) 4 to 8 hours prior to onset."
+          body: "The synthetic scenario generator encodes progressive signal changes before a simulated event to explore lead-time classification. This does not establish that real asthma exacerbations can be predicted 4–8 hours in advance."
         },
         {
           heading: "Patient-Independent Splitting & Benchmark Rigor",
-          body: "Unlike naive random train/test splits that leak patient identities and produce deceptively high scores, AsthmaExpertUltra enforces a strict GroupShuffleSplit by patient ID. The model was benchmarked against XGBoost, Simple RNN, LSTM, and 2023 Patch-based Transformers on an identical test cohort."
+          body: "Project notes describe a patient-grouped split and comparisons against XGBoost, Simple RNN, LSTM and PatchTST on synthetic data. These reported results have not been independently reproduced from a clean public checkout."
         },
         {
           heading: "Clinical Safety Override & Edge Privacy",
-          body: "To bridge deep learning and medical practice, the network's probabilistic belief is fused with deterministic clinical guidelines: if a patient's VEMS falls below 50% of their reference value, an emergency alert triggers immediately. The complete system runs locally on an Android device via PyTorch Lite."
+          body: "The report describes a threshold-based safety override as a design concept. The current interactive page uses illustrative browser formulas, does not evaluate a trained network, and does not trigger any real alert; no standalone Android application or .ptl model is included in this repository."
         }
       ]
     }
