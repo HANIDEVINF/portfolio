@@ -185,6 +185,11 @@ export default function AsthmaExpertUltraWorkbench() {
   return (
     <main className="min-h-screen bg-[#07050d] text-white">
       <Navigation />
+      <div role="note" className="mx-auto max-w-7xl px-6 pt-5">
+        <div className="rounded-xl border border-amber-500/25 bg-amber-950/20 px-4 py-3 text-sm leading-relaxed text-amber-100">
+          <strong>Heuristic demo — not trained-model inference.</strong> The sliders and results below use deterministic illustrative formulas in the browser. They do not run the trained Transformer. Research metrics elsewhere in this project are from a synthetic cohort and are not clinical evidence or medical advice.
+        </div>
+      </div>
 
       {/* Top Hero Banner */}
       <section className="relative px-6 pt-32 pb-14 overflow-hidden border-b border-purple-500/20">
@@ -193,7 +198,7 @@ export default function AsthmaExpertUltraWorkbench() {
           <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
             <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/35 bg-purple-950/40 px-4 py-1.5 text-xs font-mono text-purple-300">
               <Activity className="h-4 w-4 text-purple-400" />
-              CERIST Research Internship Project · PyTorch Lite Android Deployment
+              Simulation-Based Research Prototype · Not Clinical Inference
             </div>
             <div className="flex items-center gap-2">
               <a
@@ -219,33 +224,33 @@ export default function AsthmaExpertUltraWorkbench() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
-            AsthmaExpertUltra: Multi-Task Transformer Neural Lab
+            AsthmaExpertUltra: Simulation Explorer (Heuristic Demo)
           </h1>
           <p className="text-base sm:text-lg text-slate-300 max-w-4xl font-light leading-relaxed mb-8">
-            Anticipatory edge-AI clinical system predicting asthma crisis severity (4 classes) and temporal lead-time proximity (4 bins) 4 to 8 hours before clinical onset. Combines a 4-layer Transformer Encoder, class-weighted Focal Loss (<span className="font-mono text-purple-300">γ=2, w=[1,5,5,10]</span>), and Dempster–Shafer spirometric safety fusion, exported to PyTorch Lite for sub-second offline inference on Android.
+            This page computes illustrative probabilities using deterministic formulas and rules; it does not load the trained Transformer or PyTorch Lite model. The underlying notebook reports experiments on synthetic patients, not clinical validation. This is not a diagnostic tool. The research architecture described in the report includes a 4-layer Transformer Encoder and class-weighted Focal Loss (<span className="font-mono text-purple-300">γ=2, w=[1,5,5,10]</span>), and Dempster–Shafer spirometric safety fusion, exported to PyTorch Lite for sub-second offline inference on Android.
           </p>
 
           {/* Key Metric Highlights Strip */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div className="rounded-xl border border-purple-500/20 bg-[#0e091e]/80 p-4">
-              <div className="text-xs font-mono text-purple-400 uppercase mb-1">Severity Accuracy</div>
-              <div className="text-2xl sm:text-3xl font-black text-white">76.0%</div>
-              <div className="text-[11px] text-slate-400 mt-1">vs 61.8% XGBoost · 57.7% PatchTST</div>
+              <div className="text-xs font-mono text-purple-400 uppercase mb-1">Demo Engine</div>
+              <div className="text-2xl sm:text-3xl font-black text-white">Heuristic</div>
+              <div className="text-[11px] text-slate-400 mt-1">Deterministic browser formulas</div>
             </div>
             <div className="rounded-xl border border-purple-500/20 bg-[#0e091e]/80 p-4">
-              <div className="text-xs font-mono text-cyan-400 uppercase mb-1">Lead-Time Accuracy</div>
-              <div className="text-2xl sm:text-3xl font-black text-white">69.0%</div>
-              <div className="text-[11px] text-slate-400 mt-1">4 clinical temporal risk bins</div>
+              <div className="text-xs font-mono text-cyan-400 uppercase mb-1">Data Basis</div>
+              <div className="text-2xl sm:text-3xl font-black text-white">Synthetic</div>
+              <div className="text-[11px] text-slate-400 mt-1">Generated scenarios only</div>
             </div>
             <div className="rounded-xl border border-purple-500/20 bg-[#0e091e]/80 p-4">
-              <div className="text-xs font-mono text-emerald-400 uppercase mb-1">Severe Recall (Focal)</div>
-              <div className="text-2xl sm:text-3xl font-black text-white">92.3%</div>
-              <div className="text-[11px] text-slate-400 mt-1">vs 0.3% unweighted baseline</div>
+              <div className="text-xs font-mono text-emerald-400 uppercase mb-1">Clinical Validation</div>
+              <div className="text-2xl sm:text-3xl font-black text-white">None</div>
+              <div className="text-[11px] text-slate-400 mt-1">Not evaluated in real patients</div>
             </div>
             <div className="rounded-xl border border-purple-500/20 bg-[#0e091e]/80 p-4">
-              <div className="text-xs font-mono text-fuchsia-400 uppercase mb-1">Edge Latency (Android)</div>
-              <div className="text-2xl sm:text-3xl font-black text-white">&lt; 1.0 s</div>
-              <div className="text-[11px] text-slate-400 mt-1">PyTorch Lite .ptl on-device</div>
+              <div className="text-xs font-mono text-fuchsia-400 uppercase mb-1">Trained Model</div>
+              <div className="text-2xl sm:text-3xl font-black text-white">Not loaded</div>
+              <div className="text-[11px] text-slate-400 mt-1">No model weights used by this lab</div>
             </div>
           </div>
         </div>
@@ -274,7 +279,7 @@ export default function AsthmaExpertUltraWorkbench() {
             }`}
           >
             <Database className="h-4 w-4" />
-            Measured Benchmarks vs XGBoost, LSTM & PatchTST
+            Reported Synthetic-Data Results
           </button>
           <button
             onClick={() => setActiveTab("ablation")}
