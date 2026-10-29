@@ -57,6 +57,7 @@ type StudioMeta = {
   subtitle: string
   track: "AI & Medical Research" | "Commercial Client System" | "Full-Stack AI Infrastructure"
   repoUrl: string
+  sourceAccess?: "public" | "private" | "restricted"
   externalDemoUrl?: string
   metrics: string
 }
@@ -120,6 +121,7 @@ const STUDIOS: StudioMeta[] = [
     subtitle: "Seeded corpus with keyword/domain heuristic ranking; no real embeddings or LLM generation",
     track: "Full-Stack AI Infrastructure",
     repoUrl: "https://github.com/HANIDEVINF/document-qa-rag",
+    sourceAccess: "private",
     externalDemoUrl: "https://document-qa-rag-sand.vercel.app",
     metrics: "Illustrative retrieval UI; no validated faithfulness score",
   },
@@ -544,15 +546,25 @@ export default function InteractiveAiCommercialLabPage({
             <p className="text-xs text-zinc-400">{currentStudioMeta.subtitle}</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <a
-              href={currentStudioMeta.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/[0.04] px-3.5 py-2 text-xs font-semibold text-zinc-200 hover:border-white/30 hover:text-white"
-            >
-              <Code2 className="h-3.5 w-3.5" />
-              GitHub Repository
-            </a>
+            {currentStudioMeta.sourceAccess === "private" ? (
+              <span
+                title="The source repository is private; the public demo is available where linked."
+                className="inline-flex items-center gap-1.5 rounded-xl border border-amber-500/25 bg-amber-950/20 px-3.5 py-2 text-xs font-semibold text-amber-100"
+              >
+                <Lock className="h-3.5 w-3.5" />
+                Source Repository Private
+              </span>
+            ) : (
+              <a
+                href={currentStudioMeta.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/[0.04] px-3.5 py-2 text-xs font-semibold text-zinc-200 hover:border-white/30 hover:text-white"
+              >
+                <Code2 className="h-3.5 w-3.5" />
+                GitHub Repository
+              </a>
+            )}
             {currentStudioMeta.externalDemoUrl && (
               <a
                 href={currentStudioMeta.externalDemoUrl}
