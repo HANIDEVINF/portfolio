@@ -49,6 +49,7 @@ export async function POST(req: NextRequest) {
 
   const ai = getAiClient()
 
+  try {
     if (task === "ecg_clinical_analysis") {
       const { rhythmClass, heartRateBpm, rrPrev, rrNext, prematurityRatio, compensatoryRatio, patientNotes } = payload || {}
 
