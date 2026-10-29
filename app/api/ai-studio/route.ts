@@ -15,10 +15,39 @@ function getAiClient() {
 }
 
 export async function POST(req: NextRequest) {
+  const rawLength = Number(req.headers.get("content-length") || 0)
+  if (Number.isFinite(rawLength) && rawLength > 10 * 1024 * 1024) {
+    return NextResponse.json({ error: "Request payload is too large. Maximum size is 10 MB." }, { status: 413 })
+  }
+
+  let body: unknown
   try {
-    const body = await req.json()
-    const { task, payload } = body
-    const ai = getAiClient()
+    body = await req.json()
+  } catch {
+    return NextResponse.json({ error: "Request body must be valid JSON." }, { status: 400 })
+  }
+
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Request body must be a JSON object." }, { status: 400 })
+  }
+
+  const record = body as Record<string, unknown>
+  const task = record.task
+  const payload = record.payload
+  if (typeof task !== "string" || !task.trim()) {
+    return NextResponse.json({ error: "A non-empty task is required." }, { status: 400 })
+  }
+  if (payload !== undefined && (!payload || typeof payload !== "object" || Array.isArray(payload))) {
+    return NextResponse.json({ error: "Payload must be a JSON object." }, { status: 400 })
+  }
+  if (payload && typeof payload === "object" && "audioBase64" in payload) {
+    const audio = (payload as Record<string, unknown>).audioBase64
+    if (typeof audio === "string" && audio.length > 8 * 1024 * 1024) {
+      return NextResponse.json({ error: "Encoded audio payload is too large." }, { status: 413 })
+    }
+  }
+
+  const ai = getAiClient()
 
     if (task === "ecg_clinical_analysis") {
       const { rhythmClass, heartRateBpm, rrPrev, rrNext, prematurityRatio, compensatoryRatio, patientNotes } = payload || {}
@@ -293,10 +322,11 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ error: "Unsupported AI task" }, { status: 400 })
-  } catch (error: any) {
+  } catch {
+    // Keep provider details and possibly sensitive request context out of client-facing errors.
     return NextResponse.json(
-      { error: error?.message || "Server-side Gemini API execution error" },
-      { status: 500 }
+      { error: "AI Studio request failed. Check the server configuration and try again." },
+      { status: 502 }
     )
   }
 }
