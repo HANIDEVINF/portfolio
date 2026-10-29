@@ -64,7 +64,7 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: "asthma-expert-ultra-transformer",
     title: "AsthmaExpertUltra — Multi-Task Transformer for Asthma Crisis Prediction",
     description:
-      "Anticipatory edge-AI clinical monitoring system predicting asthma crisis severity (4 classes) and temporal lead-time proximity (4 bins) 4 to 8 hours before clinical onset. Built with a 4-layer Transformer Encoder, class-weighted Focal Loss, and Dempster–Shafer spirometric safety fusion, deployed on Android via PyTorch Lite.",
+      "Simulation-based research prototype exploring joint asthma severity and lead-time classification using generated synthetic multivariate time series. The public lab uses deterministic illustrative heuristics, not this trained model; no real-patient evaluation or clinical validation is claimed.",
     technologies: [
       "PyTorch",
       "Transformer Encoder",
@@ -86,10 +86,10 @@ export const portfolioProjects: PortfolioProject[] = [
     metrics: [
       "76.0% 4-Class Severity Accuracy (vs 61.8% XGBoost, 57.7% PatchTST)",
       "69.0% 4-Bin Lead-Time Accuracy (vs 59.3% LSTM)",
-      "< 1.0s On-Device Inference on Android (PyTorch Lite .ptl)"
+      "No standalone Android app or exported .ptl artifact included in the public repo"
     ],
     impact:
-      "CERIST AI Research internship project. Evaluated on 1,000 patients with a leakage-free patient-grouped protocol. Class-weighted Focal Loss [1,5,5,10] escalates Severe class recall from 0.3% to 92.3%, and Dempster-Shafer fusion dynamically overrides borderline cases when FEV1/VEMS drops below 50%.",
+      "Research prototype documented with 1,000 simulated patients and patient-grouped splits. Reported metrics apply only to the generated simulation, are not real-patient evidence, and have not been independently rerun as part of this portfolio update. No clinical validation is claimed.",
     architecture: [
       "Input Window: 24h temporal sliding window (24 × 8) of 8 multimodal signals (FEV1, PEF, SpO2, HR, RR, PM2.5, Pollen, Temp) with patient-specific Z-score normalisation",
       "Module 1 (Transformer Encoder): Linear projection (8 → 128) + Sinusoidal Positional Encoding → 4-layer Transformer Encoder (8 heads, FFN 512, LayerNorm) → Global Average Pooling context h_GAP (128-d)",
@@ -100,10 +100,10 @@ export const portfolioProjects: PortfolioProject[] = [
       subtitle: "CERIST Research Technical Report — Multi-Task Transformer & Android Edge Deployment",
       datasetOrScope: "1,000 Patients · 1,440 Hours Each · Strict Patient-Independent Split · 8 Multimodal Channels",
       keyFindings: [
-        "AsthmaExpertUltra reaches 76.0% accuracy on 4-class severity and 69.0% on 4-bin lead-time, outperforming XGBoost (61.8%), LSTM (59.3%), and 2023 PatchTST (57.7%) on severity",
-        "Asymmetric Focal Loss weighting [1, 5, 5, 10] raises Severe crisis recall from 0.3% to 92.3%, ensuring life-threatening exacerbations are detected reliably",
+        "On the reported synthetic cohort, AsthmaExpertUltra records 76.0% severity accuracy and 69.0% lead-time accuracy; these are simulation-only results and not clinical performance estimates",
+        "The project notes report a severe-class recall change under asymmetric focal-loss weighting on synthetic data; this does not establish reliable detection of life-threatening crises in real patients",
         "Dempster-Shafer decision fusion escalates 47.3% of critical low-VEMS readings to immediate triage while de-escalating false alarms in stable patients",
-        "Full PyTorch Lite (.ptl) export achieves sub-second (<1.0s) inference latency on Android with zero cloud reliance"
+        "An edge-export workflow is described in project notes, but this repository does not include a standalone .ptl file or device-level latency evidence"
       ],
       sections: [
         {
