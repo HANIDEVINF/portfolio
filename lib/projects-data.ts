@@ -137,7 +137,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     github: "https://github.com/HANIDEVINF/MCTNet",
     githubReady: true,
-    category: "Computer Vision & Remote Sensing",
+    category: "Computer Vision",
     featured: true,
     status: "Research",
     systemType: "Research Implementation",
