@@ -122,6 +122,66 @@ export const portfolioProjects: PortfolioProject[] = [
     }
   },
   {
+    slug: "mctnet-multisource-crop-classification",
+    title: "MCTNet — Multi-Source Crop Classification",
+    description:
+      "Crop-mapping research pipeline using 36-step Sentinel-2 time series across Arkansas and California. Includes a CNN–Transformer baseline, climate/soil/topography covariate exploration and ablations, and an improved BiGRU + self-attention model with per-group gated covariate fusion.",
+    technologies: [
+      "TensorFlow / Keras",
+      "Sentinel-2 Time Series",
+      "CNN–Transformer",
+      "BiGRU",
+      "Self-Attention",
+      "Google Earth Engine",
+      "Environmental Feature Fusion"
+    ],
+    github: "https://github.com/HANIDEVINF/MCTNet",
+    githubReady: true,
+    category: "Computer Vision & Remote Sensing",
+    featured: true,
+    status: "Research",
+    systemType: "Research Implementation",
+    trainedDataset: "2021 Sentinel-2 time series for Arkansas and California, with supplied base and environmentally enriched CSV datasets",
+    modelType: "MCTNet CNN–Transformer baseline plus a BiGRU/self-attention extension with group-gated climate, soil and topography covariates",
+    metrics: [
+      "36 temporal steps × 10 Sentinel-2 spectral bands in the baseline",
+      "Two geographic study areas: Arkansas and California",
+      "Ablation comparisons reported for overall accuracy, Cohen's kappa and macro-F1"
+    ],
+    impact:
+      "Maintained by Hani Ghena. Compares a crop-classification baseline with environmental-covariate integration and an improved temporal architecture, with data preparation, notebooks and dataset files organized for research review.",
+    architecture: [
+      "Input: 36 ten-day Sentinel-2 observations, 10 spectral bands and validity indicators per sample",
+      "Baseline: multi-stage CNN–Transformer feature extraction for crop-type classification",
+      "Covariate branch: climate sequences plus static soil and topography attributes, evaluated through feature-group ablations",
+      "Improved model: 14 spectral/vegetation-index channels, a bidirectional GRU, self-attention and per-group gated covariate fusion"
+    ],
+    caseStudy: {
+      subtitle: "MCTNet Crop Mapping Research Implementation · Hani Ghena",
+      datasetOrScope: "Sentinel-2 time-series crop classification for Arkansas and California (2021), with base and enriched datasets included in the repository",
+      keyFindings: [
+        "Organizes baseline, covariate-ablation and improved-model workflows as separate notebooks",
+        "Adds climate, soil and topography features to study whether multi-source information improves crop discrimination",
+        "Includes an improved temporal architecture using BiGRU, self-attention and per-group gated covariate fusion",
+        "Reports overall accuracy, Cohen's kappa and macro-F1 from notebook experiments; metrics should be reproduced in the target environment before being cited"
+      ],
+      sections: [
+        {
+          heading: "Baseline and Temporal Spectral Features",
+          body: "The baseline uses 36 temporal observations across 10 Sentinel-2 bands and models the temporal spectral signature for crop-type classification. The Arkansas and California datasets use different crop-class mappings."
+        },
+        {
+          heading: "Environmental Covariate Integration",
+          body: "The enriched data add temperature, precipitation and dew-point time series, alongside static soil and topographic variables. Part 2 explores feature distributions and compares selected covariate groups through ablations."
+        },
+        {
+          heading: "Improved MCTNet Architecture",
+          body: "Part 3 extends the spectral representation with vegetation indices and uses a bidirectional GRU, self-attention and per-group gated fusion for climate, soil and topography. The repository includes the prepared data and research notebooks rather than a hosted inference API."
+        }
+      ]
+    }
+  },
+  {
     slug: "ai-ecg-arrhythmia-classification-v7",
     title: "AI ECG Arrhythmia Classification (v7)",
     description:
