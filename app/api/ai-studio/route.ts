@@ -47,11 +47,29 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  const taskPayload = (payload ?? {}) as Record<string, unknown>
+  const readString = (key: string, fallback = ""): string => {
+    const value = taskPayload[key]
+    return typeof value === "string" ? value : fallback
+  }
+  const readNumber = (key: string, fallback = 0): number => {
+    const value = taskPayload[key]
+    if (typeof value === "number" && Number.isFinite(value)) return value
+    if (typeof value === "string" && value.trim() !== "" && Number.isFinite(Number(value))) return Number(value)
+    return fallback
+  }
+
   const ai = getAiClient()
 
   try {
     if (task === "ecg_clinical_analysis") {
-      const { rhythmClass, heartRateBpm, rrPrev, rrNext, prematurityRatio, compensatoryRatio, patientNotes } = payload || {}
+      const rhythmClass = readString("rhythmClass", "Unknown")
+      const heartRateBpm = readNumber("heartRateBpm")
+      const rrPrev = readNumber("rrPrev")
+      const rrNext = readNumber("rrNext")
+      const prematurityRatio = readNumber("prematurityRatio")
+      const compensatoryRatio = readNumber("compensatoryRatio")
+      const patientNotes = readString("patientNotes", "Ambulatory 2-lead Holter (MLII + V1)")
 
       if (ai) {
         const response = await ai.models.generateContent({
@@ -117,7 +135,10 @@ export async function POST(req: NextRequest) {
     }
 
     if (task === "voice_scribe_soap") {
-      const { transcript, language, audioBase64, mimeType } = payload || {}
+      const transcript = readString("transcript")
+      const language = readString("language", "Trilingual AR/FR/EN")
+      const audioBase64 = readString("audioBase64")
+      const mimeType = readString("mimeType")
 
       if (ai) {
         let finalTranscript = transcript || ""
@@ -195,7 +216,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (task === "mucat_multilingual_analyze") {
-      const { text } = payload || {}
+      const text = readString("text")
       if (ai) {
         const res = await ai.models.generateContent({
           model: "gemini-3.8-flash",
@@ -274,7 +295,11 @@ export async function POST(req: NextRequest) {
     }
 
     if (task === "erp_fiscal_copilot") {
-      const { revenueDzd, vatCollectedDzd, deductibleVatDzd, tapRate, query } = payload || {}
+      const revenueDzd = readNumber("revenueDzd")
+      const vatCollectedDzd = readNumber("vatCollectedDzd")
+      const deductibleVatDzd = readNumber("deductibleVatDzd")
+      const tapRate = readNumber("tapRate")
+      const query = readString("query")
       if (ai) {
         const res = await ai.models.generateContent({
           model: "gemini-3.8-flash",
@@ -302,7 +327,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ source: "gemini-3.8-flash", mode: "model_generated_unverified", modelGenerated: true, demoOnly: false, disclaimer: "AI-generated tax/accounting draft only. It is not a compliance determination; verify figures, deadlines and applicable Algerian rules with current official guidance or a qualified professional.", result: JSON.parse(res.text || "{}") })
       }
 
-      const netTva = Math.max(0, (vatCollectedDzd || 0) - (deductibleVatDzd || 0))
+      const netTva = Math.max(0, vatCollectedDzd - deductibleVatDzd)
       return NextResponse.json({
         source: "demo-only-fallback-erp",
         mode: "demo_fallback",
