@@ -11,81 +11,81 @@ import {
 
 const skills = [
   {
-    category: "Deep Learning & Transformers",
-    proof: "Applied in CERIST MuCAT (98.20% Test Acc) & MIT-BIH ECG v7",
+    category: "Deep Learning & Research Methods",
+    proof: "Evidence: ECG v7, MCTNet reproduction, MuCAT modules",
     icon: Brain,
     items: [
-      "PyTorch & TensorFlow / Keras → Trained 97K-param CNN-Transformer (90.13% DS2 ensemble)",
-      "mDeBERTa-v3 / XLM-R → Engineered MuCAT (HAP + FiLM Language Gating + Dirichlet u=K/S)",
-      "1D/2D CNNs & Multi-Head Attention → Dual-lead ECG morphology + 8 RR interval fusion",
-      "6-Language Low-Resource NLP → MSA, Algerian Darija, Kabyle, Chaoui, French & English",
-      "Medical Signal Processing → 0.5–45 Hz zero-phase Butterworth & Pan-Tompkins R-peaks",
-      "Evidential Deep Learning & LLRD → Single-pass Dirichlet uncertainty & layer-wise decay (ξ=0.95)",
+      "PyTorch & TensorFlow / Keras → ECG v7 (97K-parameter CNN–Transformer, 90.13% 5-fold ensemble accuracy, 0.529 macro-F1)",
+      "CNN–Transformer–BiGRU for time series → MCTNet reproduction and extension on Sentinel-2 (OA 0.966 Arkansas / 0.846 California, single runs)",
+      "Multilingual NLP architecture design → MuCAT heads (HAP, FiLM gating, evidential head) over mDeBERTa-v3; end-to-end reproduction pending",
+      "Ablation studies → covariate ablations with documented negative results (negative transfer, California topography drop)",
+      "Class-imbalance handling → balanced class weights, label smoothing, per-class and macro-F1 reporting",
+      "Experiment hygiene → fixed seeds, train-only normalisation, patient-independent splits",
     ],
   },
   {
-    category: "Agentic AI, RAG & LLM Systems",
-    proof: "Applied in VeriCite RAG & ResolveAI Orchestrator",
-    icon: Bot,
-    items: [
-      "Hybrid Dense + BM25 RAG → Built VeriCite Studio with Reciprocal Rank Fusion (RRF)",
-      "Agentic AI & ReAct Routing → Built 4-agent orchestrator (Triage, Billing, Tech, Retention)",
-      "Structured JSON Extraction → Trained 9-class Keras schema router with OOD abstention",
-      "Speech-to-Text & Diarization → Built VoxScribe trilingual ASR + SOAP clinical summarizer",
-      "Citation & Faithfulness Gates → Automatic abstention on ungrounded LLM claims",
-      "Hugging Face & Token Attribution → Deployed in-browser Keras safety moderation (99.1%)",
-    ],
-  },
-  {
-    category: "AI Security & Research Rigor",
-    proof: "Applied in CERIST Benchmarks & CodeRefactor AST",
-    icon: ShieldCheck,
-    items: [
-      "Strict Inter-Patient Splits → Enforced DS1/DS2 zero-patient-leakage on 49,668 test beats",
-      "Out-of-Fold Logit Calibration → DS1-only prior temperature scaling without test leakage",
-      "AST Security & Leakage Audit → Built CodeRefactor detector for OWASP & ML data leakage",
-      "LLM Regression & Safety Gates → Built EvalGate Pareto latency/cost/safety workbench",
-      "Prompt Injection & Policy Guardrails → Deterministic pre-execution tool validation",
-      "Human-in-the-Loop SRE Gates → Built OpsPilot incident copilot with approval workflows",
-    ],
-  },
-  {
-    category: "Edge AI, IoT & MLOps Deployment",
-    proof: "Applied in MedGuardAI & Embedded TFLite",
+    category: "Biomedical Signals & Edge AI",
+    proof: "Evidence: ECG v7, MedGuardAI (architecture case study)",
     icon: Cloud,
     items: [
-      "TFLite INT8 Quantization → Compressed ECG Transformer to 155.4 KB (0.32 ms/beat)",
-      "Hardware Fidelity Verification → Verified 99.82% Keras-to-TFLite decision agreement",
-      "Physical Medical IoT → Connected ECG & blood glucose sensors to Raspberry Pi in MedGuardAI",
-      "Computer Vision Tensor Engine → Exported CIFAR-10 Keras weights to browser runtime",
-      "Docker & Containerized Inference → Packaged reproducible microservice APIs",
-      "Zero-Dependency Production Deploys → Shipped 17+ live Vercel & GitHub Pages systems",
+      "Strict inter-patient DS1/DS2 evaluation → 49,668 held-out MIT-BIH test beats, zero patient overlap",
+      "Signal processing → 0.5–45 Hz zero-phase Butterworth filtering, per-beat z-score, RR-interval features",
+      "TFLite INT8 quantization → 155.4 KB model, 0.32 ms/beat, 99.82% decision agreement with the float model",
+      "Medical IoT architecture → sensor → Raspberry Pi → Flask/MongoDB → Flutter design (capstone; source not public)",
+      "Honest minority-class reporting → S-class sensitivity of 16.2% is published, not hidden behind accuracy",
+      "Simulation vs clinical evidence → AsthmaExpertUltra is labelled synthetic-data research, not clinical validation",
+    ],
+  },
+  {
+    category: "LLM & Agent Prototypes",
+    proof: "Prototype level — each project card states what actually runs",
+    icon: Bot,
+    items: [
+      "Retrieval UI prototype → seeded-corpus keyword retrieval; a real embedding + vector-store pipeline is the next build",
+      "Agent workflow simulators → ResolveAI and OpsPilot use keyword routing and mock tools, not live LLM agents",
+      "LLM evaluation harness → EvalGate smoke-test runner with unit tests and CI (four sample cases)",
+      "Single-call LLM drafting → Research Draft Studio sends one Gemini request, no retrieval or verification",
+      "In-browser Keras inference → SMS spam classifier (99.1% on the small UCI SMS Spam benchmark)",
+      "Speech → browser Web Speech dictation plus an FFT/Keras spoken-digit classifier",
+    ],
+  },
+  {
+    category: "Software Engineering & Delivery",
+    proof: "Evidence: portfolio CI, EvalGate tests, client deployments",
+    icon: ShieldCheck,
+    items: [
+      "TypeScript, React & Next.js → this portfolio, with type-check and production-build CI",
+      "Python tooling → EvalGate runner with unit tests and GitHub Actions",
+      "Safe input handling → restricted arithmetic parser replacing eval() in the tool-calling demo",
+      "Responsible disclosure in UI → simulated tools and heuristic outputs are labelled as such",
+      "Git & GitHub workflow → pull requests, CI checks, documented limitations in READMEs",
+      "Static analysis demo → CodeRefactor workbench flags SQL injection and ML data-leakage patterns",
     ],
   },
   {
     category: "Full-Stack & Commercial Client Systems",
-    proof: "Delivered for 6 Commercial Clients in Algeria",
+    proof: "Delivered for 6 commercial clients in Algeria",
     icon: Smartphone,
     items: [
-      "React, Next.js & TypeScript → Built multi-role SaaS, clinical, and e-commerce platforms",
-      "Electron Desktop Applications → Shipped Doctor & Receptionist stations for Tadjmeel Clinica",
-      "Enterprise ERP, POS & G50 Ledger → Built 4-role Algerian DZD accounting & stock suite",
-      "WebRTC Telemedicine & Live Chat → Built real-time doctor-patient video & alert streams",
-      "58-Wilaya Retail & Manager OS → Deployed ALLURE HOMME, GK STORE & CASUAL 29",
-      "Multi-Vertical Commerce OS → Built AURA 5-vertical retail & PDF reporting system",
+      "React, Next.js & TypeScript → multi-role SaaS, clinical and e-commerce platforms",
+      "Electron desktop applications → Doctor & Receptionist stations for Tadjmeel Clinica",
+      "Enterprise ERP, POS & G50 ledger → 4-role Algerian DZD accounting and stock suite",
+      "58-wilaya retail & manager systems → ALLURE HOMME, GK STORE & CASUAL 29",
+      "Multi-vertical commerce → AURA 5-vertical retail system with PDF reporting",
+      "WebRTC telehealth → doctor–patient video consultation flows (MedGuardAI design)",
     ],
   },
   {
-    category: "Backend, Databases & System Architecture",
-    proof: "Applied Across Clinical & Enterprise Platforms",
+    category: "Backend, Databases & Architecture",
+    proof: "Applied across clinical and enterprise platforms",
     icon: Terminal,
     items: [
-      "Real-Time REST & WebSocket APIs → Low-latency physiological & POS event streaming",
-      "Role-Based Access Control (RBAC) → Multi-tenant Gérant / Caissier / Médecin permissions",
-      "PostgreSQL, MongoDB & Supabase → Clinical telemetry & enterprise inventory persistence",
-      "Vector Embeddings & Cosine Ranking → Built Aurelia 4D affinity recommendation engine",
-      "Bilingual PDF & Fiscal Engines → Zero-dependency ISO PDF 1.4 & G50 report generators",
-      "End-to-End Architecture → From raw sensor / dataset curation to live client handoff",
+      "REST & WebSocket APIs → physiological-data and POS event flows",
+      "Role-based access control → Gérant / Caissier / Médecin permissions",
+      "PostgreSQL, MongoDB & Supabase → clinical data and inventory persistence",
+      "Vector similarity → 4-dimensional preference-vector cosine ranking (Aurelia demo)",
+      "PDF & fiscal reporting → G50 report generators and bilingual PDFs",
+      "End-to-end delivery → from dataset or sensor requirements to client handoff",
     ],
   },
 ]
@@ -104,7 +104,7 @@ export function SkillsSection() {
             <div className="flex-1 h-px bg-gradient-to-r from-purple-500/30 to-transparent ml-2" />
           </div>
           <p className="text-slate-400 text-sm sm:text-base mb-12 max-w-3xl font-light">
-            Every technical capability listed below is backed by a deployed production system, trained neural checkpoint, or CERIST research benchmark in this portfolio.
+            Each item names the project that backs it. Items marked prototype are interface or heuristic demos rather than production AI systems; every project card states exactly what runs and what does not.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

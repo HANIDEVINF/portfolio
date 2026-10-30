@@ -42,7 +42,7 @@ export function ProjectPreviewBanner({
 
       {/* Project-specific visual UI preview */}
       <div className="relative h-full w-full overflow-hidden">
-        {renderProjectScreen(slug)}
+        {renderProjectScreen(slug, project)}
 
         {/* Bottom gradient fade into card body */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0d081a] via-[#0d081a]/75 to-transparent z-10" />
@@ -51,7 +51,7 @@ export function ProjectPreviewBanner({
   )
 }
 
-function renderProjectScreen(slug: string) {
+function renderProjectScreen(slug: string, project: PortfolioProject) {
   switch (slug) {
     // 1. AI ECG Arrhythmia Classification v7
     case "ai-ecg-arrhythmia-classification-v7":
@@ -382,35 +382,54 @@ function renderProjectScreen(slug: string) {
         </div>
       )
 
-    // 14. VisionTensor Lab — CIFAR-10 Neural Classifier & Fall Detection
+    // 14. VisionTensor Lab — CIFAR-10 classifier (no fabricated detection overlay)
     case "keras-vision-classifier":
-    case "real-time-object-detection":
       return (
         <div className="h-full w-full bg-[#0a0f1f] p-4 text-xs">
           <div className="flex items-center justify-between mb-2">
-            <span className="font-bold text-white">
-              {slug === "keras-vision-classifier"
-                ? "VisionTensor Lab · 32×32×3 Keras CNN"
-                : "Real-Time Posture & Fall Detection YOLO Pipeline"}
-            </span>
-            <span className="rounded bg-cyan-500/20 px-2 py-0.5 font-mono text-[10px] text-cyan-300">
-              30 FPS Tensor
-            </span>
+            <span className="font-bold text-white">VisionTensor Lab · 32×32×3 Keras CNN</span>
+            <span className="rounded bg-cyan-500/20 px-2 py-0.5 font-mono text-[10px] text-cyan-300">CIFAR-10</span>
           </div>
-          <div className="grid grid-cols-3 gap-2 items-center">
-            <div className="col-span-1 h-16 rounded-lg border-2 border-dashed border-emerald-400/70 bg-emerald-950/20 flex flex-col items-center justify-center p-1">
-              <span className="font-mono text-[9px] text-emerald-300">BBox [0.96]</span>
-              <span className="font-bold text-[10px] text-white mt-0.5">Target Locked</span>
+          <div className="grid grid-cols-3 gap-2 font-mono text-[10px]">
+            <div className="rounded-lg border border-cyan-500/25 bg-black/40 p-2">
+              <div className="text-cyan-300 font-semibold">Input</div>
+              <div className="text-slate-300 mt-0.5">RGB tensor</div>
             </div>
-            <div className="col-span-2 space-y-1.5 font-mono text-[10px]">
-              <div className="w-full bg-white/10 rounded-full h-3 overflow-hidden">
-                <div className="bg-gradient-to-r from-cyan-400 to-purple-500 h-full w-[94%]" />
-              </div>
-              <div className="flex justify-between text-slate-300">
-                <span>Top-1 Confidence: 94.2%</span>
-                <span className="text-emerald-300">In-Browser Weights</span>
-              </div>
+            <div className="rounded-lg border border-purple-500/25 bg-black/40 p-2">
+              <div className="text-purple-300 font-semibold">Output</div>
+              <div className="text-slate-300 mt-0.5">10 classes</div>
             </div>
+            <div className="rounded-lg border border-emerald-500/25 bg-black/40 p-2">
+              <div className="text-emerald-300 font-semibold">Runtime</div>
+              <div className="text-slate-300 mt-0.5">In-browser weights</div>
+            </div>
+          </div>
+        </div>
+      )
+
+    // MCTNet crop classification
+    case "mctnet-crop-classification":
+      return (
+        <div className="h-full w-full bg-[#071510] p-4 text-xs relative">
+          <div className="flex items-center justify-between mb-2">
+            <span className="font-bold text-white">MCTNet · Sentinel-2 crop mapping</span>
+            <span className="rounded bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] text-emerald-300">AR · CA 2021</span>
+          </div>
+          <div className="space-y-1.5 font-mono text-[10px] text-slate-300">
+            {([
+              ["Reproduction", 94, "0.937 / 0.791"],
+              ["+ covariates (Part 2)", 95, "0.952 / 0.832"],
+              ["+ BiGRU, indices (Part 3)", 97, "0.966 / 0.846"],
+            ] as const).map(([label, w, v]) => (
+              <div key={label} className="flex items-center gap-2">
+                <span className="w-32 shrink-0 truncate">{label}</span>
+                <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-white/10">
+                  <div className="h-full bg-gradient-to-r from-emerald-400 to-cyan-400" style={{ width: `${w}%` }} />
+                </div>
+                <span className="w-24 shrink-0 text-right text-emerald-300">{v}</span>
+              </div>
+            ))}
+            <div className="pt-0.5 text-[9px] text-slate-400">Overall accuracy: Arkansas / California (single runs)</div>
           </div>
         </div>
       )
@@ -599,7 +618,6 @@ function renderProjectScreen(slug: string) {
 
     // 21. Aurelia Vector Affinity AI Commerce
     case "aurelia-market-ai-commerce":
-    default:
       return (
         <div className="h-full w-full bg-gradient-to-br from-[#161026] via-[#0e0a1a] to-[#090712] p-4 text-xs">
           <div className="flex items-center justify-between mb-2">
@@ -621,6 +639,23 @@ function renderProjectScreen(slug: string) {
               <div className="text-cyan-300 font-semibold">Smart Bundle</div>
               <div className="text-slate-300 mt-0.5">Live Cart Telemetry</div>
             </div>
+          </div>
+        </div>
+      )
+
+    default:
+      return (
+        <div className="h-full w-full bg-gradient-to-br from-[#161026] via-[#0e0a1a] to-[#090712] p-4 text-xs">
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <span className="truncate font-bold text-white">{project.title.split(" — ")[0]}</span>
+            <span className="shrink-0 rounded bg-purple-500/20 border border-purple-400/30 px-2 py-0.5 font-mono text-[10px] text-purple-200">
+              {project.category}
+            </span>
+          </div>
+          <div className="space-y-1 font-mono text-[10px] text-slate-300">
+            {(project.metrics ?? []).slice(0, 3).map((m) => (
+              <div key={m} className="rounded-lg border border-purple-500/20 bg-black/40 px-2 py-1 truncate">{m}</div>
+            ))}
           </div>
         </div>
       )

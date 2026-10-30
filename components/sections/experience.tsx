@@ -7,7 +7,7 @@ const experiences = [
     company: "CERIST — Research Center on Scientific and Technical Information (Algiers)",
     highlight: "MuCAT Multilingual Transformer & Healthcare AI",
     description:
-      "AI research appointments at Algeria's national scientific research center (UbiSys Team, DTISI, supervised by Team Leader Nadir Bouchama). Architected and evaluated MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer): an mDeBERTa-v3 architecture combining Hierarchical Attention Pooling (HAP), Language-Aware FiLM Gating (LAG), and an Evidential Dirichlet Head (EDL) for single-pass closed-form epistemic uncertainty estimation (u = K/S). Achieved 98.20% test accuracy across 6 languages/dialects (MSA, Algerian Darija, Kabyle, Chaoui, French, English), outperforming baselines (81.40% XLM-RoBERTa, 89.60% standard mDeBERTa-v3 under verified aligned label index mappings).",
+      "AI research appointments at Algeria's national scientific research center (UbiSys Team, DTISI, supervised by Team Leader Nadir Bouchama). Architected and evaluated MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer): an mDeBERTa-v3 architecture combining Hierarchical Attention Pooling (HAP), Language-Aware FiLM Gating (LAG), and an Evidential Dirichlet Head (EDL) for single-pass closed-form epistemic uncertainty estimation (u = K/S). Project-reported result: 98.20% test accuracy across 6 languages/dialects (MSA, Algerian Darija, Kabyle, Chaoui, French, English) against corrected baselines of 81.40% (XLM-RoBERTa) and 89.60% (mDeBERTa-v3); end-to-end reproduction from the public repository is pending.",
     technologies: [
       "MuCAT Architecture",
       "mDeBERTa-v3 / XLM-R",
@@ -32,7 +32,7 @@ const experiences = [
     company: "Independent Applied AI & Biomedical Deep Learning",
     highlight: "Model Evaluation & Edge Deployment",
     description:
-      "Engineered MIT-BIH ECG Arrhythmia Classification v7 (97,045-parameter 1D-CNN + Multi-Head Transformer + 8 RR features, strict DS1/DS2 inter-patient split, 90.13% 5-fold ensemble, 0.529 macro-F1, quantized to 155.4 KB INT8 TFLite at 0.32 ms/beat on ARM Cortex-A72), hybrid Dense+BM25 RAG pipelines, and multi-agent ReAct orchestrators.",
+      "Engineered MIT-BIH ECG Arrhythmia Classification v7 (97,045-parameter 1D-CNN + Multi-Head Transformer + 8 RR features, strict DS1/DS2 inter-patient split, 90.13% 5-fold ensemble, 0.529 macro-F1, quantized to 155.4 KB INT8 TFLite at 0.32 ms/beat), plus interactive AI web prototypes (retrieval UI, agent-workflow simulators, LLM evaluation harness).",
     technologies: ["PyTorch", "TensorFlow / Keras", "TFLite INT8", "Hybrid RAG", "LLM Evaluation", "Docker"],
   },
   {
