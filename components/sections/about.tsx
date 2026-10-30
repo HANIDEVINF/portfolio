@@ -8,7 +8,7 @@ const quickFacts = [
   { icon: GraduationCap, label: "Academic Track", value: "Master in AI @ USTHB (Sep 2025 – Expected June 2027) · CS Licence @ USTHB (2022–2025) · Bac 2022" },
   { icon: Building2, label: "Research Track", value: "AI Engineering Research Internships at CERIST (Asthma Healthcare AI, Multilingual NLP, Transformers)" },
   { icon: Stethoscope, label: "Medical AI & IoT", value: "AsthmaExpertUltra (Transformer, <1.0s Android), MedGuardAI & MIT-BIH v7 (155 KB INT8 TFLite)" },
-  { icon: Brain, label: "Custom Architectures", value: "Designed MuCAT at CERIST UbiSys (mDeBERTa-v3 + HAP + FiLM Gating + Dirichlet Uncertainty, 98.20% Test Acc)" },
+  { icon: Brain, label: "Custom Architectures", value: "Designed MuCAT at CERIST UbiSys (mDeBERTa-v3 + HAP + FiLM Gating + Dirichlet Uncertainty; 98.20% project-reported accuracy, reproduction pending)" },
   { icon: Globe2, label: "Trilingual Engineer", value: "Arabic (Native) · French (Full Professional) · English (Professional Working)" },
 ]
 

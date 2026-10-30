@@ -38,9 +38,9 @@ export function ProjectsSection() {
           <div className="mb-10 grid gap-4 grid-cols-2 md:grid-cols-4">
             {(
               [
-                ["9+", "deployed live AI workbenches", Rocket],
+                ["7", "public AI demos & prototypes", Rocket],
                 ["6", "commercial client systems", Layers],
-                ["8+", "trained PyTorch/Keras models", Brain],
+                ["3", "research projects with reported metrics", Brain],
                 ["5", "CERIST AI research internships", CheckCircle2],
               ] as const
             ).map(([value, label, Icon]) => (

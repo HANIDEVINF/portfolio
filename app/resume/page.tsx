@@ -5,7 +5,6 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Download, Mail, Phone, Briefcase, GraduationCap, Award, FileText, CheckCircle2, MapPin, Languages, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { generateAndDownloadResumePdf } from "@/lib/generate-cv-pdf"
 
 const resumeData = {
   en: {
@@ -27,7 +26,7 @@ const resumeData = {
         period: "2024 – 2025",
         responsibilities: [
           "Designed AsthmaExpertUltra: 4-layer Transformer Encoder predicting asthma crisis severity (76.0% acc, 92.3% severe recall) and lead-time proximity (69.0% acc) from 8 multimodal IoT streams, with Dempster-Shafer evidential fusion and Android PyTorch Lite deployment (<1.0s).",
-          "Designed MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) in CERIST UbiSys (DTISI): stacked Hierarchical Attention Pooling (HAP), Language-Aware FiLM Gating (LAG), and Evidential Dirichlet Head (u = K/S) over mDeBERTa-v3 across 6 languages (98.20% test accuracy).",
+          "Designed MuCAT (Multilingual Uncertainty-Calibrated Attention Transformer) in CERIST UbiSys (DTISI): stacked Hierarchical Attention Pooling (HAP), Language-Aware FiLM Gating (LAG), and Evidential Dirichlet Head (u = K/S) over mDeBERTa-v3 across 6 languages (98.20% project-reported accuracy; reproduction pending).",
           "Engineered MIT-BIH v7 ECG Arrhythmia Holter: dual-lead 1D-CNN + 2x Transformer + 8-RR temporal context on strict inter-patient DS1/DS2 split, quantized to 155.4 KB INT8 TFLite (0.32 ms/beat edge latency).",
         ],
       },
@@ -37,7 +36,7 @@ const resumeData = {
         period: "Jan 2024 – Present",
         responsibilities: [
           "Architected and delivered 6 commercial production systems: Tadjmeel Clinica Algiers (Public Web + Doctor & Receptionist Electron Desktop Apps), Enterprise DZD Business ERP & G50 Fiscal Suite, ALLURE HOMME, GK STORE, CASUAL 29, and AURA Retail OS.",
-          "Built full-stack AI web systems spanning Speech-to-Text ASR & Clinical SOAP Summarization, Hybrid Dense+BM25 RAG, Multi-Agent ReAct Orchestration, and LLM Safety Evaluation.",
+          "Built full-stack AI web systems spanning Speech-to-Text ASR & Clinical SOAP Summarization, Multi-Agent ReAct Orchestration, and LLM Safety Evaluation.",
           "Production tech stack: React, Next.js, Node.js, TypeScript, Electron, PHP, Laravel, MongoDB, PostgreSQL, and Docker.",
           "Delivered client-facing solutions with measurable business impact, 58-wilaya logistics, and production reliability.",
         ],
@@ -75,7 +74,7 @@ const resumeData = {
     certifications: [
       "AsthmaExpertUltra – Anticipatory Multi-Task Transformer & Android Edge Deployment (CERIST AI Research)",
       "AI ECG Arrhythmia Classification v7 – MIT-BIH DS1/DS2 Inter-Patient Study & 155 KB INT8 TFLite",
-      "MuCAT – Multilingual Uncertainty-Calibrated Attention Transformer (CERIST UbiSys DTISI — 98.20% Test Acc across 6 languages)",
+      "MuCAT – Multilingual Uncertainty-Calibrated Attention Transformer (CERIST UbiSys DTISI — 98.20% project-reported accuracy, reproduction pending)",
       "MedGuardAI – Real-Time IoT Patient Monitoring Platform (USTHB Licence Capstone / PFE 2022–2025)",
       "Deep Learning Certification – Code 213 · Final Training Capstone",
     ],
@@ -114,7 +113,7 @@ const resumeData = {
         period: "Janv. 2024 – Présent",
         responsibilities: [
           "Livraison de 6 systèmes commerciaux en production : Tadjmeel Clinica Alger (Site + applications desktop Electron Médecin & Réceptionniste), ERP Algérien DZD & Bilan Fiscal G50, ALLURE HOMME, GK STORE, CASUAL 29 et AURA.",
-          "Déploiement d'applications IA interactives : Speech-to-Text ASR & Synthèse SOAP, RAG Hybride Dense+BM25, Orchestration Multi-Agents ReAct et Évaluation LLM.",
+          "Déploiement d'applications IA interactives : Speech-to-Text ASR & Synthèse SOAP, Orchestration Multi-Agents ReAct et Évaluation LLM.",
           "Stack de production : React, Next.js, Node.js, TypeScript, Electron, PHP, Laravel, MongoDB, PostgreSQL et Docker.",
         ],
       },
@@ -151,7 +150,7 @@ const resumeData = {
     certifications: [
       "AsthmaExpertUltra – Transformer Multi-Tâches & Déploiement Edge Android (Recherche IA CERIST)",
       "Classification d'arythmies ECG par IA (v7) – MIT-BIH Inter-Patient & 155 Ko INT8 TFLite",
-      "MuCAT – Multilingual Uncertainty-Calibrated Attention Transformer (CERIST UbiSys DTISI — 98,20 % Test Acc)",
+      "MuCAT – Multilingual Uncertainty-Calibrated Attention Transformer (CERIST UbiSys DTISI — 98,20 % de précision rapportée, reproduction en cours)",
       "MedGuardAI – Plateforme de suivi de patients en temps réel (PFE Licence USTHB 2022–2025)",
       "Certification en Deep Learning – Code 213 · Projet final de formation",
     ],
@@ -240,14 +239,6 @@ export default function ResumePage() {
                 <a
                   href={lang === "fr" ? "/Ghena_Hani_CV_FR.pdf" : "/Ghena_Hani_CV_EN.pdf"}
                   download={lang === "fr" ? "Ghena_Hani_CV_FR.pdf" : "Ghena_Hani_CV_EN.pdf"}
-                  onClick={(e) => {
-                    try {
-                      e.preventDefault()
-                      generateAndDownloadResumePdf(lang)
-                    } catch {
-                      // Native href handles download if jsPDF fails
-                    }
-                  }}
                 >
                   <Download className="w-4 h-4 mr-2" />
                   {data.printBtn}

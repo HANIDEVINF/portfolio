@@ -8,6 +8,7 @@ export type ProjectCategory =
   | "Freelance & Client Systems"
   | "EdTech & SaaS Platform"
   | "Healthcare AI"
+  | "Earth Observation AI"
   | "NLP & Speech AI"
   | "RAG & Information Extraction"
   | "Agentic AI & MLOps"
@@ -17,6 +18,7 @@ export const PROJECT_CATEGORIES: readonly ("All" | ProjectCategory)[] = [
   "All",
   "EdTech & SaaS Platform",
   "Healthcare AI",
+  "Earth Observation AI",
   "NLP & Speech AI",
   "RAG & Information Extraction",
   "Agentic AI & MLOps",
@@ -122,66 +124,6 @@ export const portfolioProjects: PortfolioProject[] = [
     }
   },
   {
-    slug: "mctnet-multisource-crop-classification",
-    title: "MCTNet — Multi-Source Crop Classification",
-    description:
-      "Crop-mapping research pipeline using 36-step Sentinel-2 time series across Arkansas and California. Includes a CNN–Transformer baseline, climate/soil/topography covariate exploration and ablations, and an improved BiGRU + self-attention model with per-group gated covariate fusion.",
-    technologies: [
-      "TensorFlow / Keras",
-      "Sentinel-2 Time Series",
-      "CNN–Transformer",
-      "BiGRU",
-      "Self-Attention",
-      "Google Earth Engine",
-      "Environmental Feature Fusion"
-    ],
-    github: "https://github.com/HANIDEVINF/MCTNet",
-    githubReady: true,
-    category: "Computer Vision",
-    featured: true,
-    status: "Research",
-    systemType: "Research Implementation",
-    trainedDataset: "2021 Sentinel-2 time series for Arkansas and California, with supplied base and environmentally enriched CSV datasets",
-    modelType: "MCTNet CNN–Transformer baseline plus a BiGRU/self-attention extension with group-gated climate, soil and topography covariates",
-    metrics: [
-      "36 temporal steps × 10 Sentinel-2 spectral bands in the baseline",
-      "Two geographic study areas: Arkansas and California",
-      "Ablation comparisons reported for overall accuracy, Cohen's kappa and macro-F1"
-    ],
-    impact:
-      "Maintained by Hani Ghena. Compares a crop-classification baseline with environmental-covariate integration and an improved temporal architecture, with data preparation, notebooks and dataset files organized for research review.",
-    architecture: [
-      "Input: 36 ten-day Sentinel-2 observations, 10 spectral bands and validity indicators per sample",
-      "Baseline: multi-stage CNN–Transformer feature extraction for crop-type classification",
-      "Covariate branch: climate sequences plus static soil and topography attributes, evaluated through feature-group ablations",
-      "Improved model: 14 spectral/vegetation-index channels, a bidirectional GRU, self-attention and per-group gated covariate fusion"
-    ],
-    caseStudy: {
-      subtitle: "MCTNet Crop Mapping Research Implementation · Hani Ghena",
-      datasetOrScope: "Sentinel-2 time-series crop classification for Arkansas and California (2021), with base and enriched datasets included in the repository",
-      keyFindings: [
-        "Organizes baseline, covariate-ablation and improved-model workflows as separate notebooks",
-        "Adds climate, soil and topography features to study whether multi-source information improves crop discrimination",
-        "Includes an improved temporal architecture using BiGRU, self-attention and per-group gated covariate fusion",
-        "Reports overall accuracy, Cohen's kappa and macro-F1 from notebook experiments; metrics should be reproduced in the target environment before being cited"
-      ],
-      sections: [
-        {
-          heading: "Baseline and Temporal Spectral Features",
-          body: "The baseline uses 36 temporal observations across 10 Sentinel-2 bands and models the temporal spectral signature for crop-type classification. The Arkansas and California datasets use different crop-class mappings."
-        },
-        {
-          heading: "Environmental Covariate Integration",
-          body: "The enriched data add temperature, precipitation and dew-point time series, alongside static soil and topographic variables. Part 2 explores feature distributions and compares selected covariate groups through ablations."
-        },
-        {
-          heading: "Improved MCTNet Architecture",
-          body: "Part 3 extends the spectral representation with vegetation indices and uses a bidirectional GRU, self-attention and per-group gated fusion for climate, soil and topography. The repository includes the prepared data and research notebooks rather than a hosted inference API."
-        }
-      ]
-    }
-  },
-  {
     slug: "ai-ecg-arrhythmia-classification-v7",
     title: "AI ECG Arrhythmia Classification (v7)",
     description:
@@ -231,6 +173,58 @@ export const portfolioProjects: PortfolioProject[] = [
         {
           heading: "Deployment, Hardware Verification & Research Disclaimer",
           body: "Exported from Keras (379.08 KB float32) to dynamic-range TFLite (146.0 KB) and INT8 TFLite (155.4 KB). Verified across 5,000 DS2 beats with 99.82% argmax decision agreement. Medical Disclaimer: Research & educational demonstration evaluated on PhysioNet MIT-BIH; not a certified clinical diagnostic device.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "mctnet-crop-classification",
+    title: "MCTNet Crop Classification — Reproduction, Covariate Ablation & BiGRU Extension",
+    description:
+      "Pixel-level crop-type mapping from Sentinel-2 time series (Arkansas and California, 2021). Reproduced the published MCTNet CNN–Transformer in Keras, ablated climate/soil/topography covariates, then extended it with a BiGRU and vegetation indices. Results are single-run and the comparison with the paper is indicative only (data re-extracted by us).",
+    technologies: ["TensorFlow/Keras", "CNN–Transformer", "BiGRU", "Sentinel-2", "Google Earth Engine", "Ablation Study"],
+    github: "https://github.com/HANIDEVINF/MCTNet-Crop-Classification",
+    githubReady: true,
+    category: "Earth Observation AI",
+    featured: true,
+    status: "Research",
+    systemType: "Research Implementation",
+    trainedDataset: "Sentinel-2 SR time series (36 steps × 10 bands + cloud mask) with USDA CDL labels: Arkansas (5 classes) and California (6 classes), 2021, about 10,000 pixels per state, extracted with Google Earth Engine",
+    modelType: "MCTNet-style CNN–Transformer (≈29K parameters) and an improved variant with BiGRU + attention, 4 vegetation indices and per-group covariate gates (≈125–134K parameters)",
+    metrics: [
+      "Reproduction: OA 0.937 (AR) / 0.791 (CA) vs published 0.968 / 0.852",
+      "Improved model: OA 0.966 (AR) / 0.846 (CA)",
+      "Single run per configuration; Part 3 is not a controlled comparison",
+    ],
+    impact:
+      "Coursework for the Neural Networks module (Master 1 SII, USTHB), co-authored with Samy Nazim Drinali. Documents a normalization-leakage fix, a negative-transfer failure with a single shared covariate gate, and where covariates stop helping. The README lists the limitations explicitly.",
+    architecture: [
+      "Data: Sentinel-2 SR Harmonized + USDA Cropland Data Layer labels via Google Earth Engine; ERA5 climate, OpenLandMap soil and ALOS landform covariates",
+      "Backbone: three CNN‖Transformer stages with a cloud-aware positional encoding (ALPE)",
+      "Covariates: gated MLP branch (per-group gates in the improved model)",
+      "Improved model: BiGRU(64) + self-attention, NDVI/IRECI/MTCI/S2REP indices, cloud-gap interpolation",
+    ],
+    caseStudy: {
+      subtitle: "Neural Networks project, USTHB — reproduction, ablation and extension of MCTNet",
+      datasetOrScope: "Two U.S. study areas (Arkansas, California), one season (2021), pixel-level split; datasets re-extracted by the authors, so not identical to the original study's samples",
+      keyFindings: [
+        "The reproduction lands 3–6 points of OA below the published figures; the gap was not diagnosed and the framework-default explanation is an untested hypothesis",
+        "Covariates help the original architecture (California, all covariates: +4.3 pp OA, +5.3 pp macro-F1 over S2-only)",
+        "After adding the BiGRU and vegetation indices, covariates add about 0.1 pp OA; S2 + Topography on California drops 4.3 pp and was not investigated",
+        "Part 3 changes architecture, features, preprocessing and training-set size together, so its gains cannot be credited to the BiGRU alone",
+      ],
+      sections: [
+        {
+          heading: "Method",
+          body: "Part 1 re-implements MCTNet (three CNN‖Transformer stages with cloud-aware positional encoding). Part 2 adds a gated covariate branch and evaluates five input configurations. Part 3 adds a BiGRU with attention, four vegetation indices, cloud-gap interpolation and per-group gates, and increases the training set from 300 to 500 samples per class.",
+        },
+        {
+          heading: "Engineering fixes",
+          body: "A min–max scaler fitted on the full dataset before splitting was found and corrected so statistics come from the training split only. A single shared covariate gate showed negative transfer in Part 2 (S2 + All scored below S2 + Topography on Arkansas).",
+        },
+        {
+          heading: "Limitations",
+          body: "One run per configuration (seed 42), no confidence intervals, no spatial hold-out, a single year, and differing test sets between parts. Differences below about 1 pp should be read as noise.",
         },
       ],
     },
@@ -287,7 +281,6 @@ export const portfolioProjects: PortfolioProject[] = [
     technologies: ["PyTorch", "Time-Series Anomaly Detection", "CGM Sensors", "Python", "Jupyter Notebook"],
     github: "https://github.com/HANIDEVINF/deep-learning-model-for-anomaly-detection-of-blood-glucose-monitoring",
     githubReady: true,
-    demo: "/lab/ecg-holter-v7",
     category: "Healthcare AI",
     status: "Research",
     systemType: "Research Implementation",
@@ -750,7 +743,6 @@ export const portfolioProjects: PortfolioProject[] = [
     technologies: ["YOLO", "OpenCV", "Computer Vision", "Real-Time Inference"],
     github: "https://github.com/HANIDEVINF/Fall-Detection-Model",
     githubReady: true,
-    demo: "https://github.com/HANIDEVINF/Fall-Detection-Model",
     category: "Computer Vision",
     status: "Research",
     systemType: "Research Implementation",
