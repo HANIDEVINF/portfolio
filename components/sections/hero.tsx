@@ -1,7 +1,7 @@
 "use client"
 
 import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Sparkles } from "lucide-react"
-import { motion, useReducedMotion } from "framer-motion"
+import { motion, useReducedMotion, type Variants } from "framer-motion"
 import Image from "next/image"
 
 const socialLinks = [
@@ -12,21 +12,21 @@ const socialLinks = [
 const headlineWords = ["AI", "systems,"]
 const headlineWords2 = ["built", "with", "rigor."]
 
-const wordContainer = {
+const wordContainer: Variants = {
   hidden: {},
   show: {
     transition: { staggerChildren: 0.09, delayChildren: 0.15 },
   },
 }
 
-const wordItem = {
+const wordItem: Variants = {
   hidden: { opacity: 0, y: "100%", rotateX: -35, filter: "blur(6px)" },
   show: {
     opacity: 1,
     y: "0%",
     rotateX: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] as const },
   },
 }
 
