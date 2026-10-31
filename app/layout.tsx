@@ -1,16 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter"
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono"
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const playfair = Playfair_Display({ subsets: ["latin"], style: ["italic", "normal"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://myportfolio-rho-seven-15.vercel.app'),
@@ -20,32 +14,20 @@ export const metadata: Metadata = {
   authors: [{ name: 'Ghena Hani' }],
   creator: 'Ghena Hani',
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    title: 'Ghena Hani | AI Engineering MSc Student',
+    type: 'website', locale: 'en_US', title: 'Ghena Hani | AI Engineering MSc Student',
     description: 'Projects in multilingual NLP, transformer models, ECG classification, model evaluation, and AI application development.',
-    siteName: 'Ghena Hani Portfolio',
-    images: ['/images/profile-square.jpg'],
+    siteName: 'Ghena Hani Portfolio', images: ['/images/profile-square.jpg'],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Ghena Hani | AI Engineering MSc Student',
-    description: 'Projects in multilingual NLP, transformer models, ECG classification, model evaluation, and AI application development.',
-    images: ['/images/profile-square.jpg'],
-  },
-  icons: {
-    icon: '/icon.svg',
-  },
+  twitter: { card: 'summary_large_image', title: 'Ghena Hani | AI Engineering MSc Student', description: 'Projects in multilingual NLP, transformer models, ECG classification, model evaluation, and AI application development.', images: ['/images/profile-square.jpg'] },
+  icons: { icon: '/icon.svg' },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} bg-[#07050d]`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${playfair.variable} bg-[#07050d]`}>
       <body className="font-sans antialiased bg-[#07050d] text-slate-100 selection:bg-purple-500/30 selection:text-white">
+        <div aria-hidden="true" className="grain-overlay" />
+        <div aria-hidden="true" className="cinematic-vignette" />
         {children}
       </body>
     </html>
