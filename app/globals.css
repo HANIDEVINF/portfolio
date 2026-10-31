@@ -51,6 +51,7 @@
 @theme inline {
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: var(--font-playfair), 'Playfair Display', serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -73,78 +74,45 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
-    background: var(--background);
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    min-height: 100%;
-    background: var(--background);
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  a,
-  button {
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  :focus-visible {
-    outline: 2px solid rgba(165, 243, 252, 0.9);
-    outline-offset: 3px;
-  }
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; scroll-padding-top: 6rem; background: var(--background); }
+  body { @apply bg-background text-foreground; min-height: 100%; background: var(--background); text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 2px solid rgba(165, 243, 252, 0.9); outline-offset: 3px; }
 }
 
-::selection {
-  color: #ffffff;
-  background: rgba(103, 232, 249, 0.28);
+::selection { color: #ffffff; background: rgba(103, 232, 249, 0.28); }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #080b12; }
+::-webkit-scrollbar-thumb { border: 2px solid #080b12; border-radius: 999px; background: linear-gradient(180deg, #67e8f9, #a78bfa); }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #a5f3fc, #c4b5fd); }
+
+.grain-overlay {
+  position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 9s steps(5) infinite;
+}
+@keyframes grain-shift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  20% { transform: translate3d(-1.5%, -2%, 0); }
+  40% { transform: translate3d(2%, 1%, 0); }
+  60% { transform: translate3d(-2%, 2%, 0); }
+  80% { transform: translate3d(1.5%, -1.5%, 0); }
 }
 
-::-webkit-scrollbar {
-  width: 8px;
+.cinematic-vignette {
+  position: fixed; inset: 0; z-index: 55; pointer-events: none;
+  background: radial-gradient(ellipse 85% 70% at 50% 45%, transparent 55%, rgba(3, 4, 8, 0.55) 100%);
 }
-
-::-webkit-scrollbar-track {
-  background: #080b12;
-}
-
-::-webkit-scrollbar-thumb {
-  border: 2px solid #080b12;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #67e8f9, #a78bfa);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #a5f3fc, #c4b5fd);
-}
-
+.text-ghost-stroke { color: transparent; -webkit-text-stroke: 1px rgba(248, 250, 252, 0.28); text-stroke: 1px rgba(248, 250, 252, 0.28); }
+.hero-cinematic-text { font-size: clamp(3rem, 8vw, 7.25rem); line-height: 0.92; letter-spacing: -0.04em; }
 .hero-grid {
-  background-image:
-    linear-gradient(rgba(148, 163, 184, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.055) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(148, 163, 184, 0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.055) 1px, transparent 1px);
   background-size: 56px 56px;
   -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.65) 55%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.65) 55%, transparent 100%);
 }
-
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
